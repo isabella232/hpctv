@@ -22,6 +22,7 @@ module.exports = {
     "no-dupe-keys": 2,
     "no-empty": 2,
     "no-extra-parens": [1,"all"],
+    "space-before-function-paren":0,
     "no-extra-semi": 1,
     "no-unreachable": 2,
     "valid-typeof": 1,
