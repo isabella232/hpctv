@@ -1,0 +1,23 @@
+
+// Colors
+
+$lime: #bfd600;
+// gradient grays
+$gradient_grey_light: #454648;
+$gradient_grey_dark: #323133;
+$ucar_primary_dark: #187382;
+$ucar_primary_lightest: #00c4a5;
+
+$gradient_teal_dark: #00aaa5;
+$gradient_teal_light: #009b97;
+
+$teal_linear_gradient: linear-gradient(left, rgba(0, 170, 165, 1) 25%, rgba(0, 155, 151, 1) 75%);
+
+$trans_black: rgba(0, 0, 0, 0.5);
+
+$grey_gradient_opacity: 0.15;
+$transparent_grey_gradient: linear-gradient(45deg, transparentize($gradient_grey_dark, $grey_gradient_opacity) 0%, transparentize($gradient_grey_light, $grey_gradient_opacity) 50%, transparentize($gradient_grey_dark, $grey_gradient_opacity) 100%);
+
+@mixin greydient($opacity){
+  background:  linear-gradient(45deg, transparentize($gradient_grey_dark, $opacity) 0%, transparentize($gradient_grey_light, $opacity) 50%, transparentize($gradient_grey_dark, $opacity) 100%)
+}
