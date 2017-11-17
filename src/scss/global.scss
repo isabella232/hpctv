@@ -7,13 +7,22 @@ $button_size: 100px;
   background: $background;
 }
 
-@mixin button($color){
+@mixin unselectableText(){
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin button($color) {
   background: $color;
+  @include unselectableText();
   box-shadow: 0 0 30px $trans_black;
   outline: none;
   -webkit-appearance: none;
   border: none;
-
   &:active,
   &:hover {
     box-shadow: 0 0 10px $trans_black;
@@ -57,7 +66,7 @@ body {
     padding-left: 0;
   }
 
-  .invisible{
+  .invisible {
     opacity: 0;
   }
 
@@ -70,7 +79,7 @@ body {
       @include button($lime);
       width: $button_size /2;
       height: $button_size;
-      
+
       color: white;
       font-size: $button_size/3;
       font-weight: 700;

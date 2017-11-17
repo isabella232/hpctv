@@ -1,0 +1,72 @@
+@import 'global';
+
+.small-modal {
+  background: transparent;
+  margin: 20px;
+  position: absolute;
+  display: inline-block;
+  box-shadow: 0 0 40px $trans_black;
+
+  button {
+    @include button(transparent);
+    font-size: 1.75em;
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    font-weight: 700;
+    line-height: 1.125;
+    font-family: monospace;
+
+    &.closed {
+      background: transparent;
+      border: solid 3px $lime;
+      color: $lime;
+      transition: transform 0.25s ease-in;
+    }
+    &.open {
+      background: $teal;
+      color: white;
+      border: solid 2px white;
+      transform: rotate(45deg);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  header {
+    background: $teal;
+    color: $gradient_grey_dark;
+    width: 99%;
+    margin: 0 0 0 0.5%;
+    padding: 0.5em 0;
+    font-weight: 700;
+
+    span {
+      margin-left: 1em;
+    }
+  }
+
+  .panel-container {
+    color: white;
+
+    .panel {
+      @include greydient(0);
+      box-sizing: border-box;
+      height: 125px;
+      width: 200px;
+      margin: 1% 0.5%;
+      overflow-y: hidden;
+
+      img {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      p {
+        margin: 5px;
+      }
+    }
+  }
+}

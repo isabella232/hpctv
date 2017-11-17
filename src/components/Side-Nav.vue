@@ -1,7 +1,7 @@
 <template>
   <div class="side-nav row between">
     <button class="prev" :class="{'invisible': isFirstPage}"><</button>
-    <button class="next">></button>
+    <button class="next" :class="{'invisible': isLastPage}">></button>
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
   computed: {
     isFirstPage() {
       return this.$route.path === '/'
+    },
+
+    isLastPage() {
+      return this.$route.path === '/projects'
     }
   }
 }
