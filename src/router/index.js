@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import Specs from '../components/Specs'
-import RealData from '../components/Real-Data'
+import RealData from '../components/Implications'
+import NotFound from '../components/NotFound'
 
 Vue.use(Router)
 
@@ -23,6 +24,12 @@ export default new Router({
       path: '/implications',
       name: 'implications',
       component: RealData
+    },
+    {
+      path: '*',
+      name: 'not-found',
+      component: NotFound
     }
+
   ]
 })

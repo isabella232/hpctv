@@ -44,7 +44,13 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+
+  created() {
+    // remove any classes from the body and then add the page-specific class.
+    document.body.classList = ''
+    document.body.classList.add('home-page')
+  }
 }
 </script>
 

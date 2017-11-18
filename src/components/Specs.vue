@@ -17,6 +17,12 @@ export default {
   name: 'specs',
   components: {
     SmallModal
+  },
+
+  created() {
+    // remove any classes from the body and then add the page-specific class.
+    document.body.classList = ''
+    document.body.classList.add('specs-page')
   }
 }
 </script>

@@ -23,7 +23,7 @@ module.exports = {
     "no-empty": 2,
     "no-extra-parens": [1,"all"],
     "space-before-function-paren":0,
-    "no-extra-semi": 1,
+    "semi": 0,
     "no-unreachable": 2,
     "valid-typeof": 1,
     "no-unexpected-multiline": 1,

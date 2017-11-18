@@ -30,6 +30,10 @@ $button_size: 100px;
   }
 }
 
+@mixin dropshadow($spread){
+  box-shadow: 0 0 $spread $trans_black;
+}
+
 body {
   width: 100%;
   height: 100vh;
@@ -76,6 +80,8 @@ body {
     top: 44vh;
 
     button {
+      //experimental property. changes the whole div color on tap. not really visible unless doing a long tap.
+      // -webkit-tap-highlight-color: $teal; 
       @include button($lime);
       width: $button_size /2;
       height: $button_size;
