@@ -3,12 +3,12 @@
     <button class="prev"
       :class="{'invisible': isFirstPage}"
       @click="$router.go(-1)"
-      ><</button>
+      ><img src="/static/icon/nav-arrow.svg" alt="previous"></button>
 
     <button class="next"
       :class="{'invisible': isLastPage}"
       @click="nextPage()"
-      >></button>
+      ><img src="/static/icon/nav-arrow.svg" alt="next"></button>
   </div>
 </template>
 

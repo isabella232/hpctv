@@ -7,7 +7,7 @@ $button_size: 100px;
   background: $background;
 }
 
-@mixin unselectableText(){
+@mixin unselectableText() {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -30,7 +30,7 @@ $button_size: 100px;
   }
 }
 
-@mixin dropshadow($spread){
+@mixin dropshadow($spread) {
   box-shadow: 0 0 $spread $trans_black;
 }
 
@@ -45,25 +45,9 @@ body {
   height: 100vh;
   // max-width: 1024px;
   overflow: hidden;
-  font-family: sans-serif;
+  font-family: $poppins;
   box-sizing: border-box;
   margin: 0 auto;
-
-  p {
-    line-height: 1.5em;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
-  .upper {
-    text-transform: uppercase;
-  }
-
-  .lime {
-    color: $lime;
-  }
 
   ul {
     list-style: none;
@@ -81,7 +65,7 @@ body {
 
     button {
       //experimental property. changes the whole div color on tap. not really visible unless doing a long tap.
-      // -webkit-tap-highlight-color: $teal; 
+      // -webkit-tap-highlight-color: $teal;
       @include button($lime);
       width: $button_size /2;
       height: $button_size;
@@ -89,14 +73,29 @@ body {
       color: white;
       font-size: $button_size/3;
       font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 32px;
+      }
 
       &.next {
         border-bottom-left-radius: $button_size * 2;
         border-top-left-radius: $button_size * 2;
+        img {
+          transform: rotate(180deg);
+          margin-left: 5px;
+        }
       }
       &.prev {
         border-bottom-right-radius: $button_size * 2;
         border-top-right-radius: $button_size * 2;
+
+        img {
+          margin-right: 5px;
+        }
       }
     }
   }

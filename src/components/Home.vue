@@ -4,19 +4,19 @@
       <div class="intro-container">
         <nav>
           <ul class="row around middle text-center">
-            <li class="col dead-center">
-              <img src="https://placehold.it/50x50?text=icon" alt="">
-              <span class="lime">text</span>
+            <li class="col middle around">
+              <img src="/static/icon/performance-icon.svg" alt="">
+              <span class="lime upper">Specs</span>
             </li>
 
-            <li class="col dead-center">
-              <img src="https://placehold.it/50x50?text=icon" alt="">
-              <span class="lime">text</span>
+            <li class="col middle around">
+              <img src="/static/icon/real-time-data-icon.svg" alt="">
+              <span class="lime upper">Live Data</span>
             </li>
 
-            <li class="col dead-center">
-              <img src="https://placehold.it/50x50?text=icon" alt="">
-              <span class="lime">text</span>
+            <li class="col middle around">
+              <img src="/static/icon/projects-icon.svg" alt="">
+              <span class="lime upper">Projects</span>
             </li>
           </ul>
         </nav>

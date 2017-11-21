@@ -71,17 +71,17 @@ export default {
       nowRunning: [
         {
           statName: 'Active Projects',
-          iconPath: 'https://placehold.it/50x50?text=icon',
+          iconPath: '/static/icon/projects-icon.svg',
           statNumber: 25000
         },
         {
           statName: 'Active Jobs',
-          iconPath: 'https://placehold.it/50x50?text=icon',
+          iconPath: '/static/icon/jobs-icon.svg',
           statNumber: 55000
         },
         {
           statName: 'Queued Projects',
-          iconPath: 'https://placehold.it/50x50?text=icon',
+          iconPath: '/static/icon/folder-check-mark-icon.svg',
           statNumber: 250
         }
       ],

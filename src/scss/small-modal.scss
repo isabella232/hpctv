@@ -9,29 +9,32 @@
 
   button {
     @include button(transparent);
-    font-size: 1.75em;
     position: absolute;
     top: -16px;
     left: -16px;
     width: 32px;
     height: 32px;
-    border-radius: 32px;
-    font-weight: 700;
-    line-height: 1.125;
-    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 0;
 
     &.closed {
       background: transparent;
-      border: solid 3px $lime;
-      color: $lime;
       transition: transform 0.25s ease-in;
     }
     &.open {
       background: $teal;
-      color: white;
-      border: solid 2px white;
       transform: rotate(45deg);
       transition: transform 0.15s ease-in;
+      img {
+         filter: brightness(10);
+      }
+    }
+
+    img {
+      max-width: 100%;
     }
   }
 

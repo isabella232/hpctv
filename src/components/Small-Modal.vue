@@ -1,6 +1,6 @@
 <template>
   <div class="small-modal">
-    <button :class="(visible) ? 'open' : 'closed'" @click="toggle()">+</button>
+    <button :class="(visible) ? 'open' : 'closed'" @click="toggle()"><img src="/static/icon/plus-x-icon.svg" alt="expand / collapse"></button>
     <div class="modal-body" v-if="visible">
     <header class="row upper">
       <span>title</span>
