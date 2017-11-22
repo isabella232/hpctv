@@ -13,7 +13,7 @@
       <div class="case-container" v-for="(project, i) in featuredProjects" :key="project.name">
         <figure @click="openModal(i)">
           <img src="/static/img/case-study-placeholder.jpg" alt="">
-          <div class="figure-overlay col dead-center" >
+          <div class="figure-overlay col dead-center">
             <img class="plus-icon" src="/static/icon/plus-x-icon.svg">
             <figcaption class="upper">{{ project.name }}</figcaption>
           </div>
@@ -21,13 +21,9 @@
       </div>
 
     </article>
-    <big-modal
-      v-if="modalIsOpen"
-      :data="modalData"
-      @modalBorderTapped="modalIsOpen = false"
-      >
+    <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false">
     </big-modal>
-    
+
   </div>
 </template>
 

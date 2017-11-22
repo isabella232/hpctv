@@ -8,16 +8,12 @@
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <button :class="{active: isDefaultPlaceholderImage}" 
-              @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">User Allocation</button>
-            <button :class="{active: !isDefaultPlaceholderImage}" 
-              @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">Area of Study</button>
+            <button :class="{active: isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">User Allocation</button>
+            <button :class="{active: !isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">Area of Study</button>
           </div>
           <div class="canvas">
-            <img src="/static/img/interactive-mockup.png" 
-              v-if="isDefaultPlaceholderImage" alt="">
-            <img src="/static/img/warm-interactive-mockup.png"
-              v-if="!isDefaultPlaceholderImage" alt="">
+            <img src="/static/img/interactive-mockup.png" v-if="isDefaultPlaceholderImage" alt="">
+            <img src="/static/img/warm-interactive-mockup.png" v-if="!isDefaultPlaceholderImage" alt="">
           </div>
         </div>
         <div class="graph">
@@ -36,10 +32,7 @@
             <h2>Now Running</h2>
           </header>
           <ul>
-            <stat-card 
-              v-for="(stat, i) in nowRunning"
-              :key="stat.statName"
-              :cardData="stat">
+            <stat-card v-for="(stat, i) in nowRunning" :key="stat.statName" :cardData="stat">
             </stat-card>
           </ul>
         </div>
@@ -49,9 +42,7 @@
             <h2>Total Run</h2>
           </header>
           <ul>
-            <stat-card v-for="(stat, i) in totalRun"
-              :key="stat.statName"
-              :cardData="stat"> 
+            <stat-card v-for="(stat, i) in totalRun" :key="stat.statName" :cardData="stat">
             </stat-card>
           </ul>
         </div>
@@ -61,7 +52,7 @@
 </template>
 
 <script>
-import StatCard from './StatCard'
+import StatCard from './StatCard';
 
 export default {
   name: 'implications',
@@ -99,7 +90,7 @@ export default {
           statNumber: 5000
         }
       ]
-    }
+    };
   },
   components: {
     StatCard
@@ -107,10 +98,10 @@ export default {
 
   created() {
     // remove any classes from the body and then add the page-specific class.
-    document.body.classList = ''
-    document.body.classList.add('implications-page')
+    document.body.classList = '';
+    document.body.classList.add('implications-page');
   }
-}
+};
 </script>
 
 <style src="../scss/implications.scss" lang="scss"></style>

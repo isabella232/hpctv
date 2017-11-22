@@ -10,6 +10,7 @@ body.case-studies-page {
   }
   article {
     width: 80%;
+    max-width: 1198px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -74,114 +75,6 @@ body.case-studies-page {
           // // border: solid 2px orange;
         }
       }
-    }
-  }
-}
-
-.big-modal {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.75);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  .overlay {
-    position: relative;
-  }
-
-  .body {
-    background: white;
-    width: 90%;
-    margin: 2.5% auto;
-    height: 90vh;
-    position: relative;
-
-    button.exit {
-      @include button(transparent);
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-      margin: 0;
-      padding: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      filter: grayscale(1) brightness(0.75);
-      transform: rotate(45deg);
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  .project-title {
-    flex: 3;
-    background: $teal;
-    color: white;
-    text-align: center;
-
-    .title {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      h2 {
-        color: $text_grey;
-        font-size: 100%;
-      }
-    }
-    .project-specs {
-      flex: 4;
-      background: grey;
-      color: white;
-      padding: 1em;
-
-      .project-lead {
-        text-align: left;
-
-        p {
-          text-transform: initial;
-        }
-
-        span {
-          display: inline-block;
-        }
-      }
-    }
-  }
-
-  section {
-    flex: 8;
-    background: whitesmoke;
-    color: black;
-  }
-
-  .modal-article {
-    height: auto;
-    min-height: initial;
-    width: 90%;
-
-    h3 {
-      font-family: $poppins-medium;
-      text-align: left;
-      display: inline-block;
-      width: 100%;
-      color: $teal;
-      margin-bottom: 0;
-    }
-
-    .abstract {
-      font-weight: bold;
-      flex: 1;
-      padding-right: 1.5em;
-    }
-
-    .main-content {
-      flex: 3;
     }
   }
 }

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'stat-card',
   props: {
@@ -20,7 +19,7 @@ export default {
       required: true,
       default: '',
       validator(data) {
-        return typeof data === 'object'
+        return typeof data === 'object';
       }
     }
   },
@@ -34,5 +33,5 @@ export default {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
   }
-}
+};
 </script>

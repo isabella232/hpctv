@@ -6,15 +6,13 @@
 </template>
 
 <script>
-
 export default {
   created() {
-    document.body.classList = ''
+    document.body.classList = '';
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/global.scss';
-
+@import '../scss/global.scss';
 </style>
