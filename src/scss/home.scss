@@ -1,10 +1,27 @@
 @import 'global';
-
 body.home-page {
   background-color: #8fbbf8;
   background-image: url('/static/img/clouds-placeholder.jpg');
   background-position: center;
   background-size: cover;
+
+  .video-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    overflow: hidden;
+    video {
+      min-width: 100%;
+      min-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
 
 .home-screen {
@@ -16,14 +33,12 @@ body.home-page {
   overflow: hidden;
   box-sizing: border-box;
   margin: 0 auto;
-
   .intro-container {
     background: grey;
     background: linear-gradient(45deg, transparentize($gradient_grey_dark, 0.15) 0%, transparentize($gradient_grey_light, 0.15) 50%, transparentize($gradient_grey_dark, 0.15) 100%);
     width: 60%;
     margin: 0 auto;
     padding-bottom: 50px;
-
     h1 {
       .lime {
         font-size: 18px;
@@ -31,15 +46,12 @@ body.home-page {
       font-size: 24px;
       font-weight: 400;
     }
-
     .text-container {
       width: 80%;
       margin: 0 auto;
     }
-
     nav {
       margin-top: -50px;
-
       li {
         background-color: teal;
         background: $teal_linear_gradient;
@@ -47,13 +59,20 @@ body.home-page {
         height: 100px;
         box-shadow: 0 0 15px $trans_black;
 
+        a {
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+        }
         img {
           height: 50px;
+          margin-top: 15%;
         }
       }
     }
   }
-
   .start-button {
     height: 100px;
     width: 100px;
@@ -66,7 +85,6 @@ body.home-page {
     outline: none;
     -webkit-appearance: none;
     border: none;
-
     &:active,
     &:hover {
       color: white;

@@ -23,17 +23,19 @@
     </article>
     <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false">
     </big-modal>
-
+    <dock-nav></dock-nav>
   </div>
 </template>
 
 <script>
 import BigModal from './BigModal';
+import DockNav from './DockNav';
 
 export default {
   name: 'case-studies',
   components: {
-    BigModal
+    BigModal,
+    DockNav
   },
 
   data() {

@@ -1,22 +1,33 @@
 <template>
   <div class="col dead-center">
+    <div class="video-container">
+      <video autoplay muted loop playsinline id="bg-video">
+        <source src="/static/video/intro.mp4" type="video/mp4"></source>
+      </video>
+    </div>
     <main class=" home-screen col dead-center">
       <div class="intro-container">
         <nav>
           <ul class="row around middle text-center">
-            <li class="col middle around">
-              <img src="/static/icon/performance-icon.svg" alt="">
-              <span class="lime upper">Specs</span>
+            <li>
+              <router-link to="specs" class="col middle around">
+                <img src="/static/icon/performance-icon.svg" alt="">
+                <span class="lime upper">Specs</span>
+              </router-link>
             </li>
 
-            <li class="col middle around">
-              <img src="/static/icon/real-time-data-icon.svg" alt="">
-              <span class="lime upper">Live Data</span>
+            <li>
+              <router-link to="implications" class="col middle around">
+                <img src="/static/icon/real-time-data-icon.svg" alt="">
+                <span class="lime upper">Live Data</span>
+              </router-link>
             </li>
 
-            <li class="col middle around">
-              <img src="/static/icon/projects-icon.svg" alt="">
-              <span class="lime upper">Projects</span>
+            <li>
+              <router-link to="case-studies" class="col middle around">
+                <img src="/static/icon/projects-icon.svg" alt="">
+                <span class="lime upper">Projects</span>
+              </router-link>
             </li>
           </ul>
         </nav>

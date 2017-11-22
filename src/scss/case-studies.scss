@@ -2,6 +2,29 @@
 
 body.case-studies-page {
   @include greydient(0);
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 530px;
+    height: 250px;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &::before {
+    background-image: url('/static/img/arrows-top-right.png');
+    top: 0;
+    right: 0;
+  }
+
+  &::after {
+    background-image: url('/static/img/arrows-bottom-left.png');
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .case-studies {

@@ -48,11 +48,13 @@
         </div>
       </aside>
     </main>
+    <dock-nav></dock-nav>
   </div>
 </template>
 
 <script>
 import StatCard from './StatCard';
+import DockNav from './DockNav';
 
 export default {
   name: 'implications',
@@ -93,7 +95,8 @@ export default {
     };
   },
   components: {
-    StatCard
+    StatCard,
+    DockNav
   },
 
   created() {

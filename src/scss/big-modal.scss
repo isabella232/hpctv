@@ -6,9 +6,11 @@
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 3;
 
   .overlay {
     position: relative;
+    z-index: 4;
   }
 
   .body {
@@ -17,6 +19,7 @@
     margin: 2.5% auto;
     height: 90vh;
     position: relative;
+    z-index: 5;
 
     button.exit {
       @include button(transparent);

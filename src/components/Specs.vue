@@ -7,16 +7,19 @@
     <main class="supercomputer">
       <small-modal></small-modal>
     </main>
+    <dock-nav></dock-nav>
   </div>
 </template>
 
 <script>
 import SmallModal from './Small-Modal';
+import DockNav from './DockNav';
 
 export default {
   name: 'specs',
   components: {
-    SmallModal
+    SmallModal,
+    DockNav
   },
 
   created() {
