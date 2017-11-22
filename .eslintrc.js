@@ -21,7 +21,7 @@ module.exports = {
     "no-dupe-args": 1,
     "no-dupe-keys": 2,
     "no-empty": 2,
-    "no-extra-parens": [1,"all"],
+    // "no-extra-parens": [1,"all"],
     "space-before-function-paren":0,
     "semi": 0,
     "no-unreachable": 2,

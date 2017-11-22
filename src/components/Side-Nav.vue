@@ -1,6 +1,6 @@
 <template >
   <div class="side-nav row between" v-if="$route.name != 'not-found'">
-    <button class="prev" :class="{'invisible': isFirstPage}" @click="$router.go(-1)"><img src="/static/icon/nav-arrow.svg" alt="previous"></button>
+    <button class="prev" :class="{'invisible': isFirstPage}" @click="prevPage()"><img src="/static/icon/nav-arrow.svg" alt="previous"></button>
 
     <button class="next" :class="{'invisible': isLastPage}" @click="nextPage()"><img src="/static/icon/nav-arrow.svg" alt="next"></button>
   </div>
@@ -33,7 +33,12 @@ export default {
   methods: {
     nextPage() {
       let currentPage = this.getCurrentPageIndex;
-      this.$router.push(this.pages[currentPage += 1]);
+      this.$router.push(this.pages[(currentPage += 1)]);
+    },
+
+    prevPage() {
+      let currentPage = this.getCurrentPageIndex;
+      this.$router.push(this.pages[(currentPage -= 1)]);
     },
 
     getAllRoutes() {
