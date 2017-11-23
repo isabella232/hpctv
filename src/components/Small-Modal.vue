@@ -1,9 +1,9 @@
 <template>
-  <div class="small-modal">
+  <div class="small-modal" :id="getID">
     <button :class="(visible) ? 'open' : 'closed'" @click="toggle()"><img src="/static/icon/plus-x-icon.svg" alt="expand / collapse"></button>
     <div class="modal-body" v-if="visible">
       <header class="row upper">
-        <span>title</span>
+        <span>{{data.modalData.title}}</span>
       </header>
       <div class="row start panel-container">
         <div class="panel left">
@@ -11,7 +11,7 @@
         </div>
         <div class="panel right">
           <p>
-            This is some text about cable management and some other things.
+            {{data.modalData.body}}
           </p>
         </div>
       </div>
@@ -22,6 +22,8 @@
 <script>
 export default {
   name: 'small-modal',
+  props: ['data'],
+
   data() {
     return {
       visible: false
@@ -30,8 +32,24 @@ export default {
 
   methods: {
     toggle() {
+      // console.log(document.querySelectorAll('button.open').length)
+      // if (document.querySelectorAll('button.open').length) {
+      //   document.querySelectorAll('button.open').classList.remove('open');
+      // }
       this.visible = !this.visible;
     }
+  },
+  computed: {
+    getID() {
+      return this.data.modalData.title.toLowerCase().replace(/ /g, '-');
+    }
+  },
+
+  mounted() {
+    const selector = `#${this.getID}`;
+    const el = document.querySelector(selector);
+    el.style.left = this.data.x + '%';
+    el.style.top = this.data.y + '%';
   }
 };
 </script>

@@ -2,37 +2,59 @@
 
 body.specs-page {
   @include greydient(0);
+  background: linear-gradient(25deg, $gradient_grey_dark 0%, $gradient_grey_light 50%, black 100%);
 
   &::before,
   &::after {
     content: '';
     display: block;
     position: absolute;
-    width: 530px;
-    height: 250px;
+    width: 50%;
+    height: 40%;
     z-index: -1;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
   }
   &::before {
     background-image: url('/static/img/arrows-top-right.png');
     top: 0;
-    right: 0;
+    left: 0;
+    transform: scaleX(-1)
   }
 
   &::after {
     background-image: url('/static/img/arrows-bottom-left.png');
     bottom: 0;
-    left: 0;
+    right: 0;
+    transform: scaleX(-1);
   }
 }
 
 .specs {
+  height: 80%;
+
+  area:active{
+    background: red;
+    opacity: 1;
+  }
+
   main {
-    background-image: url('/static/img/supercomputer.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .cheyenne-container {
+    width: 85%;
+    text-align: center;
+    position: relative;
+
+    img.computer {
+      position: relative;
+      width: 100%;
+    }
   }
 }
