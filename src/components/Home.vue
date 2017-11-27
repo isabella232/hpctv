@@ -17,14 +17,14 @@
             </li>
 
             <li>
-              <router-link to="implications" class="col middle around">
+              <router-link to="live-data" class="col middle around">
                 <img src="/static/icon/real-time-data-icon.svg" alt="">
                 <span class="lime upper">Live Data</span>
               </router-link>
             </li>
 
             <li>
-              <router-link to="case-studies" class="col middle around">
+              <router-link to="projects" class="col middle around">
                 <img src="/static/icon/projects-icon.svg" alt="">
                 <span class="lime upper">Projects</span>
               </router-link>

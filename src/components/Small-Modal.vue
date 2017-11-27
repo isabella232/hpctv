@@ -42,7 +42,7 @@ export default {
     },
 
     opensInverted() {
-      if (this.data.x >= 60) {
+      if (this.data.x >= 50) {
         return true;
       } else {
         return false;

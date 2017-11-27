@@ -1,5 +1,5 @@
 <template >
-  <div class="case-studies">
+  <div class="projects">
     <header class="row dead-center text-center upper">
       <h1>Cheyenne's Featured Projects</h1>
     </header>
@@ -32,7 +32,7 @@ import BigModal from './BigModal';
 import DockNav from './DockNav';
 
 export default {
-  name: 'case-studies',
+  name: 'projects',
   components: {
     BigModal,
     DockNav
@@ -156,9 +156,9 @@ export default {
   created() {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
-    document.body.classList.add('case-studies-page');
+    document.body.classList.add('projects-page');
   }
 };
 </script>
 
-<style src="../scss/case-studies.scss" lang="scss"></style>
+<style src="../scss/projects.scss" lang="scss"></style>

@@ -14,13 +14,13 @@
         </router-link>
       </li>
       <li>
-        <router-link to="implications" >
+        <router-link to="live-data" >
           <img src="/static/icon/real-time-data-icon.svg" alt="">
           <span class="lime upper">Live Data</span>
         </router-link>
       </li>
       <li>
-        <router-link to="case-studies">
+        <router-link to="projects">
           <img src="/static/icon/projects-icon.svg" alt="">
           <span class="lime upper">Projects</span>
         </router-link>

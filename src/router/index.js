@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import Specs from '../components/Specs'
-import RealData from '../components/Implications'
-import CaseStudies from '../components/CaseStudies'
+import LiveData from '../components/LiveData'
+import Projects from '../components/Projects'
 import NotFound from '../components/NotFound'
 
 Vue.use(Router)
@@ -22,14 +22,14 @@ export default new Router({
       component: Specs
     },
     {
-      path: '/implications',
-      name: 'implications',
-      component: RealData
+      path: '/live-data',
+      name: 'live-data',
+      component: LiveData
     },
     {
-      path: '/case-studies',
-      name: 'case-studies',
-      component: CaseStudies
+      path: '/projects',
+      name: 'projects',
+      component: Projects
     },
     {
       path: '*',

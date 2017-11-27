@@ -1,5 +1,5 @@
 <template>
-  <div class="implications">
+  <div class="live-data">
     <header class="row dead-center text-center upper">
       <h1>Near Real Time Data. Real Implications</h1>
     </header>
@@ -57,7 +57,7 @@ import StatCard from './StatCard';
 import DockNav from './DockNav';
 
 export default {
-  name: 'implications',
+  name: 'live-data',
   data() {
     return {
       isDefaultPlaceholderImage: true,
@@ -102,9 +102,9 @@ export default {
   created() {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
-    document.body.classList.add('implications-page');
+    document.body.classList.add('live-data-page');
   }
 };
 </script>
 
-<style src="../scss/implications.scss" lang="scss"></style>
+<style src="../scss/live-data.scss" lang="scss"></style>

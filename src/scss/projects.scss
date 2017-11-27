@@ -1,6 +1,6 @@
 @import 'global';
 
-body.case-studies-page {
+body.projects-page {
   @include greydient(0);
 
   &::before,
@@ -27,7 +27,7 @@ body.case-studies-page {
   }
 }
 
-.case-studies {
+.projects {
   header {
     color: $text_grey;
   }

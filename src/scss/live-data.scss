@@ -1,6 +1,6 @@
 @import 'global';
 
-body.implications-page {
+body.live-data-page {
   @include greydient(0);
 
   &::before,
@@ -27,7 +27,7 @@ body.implications-page {
   }
 }
 
-.implications {
+.live-data {
   header {
     color: $text_grey;
   }
