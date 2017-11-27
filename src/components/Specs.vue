@@ -6,8 +6,8 @@
     </header>
     <main class="supercomputer">
       <div class="cheyenne-container">
-        <img src="/static/img/supercomputer.png" class="computer" usemap="#computer-map">
-        <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point"></small-modal>
+        <img src="/static/img/supercomputer.png" class="computer">
+        <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point" ></small-modal>
       </div>
     </main>
     <dock-nav></dock-nav>
@@ -29,7 +29,7 @@ export default {
     return {
       pointsOfInterest: [
         {
-          x: 7,
+          x: 9,
           y: 35,
           modalData: {
             title: 'Heat Output',
@@ -39,7 +39,7 @@ export default {
         },
         {
           x: 22,
-          y: 84,
+          y: 68,
           modalData: {
             title: 'Data Transfer Rate',
             body: 'Cheyenne is fast!',
@@ -48,7 +48,7 @@ export default {
         },
         {
           x: 55,
-          y: 10,
+          y: 16,
           modalData: {
             title: 'Processing Cores',
             body: 'Cheyenne is smart!',
@@ -57,7 +57,7 @@ export default {
         },
         {
           x: 81,
-          y: 7,
+          y: 16,
           modalData: {
             title: 'Total Memory',
             body: 'Cheyenne is a great multitasker',
@@ -66,7 +66,7 @@ export default {
         },
         {
           x: 50,
-          y: 65,
+          y: 59,
           modalData: {
             title: 'Performance',
             body: 'Cheyenne is the best.',

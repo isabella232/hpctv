@@ -1,7 +1,8 @@
 <template>
-  <div class="small-modal" :id="getID">
+  <div class="small-modal" :id="getID" >
     <button :class="(visible) ? 'open' : 'closed'" @click="toggle()"><img src="/static/icon/plus-x-icon.svg" alt="expand / collapse"></button>
-    <div class="modal-body" v-if="visible">
+    <div class="modal-body" :class="{inverted: opensInverted}"
+    v-if="visible">
       <header class="row upper">
         <span>{{data.modalData.title}}</span>
       </header>
@@ -32,16 +33,20 @@ export default {
 
   methods: {
     toggle() {
-      // console.log(document.querySelectorAll('button.open').length)
-      // if (document.querySelectorAll('button.open').length) {
-      //   document.querySelectorAll('button.open').classList.remove('open');
-      // }
       this.visible = !this.visible;
     }
   },
   computed: {
     getID() {
       return this.data.modalData.title.toLowerCase().replace(/ /g, '-');
+    },
+
+    opensInverted() {
+      if (this.data.x >= 60) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
 

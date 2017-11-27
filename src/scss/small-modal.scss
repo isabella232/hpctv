@@ -5,9 +5,23 @@
   margin: 20px;
   position: absolute;
   display: inline-block;
-  box-shadow: 0 0 40px $trans_black;
   top: 0;
   left: 0;
+
+  .inverted {
+    position: absolute;
+    transform: translateX(-400px);
+    button {
+      right: -16px;
+      left: initial;
+    }
+  }
+
+  .modal-body{
+    box-shadow: 0 0 40px $trans_black;
+    position: relative;
+    z-index: 2;
+  }
 
   button {
     @include button(transparent);
@@ -25,11 +39,13 @@
     &.closed {
       background: transparent;
       transition: transform 0.25s ease-in;
+      z-index: 0;
     }
     &.open {
       background: $teal;
       transform: rotate(45deg);
       transition: transform 0.15s ease-in;
+      z-index: 3;
       img {
         filter: brightness(10);
       }
