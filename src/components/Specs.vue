@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import SmallModal from './Small-Modal';
-import DockNav from './DockNav';
+import SmallModal from './modals-navs/Small-Modal';
+import DockNav from './modals-navs/DockNav';
 
 export default {
   name: 'specs',

@@ -59,4 +59,4 @@ export default {
 };
 </script>
 
-<style src="../scss/small-modal.scss" lang="scss"></style>
+<style src="../../scss/small-modal.scss" lang="scss"></style>

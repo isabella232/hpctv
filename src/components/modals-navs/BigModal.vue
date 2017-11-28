@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import StatCard from './StatCard';
+import StatCard from '../StatCard';
 
 export default {
   props: {
@@ -96,4 +96,4 @@ export default {
 };
 </script>
 
-<style src="../scss/big-modal.scss" lang="scss"></style>
+<style src="../../scss/big-modal.scss" lang="scss"></style>

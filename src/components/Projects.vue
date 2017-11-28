@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import BigModal from './BigModal';
-import DockNav from './DockNav';
+import BigModal from './modals-navs/BigModal';
+import DockNav from './modals-navs/DockNav';
 
 export default {
   name: 'projects',

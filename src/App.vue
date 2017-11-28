@@ -14,7 +14,7 @@
     
 <script>
 
-import SideNav from './components/Side-Nav'
+import SideNav from './components/modals-navs/Side-Nav'
 
 export default {
   name: 'app',

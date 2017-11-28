@@ -54,7 +54,7 @@
 
 <script>
 import StatCard from './StatCard';
-import DockNav from './DockNav';
+import DockNav from './modals-navs/DockNav';
 
 export default {
   name: 'live-data',

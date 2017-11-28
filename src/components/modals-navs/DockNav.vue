@@ -43,6 +43,6 @@ export default {
 };
 </script>
 
-<style src="../scss/dock-nav.scss" lang="scss" scoped>
+<style src="../../scss/dock-nav.scss" lang="scss" scoped>
 
 </style>
