@@ -1,11 +1,14 @@
 <template>
   <div class="line-graph">
+    <line-chart></line-chart>
   </div>
 </template>
 
 <script>
+import LineChart from './LineChart.js';
+
 export default {
-  name: 'line-graph'
+  components: {LineChart}
 };
 </script>
 
