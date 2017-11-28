@@ -1,12 +1,18 @@
 <template>
   <div class="col dead-center not-found">
     <h1>View not found</h1>
-    <router-link :to="{name:'home'}">Back to Home</router-link>
+    <router-link to="/">Back to Home</router-link>
+    <line-graph></line-graph>
   </div>
 </template>
 
 <script>
+import LineGraph from './graphs/LineGraph';
+
 export default {
+
+  components: {LineGraph},
+
   created() {
     document.body.classList = '';
   }
