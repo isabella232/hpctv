@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LineGraph from './graphs/LineGraph';
+import LineGraph from './graphs/LineGraph.vue';
 
 export default {
 
