@@ -8,6 +8,7 @@
 import LineChart from './LineChart.js';
 
 export default {
+  name: 'line-graph',
   components: { LineChart },
 
   data() {
