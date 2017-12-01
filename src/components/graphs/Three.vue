@@ -1,30 +1,6 @@
 <template>
   <div class="threejs">
-    <hr>
-    <div class="inputs row around" v-if="false">
-      <div class="position">
-        position
-        <input type="range" min="-15" max="25" v-model.number="position.x">x: {{position.x}}</input>
-        <input type="range" min="-15" max="25" v-model.number="position.y">y: {{position.y}}</input>
-        <input type="range" min="-15" max="25" v-model.number="position.z">z: {{position.z}}</input>
-      </div>
-
-      <div class="translation">
-        translate
-        <input type="range" min="-15" max="25" v-model.number="translation.x">x: {{translation.x}}</input>
-        <input type="range" min="-15" max="25" v-model.number="translation.y">y: {{translation.y}}</input>
-        <input type="range" min="-15" max="25" v-model.number="translation.z">z: {{translation.z}}</input>
-      </div>
-
-      <div class="rotation">
-        rotation
-        <input type="range" min="-15" max="25" v-model.number="rotation.x">x: {{rotation.x}}</input>
-        <input type="range" min="-15" max="25" v-model.number="rotation.y">y: {{rotation.y}}</input>
-        <input type="range" min="-15" max="25" v-model.number="rotation.z">z: {{rotation.z}}</input>
-      </div>
-    </div>
   </div>
-
 </template>
 
 <script>
@@ -40,23 +16,10 @@ export default {
       canvas: null,
       controls: null,
       group: null,
-      x: 10,
-      y: 5,
-      z: 20,
       position: {
-        x: 11,
-        y: 4,
-        z: 1
-      },
-      translation: {
-        x: 7,
-        y: 0,
-        z: 0
-      },
-      rotation: {
-        x: 0,
-        y: 0,
-        z: 0
+        x: 18.33,
+        y: 4.72,
+        z: 13.02
       }
     };
   },
@@ -66,8 +29,6 @@ export default {
       const geometry = new three.BoxGeometry(1, 5, 1);
       const material = new three.MeshLambertMaterial({ color, flatShading: false });
       const cube = new three.Mesh(geometry, material);
-      // cube.rotation.y = 0.75;
-      // cube.rotation.x = 0.25;
       return cube;
     },
 
@@ -82,26 +43,17 @@ export default {
       this.controls.enabled = true;
       this.group = new three.Group();
 
-      const sphereSize = 1;
-      const pointLightHelper = new three.DirectionalLightHelper(this.makeLight, sphereSize);
-      this.scene.add(pointLightHelper);
+      // const sphereSize = 1;
+      // const pointLightHelper = new three.DirectionalLightHelper(this.makeLight, sphereSize);
+      // this.scene.add(pointLightHelper);
 
       this.camera.position.x = this.position.x;
       this.camera.position.y = this.position.y;
       this.camera.position.z = this.position.z;
-
-      this.camera.translateX(this.translation.x);
-      this.camera.translateY(this.translation.y);
-      this.camera.translateZ(this.translation.z);
     },
 
     animate() {
       requestAnimationFrame(this.animate);
-
-      // this.camera.rotation.x = this.rotation.x;
-      // this.camera.rotation.y = this.rotation.y;
-      // this.camera.rotation.z = this.rotation.z;
-      // this.camera.setViewOffset(this.offset);
       this.controls.update();
       this.renderer.render(this.scene, this.camera);
     }
@@ -138,15 +90,25 @@ export default {
       }
     }
     this.scene.add(this.group);
-    this.scene.add(this.makeLight);
+    this.group.translateX(10);
+    this.group.translateZ(-4);
+
+    const primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);
+    primaryLight.position.x = 10;
+    primaryLight.position.y = 10;
+    primaryLight.position.z = 20;
+
+    primaryLight.target = this.group;
+    this.scene.add(primaryLight);
+
     const light2 = new three.HemisphereLight(0xffffff, 0xffffff, 0.7);
     light2.position.x = 0;
     light2.position.y = 20;
     light2.position.z = 0;
     light2.lookAt(0, 0, 0);
-    const pointLightHelper2 = new three.HemisphereLightHelper(light2, 2);
+    // const pointLightHelper2 = new three.HemisphereLightHelper(light2, 2);
     this.scene.add(light2);
-    this.scene.add(pointLightHelper2);
+    // this.scene.add(pointLightHelper2);
 
     this.controls.update();
 
