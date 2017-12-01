@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^2.7.1",
+    "konami-code": "^0.2.1",
     "orbit-controls-es6": "^1.0.10",
     "three": "^0.88.0",
     "three-orbit-controls": "^82.1.0",
