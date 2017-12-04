@@ -12,11 +12,17 @@
       </blockquote>
     </header>
     <div class="row center">
-      <button class="start-button upper">Start</button>
+      <button class="start-button upper" @click="handleStartClick()">Start</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleStartClick() {
+      alert('This button is not hooked up yet');
+    }
+  }
+};
 </script>
