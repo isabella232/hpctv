@@ -30,6 +30,7 @@ $grey_gradient_opacity: 0.15;
 $transparent_grey_gradient: linear-gradient(45deg, transparentize($gradient_grey_light, $grey_gradient_opacity) 0%, transparentize($gradient_grey_dark, $grey_gradient_opacity) 100%);
 
 $teal_linear_gradient: linear-gradient(left, $gradient_teal_dark 25%, $gradient_teal_light 75%);
+
 @mixin greydient($opacity) {
   background: linear-gradient(45deg, transparentize($gradient_grey_light, $opacity) 0%, transparentize($gradient_grey_dark, $opacity) 100%);
 }

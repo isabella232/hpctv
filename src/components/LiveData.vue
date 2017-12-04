@@ -8,8 +8,12 @@
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <button :class="{active: isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">User Allocation</button>
-            <button :class="{active: !isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">Area of Study</button>
+            <button :class="{active: isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">
+              <span>User Allocation</span>
+            </button>
+            <button  class="angle-button" :class="{active: !isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">
+              <span>Area of Study</span>
+            </button>
           </div>
           <div class="canvas">
             <img src="/static/img/interactive-mockup.png" v-if="isDefaultPlaceholderImage" alt="">

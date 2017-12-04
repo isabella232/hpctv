@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import LineGraph from './graphs/LineGraph';
-import Three from './graphs/Three';
+// import LineGraph from './graphs/LineGraph';
+// import Three from './graphs/Three';
 
 export default {
-  components: { LineGraph, Three },
+  // components: { LineGraph, Three },
 
   data() {
     return {

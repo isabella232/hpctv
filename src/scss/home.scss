@@ -36,14 +36,17 @@ body.home-page {
   .intro-container {
     background: grey;
     background: linear-gradient(45deg, transparentize($gradient_grey_dark, 0.15) 0%, transparentize($gradient_grey_light, 0.15) 50%, transparentize($gradient_grey_dark, 0.15) 100%);
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     padding-bottom: 50px;
     h1 {
       .lime {
-        font-size: 18px;
+        font-size: 36px;
+        font-family: $poppins_bold;
+        line-height: 1em;
       }
       font-size: 24px;
+      font-family: $poppins;
       font-weight: 400;
     }
     .text-container {
@@ -51,7 +54,8 @@ body.home-page {
       margin: 0 auto;
     }
     nav {
-      margin-top: -50px;
+      width:67%;
+      margin: -50px auto 30px;
       li {
         background-color: teal;
         background: $teal_linear_gradient;
@@ -65,6 +69,7 @@ body.home-page {
           flex-direction: column;
           justify-content: space-between;
           height: 100%;
+          font-size: 14px;
         }
         img {
           height: 50px;

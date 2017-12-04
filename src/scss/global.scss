@@ -23,6 +23,7 @@ $button_size: 100px;
   outline: none;
   -webkit-appearance: none;
   border: none;
+  cursor: pointer;
   &:active,
   &:hover {
     box-shadow: 0 0 10px $trans_black;

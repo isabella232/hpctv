@@ -34,8 +34,7 @@
         <div class="text-container text-center">
 
           <h1 class="col upper">
-            <span class="lime">Meet Cheyenne:</span>
-            <span>Built for Science, Applied to Life.</span>
+            <span class="lime">Built for Science,<br> Applied to Life.</span>
           </h1>
 
           <p>

@@ -35,3 +35,5 @@ export default {
   }
 };
 </script>
+
+<style src="../scss/stat-card.scss" lang="scss" scoped></style>

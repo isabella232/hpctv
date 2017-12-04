@@ -3,8 +3,8 @@
 body.live-data-page {
   @include greydient(0);
 
-  &::before,
-  &::after {
+  &::after,
+  &::before {
     content: '';
     display: block;
     position: absolute;
@@ -14,14 +14,15 @@ body.live-data-page {
     background-position: center;
     background-repeat: no-repeat;
   }
+
   &::before {
-    background-image: url('/static/img/arrows-top-right.png');
+    background-image: url("/static/img/arrows-top-right.png");
     top: 0;
     right: 0;
   }
 
   &::after {
-    background-image: url('/static/img/arrows-bottom-left.png');
+    background-image: url("/static/img/arrows-bottom-left.png");
     bottom: 0;
     left: 0;
   }
@@ -47,18 +48,45 @@ body.live-data-page {
 
     .core-tabs {
       button {
+        position: relative;
+        display: block;
         @include button(grey);
         border-radius: 0;
-        font-size: 1.5em;
-        padding: 0 1em;
+        font-size: 1em;
+        padding: 0.45em 2.5em;
         margin: 0;
-        color: $lime;
+        color: $button_dark_grey;
         text-transform: uppercase;
         font-weight: 700;
 
         &.active {
           background: $teal;
-          color: $text_grey;
+          color: $white;
+        }
+      }
+
+      .angle-button {
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: -1.25em;
+          line-height: 0;
+          display: block;
+          border-style: solid;
+          border-width: 0 0 2em 20px;
+          border-color: transparent transparent grey transparent;
+        }
+
+        &.active::before {
+          border-color: transparent transparent $teal transparent;
+        }
+
+        &:hover:not(.active) {
+          &::before {
+            border-color: transparent transparent darken(grey, 5%) transparent;
+          }
         }
       }
     }
@@ -69,6 +97,7 @@ body.live-data-page {
 
       header {
         background: $teal;
+
         h2 {
           margin: 0;
           padding: 0.45em;
@@ -77,11 +106,12 @@ body.live-data-page {
 
       div.canvas {
         width: 100%;
-        background-image: url('/static/img/tiled-graph-bg.jpg');
+        background-image: url("/static/img/tiled-graph-bg.jpg");
         height: 175px;
       }
     }
   }
+
   aside {
     height: 100%;
     width: 100%;
@@ -92,33 +122,10 @@ body.live-data-page {
         @include dropshadow(20px);
         background: $teal;
         font-weight: 700;
+
         h2 {
           padding: 0.25em;
-          margin: 0 0 5px 0;
-        }
-      }
-      .stat-card {
-        @include dropshadow(20px);
-        color: white;
-        background: $gradient_grey_light;
-        height: 65px;
-        width: 100%;
-        margin: 5px auto;
-        font-family: $poppins_semi;
-        font-weight: 700;
-        padding: 0.5em 0;
-
-        .icon {
-          margin-left: 1em;
-          width: 40px;
-        }
-
-        .info {
-          margin-left: 1em;
-        }
-        .number {
-          font-size: 2.25em;
-          line-height: 1.1em;
+          margin: 0 0 5px;
         }
       }
     }

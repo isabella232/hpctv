@@ -1,0 +1,29 @@
+@import 'global';
+
+
+.stat-card {
+  @include dropshadow(20px);
+  color: white;
+  background: $button_light_grey;
+  height: 65px;
+  width: 100%;
+  margin: 5px auto;
+  font-family: $poppins_semi;
+  font-weight: 700;
+  padding: 0.5em 0;
+  
+
+  .icon {
+    margin-left: 1em;
+    width: 40px;
+  }
+
+  .info {
+    margin-left: 1em;
+    text-align: left;
+  }
+  .number {
+    font-size: 2.25em;
+    line-height: 1.1em;
+  }
+}
