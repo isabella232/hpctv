@@ -53,10 +53,11 @@ import Splash from './Splash';
 export default {
   name: 'app',
   components: { Splash },
-  data() {
-    return {
-      showSplash: true
-    };
+
+  computed: {
+    showSplash() {
+      return this.$store.state.home.showSplash;
+    }
   },
 
   created() {

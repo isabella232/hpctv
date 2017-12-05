@@ -5,9 +5,9 @@
         <span class="lime upper">Meet Cheyenne:</span>
       </h1>
       <blockquote class="upper white">
-        &ldquo; It's a fighter plane. You have to know how to fly it. &rdquo;
+        &ldquo; {{ quote.text }} &rdquo;
         <p class="source lime">
-          - Gary New, Head of Operations
+          - {{ quote.source }}
         </p>
       </blockquote>
     </header>
@@ -19,10 +19,13 @@
 
 <script>
 export default {
-  methods: {
-    handleStartClick() {
-      alert('This button is not hooked up yet');
+  computed: {
+    quote() {
+      return this.$store.state.home.quote;
     }
+  },
+  methods: {
+    handleStartClick() {}
   }
 };
 </script>
