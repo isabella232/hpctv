@@ -8,16 +8,14 @@
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <button :class="{active: isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">
+            <button :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')">
               <span>User Allocation</span>
             </button>
-            <button  class="angle-button" :class="{active: !isDefaultPlaceholderImage}" @click="isDefaultPlaceholderImage = !isDefaultPlaceholderImage">
+            <button class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')">
               <span>Area of Study</span>
             </button>
           </div>
           <div class="canvas">
-            <!-- <img src="/static/img/interactive-mockup.png" v-if="isDefaultPlaceholderImage" alt="">
-            <img src="/static/img/warm-interactive-mockup.png" v-if="!isDefaultPlaceholderImage" alt=""> -->
             <three></three>
           </div>
         </div>
@@ -104,6 +102,23 @@ export default {
     StatCard,
     DockNav,
     Three
+  },
+
+  computed: {
+    activeTab() {
+      return this.$store.state.liveData.activeTab;
+    }
+  },
+
+  methods: {
+    setActiveTab(tab) {
+      this.$store.state.liveData.activeTab = tab;
+      if (tab === 'user allocation') {
+        this.$store.commit('colorScheme', 'cool');
+      } else {
+        this.$store.commit('colorScheme', 'warm');
+      }
+    }
   },
 
   created() {

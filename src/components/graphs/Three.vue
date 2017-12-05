@@ -65,7 +65,7 @@ export default {
       this.scene.add(globalLight);
 
       // Camera Setup
-      this.camera = new three.PerspectiveCamera(50, window.innerWidth * 0.6 / 450, 0.1, 1000);
+      this.camera = new three.PerspectiveCamera(50, window.innerWidth * 0.5695 / 450, 0.1, 1000);
 
       // Keyboard Mouse Controls
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -88,6 +88,11 @@ export default {
       this.scene.add(worldLightHelper);
       this.scene.add(mainLightHelper);
       this.scene.add(boxHelper);
+      this.controls.enableZoom = true;
+      this.controls.enablePan = true;
+      this.controls.minPolarAngle = 0;
+      this.controls.maxPolarAngle = Math.PI;
+      this.controls.update();
     },
 
     makeCube(color) {
@@ -97,14 +102,10 @@ export default {
       return cube;
     },
 
-    getColorScheme(temperature, x, z) {
-      if (temperature === 'cool') {
-        return `rgb(${5 * z + z * 2}, ${150 + x + x * 2}, ${z * 25})`;
-      } else if (temperature === 'warm') {
-        return `rgb(${175 + x + x * 2},${z * 20},${5 * z + z * 2})`;
-      } else {
-        return 'rgb(127,127,127)';
-      }
+    updateCube(x, z, color) {
+      const allCubes = this.group.children;
+      const id = x + z * 10;
+      allCubes[id].material.color.set(color);
     },
 
     animate() {
@@ -113,10 +114,11 @@ export default {
       this.renderer.render(this.scene, this.camera);
     }
   },
+
   computed: {
     makeRenderer() {
       const renderer = new three.WebGLRenderer({ alpha: true });
-      renderer.setSize(window.innerWidth * 0.6, 450);
+      renderer.setSize(window.innerWidth * 0.5695, 450);
       renderer.setClearColor(0x000000, 0);
       return renderer;
     },
@@ -131,11 +133,14 @@ export default {
 
     // create a 3 dimensional array of polygons.
     for (let x = 0; x < 20; x++) {
-      for (let z = 0; z < 8; z++) {
+      for (let z = 0; z < 10; z++) {
         // const color = `rgb(${175 + x + x * 2},${z * 20},${5 * z + z * 2})`;
-        const color = `rgb(${5 * z + z * 2}, ${150 + x + x * 2}, ${z * 25})`;
+        // const color = `rgb(${5 * z + z * 2}, ${150 + x + x * 2}, ${z * 25})`;
+        const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
         const cube = this.makeCube(color);
+
         this.group.add(cube);
+        this.updateCube(z, x, color);
         // Spacing between cubes adjusted here.
         cube.position.x = -x * 1.25;
         cube.position.z = z * 1.25;
@@ -159,10 +164,21 @@ export default {
     this.controls.update();
     this.animate();
   },
+
   watch: {
     developerMode(newVal) {
       if (newVal) {
         this.enableDeveloperMode();
+      }
+    },
+    colorScheme(newVal) {
+      // The array of cubes is essentially a pixel grid. With the nested loop below we can control each cube indiviually.
+
+      for (let x = 0; x < 10; x++) {
+        for (let z = 0; z < 20; z++) {
+          const color = newVal === 'warm' ? `rgb(${175 + z * 5},${120 + x * 3},${2 * z})` : `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
+          this.updateCube(x, z, color);
+        }
       }
     }
   }
