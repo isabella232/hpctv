@@ -97,6 +97,16 @@ export default {
       return cube;
     },
 
+    getColorScheme(temperature, x, z) {
+      if (temperature === 'cool') {
+        return `rgb(${5 * z + z * 2}, ${150 + x + x * 2}, ${z * 25})`;
+      } else if (temperature === 'warm') {
+        return `rgb(${175 + x + x * 2},${z * 20},${5 * z + z * 2})`;
+      } else {
+        return 'rgb(127,127,127)';
+      }
+    },
+
     animate() {
       requestAnimationFrame(this.animate);
       this.controls.update();
@@ -111,7 +121,9 @@ export default {
       return renderer;
     },
 
-    makeLight() {}
+    colorScheme() {
+      return this.$store.state.liveData.colorScheme;
+    }
   },
 
   mounted() {
