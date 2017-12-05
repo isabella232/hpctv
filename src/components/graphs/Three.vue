@@ -16,9 +16,9 @@ export default {
       canvas: null,
       canvaswidth: '80%',
       cameraPosition: {
-        x: 18.33,
-        y: 4.72,
-        z: 13.02
+        x: -14.33,
+        y: 5.72,
+        z: 12.02
       },
       controls: null,
       developerMode: false,
@@ -26,7 +26,6 @@ export default {
         globalLight: null,
         primaryLight: null
       },
-      // width:
       group: null,
       scene: null,
       renderer: null
@@ -37,7 +36,7 @@ export default {
     init() {
       // Environment Setup
       this.scene = new three.Scene();
-      this.scene.background = new three.Color(0xe0e0e0);
+      // this.scene.background = new three.Color(0xe0e0e0);
       this.renderer = this.makeRenderer;
       this.canvas = document.querySelector('.threejs');
       this.canvas.appendChild(this.renderer.domElement);
@@ -51,9 +50,9 @@ export default {
       // Lights
       this.lights.primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);
       const primaryLight = this.lights.primaryLight;
-      primaryLight.position.x = 10;
-      primaryLight.position.y = 10;
-      primaryLight.position.z = 20;
+      primaryLight.position.x = 0;
+      primaryLight.position.y = 4.72;
+      primaryLight.position.z = 15;
       primaryLight.target = this.group;
       this.scene.add(primaryLight);
 
@@ -66,14 +65,19 @@ export default {
       this.scene.add(globalLight);
 
       // Camera Setup
-      this.camera = new three.PerspectiveCamera(50, window.innerWidth * 0.8 / 400, 0.1, 1000);
-      this.camera.position.x = this.cameraPosition.x;
-      this.camera.position.y = this.cameraPosition.y;
-      this.camera.position.z = this.cameraPosition.z;
+      this.camera = new three.PerspectiveCamera(50, window.innerWidth * 0.6 / 450, 0.1, 1000);
 
       // Keyboard Mouse Controls
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       this.controls.enabled = true;
+      this.controls.enableZoom = false;
+      this.controls.enablePan = false;
+      this.controls.minPolarAngle = 0.4 * Math.PI;
+      this.controls.maxPolarAngle = 0.4 * Math.PI;
+
+      this.camera.position.x = this.cameraPosition.x;
+      this.camera.position.y = this.cameraPosition.y;
+      this.camera.position.z = this.cameraPosition.z;
     },
 
     enableDeveloperMode() {
@@ -101,8 +105,9 @@ export default {
   },
   computed: {
     makeRenderer() {
-      const renderer = new three.WebGLRenderer();
-      renderer.setSize(window.innerWidth * 0.8, 400);
+      const renderer = new three.WebGLRenderer({ alpha: true });
+      renderer.setSize(window.innerWidth * 0.6, 450);
+      renderer.setClearColor(0x000000, 0);
       return renderer;
     },
 
@@ -127,8 +132,10 @@ export default {
     this.scene.add(this.group);
 
     // Move the "center" of the group to the middle of the array
-    this.group.translateX(10);
-    this.group.translateZ(-4);
+    // May not be true center but will be based on the visual perspective camera.
+    this.group.translateX(15);
+    this.group.translateY(1.5);
+    this.group.translateZ(-6);
 
     // console.log(this.group.id);
     // const loopcube = this.group.getObjectById(9);
@@ -151,6 +158,9 @@ export default {
 </script>
 
 <style scoped>
+canvas {
+  border: solid 1px red;
+}
 input {
   display: block;
 }

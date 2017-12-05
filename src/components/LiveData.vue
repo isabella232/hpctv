@@ -16,8 +16,9 @@
             </button>
           </div>
           <div class="canvas">
-            <img src="/static/img/interactive-mockup.png" v-if="isDefaultPlaceholderImage" alt="">
-            <img src="/static/img/warm-interactive-mockup.png" v-if="!isDefaultPlaceholderImage" alt="">
+            <!-- <img src="/static/img/interactive-mockup.png" v-if="isDefaultPlaceholderImage" alt="">
+            <img src="/static/img/warm-interactive-mockup.png" v-if="!isDefaultPlaceholderImage" alt=""> -->
+            <three></three>
           </div>
         </div>
         <div class="graph">
@@ -59,6 +60,7 @@
 <script>
 import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
+import Three from './graphs/Three';
 
 export default {
   name: 'live-data',
@@ -100,7 +102,8 @@ export default {
   },
   components: {
     StatCard,
-    DockNav
+    DockNav,
+    Three
   },
 
   created() {

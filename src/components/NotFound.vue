@@ -7,17 +7,12 @@
       <li @click="activeComponent = 'line'">Line Chart</li>
       <li @click="activeComponent = 'three'">Three JS</li>
     </ul>
-    <line-graph v-if="activeComponent == 'line'"></line-graph>
-    <three v-if="activeComponent == 'three'"></three>
+    <!-- <line-graph v-if="activeComponent == 'line'"></line-graph> -->
   </div>
 </template>
 
 <script>
-// import LineGraph from './graphs/LineGraph';
-// import Three from './graphs/Three';
-
 export default {
-  // components: { LineGraph, Three },
 
   data() {
     return {
