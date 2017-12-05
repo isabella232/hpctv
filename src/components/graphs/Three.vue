@@ -56,7 +56,7 @@ export default {
       primaryLight.target = this.group;
       this.scene.add(primaryLight);
 
-      this.lights.globalLight = new three.HemisphereLight(0xffffff, 0xffffff, 0.7);
+      this.lights.globalLight = new three.HemisphereLight(0xffffff, 0xffffff, 0.55);
       const globalLight = this.lights.globalLight;
       globalLight.position.x = 0;
       globalLight.position.y = 20;

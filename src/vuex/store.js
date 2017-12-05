@@ -11,5 +11,10 @@ export const store = new Vuex.Store({
         source: 'Gary New, Head of Operations'
       }
     }
+  },
+  mutations: {
+    startButtonClicked(state) {
+      state.home.showSplash = false;
+    }
   }
 });

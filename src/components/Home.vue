@@ -5,9 +5,12 @@
         <source src="/static/video/intro.mp4" type="video/mp4"></source>
       </video>
     </div>
-    <splash v-if="showSplash"></splash>
-    <main class=" home-screen col dead-center" v-else>
-      <div class="intro-container">
+    <transition name="splash-fade-out">
+      <splash v-if="showSplash"></splash>
+    </transition>
+    <transition name="home-fade-in">
+      <main class=" home-screen col dead-center" v-if="!showSplash">
+        <div class="intro-container">
         <nav>
 
           <ul class="row around middle text-center">
@@ -43,8 +46,9 @@
             Cheyenne may look like a traditional data storage facility, but it’s one of the world’s most powerful computing systems. Scientists from around the country use Cheyenne to collaboratively simulate and predict Earth’s greatest phenomena — from weather patterns and climate fluctuation to seismic activity and airflows — to better forecast changes and how to can prepare for them. Built to transform numerical concepts into tangible predictions, Cheyenne’s success relies on every cable and computer cluster working together at full capacity.
           </p>
         </div>
-      </div>
+        </div>
     </main>
+    </transition>
   </div>
 </template>
 

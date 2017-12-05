@@ -128,3 +128,24 @@ body.home-page {
     }
   }
 }
+
+.home-fade-in-enter-active {
+  opacity: 1;
+  transition: opacity .75s ease-in;
+  transition-delay: 1s;
+}
+.home-fade-in-enter {
+  opacity: 0;
+  transition: opacity .75s ease-in;
+  transition-delay: 1s;
+}
+
+
+.splash-fade-out-leave-active {
+  opacity: 1;
+}
+
+.splash-fade-out-leave-to {
+  opacity: 0;
+  transition: opacity 1s ease;
+}

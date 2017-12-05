@@ -25,7 +25,9 @@ export default {
     }
   },
   methods: {
-    handleStartClick() {}
+    handleStartClick() {
+      this.$store.commit('startButtonClicked');
+    }
   }
 };
 </script>
