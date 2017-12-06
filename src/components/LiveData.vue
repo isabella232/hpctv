@@ -1,7 +1,7 @@
 <template>
   <div class="live-data">
     <header class="row dead-center text-center upper">
-      <h1>Near Real Time Data. Real Implications</h1>
+      <h1>Real-Time Data.* Real Implications</h1>
     </header>
 
     <main class="row reverse">
@@ -51,6 +51,7 @@
       </aside>
     </main>
     <dock-nav></dock-nav>
+    <small class="grey">&nbsp;*Updated every 24 hours</small>
   </div>
 </template>
 

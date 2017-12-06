@@ -20,7 +20,7 @@ body.specs-page {
     background-image: url('/static/img/arrows-top-right.png');
     top: 0;
     left: 0;
-    transform: scaleX(-1)
+    transform: scaleX(-1);
   }
 
   &::after {
@@ -34,10 +34,18 @@ body.specs-page {
 .specs {
   height: 80%;
 
-  area:active{
-    background: red;
-    opacity: 1;
+  & > header {
+    font-family: $poppins_bold;
+    h1 {
+      margin-bottom: 0;
+      line-height: 1em;
+    }
+
+    .hint {
+      font-size: 22px;
+    }
   }
+
 
   main {
     display: flex;

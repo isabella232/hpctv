@@ -2,7 +2,7 @@
   <div class="specs">
     <header class="text-center upper grey">
       <h1>Supercomputer Superspecs</h1>
-      <span class="lime">Tap + for details</span>
+      <span class="lime hint">Tap <span><img class="lime-filter" width="18px" src="/static/icon/plus-x-icon.svg" alt="+ in circle"></span> for details</span>
     </header>
     <main class="supercomputer">
       <div class="cheyenne-container">
