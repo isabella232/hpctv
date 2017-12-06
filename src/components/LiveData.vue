@@ -8,12 +8,12 @@
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <button :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')">
+            <div :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')" tabindex="-1">
               <span>User Allocation</span>
-            </button>
-            <button class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')">
+            </div>
+            <div class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
               <span>Area of Study</span>
-            </button>
+            </div>
           </div>
           <div class="canvas">
             <three></three>
