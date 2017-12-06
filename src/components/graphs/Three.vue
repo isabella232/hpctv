@@ -14,7 +14,6 @@ export default {
     return {
       camera: null,
       canvas: null,
-      canvaswidth: '80%',
       cameraPosition: {
         x: -14.33,
         y: 5.72,
@@ -46,6 +45,7 @@ export default {
         console.log('Developer mode enabled.');
         this.developerMode = true;
       });
+      window.addEventListener('resize', this.onWindowResize);
 
       // Lights
       this.lights.primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);
@@ -65,7 +65,7 @@ export default {
       this.scene.add(globalLight);
 
       // Camera Setup
-      this.camera = new three.PerspectiveCamera(50, window.innerWidth * 0.5695 / 450, 0.1, 1000);
+      this.camera = new three.PerspectiveCamera(50, this.canvasWidth / this.canvasHeight, 0.1, 1000);
 
       // Keyboard Mouse Controls
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -112,6 +112,20 @@ export default {
       requestAnimationFrame(this.animate);
       this.controls.update();
       this.renderer.render(this.scene, this.camera);
+    },
+
+    onWindowResize() {
+      this.camera.aspect = this.canvasWidth / this.canvasHeight;
+      this.camera.updateProjectionMatrix();
+
+      this.renderer.setSize(this.canvasWidth, this.canvasHeight);
+    },
+
+    makeCircle(color) {
+      const geometry = new three.RingGeometry(0.55, 0.75, 32);
+      const material = new three.MeshBasicMaterial({color});
+      const disc = new three.Mesh(geometry, material);
+      return disc;
     }
   },
 
@@ -125,17 +139,30 @@ export default {
 
     colorScheme() {
       return this.$store.state.liveData.colorScheme;
+    },
+
+    canvasWidth() {
+      return getComputedStyle(this.parentContainer)
+        .getPropertyValue('width')
+        .replace('px', '');
+    },
+
+    canvasHeight() {
+      return 450;
+    },
+
+    parentContainer() {
+      return document.querySelector('.threejs');
     }
   },
 
   mounted() {
     this.init();
+    // this.enableDeveloperMode();
 
     // create a 3 dimensional array of polygons.
     for (let x = 0; x < 20; x++) {
       for (let z = 0; z < 10; z++) {
-        // const color = `rgb(${175 + x + x * 2},${z * 20},${5 * z + z * 2})`;
-        // const color = `rgb(${5 * z + z * 2}, ${150 + x + x * 2}, ${z * 25})`;
         const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
         const cube = this.makeCube(color);
 
@@ -154,11 +181,12 @@ export default {
     this.group.translateY(1.5);
     this.group.translateZ(-6);
 
-    // console.log(this.group.id);
-    // const loopcube = this.group.getObjectById(9);
-    // console.log(loopcube);
-    // loopcube.material.color.set(0xff0000);
-    // this.group.getObjectById(99).material.color.set(0x888888);
+    // const disc = this.makeCircle(0xccff00);
+    // disc.position.x = 0;
+    // disc.position.z = 0;
+    // disc.position.y = 6;
+    // disc.lookAt(this.camera.position);
+    // this.scene.add(disc);
 
     // Required calls for user interactions.
     this.controls.update();
@@ -186,9 +214,6 @@ export default {
 </script>
 
 <style scoped>
-canvas {
-  border: solid 1px red;
-}
 input {
   display: block;
 }

@@ -26,7 +26,6 @@
           <div class="canvas">
           </div>
         </div>
-
       </article>
 
       <aside class="projects col around">
