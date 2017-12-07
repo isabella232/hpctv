@@ -10,19 +10,23 @@
         <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point" ></small-modal>
       </div>
     </main>
+    <slide-up-modal></slide-up-modal>
     <dock-nav></dock-nav>
+    
   </div>
 </template>
 
 <script>
 import SmallModal from './modals-navs/Small-Modal';
 import DockNav from './modals-navs/DockNav';
+import SlideUpModal from './modals-navs/SlideUpModal';
 
 export default {
   name: 'specs',
   components: {
     SmallModal,
-    DockNav
+    DockNav,
+    SlideUpModal
   },
 
   data() {
@@ -73,7 +77,8 @@ export default {
             media: '/static/img/modal-placeholder.jpg'
           }
         }
-      ]
+      ],
+      legendIsOpen: false
     };
   },
 
