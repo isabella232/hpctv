@@ -1,4 +1,5 @@
 @import 'global';
+
 .big-modal {
   position: absolute;
   background: rgba(0, 0, 0, 0.75);
@@ -24,7 +25,7 @@
     button.exit {
       @include button(transparent);
       position: absolute;
-      bottom: 10px;
+      top: 10px;
       right: 10px;
       width: 40px;
       height: 40px;
@@ -33,7 +34,7 @@
       border-radius: 50%;
       cursor: pointer;
       box-shadow: none;
-      filter: grayscale(1) brightness(0.75);
+      filter: grayscale(1) brightness(5);
       transform: rotate(45deg);
 
       img {
@@ -59,14 +60,20 @@
         font-size: 100%;
       }
     }
+
     .project-specs {
       flex: 4;
       background: grey;
       color: white;
       padding: 1em;
+      
+      .collection{
+        margin-top: 0;
+      }
 
       .project-lead {
         text-align: left;
+        font-family: $poppins;
 
         p {
           text-transform: initial;
@@ -85,21 +92,36 @@
     color: black;
   }
 
-  .core-tabs {
-    button {
-      @include button($button_active_dark_grey);
-      border-radius: 0;
-      font-size: 1em;
-      padding: 0.5em 1em;
-      margin: 0;
-      color: $lime;
-      text-transform: uppercase;
-      font-weight: 700;
+  .media-container {
+    overflow-x: hidden;
 
-      &.active {
-        background: $teal;
-        color: $white;
-      }
+    img {
+      width: 100%;
+    }
+  }
+
+  .media-navigation {
+    width:33%;
+    margin: 0 auto;
+    // border: solid 1px red;
+    
+    button {
+      @include button(transparent);
+      box-shadow: none;
+      font-size: 3em;
+      line-height: 1em;
+      padding: 0;
+      align-items: baseline;     
+      
+    }
+    .inactive{
+      color: grey;
+    }
+    
+    .active{
+      color: $lime;
+      border: solid 3px $lime;
+      // border-radius: 50%;
     }
   }
 
@@ -109,8 +131,8 @@
     width: 90%;
 
     h3 {
-      font-family: $poppins-medium;
-      text-align: left;
+      font-family: $poppins-bold;
+      // text-align: left;
       display: inline-block;
       width: 100%;
       color: $teal;
@@ -137,5 +159,12 @@
     .main-content {
       flex: 3;
     }
+  }
+
+  .project-specs hr {
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+    opacity: 0.5;
   }
 }
