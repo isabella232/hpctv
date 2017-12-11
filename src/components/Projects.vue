@@ -12,7 +12,7 @@
       </div>
       <div class="case-container" v-for="(project, i) in featuredProjects" :key="project.name">
         <figure @click="openModal(i)">
-          <img src="/static/img/case-study-placeholder.jpg" alt="">
+          <img :src="project.heroImage" alt="">
           <div class="figure-overlay col dead-center">
             <img class="plus-icon" src="/static/icon/plus-x-icon.svg">
             <figcaption class="upper">{{ project.name }}</figcaption>
@@ -45,6 +45,7 @@ export default {
       featuredProjects: [
         {
           name: 'Wind Forecast Improvement',
+          heroImage: '/static/img/featured-projects/wind-forecast.jpg',
           statData: [
             {
               statName: 'Core Hours',
@@ -65,6 +66,7 @@ export default {
         },
         {
           name: 'Understanding heliospheric Weather',
+          heroImage: '/static/img/featured-projects/heliosphere.jpg',
           statData: [
             {
               statName: 'Core Hours',
@@ -85,6 +87,7 @@ export default {
         },
         {
           name: 'Predicting Climate Extremes',
+          heroImage: '/static/img/featured-projects/climate-extremes.jpg',
           statData: [
             {
               statName: 'Core Hours',
@@ -105,6 +108,7 @@ export default {
         },
         {
           name: 'Wind Turbine Performance',
+          heroImage: '/static/img/featured-projects/wind-turbine.jpg',
           statData: [
             {
               statName: 'Core Hours',
@@ -125,6 +129,7 @@ export default {
         },
         {
           name: 'Oceanic Atmospheric Forecasts',
+          heroImage: '/static/img/featured-projects/oceanic-forecasts.jpg',
           statData: [
             {
               statName: 'Core Hours',
