@@ -15,7 +15,7 @@
   }
 
   .body {
-    background: white;
+    background: transparent;
     width: 90%;
     margin: 2.5% auto;
     height: 90vh;
@@ -45,11 +45,15 @@
 
   .project-title {
     flex: 3;
-    background: $teal;
     color: white;
     text-align: center;
 
+    & > div {
+      margin: 5px;
+    }
+
     .title {
+      background: $teal;
       flex: 2;
       display: flex;
       flex-direction: column;
@@ -66,8 +70,8 @@
       background: grey;
       color: white;
       padding: 1em;
-      
-      .collection{
+
+      .collection {
         margin-top: 0;
       }
 
@@ -77,11 +81,16 @@
 
         p {
           text-transform: initial;
+          margin: 10px 0 0 0;
         }
 
         span {
           display: inline-block;
         }
+      }
+
+      .lead-info {
+        margin-left: 10px;
       }
     }
   }
@@ -90,6 +99,7 @@
     flex: 8;
     background: whitesmoke;
     color: black;
+    margin: 5px;
   }
 
   .media-container {
@@ -101,24 +111,23 @@
   }
 
   .media-navigation {
-    width:33%;
+    width: 33%;
     margin: 0 auto;
     // border: solid 1px red;
-    
+
     button {
       @include button(transparent);
       box-shadow: none;
       font-size: 3em;
       line-height: 1em;
       padding: 0;
-      align-items: baseline;     
-      
+      align-items: baseline;
     }
-    .inactive{
+    .inactive {
       color: grey;
     }
-    
-    .active{
+
+    .active {
       color: $lime;
       border: solid 3px $lime;
       // border-radius: 50%;
