@@ -1,8 +1,8 @@
 <template >
   <div class="side-nav row between" v-if="$route.name != 'not-found'">
-    <button class="prev" :class="{'invisible': isFirstPage}" @click="prevPage()"><img src="/static/icon/nav-arrow.svg" alt="previous"></button>
+    <button class="prev" :class="{'invisible': isFirstPage}" :disabled="isFirstPage" @click="prevPage()"><img src="/static/icon/nav-arrow.svg" alt="previous"></button>
 
-    <button class="next" :class="{'invisible': isLastPage}" @click="nextPage()"><img src="/static/icon/nav-arrow.svg" alt="next"></button>
+    <button class="next" :class="{'invisible': isLastPage}" :disabled="isLastPage" @click="nextPage()"><img src="/static/icon/nav-arrow.svg" alt="next"></button>
   </div>
 </template>
 
