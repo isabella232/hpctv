@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <side-nav></side-nav>
-    <transition>
+    <transition :name="transitionName">
       <router-view></router-view>
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
@@ -24,7 +24,8 @@ export default {
   },
   data() {
     return {
-      orderedRoutes: ['/', 'specs', 'live-data', 'projects']
+      orderedRoutes: ['/', 'specs', 'live-data', 'projects'],
+      transitionName: 'forward-full-page-slide'
     };
   },
 
