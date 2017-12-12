@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <side-nav></side-nav>
-    <transition :name="transitionDirection">
+    <transition>
       <router-view></router-view>
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
@@ -23,12 +23,24 @@ export default {
     SideNav
   },
   data() {
-    return { slideDirection: 1 };
+    return {
+      orderedRoutes: ['/', 'specs', 'live-data', 'projects']
+    };
   },
 
-  computed: {
-    transitionDirection() {
-      return this.slideDirection > 0 ? 'forward-full-page-slide' : 'backward-full-page-slide';
+  watch: {
+    /**
+      * Determines based on index in orderedRoutes which direction screen should slide. Transitions are defined in global.scss
+      * @param {Object} to Automatically passed by router. the users current route information
+      * @param {Object} from Automatically passed by router. The users selected destination route information.
+      */
+
+    $route(to, from) {
+      if (this.orderedRoutes.indexOf(to.name) > this.orderedRoutes.indexOf(from.name)) {
+        this.transitionName = 'forward-full-page-slide';
+      } else {
+        this.transitionName = 'backward-full-page-slide';
+      }
     }
   }
 };
