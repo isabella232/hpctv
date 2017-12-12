@@ -32,11 +32,13 @@ export default {
 
   methods: {
     nextPage() {
+      this.$parent.slideDirection = 1;
       let currentPage = this.getCurrentPageIndex;
       this.$router.push(this.pages[(currentPage += 1)]);
     },
 
     prevPage() {
+      this.$parent.slideDirection = -1;
       let currentPage = this.getCurrentPageIndex;
       this.$router.push(this.pages[(currentPage -= 1)]);
     },
