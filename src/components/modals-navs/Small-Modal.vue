@@ -1,8 +1,7 @@
 <template>
-  <div class="small-modal" :id="getID" >
+  <div class="small-modal" :id="getID">
     <button :class="(visible) ? 'open' : 'closed'" @click="toggle()"><img src="/static/icon/plus-x-icon.svg" alt="expand / collapse"></button>
-    <div class="modal-body" :class="{inverted: opensInverted}"
-    v-if="visible">
+    <div class="modal-body" :class="{inverted: opensInverted}" v-if="visible">
       <header class="row upper">
         <span>{{data.modalData.title}}</span>
       </header>
@@ -33,7 +32,12 @@ export default {
 
   methods: {
     toggle() {
-      this.visible = !this.visible;
+      if (this.visible) {
+        this.visible = !this.visible;
+      } else {
+        this.$parent.allOff();
+        this.visible = !this.visible;
+      }
     }
   },
   computed: {

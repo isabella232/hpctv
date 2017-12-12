@@ -1,18 +1,20 @@
 <template>
-  <div class="specs">
-    <header class="text-center upper grey">
+  <div class="specs" @toggleWasClicked="allOff()">
+    <header class="text-center upper grey" @click="allOff()">
       <h1>Supercomputer Superspecs</h1>
-      <span class="lime hint">Tap <span><img class="lime-filter" width="18px" src="/static/icon/plus-x-icon.svg" alt="+ in circle"></span> for details</span>
+      <span class="lime hint">Tap
+        <span><img class="lime-filter" width="18px" src="/static/icon/plus-x-icon.svg" alt="+ in circle"></span> for details</span>
     </header>
     <main class="supercomputer">
       <div class="cheyenne-container">
         <img src="/static/img/supercomputer.png" class="computer">
-        <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point" ></small-modal>
+        <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point">
+        </small-modal>
       </div>
     </main>
     <slide-up-modal></slide-up-modal>
     <dock-nav></dock-nav>
-    
+
   </div>
 </template>
 
@@ -80,6 +82,18 @@ export default {
       ],
       legendIsOpen: false
     };
+  },
+
+  methods: {
+    /**
+      * Called by the child comopnents to make sure only one modal is on at a time.
+      */
+    allOff() {
+      const modals = Object.values(this.$children);
+      modals.forEach(element => {
+        element.$data.visible = false;
+      });
+    }
   },
 
   created() {
