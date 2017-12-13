@@ -50,17 +50,17 @@ export default {
             {
               statName: 'Core Hours',
               statNumber: 10000,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/core-hours-icon.svg'
             },
             {
               statName: 'Jobs',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/jobs-icon.svg'
             },
             {
               statName: 'Petaflops',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/performance-icon.svg'
             }
           ]
         },
@@ -71,17 +71,17 @@ export default {
             {
               statName: 'Core Hours',
               statNumber: 10000,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/core-hours-icon.svg'
             },
             {
               statName: 'Jobs',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/jobs-icon.svg'
             },
             {
               statName: 'Petaflops',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/performance-icon.svg'
             }
           ]
         },
@@ -92,17 +92,17 @@ export default {
             {
               statName: 'Core Hours',
               statNumber: 10000,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/core-hours-icon.svg'
             },
             {
               statName: 'Jobs',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/jobs-icon.svg'
             },
             {
               statName: 'Petaflops',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/performance-icon.svg'
             }
           ]
         },
@@ -113,17 +113,17 @@ export default {
             {
               statName: 'Core Hours',
               statNumber: 10000,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/core-hours-icon.svg'
             },
             {
               statName: 'Jobs',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/jobs-icon.svg'
             },
             {
               statName: 'Petaflops',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/performance-icon.svg'
             }
           ]
         },
@@ -134,17 +134,17 @@ export default {
             {
               statName: 'Core Hours',
               statNumber: 10000,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/core-hours-icon.svg'
             },
             {
               statName: 'Jobs',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/jobs-icon.svg'
             },
             {
               statName: 'Petaflops',
               statNumber: 55,
-              iconPath: 'https://placehold.it/50x50?text=icon'
+              iconPath: '/static/icon/performance-icon.svg'
             }
           ]
         }
