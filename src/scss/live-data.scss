@@ -43,10 +43,11 @@ body.live-data-page {
 
   article {
     flex: 8;
- 
 
     .primary {
       flex: 8;
+      position: relative;
+      z-index: 2;
 
       canvas {
         width: 100%;

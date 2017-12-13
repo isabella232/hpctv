@@ -1,7 +1,9 @@
 <template>
-  <div class="small-modal" :id="getID">
-    <button :class="(visible) ? 'open' : 'closed'" @click="toggle()"><img src="/static/icon/plus-x-icon.svg" alt="expand / collapse"></button>
-    <div class="modal-body" :class="{inverted: opensInverted}" v-if="visible">
+  <div class="small-modal" :id="getID" :class="{open: visible}">
+    <button :class="(visible) ? 'open' : 'closed'" @click="toggle()">
+      <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
+    </button>
+    <div class="modal-body" :class="{inverted: opensInverted}" >
       <header class="row upper">
         <span>{{data.modalData.title}}</span>
       </header>

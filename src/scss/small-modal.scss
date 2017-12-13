@@ -17,10 +17,8 @@
     }
   }
 
-  .modal-body{
-    box-shadow: 0 0 40px $trans_black;
-    position: relative;
-    z-index: 2;
+  .modal-body {
+    width: 0;
   }
 
   button {
@@ -59,13 +57,17 @@
   header {
     background: $teal;
     color: $gradient_grey_dark;
-    width: 99%;
+    width: 0%;
     margin: 0 0 0 0.5%;
     padding: 0.5em 0;
     font-weight: 700;
     font-family: $poppins_bold;
+    transition: 250ms 400ms ease-in-out;
+    transform: scaleX(0px);
+    transform-origin: 0% 0%;
 
     span {
+      opacity: 0;
       margin-left: 1em;
     }
   }
@@ -76,19 +78,62 @@
     .panel {
       @include greydient(0);
       box-sizing: border-box;
-      height: 125px;
+      // height: 125px;
+      height: 0;
       width: 200px;
       margin: 1% 0.5%;
       overflow-y: hidden;
 
+      .left {
+        height: 125px;
+        transform: scaleY(0);
+      }
       img {
-        max-width: 100%;
-        margin: 0 auto;
+
+        height: 0;
+        width: 100%;
+        // margin: 0 auto;
       }
 
       p {
         margin: 5px;
       }
+    }
+  }
+
+  &.open {
+    .modal-body {
+      box-shadow: 0 0 40px $trans_black;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      transition: box-shadow 0s 750ms;
+    }
+
+    header {
+      width: 99%;
+      transition: 250ms ease-in-out;
+      transform-origin: 0% 0%;
+
+      span {
+        opacity: 1;
+        transition: 0ms 250ms;
+      }
+    }
+
+    .panel.left {
+      height: 125px;
+      transition: 250ms 250ms;
+
+      img {
+        height: 100%;
+        transition: height 250ms 250ms;
+      }
+    }
+
+    .panel.right {
+      height: 125px;
+      transition: 250ms 500ms;
     }
   }
 }
