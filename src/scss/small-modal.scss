@@ -16,7 +16,10 @@
   }
   .modal-body {
     width: 0;
+    box-shadow: none;
+    transition: width 150ms 750ms;
   }
+
   button {
     @include button(transparent);
     position: absolute;
@@ -29,18 +32,18 @@
     align-items: center;
     border-radius: 50%;
     padding: 0;
+    z-index: 0;
     &.closed {
       background: transparent;
-      transition: transform 0.25s ease-in;
-      z-index: 0;
+      transition: 150ms 750ms ease-in;
     }
     &.open {
       background: $teal;
       transform: rotate(45deg);
-      transition: transform 0.15s ease-in;
+      transition: 0.15s ease-in;
       z-index: 3;
       img {
-        filter: brightness(10);
+        filter: brightness(4);
       }
     }
     img {
@@ -49,14 +52,15 @@
   }
   header {
     background: $teal;
+    z-index: 0;
     color: $gradient_grey_dark;
-    width: 0%;
+    width: 99%;
     margin: 0 0 0 0.5%;
     padding: 0.5em 0;
     font-weight: 700;
     font-family: $poppins_bold;
-    transition: 250ms 400ms ease-in-out;
-    transform: scaleX(0px);
+    transition: 250ms 500ms ease-in-out;
+    transform: scaleX(0);
     transform-origin: 0% 0%;
     span {
       opacity: 0;
@@ -72,34 +76,43 @@
       width: 200px;
       margin: 1% 0.5%;
       overflow-y: hidden;
+      transition: height 250ms 250ms;
       .left {
         height: 125px;
         transform: scaleY(0);
+        transition: height 250ms;
       }
+      .right {
+        transition: heaight 250ms 250ms ;
+      }
+
       img {
         height: 0;
         width: 100%;
+        transition: height 250ms 250ms;
       }
       p {
         margin: 5px;
       }
     }
   }
+
   &.open {
     .modal-body {
       box-shadow: 0 0 40px $trans_black;
       position: relative;
       z-index: 2;
       width: 100%;
-      transition: box-shadow 0s 750ms;
+      transition: box-shadow 150ms 750ms;
     }
+
     header {
-      width: 99%;
+      transform: scaleX(1);
       transition: 250ms ease-in-out;
       transform-origin: 0% 0%;
       span {
         opacity: 1;
-        transition: 0ms 250ms;
+        transition: 100ms 250ms;
       }
     }
     .panel.left {
@@ -112,7 +125,7 @@
     }
     .panel.right {
       height: 125px;
-      transition: 250ms 500ms;
+      transition: 200ms 400ms;
     }
   }
 }
