@@ -27,7 +27,21 @@ export default {
       },
       group: null,
       scene: null,
-      renderer: null
+      renderer: null,
+      dataSet: [
+        {
+          user: 1,
+          allocation: 49
+        },
+        {
+          user: 2,
+          allocation: 26
+        },
+        {
+          user: 3,
+          allocation: 25
+        }
+      ]
     };
   },
 
@@ -102,9 +116,9 @@ export default {
       return cube;
     },
 
-    updateCube(x, z, color) {
+    updateCube(x, z, color, offset = 0) {
       const allCubes = this.group.children;
-      const id = x + z * 10;
+      const id = x + z * 10 + offset;
       allCubes[id].material.color.set(color);
     },
 
@@ -121,9 +135,45 @@ export default {
       this.renderer.setSize(this.canvasWidth, this.canvasHeight);
     },
 
+    applyDataSets(dataSet) {
+      // const user1 = dataSet[0];
+      // const user2 = dataSet[1];
+      // const user3 = dataSet[2];
+
+      // for (let i = 0; i < user1.allocation * 2; i++) {
+      //   this.updateCube(i, 0, 0xff0000, 0);
+      // }
+
+      // for (let i = 0; i < user2.allocation * 2; i++) {
+      //   this.updateCube(i, 0, 0x00ff00, 100);
+      // }
+
+      // for (let i = 0; i < user3.allocation * 2; i++) {
+      //   this.updateCube(i, 0, 0x0000ff, user1.allocation * 2 + user2.allocation * 2);
+      // }
+
+      // keep track of consecutive blocks already colored.
+      let offset = 0;
+      // dummy array of colors.
+      const colors = [0xff0000, 0x00ff00, 0x0000ff];
+      for (let i = 0; i < dataSet.length; i++) {
+        // each object in data set
+        const user = dataSet[i];
+        const color = colors[i];
+
+        // either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
+        offset += i > 0 ? dataSet[i - 1].allocation * 2 : 0;
+
+        for (let j = 0; j < user.allocation * 2; j++) {
+          // loop through each cube in range and recolor it.
+          this.updateCube(j, 0, color, offset);
+        }
+      }
+    },
+
     makeCircle(color) {
       const geometry = new three.RingGeometry(0.55, 0.75, 32);
-      const material = new three.MeshBasicMaterial({color});
+      const material = new three.MeshBasicMaterial({ color });
       const disc = new three.Mesh(geometry, material);
       return disc;
     }
@@ -181,6 +231,7 @@ export default {
     this.group.translateY(1.5);
     this.group.translateZ(-6);
 
+    // this.applyDataSets(this.dataSet);
     // const disc = this.makeCircle(0xccff00);
     // disc.position.x = 0;
     // disc.position.z = 0;
