@@ -24,7 +24,7 @@
                 </div>
               </div>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere voluptatibus eligendi quas voluptatem sint 
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere voluptatibus eligendi quas voluptatem sint
               </p>
             </div>
           </div>
@@ -32,15 +32,12 @@
 
         <section class="col">
           <div class="media-container">
-            <img src="/static/img/modal-placeholder.jpg" class="hero-image" alt="">
+            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8">
+              <Slide><img src="/static/img/modal-placeholder.jpg" class="hero-image" alt=""></Slide>
+              <Slide><img src="/static/img/modal-placeholder.jpg" class="hero-image" alt=""></Slide>
+              <Slide> other slide content goes here.</Slide>
+            </Carousel>
           </div>
-          <ul class="media-navigation row center">
-            <button class="inactive" disabled>&bull;</button>
-            <button class="inactive" disabled>&bull;</button>
-            <button class="active">&bull;</button>
-            <button class="new">&bull;</button>
-            <button class="new">&bull;</button>
-          </ul>
 
           <article class="modal-article societal-impact text-center">
             <h3 class="upper">Societal Impact</h3>
@@ -59,6 +56,8 @@
 
 <script>
 import StatCard from '../StatCard';
+import { Carousel, Slide } from 'vue-carousel';
+// import MediaHelper from './MediaHelper';
 
 export default {
   props: {
@@ -75,7 +74,9 @@ export default {
     }
   },
   components: {
-    StatCard
+    StatCard,
+    Carousel,
+    Slide
   },
 
   data() {
