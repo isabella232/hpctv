@@ -108,7 +108,8 @@
   .media-container {
     overflow-x: hidden;
 
-    img {
+    img,
+    video{
       width: 100%;
     }
   }

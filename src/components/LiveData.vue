@@ -8,10 +8,17 @@
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <div :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')" tabindex="-1">
+            <div 
+              :class="{active: activeTab === 'user allocation'}"
+              @click="setActiveTab('user allocation')"
+              tabindex="-1">
               <span>User Allocation</span>
             </div>
-            <div class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
+            <div 
+              class="angle-button"
+              :class="{active: activeTab === 'area of study'}"
+              @click="setActiveTab('area of study')"
+              tabindex="-1">
               <span>Area of Study</span>
             </div>
           </div>
@@ -34,8 +41,10 @@
             <h2>Now Running</h2>
           </header>
           <ul>
-            <stat-card v-for="(stat, i) in nowRunning" :key="stat.statName" :cardData="stat">
-            </stat-card>
+            <StatCard 
+              v-for="stat in nowRunning"
+              :key="stat.statName"
+              :cardData="stat" />
           </ul>
         </div>
 
@@ -44,13 +53,15 @@
             <h2>Total Run</h2>
           </header>
           <ul>
-            <stat-card v-for="(stat, i) in totalRun" :key="stat.statName" :cardData="stat">
-            </stat-card>
+            <StatCard 
+              v-for="stat in totalRun"
+              :key="stat.statName"
+              :card-data="stat"/>
           </ul>
         </div>
       </aside>
     </main>
-    <dock-nav></dock-nav>
+    <DockNav />
     <small class="grey">&nbsp;*Updated every 24 hours</small>
   </div>
 </template>

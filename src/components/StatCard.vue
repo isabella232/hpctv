@@ -1,11 +1,13 @@
 <template>
   <li class="stat-card row middle">
-    <div v-if="cardData.iconPath" class="icon">
-      <img :src="cardData.iconPath" alt="">
+    <div
+      v-if="cardData.iconPath"
+      class="icon">
+      <img :src="cardData.iconPath">
     </div>
     <div class="info col start">
-      <span class="number lime">{{insertCommas(cardData.statNumber)}}</span>
-      <span class="label upper">{{cardData.statName}}</span>
+      <span class="number lime">{{ insertCommas(cardData.statNumber) }}</span>
+      <span class="label upper">{{ cardData.statName }}</span>
     </div>
   </li>
 </template>

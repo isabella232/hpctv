@@ -32,20 +32,23 @@
 
         <section class="col">
           <div class="media-container">
-            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8">
-              <Slide><img src="/static/img/modal-placeholder.jpg" class="hero-image" alt=""></Slide>
-              <Slide><img src="/static/img/modal-placeholder.jpg" class="hero-image" alt=""></Slide>
-              <Slide> other slide content goes here.</Slide>
+            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8" @pageChange="updateSlide($event)">
+              <AppSlide v-for="(slide, i) in data.mainContent" :key="slide.title">
+                <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
+                <video v-else-if="isVideo(slide.media)" :src="slide.media" controls ></video>
+                <div v-else>{{slide.media}}</div>
+              </AppSlide>
             </Carousel>
           </div>
 
           <article class="modal-article societal-impact text-center">
-            <h3 class="upper">Societal Impact</h3>
+            <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
             <div class="article-content row">
-              <p class="main-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, voluptas iusto accusamus quia impedit error odit dolores nulla officiis cum esse quidem repellat repudiandae sapiente expedita quibusdam exercitationem, placeat deleniti? Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat praesentium dignissimos voluptatum facere possimus itaque voluptas mollitia quam omnis minima illo animi iste, rem laboriosam laudantium. Maxime, iure repudiandae! </p>
+              <p class="main-content">
+                {{ data.mainContent[visibleContentID].body }}
+              </p>
             </div>
           </article>
-
         </section>
 
         <button class="exit" @click="handleExitTap()"><img src="/static/icon/plus-x-icon.svg" alt="exit"></button>
@@ -56,7 +59,8 @@
 
 <script>
 import StatCard from '../StatCard';
-import { Carousel, Slide } from 'vue-carousel';
+import Carousel from './Carousel';
+import Slide from './MediaHelper';
 // import MediaHelper from './MediaHelper';
 
 export default {
@@ -76,13 +80,13 @@ export default {
   components: {
     StatCard,
     Carousel,
-    Slide
+    AppSlide: Slide
   },
 
   data() {
     return {
-      activeTab: 'summary'
-    };
+      visibleContentID: 0
+    }
   },
 
   methods: {
@@ -91,6 +95,26 @@ export default {
     },
     doNothing() {
       // This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content
+    },
+    updateSlide(event) {
+      console.log('carousel page did change', event);
+      this.visibleContentID = event;
+    },
+
+    isImage(filepath) {
+      if (filepath.includes('jpg') || filepath.includes('jpeg') || filepath.includes('png')) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    isVideo(filepath) {
+      if (filepath.includes('mp4') || filepath.includes('webm') || filepath.includes('mov')) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };
