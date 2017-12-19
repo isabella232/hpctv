@@ -267,12 +267,14 @@ export default {
     this.group.translateZ(-6);
 
     // this.applyDataSets(this.dataSet);
-    // const disc = this.makeCircle(0xccff00);
-    // disc.position.x = 0;
-    // disc.position.z = 0;
-    // disc.position.y = 6;
-    // disc.lookAt(this.camera.position);
-    // this.scene.add(disc);
+
+    const spriteMap = new three.TextureLoader().load('/static/icon/plus-x-icon.svg');
+    const spriteMaterial = new three.SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+    const sprite = new three.Sprite(spriteMaterial);
+    sprite.position.x = this.group.children[50].position.x;
+    sprite.position.y = 4.5;
+    sprite.position.z = this.group.children[50].position.z;
+    this.scene.add(sprite);
 
     // Required calls for user interactions.
     this.controls.update();
