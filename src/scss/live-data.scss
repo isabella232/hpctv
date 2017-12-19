@@ -141,4 +141,16 @@ body.live-data-page {
       }
     }
   }
+
+  .three-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background: white;
+    border: solid 1px $lime;
+    padding: 1em;
+    width: 150px;
+    z-index: 3;
+  }
 }

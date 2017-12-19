@@ -41,7 +41,9 @@ export default {
           user: 3,
           allocation: 25
         }
-      ]
+      ],
+      mouseDown: false,
+      mouseMove: false
     };
   },
 
@@ -60,6 +62,9 @@ export default {
         this.developerMode = true;
       });
       window.addEventListener('resize', this.onWindowResize);
+      window.addEventListener('mousedown', this.onMouseDown);
+      window.addEventListener('mousemove', this.onMouseMove);
+      window.addEventListener('mouseup', this.onMouseUp);
 
       // Lights
       this.lights.primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);
@@ -135,6 +140,32 @@ export default {
       this.renderer.setSize(this.canvasWidth, this.canvasHeight);
     },
 
+    onMouseUp(event) {
+      console.log('mouseup');
+      if (!this.dragging) {
+        if (event.path[0].tagName === 'CANVAS') {
+          const mouseX = event.clientX / window.innerWidth * 100;
+          const mouseY = event.clientY / window.innerHeight * 100;
+          console.log('mouseX ', mouseX);
+          console.log('mouseY', mouseY);
+          console.log('inside canvas');
+          this.$emit('canvasWasTouched', { mouseX, mouseY });
+        }
+      }
+      this.mouseDown = false;
+    },
+
+    onMouseDown(event) {
+      console.log('mousedown');
+      this.mouseMove = false;
+      this.mouseDown = true;
+    },
+
+    onMouseMove(event) {
+      console.log('mousemove');
+      this.mouseMove = true;
+    },
+
     applyDataSets(dataSet) {
       // const user1 = dataSet[0];
       // const user2 = dataSet[1];
@@ -203,6 +234,10 @@ export default {
 
     parentContainer() {
       return document.querySelector('.threejs');
+    },
+
+    dragging() {
+      return this.mouseDown && this.mouseMove;
     }
   },
 

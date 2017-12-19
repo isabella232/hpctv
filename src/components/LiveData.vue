@@ -5,25 +5,22 @@
     </header>
 
     <main class="row reverse">
+      <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
+        <button @click="threeModal.show = false"> close </button>
+        <p> &lbrace; modalText &rbrace;</p>
+      </div>
       <article class="col">
         <div class="primary">
           <div class="row center core-tabs">
-            <div 
-              :class="{active: activeTab === 'user allocation'}"
-              @click="setActiveTab('user allocation')"
-              tabindex="-1">
+            <div :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')" tabindex="-1">
               <span>User Allocation</span>
             </div>
-            <div 
-              class="angle-button"
-              :class="{active: activeTab === 'area of study'}"
-              @click="setActiveTab('area of study')"
-              tabindex="-1">
+            <div class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
               <span>Area of Study</span>
             </div>
           </div>
           <div class="canvas">
-            <three></three>
+            <three @canvasWasTouched="insertModal($event)" />
           </div>
         </div>
         <div class="graph">
@@ -41,10 +38,7 @@
             <h2>Now Running</h2>
           </header>
           <ul>
-            <StatCard 
-              v-for="stat in nowRunning"
-              :key="stat.statName"
-              :cardData="stat" />
+            <StatCard v-for="stat in nowRunning" :key="stat.statName" :cardData="stat" />
           </ul>
         </div>
 
@@ -53,10 +47,7 @@
             <h2>Total Run</h2>
           </header>
           <ul>
-            <StatCard 
-              v-for="stat in totalRun"
-              :key="stat.statName"
-              :card-data="stat"/>
+            <StatCard v-for="stat in totalRun" :key="stat.statName" :card-data="stat" />
           </ul>
         </div>
       </aside>
@@ -106,7 +97,12 @@ export default {
           statName: 'Core Hours Used',
           statNumber: 5000
         }
-      ]
+      ],
+      threeModal: {
+        show: false,
+        x: 0,
+        y: 0
+      }
     };
   },
   components: {
@@ -129,6 +125,12 @@ export default {
       } else {
         this.$store.commit('colorScheme', 'warm');
       }
+    },
+
+    insertModal(event) {
+      this.threeModal.x = `${event.mouseX}%`;
+      this.threeModal.y = `${event.mouseY}%`;
+      this.threeModal.show = true;
     }
   },
 
