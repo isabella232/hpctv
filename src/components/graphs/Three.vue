@@ -61,10 +61,10 @@ export default {
         console.log('Developer mode enabled.');
         this.developerMode = true;
       });
-      window.addEventListener('resize', this.onWindowResize);
-      window.addEventListener('mousedown', this.onMouseDown);
-      window.addEventListener('mousemove', this.onMouseMove);
-      window.addEventListener('mouseup', this.onMouseUp);
+      this.canvas.addEventListener('resize', this.onWindowResize);
+      this.canvas.addEventListener('mousedown', this.onMouseDown);
+      this.canvas.addEventListener('mousemove', this.onMouseMove);
+      this.canvas.addEventListener('mouseup', this.onMouseUp);
 
       // Lights
       this.lights.primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);

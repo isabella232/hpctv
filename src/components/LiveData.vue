@@ -10,7 +10,7 @@
         <p> &lbrace; modalText &rbrace;</p>
       </div>
       <article class="col">
-        <div class="primary">
+        <div class="primary col around">
           <div class="row center core-tabs">
             <div :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')" tabindex="-1">
               <span>User Allocation</span>
