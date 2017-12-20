@@ -1,16 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import home from './home';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    home: {
-      showSplash: true,
-      quote: {
-        text: "It's a fighter plane. You have to know how to fly it.",
-        source: 'Gary New, Head of Operations'
-      }
-    },
     liveData: {
       colorScheme: 'cool',
       activeTab: 'user allocation'
@@ -24,5 +18,9 @@ export const store = new Vuex.Store({
     colorScheme(state, color) {
       state.liveData.colorScheme = color;
     }
+  },
+
+  modules: {
+    home
   }
 });
