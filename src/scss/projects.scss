@@ -28,12 +28,16 @@ body.projects-page {
 }
 
 .projects {
+  height: 100vh;
+
   header {
     color: $text_grey;
     font-family: $poppins_bold;
   }
   article {
     width: 80%;
+    height: 80%;
+    align-content: center;
     max-width: 1198px;
     margin: 0 auto;
     display: flex;
@@ -46,6 +50,7 @@ body.projects-page {
     .case-container {
       height: 300px;
       width: 300px;
+      margin: 15px;
       // border: solid 1px green;
 
       &:not(:first-child) {
