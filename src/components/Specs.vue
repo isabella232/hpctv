@@ -8,7 +8,7 @@
     <main class="supercomputer">
       <div class="cheyenne-container">
         <img src="/static/img/supercomputer.png" class="computer">
-        <small-modal v-for="(point, i ) in pointsOfInterest" :key="point.modalData.title" :data="point">
+        <small-modal v-for="(point, i) in vuex.pointsOfInterest" :key="point.modalData.title" :data="point">
         </small-modal>
       </div>
     </main>
@@ -33,53 +33,6 @@ export default {
 
   data() {
     return {
-      pointsOfInterest: [
-        {
-          x: 9,
-          y: 35,
-          modalData: {
-            title: 'Heat Output',
-            body: 'Cheyenne is hot!',
-            media: '/static/img/modal-placeholder.jpg'
-          }
-        },
-        {
-          x: 22,
-          y: 68,
-          modalData: {
-            title: 'Data Transfer Rate',
-            body: 'Cheyenne is fast!',
-            media: '/static/img/modal-placeholder.jpg'
-          }
-        },
-        {
-          x: 55,
-          y: 16,
-          modalData: {
-            title: 'Processing Cores',
-            body: 'Cheyenne is smart!',
-            media: '/static/img/modal-placeholder.jpg'
-          }
-        },
-        {
-          x: 81,
-          y: 16,
-          modalData: {
-            title: 'Total Memory',
-            body: 'Cheyenne is a great multitasker',
-            media: '/static/img/modal-placeholder.jpg'
-          }
-        },
-        {
-          x: 50,
-          y: 59,
-          modalData: {
-            title: 'Performance',
-            body: 'Cheyenne is the best.',
-            media: '/static/img/modal-placeholder.jpg'
-          }
-        }
-      ],
       legendIsOpen: false
     };
   },
@@ -93,6 +46,12 @@ export default {
       modals.forEach(element => {
         element.$data.visible = false;
       });
+    }
+  },
+
+  computed: {
+    vuex() {
+      return this.$store.state.specs;
     }
   },
 

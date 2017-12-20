@@ -39,11 +39,11 @@
         <div class="text-container text-center">
 
           <h1 class="col upper">
-            <span class="lime" v-html="$store.state.home.introPanel.mainHeader"></span>
+            <span class="lime" v-html="vuex.introPanel.mainHeader"></span>
           </h1>
 
           <p>
-            {{$store.state.home.introPanel.body}}
+            {{vuex.introPanel.body}}
           </p>
         </div>
         </div>
@@ -61,6 +61,10 @@ export default {
   computed: {
     showSplash() {
       return this.$store.state.home.showSplash;
+    },
+
+    vuex() {
+      return this.$store.state.home;
     }
   },
 
