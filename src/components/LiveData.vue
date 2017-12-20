@@ -61,12 +61,12 @@
 import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
+import axios from 'axios';
 
 export default {
   name: 'live-data',
   data() {
     return {
-      isDefaultPlaceholderImage: true,
       nowRunning: [
         {
           statName: 'Active Projects',
@@ -102,7 +102,8 @@ export default {
         show: false,
         x: 0,
         y: 0
-      }
+      },
+      rawResponse: null
     };
   },
   components: {
@@ -138,6 +139,22 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('live-data-page');
+
+    axios
+      .get('https://private-08983-hpctv.apiary-mock.com/stats/today')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('%c Server request OK', 'color:lime')
+          const data = response.data;
+          this.rawResponse = response.data;
+          this.nowRunning[0].statNumber = data.projects.active;
+          this.nowRunning[1].statNumber = data.jobs.active;
+          this.nowRunning[2].statNumber = data.jobs.queued;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 };
 </script>
