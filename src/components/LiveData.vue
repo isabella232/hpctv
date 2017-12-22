@@ -71,31 +71,31 @@ export default {
         {
           statName: 'Active Projects',
           iconPath: '/static/icon/projects-icon.svg',
-          statNumber: 25000
+          statNumber: 4
         },
         {
           statName: 'Active Jobs',
           iconPath: '/static/icon/jobs-icon.svg',
-          statNumber: 55000
+          statNumber: 4
         },
         {
           statName: 'Queued Projects',
           iconPath: '/static/icon/folder-check-mark-icon.svg',
-          statNumber: 250
+          statNumber: 4
         }
       ],
       totalRun: [
         {
           statName: 'Projects Completed',
-          statNumber: 55000
+          statNumber: 4
         },
         {
           statName: 'Jobs Completed',
-          statNumber: 5000000
+          statNumber: 4
         },
         {
           statName: 'Core Hours Used',
-          statNumber: 5000
+          statNumber: 4
         }
       ],
       threeModal: {
@@ -139,8 +139,7 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('live-data-page');
-
-    axios
+    /*  axios
       .get('https://private-08983-hpctv.apiary-mock.com/stats/today')
       .then(response => {
         if (response.status === 200) {
@@ -154,6 +153,46 @@ export default {
       })
       .catch(error => {
         console.error(error);
+      }); */
+
+    axios
+      .get('https://private-08983-hpctv.apiary-mock.com/v1/report/total')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('%c API request: OK', 'color:lime');
+          const data = response.data;
+          this.rawResponse = data;
+          this.totalRun[0].statNumber = data.projects;
+          this.totalRun[1].statNumber = data.jobs;
+          this.totalRun[2].statNumber = data.coreHours;
+        } else if (response.status === 503) {
+          console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
+        } else {
+          console.log('API returned status code: ' + response.status);
+        }
+      })
+      .catch(error => {
+        console.log(`%c ${error}`, 'color:red');
+      });
+
+    axios
+      .get('https://private-08983-hpctv.apiary-mock.com/v1/report/log?daysAgo=0')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('%c API request: OK', 'color:lime');
+          const data = response.data;
+          this.rawResponse = data;
+          this.nowRunning[0].statNumber = data.projects;
+          this.nowRunning[1].statNumber = data.jobs;
+          this.nowRunning[2].statNumber = data.coreHours;
+        } else if (response.status === 503) {
+          console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
+        } else {
+          console.log('API returned status code: ' + response.status);
+        }
+      })
+      .catch(error => {
+        console.log(`%c ${error}`, 'color:red');
       });
   }
 };

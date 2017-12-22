@@ -1,12 +1,10 @@
 <template>
   <li class="stat-card row middle">
-    <div
-      v-if="cardData.iconPath"
-      class="icon">
+    <div v-if="cardData.iconPath" class="icon">
       <img :src="cardData.iconPath">
     </div>
     <div class="info col start">
-      <span class="number lime">{{ insertCommas(cardData.statNumber) }}</span>
+      <span class="number lime">{{ numFormatter(cardData.statNumber) }}</span>
       <span class="label upper">{{ cardData.statName }}</span>
     </div>
   </li>
@@ -33,6 +31,28 @@ export default {
       */
     insertCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+
+    numFormatter(num) {
+      if (num < 49000) {
+        return this.insertCommas(num);
+      } else {
+        const map = [
+          { value: 1, symbol: '' },
+          { value: 1e3, symbol: 'K' },
+          { value: 1e6, symbol: 'M' },
+          { value: 1e9, symbol: 'B' },
+          { value: 1e12, symbol: 'T' }
+        ];
+        const parser = /\.0+$|(\.[0-9]*[1-9])0+$/;
+        let i;
+        for (i = map.length - 1; i > 0; i--) {
+          if (num >= map[i].value) {
+            break;
+          }
+        }
+        return (num / map[i].value).toFixed(1).replace(parser, '$1') + map[i].symbol;
+      }
     }
   }
 };
