@@ -22,7 +22,7 @@ export default {
           {
             label: 'Power',
             backgroundColor: 'rgba(0,255,255,0.5)',
-            data: [10, 20, 15, 30, 15],
+            data: [1, 0, 1, 0, 1],
             pointRadius: 0,
             borderWidth: 2,
             type: 'line'
@@ -35,7 +35,7 @@ export default {
           {
             label: 'Power',
             backgroundColor: 'rgba(125,0,255,0.5)',
-            data: [5, 10, 25, 30, 15],
+            data: [0, 2, 0, 5, 10],
             pointRadius: 0,
             borderWidth: 2,
             type: 'line'
@@ -73,6 +73,8 @@ export default {
   methods: {
     changeData() {
       console.log('click');
+      // this.data.datasets[0].data.shift();
+      // this.data.datasets[0].data.push(Math.floor(Math.random() * 10));
       this.data = this.dataset2;
     }
   },
