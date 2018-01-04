@@ -5,6 +5,10 @@ body.home-page {
   background-position: center;
   background-size: cover;
 
+  @media screen and (max-width: $mobileSmall) {
+    overflow: scroll;
+  }
+
   .video-container {
     position: absolute;
     top: 0;
@@ -39,20 +43,47 @@ body.home-page {
     width: 70%;
     margin: 0 auto;
     padding-bottom: 50px;
+
+    @media screen and (max-width: $mobilePlus) {
+      width: 90%;
+      padding-bottom: 1em;
+      margin-top: -60px;
+    }
+
+    @media screen and (max-width: $mobileSmall) {
+      margin-top: -160px;
+    }
+
     h1 {
+      font-size: 24px;
+      font-family: $poppins;
+      font-weight: 400;
+
       .lime {
         font-size: 36px;
         font-family: $poppins_bold;
         line-height: 1em;
+        @media screen and (max-width: $mobilePlus) {
+          font-size: 26px;
+        }
+        @media screen and (max-width: $mobileSmall) {
+          font-size: 20px;
+        }
       }
-      font-size: 24px;
-      font-family: $poppins;
-      font-weight: 400;
     }
+
     .text-container {
       width: 80%;
       margin: 0 auto;
+      @media screen and (max-width: $mobilePlus) {
+        font-size: 15px;
+        width: 90%;
+      }
+      @media screen and (max-width: $mobileSmall) {
+        font-size: 13px;
+      }
     }
+
     nav {
       width: 67%;
       margin: -50px auto 30px;
@@ -74,6 +105,28 @@ body.home-page {
         img {
           height: 50px;
           margin-top: 15%;
+          @media screen and (max-width: $mobile) {
+            height: 32px;
+          }
+        }
+
+        @media screen and (max-width: $mobile) {
+          width: 64px;
+          height: 64px;
+          a {
+            font-size: 12px;
+          }
+
+        }
+      }
+
+      @media screen and (max-width: $mobilePlus) {
+        width: 100%;
+
+        ul {
+          width: 90%;
+          margin: 0 auto;
+          justify-content: space-around;
         }
       }
     }
@@ -95,17 +148,26 @@ body.home-page {
 
     h1 {
       margin: 0 auto;
+      @media screen and (max-width: $mobilePlus) {
+        font-size: 24px;
+      }
     }
 
     blockquote {
       font-size: 2.5em;
       line-height: 1em;
       margin: 0;
+      @media screen and (max-width: $mobilePlus) {
+        font-size: 2em;
+      }
     }
 
     .source {
       font-size: 0.4em;
       font-family: $poppins;
+      @media screen and (max-width: $mobilePlus) {
+        font-size: 0.5em;
+      }
     }
   }
   .start-button {
@@ -132,15 +194,14 @@ body.home-page {
 
 .home-fade-in-enter-active {
   opacity: 1;
-  transition: opacity .75s ease-in;
+  transition: opacity 0.75s ease-in;
   transition-delay: 1s;
 }
 .home-fade-in-enter {
   opacity: 0;
-  transition: opacity .75s ease-in;
+  transition: opacity 0.75s ease-in;
   transition-delay: 1s;
 }
-
 
 .splash-fade-out-leave-active {
   opacity: 1;
