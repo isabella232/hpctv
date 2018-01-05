@@ -49,9 +49,3 @@ AddOutputFilterByType DEFLATE image/png
   ExpiresByType text/html "access 1 month"
   ExpiresByType application/json "access 1 day"
 </IfModule>
-
-
-<IfModule http2_module>
-  LogLevel http2:info
-  Protocols h2 http/1.1
-</IfModule>
