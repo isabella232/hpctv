@@ -11,43 +11,43 @@
     <transition name="home-fade-in">
       <main class=" home-screen col dead-center" v-if="!showSplash">
         <div class="intro-container">
-        <nav>
+          <nav>
 
-          <ul class="row around middle text-center">
-            <li>
-              <router-link to="specs" class="col middle around">
-                <img src="/static/icon/performance-icon.svg" alt="">
-                <span class="lime upper">Specs</span>
-              </router-link>
-            </li>
+            <ul class="row around middle text-center">
+              <li>
+                <router-link to="specs" class="col middle around">
+                  <img src="/static/icon/performance-icon.svg" alt="">
+                  <span class="lime upper">Specs</span>
+                </router-link>
+              </li>
 
-            <li>
-              <router-link to="live-data" class="col middle around">
-                <img src="/static/icon/real-time-data-icon.svg" alt="">
-                <span class="lime upper">Live Data</span>
-              </router-link>
-            </li>
+              <li>
+                <router-link to="live-data" class="col middle around">
+                  <img src="/static/icon/real-time-data-icon.svg" alt="">
+                  <span class="lime upper">Live Data</span>
+                </router-link>
+              </li>
 
-            <li>
-              <router-link to="projects" class="col middle around">
-                <img src="/static/icon/projects-icon.svg" alt="">
-                <span class="lime upper">Projects</span>
-              </router-link>
-            </li>
-          </ul>
-        </nav>
-        <div class="text-container text-center">
+              <li>
+                <router-link to="projects" class="col middle around">
+                  <img src="/static/icon/projects-icon.svg" alt="">
+                  <span class="lime upper">Projects</span>
+                </router-link>
+              </li>
+            </ul>
+          </nav>
+          <div class="text-container text-center">
 
-          <h1 class="col upper">
-            <span class="lime" v-html="vuex.introPanel.mainHeader"></span>
-          </h1>
+            <h1 class="col upper">
+              <span class="lime" v-html="vuex.introPanel.mainHeader"></span>
+            </h1>
 
-          <p>
-            {{vuex.introPanel.body}}
-          </p>
+            <p>
+              {{vuex.introPanel.body}}
+            </p>
+          </div>
         </div>
-        </div>
-    </main>
+      </main>
     </transition>
   </div>
 </template>
