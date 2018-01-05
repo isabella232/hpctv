@@ -1,6 +1,6 @@
 <template>
   <div class="live-data">
-    <header class="row dead-center text-center upper">
+    <header class="row dead-center text-center upper page-header">
       <h1>Real-Time Data.* Real Implications</h1>
     </header>
 

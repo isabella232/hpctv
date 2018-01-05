@@ -1,5 +1,6 @@
 <template>
-  <nav class="dock-nav">
+  <nav :class="{'dock-nav': true, open: navIsOpen}">
+    <button class="mobile-menu" @click="navIsOpen = !navIsOpen">&#9776;</button>
     <ul class="row">
       <li>
         <router-link to="/" exact>
@@ -32,7 +33,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      navIsOpen: false
+    };
   },
 
   computed: {

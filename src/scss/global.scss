@@ -56,6 +56,11 @@ body {
   font-family: $poppins;
   box-sizing: border-box;
   margin: 0 auto;
+@media screen and (max-width: $mobilePlus) {
+  .page-header {
+    margin-left:-16px;
+  }
+}
 
   ul {
     list-style: none;

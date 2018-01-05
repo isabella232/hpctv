@@ -1,6 +1,6 @@
 <template >
   <div class="projects">
-    <header class="row dead-center text-center upper">
+    <header class="row dead-center text-center upper page-header">
       <h1>Cheyenne's Featured Projects</h1>
     </header>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="specs" @toggleWasClicked="allOff()">
-    <header class="text-center upper grey" @click="allOff()">
+    <header class="text-center upper grey page-header" @click="allOff()">
       <h1>Supercomputer Superspecs</h1>
       <span class="lime hint">Tap
         <span><img class="lime-filter" width="18px" src="/static/icon/plus-x-icon.svg" alt="+ in circle"></span> for details</span>
