@@ -33,6 +33,9 @@ export default {
   },
 
   methods: {
+    /**
+      * Toggles the visibility of the sender modal. Emits an event to the parent to turn all modals off first.
+      */
     toggle() {
       if (this.visible) {
         this.visible = !this.visible;

@@ -25,6 +25,9 @@ export default {
     }
   },
   methods: {
+    /**
+      * modifies the decentralized state in Vuex for whether or not the start button has been clicked. This ensures that the start button does not show up again until a new browser session is initiated, or the property is manually set back.
+      */
     handleStartClick() {
       this.$store.commit('startButtonClicked');
     }

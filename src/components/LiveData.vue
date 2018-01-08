@@ -65,6 +65,9 @@ import axios from 'axios';
 
 export default {
   name: 'live-data',
+  /**
+    * All Data inside this property is currently a fallback data point if the API returns a 503 response.
+    */
   data() {
     return {
       nowRunning: [
@@ -119,6 +122,10 @@ export default {
   },
 
   methods: {
+    /**
+      * Changes the tab at the top of the 3D model of cheyenne.
+      * @param {String} tab the name of the tab in lower case human readable notation
+      */
     setActiveTab(tab) {
       this.$store.state.liveData.activeTab = tab;
       if (tab === 'user allocation') {
@@ -128,6 +135,10 @@ export default {
       }
     },
 
+  /**
+    * Used to inject a modal on top of the 3D display giving data about the element that was clicked.
+    * @param {Object} event automatically passed click event from the window.
+    */
     insertModal(event) {
       this.threeModal.x = `${event.mouseX}%`;
       this.threeModal.y = `${event.mouseY}%`;
@@ -155,10 +166,12 @@ export default {
         console.error(error);
       }); */
 
+    // Reach out to the API
     axios
       .get('https://private-08983-hpctv.apiary-mock.com/v1/report/total')
       .then(response => {
         if (response.status === 200) {
+          // Successful response
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
           this.rawResponse = data;
@@ -166,8 +179,10 @@ export default {
           this.totalRun[1].statNumber = data.jobs;
           this.totalRun[2].statNumber = data.coreHours;
         } else if (response.status === 503) {
+          // handle if API is offline
           console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
         } else {
+          // Unexpected response like 404.
           console.log('API returned status code: ' + response.status);
         }
       })
@@ -175,10 +190,12 @@ export default {
         console.log(`%c ${error}`, 'color:red');
       });
 
+     // Reach out to the API
     axios
       .get('https://private-08983-hpctv.apiary-mock.com/v1/report/log?daysAgo=0')
       .then(response => {
         if (response.status === 200) {
+          // Successful
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
           this.rawResponse = data;
@@ -186,8 +203,10 @@ export default {
           this.nowRunning[1].statNumber = data.jobs;
           this.nowRunning[2].statNumber = data.coreHours;
         } else if (response.status === 503) {
+          // handle if API is offline
           console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
         } else {
+          // Unexpected response like 404.
           console.log('API returned status code: ' + response.status);
         }
       })

@@ -8,12 +8,11 @@
     <main class="supercomputer">
       <div class="cheyenne-container">
         <img src="/static/img/supercomputer.png" class="computer">
-        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point">
-        </small-modal>
+        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
       </div>
     </main>
-    <slide-up-modal></slide-up-modal>
-    <dock-nav></dock-nav>
+    <slide-up-modal />
+    <dock-nav />
 
   </div>
 </template>
@@ -39,7 +38,7 @@ export default {
 
   methods: {
     /**
-      * Called by the child comopnents to make sure only one modal is on at a time.
+      * Called by the child components to make sure only one modal is on at a time.
       */
     allOff() {
       const modals = Object.values(this.$children);

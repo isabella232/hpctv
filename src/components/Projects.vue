@@ -21,9 +21,8 @@
       </div>
 
     </article>
-    <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false">
-    </big-modal>
-    <dock-nav></dock-nav>
+    <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false" />
+    <dock-nav />
   </div>
 </template>
 
@@ -52,6 +51,10 @@ export default {
   },
 
   methods: {
+    /**
+      * Opens a full screen modal and passes the data based on it's position in the array.
+      * @param { Number } i the position in the array. Passed automatically by Vue Template.
+      */
     openModal(i) {
       this.modalIsOpen = true;
       this.modalData = this.vuex.featuredProjects[i];

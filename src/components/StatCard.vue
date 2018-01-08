@@ -26,16 +26,14 @@ export default {
 
   methods: {
     /**
-      * inserts commas into the thousands and millions place of its argument
-      * @param num Number
+      * Used to adjust the notation of larger numbers. e.g. (100,000 => 100k).
+      * @param {Number} num the number to transform.
+      * @returns {String} numbers under 49,000 get comma treatment. 
       */
-    insertCommas(num) {
-      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    },
-
     numFormatter(num) {
       if (num < 49000) {
-        return this.insertCommas(num);
+        // Comma notation.
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       } else {
         const map = [
           { value: 1, symbol: '' },

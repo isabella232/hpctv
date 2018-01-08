@@ -90,17 +90,32 @@ export default {
   },
 
   methods: {
+    /**
+      * Sends an event to the parent to clost the modal
+      */
     handleExitTap() {
       this.$emit('modalBorderTapped', false);
     },
+    /**
+      * This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content
+      */
     doNothing() {
-      // This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content
+      return;
     },
+    /**
+      * Updates this view when the carousel slide changes.
+      * @param {Number} event the ID sent by the Carousel.
+      */
+      // TODO: Refactor into single line function in the template.
     updateSlide(event) {
       console.log('carousel page did change', event);
       this.visibleContentID = event;
     },
 
+    /**
+      * returns if argument has common image file extension
+      * @param {String} filepath the filename to parse
+      */
     isImage(filepath) {
       if (filepath.includes('jpg') || filepath.includes('jpeg') || filepath.includes('png')) {
         return true;
@@ -109,6 +124,10 @@ export default {
       }
     },
 
+    /**
+      * returns if argument has common video file extension
+      * @param {String} filepath the filename to parse
+      */
     isVideo(filepath) {
       if (filepath.includes('mp4') || filepath.includes('webm') || filepath.includes('mov')) {
         return true;

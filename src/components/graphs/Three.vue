@@ -48,6 +48,9 @@ export default {
   },
 
   methods: {
+    /**
+      * Responsible for creating the 3D environment, binding canvas events, 
+      */
     init() {
       // Environment Setup
       this.scene = new three.Scene();
@@ -99,6 +102,9 @@ export default {
       this.camera.position.z = this.cameraPosition.z;
     },
 
+    /**
+      * Removes mouse restrictions for full camera control, adds helpers to the scene for visualising directions and normals of the 3D objects.
+      */
     enableDeveloperMode() {
       const worldLightHelper = new three.HemisphereLightHelper(this.lights.globalLight, 2);
       const sphereSize = 1;
@@ -114,6 +120,11 @@ export default {
       this.controls.update();
     },
 
+    /**
+      * Generator function to create a simple Cube geometry.
+      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+      * @returns {BoxGeometry}
+      */
     makeCube(color) {
       const geometry = new three.BoxGeometry(1, 5, 1);
       const material = new three.MeshLambertMaterial({ color, flatShading: false });
@@ -121,18 +132,31 @@ export default {
       return cube;
     },
 
+    /**
+      * Helper function to control a single cube in the array (this.group) of cubes.
+      * @param {Number} x
+      * @param {Number} y
+      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+      * @param {Number} [offset=0] - Number of cubes by which to offset the other parameters
+      */
     updateCube(x, z, color, offset = 0) {
       const allCubes = this.group.children;
       const id = x + z * 10 + offset;
       allCubes[id].material.color.set(color);
     },
 
+    /**
+      * Required function by ThreeJS. Do not call directly.
+      */
     animate() {
       requestAnimationFrame(this.animate);
       this.controls.update();
       this.renderer.render(this.scene, this.camera);
     },
 
+  /**
+    * Handler for resizing the canvas
+    */
     onWindowResize() {
       this.camera.aspect = this.canvasWidth / this.canvasHeight;
       this.camera.updateProjectionMatrix();
@@ -140,6 +164,10 @@ export default {
       this.renderer.setSize(this.canvasWidth, this.canvasHeight);
     },
 
+    /**
+      * Handler for mouse up event
+      * @param {Event} event - the window event
+      */
     onMouseUp(event) {
       console.log('mouseup');
       if (!this.dragging) {
@@ -155,17 +183,29 @@ export default {
       this.mouseDown = false;
     },
 
+    /**
+      * Handler for mouse down event
+      * @param {Event} event - the window event
+      */
     onMouseDown(event) {
       console.log('mousedown');
       this.mouseMove = false;
       this.mouseDown = true;
     },
 
+    /**
+      * Handler for mouse move event
+      * @param {Event} event - the window event
+      */
     onMouseMove(event) {
       console.log('mousemove');
       this.mouseMove = true;
     },
 
+    /**
+      * Used to change the 3D model's data visualization.
+      * @param {Obejct} dataSet - The new Dataset
+      */
     applyDataSets(dataSet) {
       // const user1 = dataSet[0];
       // const user2 = dataSet[1];
@@ -202,6 +242,10 @@ export default {
       }
     },
 
+    /**
+      * Generator function. Creates a new + image on the origin of each new break in the dataSet.
+      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+      */
     makeCircle(color) {
       const geometry = new three.RingGeometry(0.55, 0.75, 32);
       const material = new three.MeshBasicMaterial({ color });
@@ -289,7 +333,6 @@ export default {
     },
     colorScheme(newVal) {
       // The array of cubes is essentially a pixel grid. With the nested loop below we can control each cube indiviually.
-
       for (let x = 0; x < 10; x++) {
         for (let z = 0; z < 20; z++) {
           const color = newVal === 'warm' ? `rgb(${175 + z * 5},${120 + x * 3},${2 * z})` : `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
