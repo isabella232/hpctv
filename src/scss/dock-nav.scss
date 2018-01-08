@@ -49,24 +49,38 @@
 }
 
 @media screen and (max-width: $mobilePlus) {
+
+  .page-header {
+    margin-right: 7%;
+  }
   .dock-nav {
     position: absolute;
     top: 16px;
-    right: 16px;
 
     .mobile-menu {
       display: block;
-      color: $button_active_light_grey;
+      color: $button_light_grey;
       font-size: 32px;
+      position: absolute;
+      right: 16px;
     }
     ul {
       display: none;
     }
   }
 
-  .dock-nav.open{
-    ul{
+  .dock-nav.open {
+    background: $trans_black;
+    .mobile-menu{
+      color: $button_active_light_grey;
+    }
+    ul {
       display: block;
+      margin-top: 50px;
+
+      li {
+        margin-bottom: 10px;
+      }
     }
   }
 }
