@@ -4,8 +4,9 @@
 </template>
 
 <script>
-import * as three from 'three';
-import OrbitControls from 'orbit-controls-es6';
+import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera } from '../../../node_modules/three/build/three.min.js';
+const three = {EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera};
+const OrbitControls = require('three-orbit-controls')(three);
 import KonamiCode from 'konami-code';
 const konami = new KonamiCode();
 
@@ -53,12 +54,12 @@ export default {
       */
     init() {
       // Environment Setup
-      this.scene = new three.Scene();
-      // this.scene.background = new three.Color(0xe0e0e0);
+      this.scene = new Scene();
+      // this.scene.background = new Color(0xe0e0e0);
       this.renderer = this.makeRenderer;
       this.canvas = document.querySelector('.threejs');
       this.canvas.appendChild(this.renderer.domElement);
-      this.group = new three.Group();
+      this.group = new Group();
       console.log('For 3D debugging, please input Konami Code at any time.');
       konami.listen(() => {
         console.log('Developer mode enabled.');
@@ -70,7 +71,7 @@ export default {
       this.canvas.addEventListener('mouseup', this.onMouseUp);
 
       // Lights
-      this.lights.primaryLight = new three.DirectionalLight(0x404040, 1, 0, 2);
+      this.lights.primaryLight = new DirectionalLight(0x404040, 1, 0, 2);
       const primaryLight = this.lights.primaryLight;
       primaryLight.position.x = 0;
       primaryLight.position.y = 4.72;
@@ -78,7 +79,7 @@ export default {
       primaryLight.target = this.group;
       this.scene.add(primaryLight);
 
-      this.lights.globalLight = new three.HemisphereLight(0xffffff, 0xffffff, 0.55);
+      this.lights.globalLight = new HemisphereLight(0xffffff, 0xffffff, 0.55);
       const globalLight = this.lights.globalLight;
       globalLight.position.x = 0;
       globalLight.position.y = 20;
@@ -87,7 +88,7 @@ export default {
       this.scene.add(globalLight);
 
       // Camera Setup
-      this.camera = new three.PerspectiveCamera(50, this.canvasWidth / this.canvasHeight, 0.1, 1000);
+      this.camera = new PerspectiveCamera(50, this.canvasWidth / this.canvasHeight, 0.1, 1000);
 
       // Keyboard Mouse Controls
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -106,10 +107,10 @@ export default {
       * Removes mouse restrictions for full camera control, adds helpers to the scene for visualising directions and normals of the 3D objects.
       */
     enableDeveloperMode() {
-      const worldLightHelper = new three.HemisphereLightHelper(this.lights.globalLight, 2);
+      const worldLightHelper = new HemisphereLightHelper(this.lights.globalLight, 2);
       const sphereSize = 1;
-      const mainLightHelper = new three.DirectionalLightHelper(this.lights.primaryLight, sphereSize);
-      const boxHelper = new three.BoxHelper(this.group);
+      const mainLightHelper = new DirectionalLightHelper(this.lights.primaryLight, sphereSize);
+      const boxHelper = new BoxHelper(this.group);
       this.scene.add(worldLightHelper);
       this.scene.add(mainLightHelper);
       this.scene.add(boxHelper);
@@ -126,9 +127,9 @@ export default {
       * @returns {BoxGeometry}
       */
     makeCube(color) {
-      const geometry = new three.BoxGeometry(1, 5, 1);
-      const material = new three.MeshLambertMaterial({ color, flatShading: false });
-      const cube = new three.Mesh(geometry, material);
+      const geometry = new BoxGeometry(1, 5, 1);
+      const material = new MeshLambertMaterial({ color, flatShading: false });
+      const cube = new Mesh(geometry, material);
       return cube;
     },
 
@@ -154,7 +155,7 @@ export default {
       this.renderer.render(this.scene, this.camera);
     },
 
-  /**
+    /**
     * Handler for resizing the canvas
     */
     onWindowResize() {
@@ -247,16 +248,16 @@ export default {
       * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
       */
     makeCircle(color) {
-      const geometry = new three.RingGeometry(0.55, 0.75, 32);
-      const material = new three.MeshBasicMaterial({ color });
-      const disc = new three.Mesh(geometry, material);
+      const geometry = new RingGeometry(0.55, 0.75, 32);
+      const material = new MeshBasicMaterial({ color });
+      const disc = new Mesh(geometry, material);
       return disc;
     }
   },
 
   computed: {
     makeRenderer() {
-      const renderer = new three.WebGLRenderer({ alpha: true });
+      const renderer = new WebGLRenderer({ alpha: true });
       renderer.setSize(window.innerWidth * 0.5695, 450);
       renderer.setClearColor(0x000000, 0);
       return renderer;
@@ -312,9 +313,9 @@ export default {
 
     // this.applyDataSets(this.dataSet);
 
-    const spriteMap = new three.TextureLoader().load('/static/icon/plus-x-icon.svg');
-    const spriteMaterial = new three.SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
-    const sprite = new three.Sprite(spriteMaterial);
+    const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
+    const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+    const sprite = new Sprite(spriteMaterial);
     sprite.position.x = this.group.children[50].position.x;
     sprite.position.y = 4.5;
     sprite.position.z = this.group.children[50].position.z;
