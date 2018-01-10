@@ -11,7 +11,9 @@
   transition-delay: 0, 0.35s, 0.35s, 0;
   width: 250px;
   height: 3em;
+  height: 100vh;
   overflow: hidden;
+
   header {
     display: inline-block;
     position: relative;
@@ -49,24 +51,49 @@
       }
     }
   }
+
+  legend {
+    height: 92vh;
+    overflow-y: hidden;
+    @media screen and (max-width: 804px) {
+      overflow-y: scroll;
+    }
+  }
+
   .legend-list {
-    height: 95vh;
+    height: 100%;
     width: 95%;
     margin: 0 auto;
+
+    @media screen and (max-width: 804px) {
+      height: auto;
+    }
+
     dt {
       font-family: $poppins_bold;
       font-size: 32px;
+        @media screen and (max-width: 350px) {
+          font-size: 28px;
+        }
+
     }
     .legend-item {
       padding: 1em;
       background-color: $button_light_grey;
-      width: 48%;
+      width: 43%;
       margin: 5px;
+      @media screen and (max-width: 804px) {
+        width: 90%;
+      }
+      @media screen and (max-width: 350px) {
+        width: 85%;
+      }
     }
     dd {
       margin: 0;
     }
   }
+
   &.open {
     top: 0;
     left: 0;
@@ -77,7 +104,7 @@
     width: 100%;
     margin-top: 0;
     height: initial;
-    overflow: scroll;
+    overflow-y: scroll;
     header h3 {
       color: $white;
     }

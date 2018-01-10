@@ -58,11 +58,14 @@
     top: 16px;
 
     .mobile-menu {
+      background: transparent;
+      border: none;
       display: block;
       color: $button_light_grey;
       font-size: 32px;
       position: absolute;
       right: 16px;
+      outline: none;
     }
     ul {
       display: none;
@@ -72,7 +75,7 @@
   .dock-nav.open {
     background: $trans_black;
     .mobile-menu{
-      color: $button_active_light_grey;
+      color: lighten($button_active_light_grey, 15%);
     }
     ul {
       display: block;

@@ -53,6 +53,9 @@ body.specs-page {
     justify-content: center;
     align-items: center;
     height: 100%;
+    @media screen and (max-height: 768px) {
+      height: 90%;
+    }
   }
 
   .cheyenne-container {

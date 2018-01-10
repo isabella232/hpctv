@@ -36,6 +36,11 @@
     border-radius: 50%;
     padding: 0;
     z-index: 0;
+
+    @media screen and (max-width: 767px) {
+      width: 7vw;
+      height: 7vw;
+    }
     &.closed {
       background: transparent;
       transition: 150ms 750ms ease-in;
