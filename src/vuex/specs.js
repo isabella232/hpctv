@@ -5,7 +5,7 @@ const state = {
       y: 35,
       modalData: {
         title: 'Heat Output',
-        body: 'Cheyenne is hot!',
+        body: 'We recycle Cheyenne’s waste heat to warm our offices and melt snow along the building’s sidewalks during winter.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -14,7 +14,7 @@ const state = {
       y: 68,
       modalData: {
         title: 'Data Transfer Rate',
-        body: 'Cheyenne is fast!',
+        body: 'Cheyenne writes data 20,000x faster than a typical USB flash drive can handle and about 3x faster than the previous supercomputer, Yellowstone.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -23,7 +23,7 @@ const state = {
       y: 16,
       modalData: {
         title: 'Processing Cores',
-        body: 'Cheyenne is smart!',
+        body: 'Each core processes an individual dataset while simultaneously communicating  with other cores to make more complex calculations.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -32,7 +32,7 @@ const state = {
       y: 16,
       modalData: {
         title: 'Total Memory',
-        body: 'Cheyenne is a great multitasker',
+        body: 'That’s a LOT of SDRAM. For comparison, you’d need about 78,250 HP Chromebooks for the same amount of total memory.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -41,7 +41,7 @@ const state = {
       y: 59,
       modalData: {
         title: 'Performance',
-        body: 'Cheyenne is the best.',
+        body: 'Cheyenne’s computing speed is so fast, you would need 21,600 iPhone 7’s just to keep up.',
         media: '/static/img/modal-placeholder.jpg'
       }
     }
@@ -77,7 +77,7 @@ const state = {
     },
     {
       title: 'Flops',
-      definition: 'Copy not yet finalized.'
+      definition: 'A unit of performance that measures the rate at which a computer makes floating-point (decimal) calculations. Floating-point calculations are critical to scientific simulations because they’re a more precise measurement than the standard (integer) instructions per second. Cheyenne’s performance is measured in PetaFLOPS, or one quadrillion FLOPS'
     }
   ]
 };

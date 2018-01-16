@@ -133,6 +133,7 @@
     }
     .panel.right {
       height: 125px;
+      overflow-y: scroll;
       transition: 200ms 400ms;
     }
 
