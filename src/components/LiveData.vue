@@ -5,20 +5,36 @@
     </header>
 
     <main class="row reverse">
-      <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
+      <div class="three-modal" 
+        v-if="threeModal.show"
+        :style="{top: threeModal.y, left: threeModal.x}"
+      >
         <button @click="threeModal.show = false"> close </button>
         <p> &lbrace; modalText &rbrace;</p>
       </div>
+
       <article class="col">
         <div class="primary col around">
           <div class="row center core-tabs">
-            <div :class="{active: activeTab === 'user allocation'}" @click="setActiveTab('user allocation')" tabindex="-1">
+            <div 
+             :class="['user-alloc tab', {active: activeTab === 'user allocation'}]"
+             @click="setActiveTab('user allocation')"
+             tabindex="-1"
+            >
               <span>User Allocation</span>
             </div>
-            <div class="angle-button" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
+
+            <div class="area-of-study tab"
+              :class="{active: activeTab === 'area of study'}"
+              @click="setActiveTab('area of study')"
+              tabindex="-1"
+            >
               <span>Area of Study</span>
             </div>
           </div>
+
+
+
           <div class="canvas">
             <three @canvasWasTouched="insertModal($event)" />
           </div>

@@ -39,6 +39,11 @@ body.live-data-page {
     width: 85%;
     margin: 0 auto;
     height: 85vh;
+    @media screen and (max-width: 768px) {
+      height: auto;
+      overflow-y: scroll;
+      flex-direction: column;
+    }
   }
 
   article {
@@ -49,54 +54,81 @@ body.live-data-page {
       position: relative;
       z-index: 2;
 
+      @media screen and (max-width: 768px) {
+        flex-direction: column-reverse;
+      }
+
       canvas {
         width: 100%;
       }
     }
 
     .core-tabs {
-      & > div {
+      height: 2.5em;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-family: $poppins_bold;
+
+      .tab {
+        background: grey;
+        outline: none;
         position: relative;
         display: block;
-        @include button(grey);
-        border-radius: 0;
-        font-size: 1em;
-        padding: 0.25em 2.5em;
-        margin: 0;
+        float: left;
+        margin-right: 1.563em;
+        height: 100%;
+        width: 40%;
+        cursor: pointer;
+        user-select: none;
         color: $button_dark_grey;
-        text-transform: uppercase;
-        font-family: $poppins_bold;
+        text-align: center;
+        line-height: 2.5em;
 
         &.active {
           background: $teal;
-          color: $white;
+          color: white;
         }
       }
 
-      .angle-button {
+      .user-alloc {    
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          right: -1.5em;
+          width: 0;
+          height: 0;
+          border-top: 2.5em solid grey;
+          border-right: 1.563em solid transparent;
+        }
+
+        &.active:after {
+            border-top: 2.5em solid $teal;
+            border-right: 1.563em solid transparent;
+        }
+      }
+
+      .area-of-study {
+
         &::before {
           content: '';
-          display: inline-block;
           position: absolute;
-          left: -1.25em;
-          top: 0;
-          height: 101%;
-          box-sizing: border-box;
-          border-radius: 0;
           display: block;
-          border-style: solid;
-          border-width: 0 0 2.125em 20px;
-          border-color: transparent transparent grey transparent;
+          left: -1.5em;
+          width: 0;
+          height: 0;
+          border-top: 2.5em solid transparent;
+          border-right: 1.563em solid grey;
         }
 
         &.active::before {
-          border-color: transparent transparent $teal transparent;
-        }
-
-        &:hover:not(.active) {
-          &::before {
-            border-color: transparent transparent darken(grey, 5%) transparent;
-          }
+          border-top: 2.5em solid transparent;
+          border-right: 1.563em solid $teal;
         }
       }
     }
@@ -105,6 +137,9 @@ body.live-data-page {
       flex: 4;
       width: 100%;
       margin: 20px;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
 
       header {
         background: $teal;

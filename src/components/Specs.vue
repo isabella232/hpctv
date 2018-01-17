@@ -10,18 +10,20 @@
         <img src="/static/img/supercomputer.png" class="computer">
         <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
       </div>
-    <ul>
-      <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
-        <Accordion>
-          <span slot="header">{{point.modalData.title}}</span>
-          <p slot="content">
-            <span class="subtitle">{{ point.modalData.subtitle }}</span>
-            <br>
-            <span>{{ point.modalData.body }}</span>
-          </p>
-        </Accordion>
-      </li>
-    </ul>
+
+      <ul>
+        <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
+          <Accordion>
+            <span slot="header">{{point.modalData.title}}</span>
+            <p slot="content">
+              <span class="subtitle">{{ point.modalData.subtitle }}</span>
+              <br>
+              <span>{{ point.modalData.body }}</span>
+            </p>
+          </Accordion>
+        </li>
+      </ul>
+
     </main>
 
     <slide-up-modal />
@@ -53,8 +55,8 @@ export default {
 
   methods: {
     /**
-      * Called by the child components to make sure only one modal is on at a time.
-      */
+     * Called by the child components to make sure only one modal is on at a time.
+     */
     allOff() {
       const modals = Object.values(this.$children);
       modals.forEach(element => {
