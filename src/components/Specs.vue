@@ -10,7 +10,20 @@
         <img src="/static/img/supercomputer.png" class="computer">
         <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
       </div>
+    <ul>
+      <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
+        <Accordion>
+          <span slot="header">{{point.modalData.title}}</span>
+          <p slot="content">
+            <span class="subtitle">{{ point.modalData.subtitle }}</span>
+            <br>
+            <span>{{ point.modalData.body }}</span>
+          </p>
+        </Accordion>
+      </li>
+    </ul>
     </main>
+
     <slide-up-modal />
     <dock-nav />
 
@@ -19,6 +32,7 @@
 
 <script>
 import SmallModal from './modals-navs/Small-Modal';
+import Accordion from './modals-navs/Accordion';
 import DockNav from './modals-navs/DockNav';
 import SlideUpModal from './modals-navs/SlideUpModal';
 
@@ -26,6 +40,7 @@ export default {
   name: 'specs',
   components: {
     SmallModal,
+    Accordion,
     DockNav,
     SlideUpModal
   },

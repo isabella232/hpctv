@@ -56,6 +56,11 @@ body.specs-page {
     @media screen and (max-height: 768px) {
       height: 90%;
     }
+
+    @media screen and (max-width: 500px) {
+      overflow-y: scroll;
+      height:80%;
+    }
   }
 
   .cheyenne-container {
@@ -67,6 +72,15 @@ body.specs-page {
     img.computer {
       position: relative;
       width: 100%;
+    }
+  }
+
+  ul {
+    width: 90%;
+    margin: 0 auto;
+
+    li {
+      margin: 7px 0;
     }
   }
 }

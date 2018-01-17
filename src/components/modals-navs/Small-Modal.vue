@@ -12,6 +12,7 @@
           <img src="http://www.rackworld.com.au/media/service-01.jpg" alt="">
         </div>
         <div class="panel right">
+          <p class="subtitle">{{data.modalData.subtitle}}</p>
           <p>
             {{data.modalData.body}}
           </p>
