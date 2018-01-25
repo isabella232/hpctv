@@ -32,7 +32,7 @@
 
         <section class="col">
           <div class="media-container">
-            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8" @pageChange="updateSlide($event)">
+            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8" @pageChange="visibleContentID = $event">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
                 <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
                 <video v-else-if="isVideo(slide.media)" :src="slide.media" controls ></video>
@@ -97,21 +97,12 @@ export default {
       this.$emit('modalBorderTapped', false);
     },
     /**
-      * This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content
+      * This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content. unfortunately void() is not valid in the template
       */
     doNothing() {
       return;
     },
-    /**
-      * Updates this view when the carousel slide changes.
-      * @param {Number} event the ID sent by the Carousel.
-      */
-      // TODO: Refactor into single line function in the template.
-    updateSlide(event) {
-      console.log('carousel page did change', event);
-      this.visibleContentID = event;
-    },
-
+    
     /**
       * returns if argument has common image file extension
       * @param {String} filepath the filename to parse

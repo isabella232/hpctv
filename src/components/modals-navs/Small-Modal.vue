@@ -9,7 +9,7 @@
       </header>
       <div class="row start panel-container">
         <div class="panel left">
-          <img src="http://www.rackworld.com.au/media/service-01.jpg" alt="">
+          <video src="/static/video/data-tx.mp4" loop muted playsinline></video>
         </div>
         <div class="panel right">
           <p class="subtitle">{{data.modalData.subtitle}}</p>
@@ -35,8 +35,8 @@ export default {
 
   methods: {
     /**
-      * Toggles the visibility of the sender modal. Emits an event to the parent to turn all modals off first.
-      */
+     * Toggles the visibility of the sender modal. Emits an event to the parent to turn all modals off first.
+     */
     toggle() {
       if (this.visible) {
         this.visible = !this.visible;
@@ -65,6 +65,13 @@ export default {
     const el = document.querySelector(selector);
     el.style.left = this.data.x + '%';
     el.style.top = this.data.y + '%';
+  },
+
+  watch: {
+    visible(newVal) {
+      this.video = document.querySelector(`#${this.getID} video`);
+      newVal ? this.video.play() : setTimeout(() => this.video.currentTime = 0, 1000);
+    }
   }
 };
 </script>
