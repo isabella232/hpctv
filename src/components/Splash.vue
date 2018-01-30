@@ -1,9 +1,7 @@
 <template>
   <div class="splash col dead-center">
     <header class="col text-center dead-center">
-      <h1>
-        <span class="lime upper">Meet Cheyenne:</span>
-      </h1>
+      <h1 class="lime upper">Meet Cheyenne:</h1>
       <blockquote class="upper white">
         &ldquo; {{ quote.text }} &rdquo;
         <p class="source lime">
@@ -12,7 +10,9 @@
       </blockquote>
     </header>
     <div class="row center">
-      <button class="start-button upper" @click="handleStartClick()">Start</button>
+      <div class="start-button upper col dead-center" @click="handleStartClick()">
+        <span>Start</span>
+      </div>
     </div>
   </div>
 </template>
@@ -26,8 +26,8 @@ export default {
   },
   methods: {
     /**
-      * modifies the decentralized state in Vuex for whether or not the start button has been clicked. This ensures that the start button does not show up again until a new browser session is initiated, or the property is manually set back.
-      */
+     * modifies the decentralized state in Vuex for whether or not the start button has been clicked. This ensures that the start button does not show up again until a new browser session is initiated, or the property is manually set back.
+     */
     handleStartClick() {
       this.$store.commit('startButtonClicked');
     }

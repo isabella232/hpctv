@@ -1,36 +1,8 @@
-// Colors
-
-// gradient grays
-$text_grey: #636363;
-$light_grey: #808285;
-$gradient_grey_light: #424243;
-$gradient_grey_dark: #313335;
-
-// background gradient linear 45 starting in bottom corner
-// bottom nav Buttons. linear 0deg light on left
-$button_light_grey: #58595b;
-$button_dark_grey: #414042;
-
-// 45deg linear from upper right corner
-$button_active_light_grey: #68686a;
-$button_active_dark_grey: #58595b;
-
-$lime: #bfd600;
-$teal: #00aaa5;
-$gradient_teal_dark: #00aaa5;
-$gradient_teal_light: #009b97;
-$ucar_primary_dark: #187382;
-$ucar_primary_lightest: #00c4a5;
-
-$white: #ffffff;
-$whitesmoke: #f5f5f5;
-$trans_black: rgba(0, 0, 0, 0.5);
-$grey_gradient_opacity: 0.15;
-
-$transparent_grey_gradient: linear-gradient(45deg, transparentize($gradient_grey_light, $grey_gradient_opacity) 0%, transparentize($gradient_grey_dark, $grey_gradient_opacity) 100%);
-
-$teal_linear_gradient: linear-gradient(left, $gradient_teal_dark 25%, $gradient_teal_light 75%);
-
-@mixin greydient($opacity) {
-  background: linear-gradient(45deg, transparentize($gradient_grey_light, $opacity) 0%, transparentize($gradient_grey_dark, $opacity) 100%);
-}
+$color_teal: #00aaa5;
+$color_lime: #bfd600;
+$color_black:#222222;
+$color_trans_black: transparentize($color_black, .5);
+$color_dark_grey:#414042;
+$color_grey: #636363;
+$color_light_grey:#808080;
+$color_white: #eeeeee;

@@ -2,11 +2,11 @@
   <div class="col dead-center">
     <div class="video-container">
       <video autoplay muted loop playsinline id="bg-video">
-        <source src="/static/video/intro.mp4" type="video/mp4"></source>
+        <!-- <source src="/static/video/overview.mp4" type="video/mp4" /> -->
       </video>
     </div>
     <transition name="splash-fade-out">
-      <splash v-if="showSplash"></splash>
+      <Splash v-if="showSplash"/>
     </transition>
     <transition name="home-fade-in">
       <main class=" home-screen col dead-center" v-if="!showSplash">
@@ -16,21 +16,21 @@
             <ul class="row around middle text-center">
               <li>
                 <router-link to="specs" class="col middle around">
-                  <img src="/static/icon/performance-icon.svg" alt="">
+                  <img src="/static/icon/performance-icon.svg" width="100" alt="">
                   <span class="lime upper">Specs</span>
                 </router-link>
               </li>
 
               <li>
                 <router-link to="live-data" class="col middle around">
-                  <img src="/static/icon/real-time-data-icon.svg" alt="">
+                  <img src="/static/icon/real-time-data-icon.svg" width="100" alt="">
                   <span class="lime upper">Live Data</span>
                 </router-link>
               </li>
 
               <li>
                 <router-link to="projects" class="col middle around">
-                  <img src="/static/icon/projects-icon.svg" alt="">
+                  <img src="/static/icon/projects-icon.svg" width="100" alt="">
                   <span class="lime upper">Projects</span>
                 </router-link>
               </li>

@@ -1,209 +1,105 @@
+@import 'reset';
+@import 'vars';
 @import 'colors';
 @import 'typography';
 
-// Screen Sizes & Breakpoints
-$mobilePlus: 414px;
-$mobile: 375px;
-$mobileSmall: 320px;
-$tablet: 768px;
-
-$button_size: 100px;
-
-@mixin fullbleed($background) {
-  background: $background;
+@mixin pageHeader() {
+  font-family: $font_poppins_bold;
+  color: $color_grey;
 }
 
-@mixin unselectableText() {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@mixin button($color) {
-  background: $color;
-  @include unselectableText();
-  box-shadow: 0 0 30px $trans_black;
-  outline: none;
-  -webkit-appearance: none;
-  border: none;
-  cursor: pointer;
-  &:active,
-  &:hover {
-    box-shadow: 0 0 10px $trans_black;
-    background: darken($color, 5%);
-  }
-}
-
-@mixin dropshadow($spread) {
-  box-shadow: 0 0 $spread $trans_black;
-}
-
+// Opinionated resets
 body {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
+  background: #0e0e0e;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMTAwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGUwZTBlIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjODA4MDgwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGUwZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+  background: -moz-linear-gradient(45deg, #0e0e0e 0%, #636363 50%, #0e0e0e 100%);
+  background: -webkit-linear-gradient(45deg, #0e0e0e 0%, #636363 50%, #0e0e0e 100%);
+  background: linear-gradient(45deg, #0e0e0e 0%, #636363 50%, #0e0e0e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e0e0e', endColorstr='#0e0e0e', GradientType=1);
 
-#app {
-  width: 100%;
-  min-height: 768px;
-  height: 100vh;
-  // max-width: 1024px;
-  overflow: hidden;
-  font-family: $poppins;
-  box-sizing: border-box;
-  margin: 0 auto;
-  @media screen and (max-width: $mobilePlus) {
-    .page-header {
-      margin-left: -7%;
-    }
+  font-family: $font_poppins;
+  color: $color_white;
+
+  p {
+    font-size: 16px;
+    line-height: 1.2em;
   }
 
-  @media screen and (max-width: $mobile) {
-    .page-header {
-      margin-left: -12.5%;
-    }
-  }
-
-  @media screen and (max-width: $mobileSmall) {
-    .page-header {
-      font-size: 75%;
-    }
+  a {
+    border: none;
+    text-decoration: none;
   }
 
   ul {
     list-style: none;
-    padding-left: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  button {
+    user-select: none;
+    cursor: pointer;
   }
 
   .invisible {
+    z-index: -10;
     opacity: 0;
-    cursor: initial !important;
+    width: 0;
+    height: 0;
+    cursor: initial;
   }
 
-  .side-nav {
-    position: absolute;
-    width: 100vw;
-    top: 44vh;
-
-    button {
-      //experimental property. changes the whole div color on tap. not really visible unless doing a long tap.
-      // -webkit-tap-highlight-color: $teal;
-      @include button($lime);
-      width: $button_size/2;
-      height: $button_size;
-
-      color: white;
-      font-size: $button_size/3;
-      font-weight: 700;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        height: 32px;
-      }
-
-      &.next {
-        border-bottom-left-radius: $button_size * 2;
-        border-top-left-radius: $button_size * 2;
-        img {
-          transform: rotate(180deg);
-          margin-left: 5px;
-        }
-      }
-      &.prev {
-        border-bottom-right-radius: $button_size * 2;
-        border-top-right-radius: $button_size * 2;
-
-        img {
-          margin-right: 5px;
-        }
-      }
-    }
-
-    @media screen and (max-width: $mobilePlus) {
-      display: none;
-    }
+  #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-footer.app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
+// Global Components
+
+.side-nav {
   @media screen and (max-width: $mobilePlus) {
-    width: 85%;
-    left: 7.5%;
-    right: 7.5%;
+    display: none;
+  }
+  button {
+    background: $color_lime;
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    top: calc(50% - 50px);
+    z-index: 10;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 5px $color_trans_black;
 
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    &:hover {
+      background: darken($color_lime, 10%);
+    }
+
+    &:active {
+      box-shadow: 0 0 10px 0 $color_trans_black;
+    }
+    img {
+      max-height: 30%;
+      transform: translateX(25%);
+    }
+
+    &.prev {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      left: -50px;
+    }
+    &.next {
+      right: -50px;
+      transform: rotate(180deg);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
-}
-
-.forward-full-page-slide-enter {
-  position: absolute;
-  width: 100%;
-  left: 100%;
-  height: 100vh;
-}
-.forward-full-page-slide-enter-to {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  transition: 0.25s ease-in-out;
-  height: 100vh;
-}
-.forward-full-page-slide-leave {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  transition: 0.25s ease-in-out;
-  height: 100vh;
-}
-.forward-full-page-slide-leave-to {
-  position: absolute;
-  width: 100%;
-  left: -100%;
-  transition: 0.25s ease-in-out;
-  height: 100vh;
-}
-
-.backward-full-page-slide-enter {
-  position: absolute;
-  width: 100%;
-  left: -100%;
-  height: 100vh;
-}
-.backward-full-page-slide-enter-to {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  transition: 0.225s ease-in-out;
-  height: 100vh;
-}
-.backward-full-page-slide-leave {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  transition: 0.225s ease-in-out;
-  height: 100vh;
-}
-.backward-full-page-slide-leave-to {
-  position: absolute;
-  width: 100%;
-  left: 100%;
-  transition: 0.225s ease-in-out;
-  height: 100vh;
 }

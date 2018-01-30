@@ -70,7 +70,7 @@ export default {
   watch: {
     visible(newVal) {
       this.video = document.querySelector(`#${this.getID} video`);
-      newVal ? this.video.play() : setTimeout(() => this.video.currentTime = 0, 1000);
+      newVal ? this.video.play() : this.video.pause();
     }
   }
 };

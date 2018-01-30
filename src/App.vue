@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <side-nav></side-nav>
+    <side-nav />
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
-      <ul class="sponsors row center">
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
+      <ul class="sponsors row around">
+        <li><img src="/static/img/sponsor-logo-cisl.png" alt="CISL Logo"></li>
+        <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo"></li>
+        <li><img src="/static/img/sponsor-logo-nwsc.png" alt="NWSC Logo"></li>
       </ul>
     </footer>
   </div>

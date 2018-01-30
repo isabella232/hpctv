@@ -1,0 +1,190 @@
+@import 'global';
+
+body.live-data-page {
+  @include greydient(0);
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 530px;
+    height: 250px;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &::before {
+    background-image: url('/static/img/arrows-top-right.png');
+    top: 0;
+    right: 0;
+  }
+
+  &::after {
+    background-image: url('/static/img/arrows-bottom-left.png');
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.live-data {
+  header {
+    color: $text_grey;
+    font-family: $poppins_bold;
+    // height: 10%;
+  }
+
+  main {
+    width: 85%;
+    margin: 0 auto;
+    height: 85vh;
+    @media screen and (max-width: 768px) {
+      height: auto;
+      overflow-y: scroll;
+      flex-direction: column;
+    }
+  }
+
+  article {
+    flex: 8;
+
+    .primary {
+      flex: 8;
+      position: relative;
+      z-index: 2;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column-reverse;
+      }
+
+      canvas {
+        width: 100%;
+      }
+    }
+
+    .core-tabs {
+      height: 2.5em;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-family: $poppins_bold;
+
+      .tab {
+        background: grey;
+        outline: none;
+        position: relative;
+        display: block;
+        margin-right: 1.563em;
+        height: 40px;
+        width: 40%;
+        cursor: pointer;
+        user-select: none;
+        color: $button_dark_grey;
+        text-align: center;
+        line-height: 2.5em;
+
+        &.active {
+          background: $teal;
+          color: white;
+        }
+      }
+
+      .user-alloc {    
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          right: -1.5em;
+          width: 0;
+          height: 0;
+          border-top: 2.5em solid grey;
+          border-right: 1.563em solid transparent;
+        }
+
+        &.active:after {
+            border-top: 2.5em solid $teal;
+            border-right: 1.563em solid transparent;
+        }
+      }
+
+      .area-of-study {
+
+        &::before {
+          content: '';
+          position: absolute;
+          display: block;
+          left: -1.5em;
+          width: 0;
+          height: 0;
+          border-top: 2.5em solid transparent;
+          border-right: 1.563em solid grey;
+        }
+
+        &.active::before {
+          border-top: 2.5em solid transparent;
+          border-right: 1.563em solid $teal;
+        }
+      }
+    }
+
+    .graph {
+      flex: 4;
+      width: 100%;
+      margin: 20px;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+
+      header {
+        background: $teal;
+
+        h2 {
+          margin: 0;
+          padding: 0.45em;
+        }
+      }
+      div.canvas {
+        max-width: 100%;
+        background-image: url('/static/img/tiled-graph-bg.jpg');
+        height: 175px;
+      }
+    }
+  }
+
+  aside {
+    height: 100%;
+    width: 100%;
+    flex: 3;
+
+    .collection {
+      header {
+        @include dropshadow(20px);
+        background: $teal;
+        font-weight: 700;
+        width: 90%;
+
+        h2 {
+          padding: 0.25em;
+          margin: 0 0 5px;
+        }
+      }
+    }
+  }
+
+  .three-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background: white;
+    border: solid 1px $lime;
+    padding: 1em;
+    width: 150px;
+    z-index: 3;
+  }
+}

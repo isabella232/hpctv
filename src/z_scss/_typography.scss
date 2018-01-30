@@ -1,0 +1,45 @@
+@font-face {
+  src: url('/static/fonts/Poppins-Regular.ttf');
+  font-family: 'Poppins';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('/static/fonts/Poppins-Bold.ttf');
+  font-family: 'Poppins-Bold';
+  font-weight: 700;
+}
+
+$poppins: 'Poppins', serif;
+$poppins_bold: 'Poppins-Bold', serif;
+
+body {
+  font-family: $poppins;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.lime {
+  color: $lime;
+}
+
+.white{ 
+  color: $white;
+}
+.grey {
+  color: $text_grey;
+}
+
+.teal {
+  color: $teal;
+}

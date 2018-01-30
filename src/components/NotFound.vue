@@ -86,8 +86,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
-li {
-  cursor: pointer;
-}
+// @import '../scss/global.scss';
+// li {
+//   cursor: pointer;
+// }
 </style>

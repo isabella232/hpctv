@@ -1,213 +1,166 @@
-@import 'global';
+@import 'global.scss';
 body.home-page {
-  background-color: #8fbbf8;
-  background-image: url('/static/img/clouds-placeholder.jpg');
-  background-position: center;
-  background-size: cover;
-
-  @media screen and (max-width: $mobileSmall) {
-    overflow: scroll;
-  }
-
-  .video-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  min-height: 100vh;
+  .video-container,
+  video {
     z-index: -1;
-    overflow: hidden;
-    video {
-      min-width: 100%;
-      min-height: 100%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
   }
-}
+  .intro-container { 
+    width: 67%;
+    max-width: 960px;
+    text-align: center;
+    padding: 2em;
+    background: $color_trans_black;
 
-.home-screen {
-  color: white;
-  width: 100%;
-  min-height: 768px;
-  height: 100vh;
-  max-width: 1024px;
-  overflow: hidden;
-  box-sizing: border-box;
-  margin: 0 auto;
-  .intro-container {
-    background: grey;
-    background: linear-gradient(45deg, transparentize($gradient_grey_dark, 0.15) 0%, transparentize($gradient_grey_light, 0.15) 50%, transparentize($gradient_grey_dark, 0.15) 100%);
-    width: 70%;
-    margin: 0 auto;
-    padding-bottom: 50px;
+    nav {
+      width: 67%;
+      margin: -50px auto 30px;
 
-    @media screen and (max-width: $mobilePlus) {
-      width: 90%;
-      padding-bottom: 1em;
-      margin-top: -60px;
-    }
+      li {
+        background: $color_teal;
+        width: 100px;
+        height: 100px;
+        color: $color_lime;
+        font-size: 0.75em;
+        box-shadow: 0 0 15px $color_trans_black;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-family: $font_poppins_bold;
+        cursor: pointer;
 
-    @media screen and (max-width: $mobileSmall) {
-      margin-top: -160px;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-family: $poppins;
-      font-weight: 400;
-
-      .lime {
-        font-size: 36px;
-        font-family: $poppins_bold;
-        line-height: 1em;
-        @media screen and (max-width: $mobilePlus) {
-          font-size: 26px;
-        }
-        @media screen and (max-width: $mobileSmall) {
-          font-size: 20px;
+        img {
+          margin-bottom: 1em;
+          width: 50%;
         }
       }
     }
 
     .text-container {
-      width: 80%;
-      margin: 0 auto;
-      @media screen and (max-width: $mobilePlus) {
-        font-size: 15px;
-        width: 90%;
+      width: 75%;
+      margin: auto;
+      h1 {
+        font-family: $font_poppins_bold;
+        line-height: 1em;
+        padding-bottom: 1em;
+        font-size: 3em;
       }
-      @media screen and (max-width: $mobileSmall) {
-        font-size: 13px;
+
+      p {
+        font-size: 16px;
+        font-size: 1.2rem;
+        line-height: 1.5em;
       }
     }
 
-    nav {
-      width: 67%;
-      margin: -50px auto 30px;
-      li {
-        background-color: teal;
-        background: $teal_linear_gradient;
-        width: 100px;
-        height: 100px;
-        box-shadow: 0 0 15px $trans_black;
-
-        a {
-          text-decoration: none;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          height: 100%;
-          font-size: 14px;
-        }
-        img {
-          height: 50px;
-          margin-top: 15%;
-          @media screen and (max-width: $mobile) {
-            height: 32px;
-          }
-        }
-
-        @media screen and (max-width: $mobile) {
-          width: 64px;
-          height: 64px;
-          a {
-            font-size: 12px;
-          }
-
-        }
-      }
-
-      @media screen and (max-width: $mobilePlus) {
+    @media screen and (max-width: $mobilePlus) {
+      width: 75%;
+      margin-top: 12%;
+      nav {
+        margin-top: -15%;
         width: 100%;
 
-        ul {
-          width: 90%;
-          margin: 0 auto;
-          justify-content: space-around;
+        li {
+          height: 75px;
+          width: 75px;
+          
+        }
+      }
+
+      .text-container {
+        width: 100%;
+        h1 {
+          font-size: 28px;
+        }
+
+        p {
+          text-align: left;
         }
       }
     }
+
+    @media screen and (max-width: $mobile) {
+    }
+
+    @media screen and (max-width: $mobileSmall) {
+    }
   }
-}
 
-.splash {
-  height: 100vh;
+  .splash {
+    margin-top: -5%;
+    width: 80%;
+    font-family: $font_poppins_bold;
+    text-align: center;
+    text-shadow: 0 0 20px $color_trans_black;
 
-  header {
-    position: relative;
-    top: -5vh;
-    padding: 0;
-    width: 70%;
-    margin: 0 auto;
-    font-family: $poppins_bold;
-    max-width: 1000px;
-    text-shadow: 0 0 20px $trans_black;
-
+    @media screen and (max-width: $mobileSmall) {
+      margin-top: -30%;
+    }
     h1 {
-      margin: 0 auto;
       @media screen and (max-width: $mobilePlus) {
-        font-size: 24px;
+        font-size: 150%;
       }
     }
-
     blockquote {
-      font-size: 2.5em;
+      font-size: 2.75em;
       line-height: 1em;
-      margin: 0;
       @media screen and (max-width: $mobilePlus) {
-        font-size: 2em;
+        font-size: 1.8em;
+      }
+      .source {
+        font-family: $font_poppins;
+        text-transform: initial;
       }
     }
+    .start-button {
+      width: 100px;
+      height: 100px;
+      background: $color_lime;
+      outline: none;
+      border: none;
+      font-family: $font_poppins_bold;
+      font-size: 1.25rem;
+      text-align: center;
+      color: $color_grey;
+      border-radius: 50%;
+      margin-top: 50%;
+      box-shadow: 0 0 10px 5px $color_trans_black;
+      cursor: pointer;
 
-    .source {
-      font-size: 0.4em;
-      font-family: $poppins;
-      @media screen and (max-width: $mobilePlus) {
-        font-size: 0.5em;
+      &:hover {
+        background: darken($color_lime, 10%);
+      }
+      &:active {
+        box-shadow: 0 0 10px 0 $color_trans_black;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 75px;
+        height: 75px;
+        font-size: 0.9rem;
       }
     }
   }
-  .start-button {
-    height: 100px;
-    width: 100px;
-    background: $lime;
-    color: dimgrey;
-    font-size: 20px;
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: 0 0 30px $trans_black;
-    outline: none;
-    cursor: pointer;
-    -webkit-appearance: none;
-    border: none;
-    &:active,
-    &:hover {
-      color: white;
-      box-shadow: 0 0 10px $trans_black;
-      background: darken($lime, 5%);
+
+  footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+    img {
+      max-height: 40px;
+    }
+
+    @media screen and (max-width: $mobilePlus) {
+      padding-top: 3em;
+      position: static;
     }
   }
-}
-
-.home-fade-in-enter-active {
-  opacity: 1;
-  transition: opacity 0.75s ease-in;
-  transition-delay: 1s;
-}
-.home-fade-in-enter {
-  opacity: 0;
-  transition: opacity 0.75s ease-in;
-  transition-delay: 1s;
-}
-
-.splash-fade-out-leave-active {
-  opacity: 1;
-}
-
-.splash-fade-out-leave-to {
-  opacity: 0;
-  transition: opacity 1s ease;
 }

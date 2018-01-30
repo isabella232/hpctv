@@ -1,0 +1,150 @@
+@import 'global';
+.slide-up-modal {
+  position: absolute;
+  z-index: 7;
+  color: $white;
+  top: 100%;
+  margin-top: -3em;
+  background: transparent;
+  transition-property: top, height;
+  transition-duration: 0.35s, 0, 0, 0.35s;
+  transition-delay: 0, 0.35s, 0.35s, 0;
+  width: 250px;
+  height: 3em;
+  height: 100vh;
+  overflow: hidden;
+
+  header {
+    display: inline-block;
+    position: relative;
+    background: $teal;
+    margin-left: 3%;
+    margin-top: 2.5%;
+    padding: 0.25em 3em 0.25em 1em;
+    margin-bottom: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-family: $poppins_bold;
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      right: -1.25em;
+      top: 0;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 0;
+      display: block;
+      border-style: solid;
+      border-width: 2.35em 0 0 20px;
+      border-color: transparent transparent transparent $teal;
+    }
+    h3 {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      letter-spacing: 1.1px;
+      color: $button_dark_grey;
+      span {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  legend {
+    height: 92vh;
+    overflow-y: hidden;
+    @media screen and (max-width: 804px) {
+      overflow-y: scroll;
+    }
+  }
+
+  .legend-list {
+    height: 100%;
+    width: 95%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 804px) {
+      height: auto;
+    }
+
+    dt {
+      font-family: $poppins_bold;
+      font-size: 32px;
+        @media screen and (max-width: 350px) {
+          font-size: 28px;
+        }
+
+    }
+    .legend-item {
+      padding: 1em;
+      background-color: $button_light_grey;
+      width: 43%;
+      margin: 5px;
+      @media screen and (max-width: 804px) {
+        width: 90%;
+      }
+      @media screen and (max-width: 350px) {
+        width: 85%;
+      }
+    }
+    dd {
+      margin: 0;
+    }
+  }
+
+  &.open {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.67);
+    transition: top 0.35s;
+    width: 100%;
+    margin-top: 0;
+    height: initial;
+    overflow-y: scroll;
+    header h3 {
+      color: $white;
+    }
+    header img {
+      transform: rotate(45deg);
+      filter: brightness(5);
+    }
+  }
+  .project-log {
+    background-color: $teal;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    width: 100%;
+    margin-top: 0;
+    height: initial;
+    overflow: scroll;
+    background: rgba(0, 0, 0, 0.67);
+    top: 0;
+  }
+
+  99% {
+    width: 100%;
+    margin-top: 0;
+    height: initial;
+    overflow: scroll;
+    background: transparent;
+    top: 99%;
+  }
+
+  100% {
+    top: 100%;
+    margin-top: -3em;
+    background: transparent;
+    transition: all 0.35s;
+    // width: 25%;
+    width: 250px;
+    height: 3em;
+    overflow: hidden;
+  }
+}
