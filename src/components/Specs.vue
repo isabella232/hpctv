@@ -11,7 +11,7 @@
         <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
       </div>
 
-      <ul>
+      <!-- <ul>
         <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
           <Accordion>
             <span slot="header">{{point.modalData.title}}</span>
@@ -22,10 +22,8 @@
             </p>
           </Accordion>
         </li>
-      </ul>
-
+      </ul> -->
     </main>
-
     <slide-up-modal />
     <dock-nav />
 

@@ -1,0 +1,13 @@
+.small-modal{
+  display: none;
+  @media screen and (max-width: $mobilePlus) {
+
+  }
+  @media screen and (max-width: $mobile) {
+
+  }
+  @media screen and (max-width: $mobileSmall) {
+
+  }
+
+}

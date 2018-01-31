@@ -1,3 +1,29 @@
-.specs{
+.specs {
   width: 100%;
+
+  main.supercomputer {
+    border: solid 1px red;
+
+    .cheyenne-container {
+      border: solid 1px yellow;
+
+      img {
+        max-width: 100%;
+        &.computer {
+          width: 100%;
+          margin: auto;
+          border: solid 1px lime;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobilePlus) {
+  }
+
+  @media screen and (max-width: $mobile) {
+  }
+
+  @media screen and (max-width: $mobileSmall) {
+  }
 }
