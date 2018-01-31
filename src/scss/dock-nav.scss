@@ -1,1 +1,41 @@
+.dock-nav {
+  border: solid 1px orange;
+  display: inline-block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
 
+  ul {
+    li {
+      width: 75px;
+      height: 75px;
+      background: grey;
+      margin: 5px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      a {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      span {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
+      img {
+        width: 50%;
+      }
+    }
+  }
+
+  .mobile-menu{
+    display: none;
+  }
+}

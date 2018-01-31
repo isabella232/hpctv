@@ -2,7 +2,7 @@
   <div class="col dead-center">
     <div class="video-container">
       <video autoplay muted loop playsinline id="bg-video">
-        <!-- <source src="/static/video/overview.mp4" type="video/mp4" /> -->
+        <source src="/static/video/overview.mp4" type="video/mp4" />
       </video>
     </div>
     <transition name="splash-fade-out">
@@ -37,11 +37,9 @@
             </ul>
           </nav>
           <div class="text-container text-center">
-
             <h1 class="col upper">
               <span class="lime" v-html="vuex.introPanel.mainHeader"></span>
             </h1>
-
             <p>
               {{vuex.introPanel.body}}
             </p>
@@ -76,6 +74,4 @@ export default {
 };
 </script>
 
-<style src="../scss/home.scss" lang="scss">
-
-</style>
+<style src="../scss/home.scss" lang="scss"></style>

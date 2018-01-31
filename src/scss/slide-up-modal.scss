@@ -1,1 +1,63 @@
-@import 'global.scss';
+.slide-up-modal {
+  position: fixed;
+  top: calc(100% - 2.25rem);
+  transition: top 250ms ease-in-out;
+  background: transparent;
+  z-index: 5;
+
+  header {
+    background: $color_teal;
+    display: inline-block;
+    padding: 0 3em 0 1em;
+    position: relative;
+    line-height: 2.5em;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      right: -1.5em;
+      width: 0;
+      height: 0;
+      border-bottom: 2.5em solid $color_teal;
+      border-right: 1.563em solid transparent;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      img {
+        margin-right: 10px;
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+  legend {
+    display: block;
+    background: transparentize($color_black, 0.25);
+    opacity: 0;
+    min-height: 100vh;
+    transition: opacity 250ms;
+
+    .legend-list {
+      width: 90%;
+      margin: auto;
+    }
+  }
+}
+
+.slide-up-modal.open {
+  top: 0;
+  transition: top 250ms ease-in-out;
+  background: transparentize($color_black, 0.25);
+  
+  legend {
+    display: block;
+    opacity: 1;
+    transition: opacity 250ms;
+  }
+}
