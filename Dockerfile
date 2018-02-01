@@ -16,7 +16,7 @@ RUN npm run build
 FROM nginx:1.13.7-alpine AS nginx
 
 LABEL repo=cisl-repo \
-      name=nginx-hpctv \
+      name=hpctv \
       version=1.0
 
 COPY --from=node /usr/local/src/hpctv/build /var/www/html
