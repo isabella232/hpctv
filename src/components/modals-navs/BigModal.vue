@@ -32,7 +32,12 @@
 
         <section class="col">
           <div class="media-container">
-            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8" @pageChange="visibleContentID = $event">
+            <Carousel :perPage="1" 
+              :paginationActiveColor="'#bfd600'" 
+              :paginationSize="16" 
+              :paginationPadding="8" 
+              @pageChange="visibleContentID = $event"
+            >
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
                 <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
                 <video v-else-if="isVideo(slide.media)" :src="slide.media" autoplay muted loop></video>
@@ -44,8 +49,8 @@
           <article class="modal-article societal-impact text-center">
             <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
             <div class="article-content row">
-              <p class="main-content">
-                {{ data.mainContent[visibleContentID].body }}
+              <p class="main-content" v-html="data.mainContent[visibleContentID].body">
+                <!-- {{ data.mainContent[visibleContentID].body }} -->
               </p>
             </div>
           </article>

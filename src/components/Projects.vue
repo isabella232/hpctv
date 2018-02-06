@@ -4,7 +4,7 @@
       <h1>Cheyenne's Featured Projects</h1>
     </header>
 
-    <article class="row dead-center">
+    <article class="row dead-center cases">
       <div class="case-container">
         <h2>
           {{ vuex.headerTileCopy }}

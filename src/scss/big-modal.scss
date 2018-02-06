@@ -107,12 +107,18 @@
   }
 
   .media-container {
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    text-align: center;
 
     img,
     video {
-      width: 100%;
+      max-width: 100%;
     }
+  }
+
+  .VueCarousel-slide {
+    max-height: 400px;
+    overflow: hidden;
   }
 
   .media-navigation {
@@ -141,28 +147,23 @@
 
   .modal-article {
     height: auto;
-    min-height: initial;
     width: 90%;
     overflow-y: scroll;
+    margin: auto;
+    text-align: left;
+
 
     h3 {
       font-family: $poppins-bold;
-      // text-align: left;
+      text-align: center;
       display: inline-block;
       width: 100%;
       color: $teal;
-      margin-bottom: 0;
+      margin:0;
     }
   }
 
   .project-summary {
-    h3 {
-      // text-align: left;
-      // display: inline-block;
-      // width: 100%;
-      // color: $teal;
-      // margin-bottom: 0;
-    }
 
     .abstract {
       font-weight: bold;
