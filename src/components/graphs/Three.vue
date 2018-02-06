@@ -258,7 +258,7 @@ export default {
   computed: {
     makeRenderer() {
       const renderer = new WebGLRenderer({ alpha: true });
-      renderer.setSize(window.innerWidth * 0.5695, 450);
+      renderer.setSize(window.innerWidth * 0.5695, this.canvasHeight);
       renderer.setClearColor(0x000000, 0);
       return renderer;
     },
@@ -274,7 +274,7 @@ export default {
     },
 
     canvasHeight() {
-      return 450;
+      return 400;
     },
 
     parentContainer() {

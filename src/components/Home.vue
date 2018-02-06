@@ -2,7 +2,7 @@
   <div class="col dead-center">
     <div class="video-container">
       <video autoplay muted loop playsinline id="bg-video">
-        <source src="/static/video/intro.mp4" type="video/mp4"></source>
+        <source src="/static/video/overview.mp4" type="video/mp4"></source>
       </video>
     </div>
     <transition name="splash-fade-out">

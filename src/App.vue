@@ -6,9 +6,9 @@
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
       <ul class="sponsors row center">
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
-        <li><img src="https://placehold.it/150x50?text=Sponsor_Logo" alt=""></li>
+        <li><img src="/static/img/sponsor-logo-cisl.png" alt="Sponsored by CISL"></li>
+        <li><img src="/static/img/sponsor-logo-nsf.png" alt="Sponsored by NSF"></li>
+        <li><img src="/static/img/sponsor-logo-nwsc.png" alt="Sponsored by NWSC"></li>
       </ul>
     </footer>
   </div>

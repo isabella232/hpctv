@@ -48,7 +48,6 @@ export default {
         labels: this.getArrayofSize(11),
         datasets: [
           {
-            label: 'power',
             backgroundColor: 'rgba(0,255,255,0.5)',
             data: this.getNextSequence(),
             pointRadius: 0,

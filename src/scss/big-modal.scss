@@ -21,6 +21,7 @@
     height: 90vh;
     position: relative;
     z-index: 5;
+    overflow: hidden;
 
     button.exit {
       @include button(transparent);
@@ -47,7 +48,6 @@
     flex: 3;
     color: white;
     text-align: center;
-  
 
     & > div {
       margin: 5px;
@@ -72,6 +72,7 @@
       background: grey;
       color: white;
       padding: 1em;
+      overflow: scroll;
 
       .collection {
         margin-top: 0;
@@ -109,7 +110,7 @@
     overflow-x: hidden;
 
     img,
-    video{
+    video {
       width: 100%;
     }
   }
@@ -142,6 +143,7 @@
     height: auto;
     min-height: initial;
     width: 90%;
+    overflow-y: scroll;
 
     h3 {
       font-family: $poppins-bold;

@@ -10,30 +10,20 @@
         :style="{top: threeModal.y, left: threeModal.x}"
       >
         <button @click="threeModal.show = false"> close </button>
-        <p> &lbrace; modalText &rbrace;</p>
+        <p>Modal Stats like Specs Page here</p>
       </div>
 
       <article class="col">
         <div class="primary col around">
           <div class="row center core-tabs">
-            <div 
-             :class="['user-alloc tab', {active: activeTab === 'user allocation'}]"
-             @click="setActiveTab('user allocation')"
-             tabindex="-1"
-            >
+            <div :class="['user-alloc tab', {active: activeTab === 'user allocation'}]" @click="setActiveTab('user allocation')" tabindex="-1">
               <span>User Allocation</span>
             </div>
 
-            <div class="area-of-study tab"
-              :class="{active: activeTab === 'area of study'}"
-              @click="setActiveTab('area of study')"
-              tabindex="-1"
-            >
+            <div class="area-of-study tab" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
               <span>Area of Study</span>
             </div>
           </div>
-
-
 
           <div class="canvas">
             <three @canvasWasTouched="insertModal($event)" />
@@ -44,7 +34,8 @@
             <h2>Calculation Speed + Data Output</h2>
           </header>
           <div class="canvas">
-          </div>
+            <line-chart :cssClasses="'line-graph'" :width="830"  :height="200" :chartData="chartData" />
+        </div>
         </div>
       </article>
 
@@ -78,6 +69,8 @@ import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
 import axios from 'axios';
+import LineChart from './graphs/LineChart';
+import SmallModal from './modals-navs/Small-Modal.vue';
 
 export default {
   name: 'live-data',
@@ -122,13 +115,28 @@ export default {
         x: 0,
         y: 0
       },
-      rawResponse: null
+      rawResponse: null,
+      chartData: {
+        labels: null,
+        datasets: [
+          {
+            label: 'Power',
+            backgroundColor: 'rgba(0,255,255,0.5)',
+            data: [1, 0, 1, 0, 1],
+            pointRadius: 0,
+            borderWidth: 2,
+            type: 'line'
+          }
+        ]
+      }
     };
   },
   components: {
     StatCard,
     DockNav,
-    Three
+    Three,
+    LineChart,
+    SmallModal
   },
 
   computed: {

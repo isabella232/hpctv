@@ -30,7 +30,7 @@ const state = {
         {
           title: 'Slide 2 Title',
           body: 'Slide 2 body.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, voluptas iusto accusamus quia impedit error odit dolores nulla officiis cum esse quidem repellat repudiandae sapiente expedita quibusdam exercitationem, placeat deleniti? Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat praesentium dignissimos voluptatum facere possimus itaque voluptas mollitia quam omnis minima illo animi iste, rem laboriosam laudantium. Maxime, iure repudiandae!',
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/wind-turbines.mp4'
         },
         {
           title: 'Slide 3 Title',
