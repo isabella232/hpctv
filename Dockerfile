@@ -19,9 +19,7 @@ LABEL repo=cisl-repo \
       name=hpctv \
       version=1.0
 
-COPY --from=node /usr/local/src/hpctv/build /var/www/html
+COPY --from=node /usr/local/src/hpctv/dist /usr/share/nginx/html/
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 443
 
 VOLUME /run/secrets
