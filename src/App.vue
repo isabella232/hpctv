@@ -16,6 +16,7 @@
     
 <script>
 import SideNav from './components/modals-navs/Side-Nav';
+import flexibility from '../static/flexibility';
 
 export default {
   name: 'app',
@@ -43,6 +44,10 @@ export default {
         this.transitionName = 'backward-full-page-slide';
       }
     }
+  },
+
+  mounted(){
+    flexibility(document.querySelector('#app'));
   }
 };
 </script>

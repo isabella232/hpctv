@@ -35,6 +35,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    require('postcss-flexibility'),
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }), 
