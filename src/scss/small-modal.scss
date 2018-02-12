@@ -1,5 +1,11 @@
 .small-modal{
-  display: none;
+  // display: none;
+  position: absolute;
+
+
+  .modal-body{
+    display: none;
+  }
   @media screen and (max-width: $mobilePlus) {
 
   }

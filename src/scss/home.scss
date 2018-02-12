@@ -13,9 +13,14 @@ body.home-page {
     transform: translate(-50%, -50%);
   }
 
-  .home-screen{
+  .home-screen {
     min-height: 100vh;
     opacity: 1;
+
+    @media screen and (max-height: 700px) {
+      max-height: 60vh;
+      font-size: 0.75em;
+    }
   }
   .intro-container {
     width: 67%;
@@ -95,6 +100,15 @@ body.home-page {
 
     @media screen and (max-width: $mobileSmall) {
     }
+
+    @media screen and (max-height: 700px) {
+      font-size: 0.75em;
+
+      nav li {
+        height: 75px;
+        width: 75px;
+      }
+    }
   }
 
   .splash {
@@ -167,23 +181,22 @@ body.home-page {
       position: static;
     }
   }
-  
+
   .home-fade-in-enter-active {
-    opacity: 1; 
+    opacity: 1;
     transition: opacity 500ms 500ms ease;
   }
-   .home-fade-in-enter {
-     opacity: 0;
-     transition: opacity 500ms 500ms ease;
-   }
+  .home-fade-in-enter {
+    opacity: 0;
+    transition: opacity 500ms 500ms ease;
+  }
 
-    .splash-fade-out-leave-active {
-      opacity: 1;
-    }
+  .splash-fade-out-leave-active {
+    opacity: 1;
+  }
 
   .splash-fade-out-leave-to {
     opacity: 0;
-    transition: opacity 500ms  ease;
+    transition: opacity 500ms ease;
   }
 }
-
