@@ -6,7 +6,7 @@ const state = {
       modalData: {
         title: 'Heat Output',
         subtitle: 'TBD',
-        body: 'We recycle Cheyenne’s waste heat to warm our offices and melt snow along the building’s sidewalks during winter.',
+        body: 'We recycle Cheyenne’s heat waste to heat our offices and melt snow along the building’s sidewalks during winter. ',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -16,7 +16,7 @@ const state = {
       modalData: {
         title: 'Data Transfer Rate',
         subtitle: '200 GBps (Gigabytes per second)',
-        body: 'Cheyenne writes data 20,000x faster than a typical USB flash drive can handle and about 3x faster than the previous supercomputer, Yellowstone.',
+        body: 'Cheyenne transfers data 70,515x faster than the US’s average internet speed and about 3x faster than the previous supercomputer, Yellowstone.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -26,7 +26,7 @@ const state = {
       modalData: {
         title: 'Processing Cores',
         subtitle: ' 145,152 total processing cores',
-        body: 'Each core processes an individual dataset while simultaneously communicating  with other cores to make more complex calculations.',
+        body: 'Each core processes individual datasets while simultaneously collaborating with other cores to process more complex data.',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -36,7 +36,7 @@ const state = {
       modalData: {
         title: 'Total Memory',
         subtitle: '313 TB',
-        body: 'That’s a LOT of SDRAM. For comparison, you’d need about 78,250 HP Chromebooks for the same amount of total memory.',
+        body: 'That’s a LOT of SDRAM. For comparison, you’d need about 104,000 iPhone 7’s for the same amount of total memory',
         media: '/static/img/modal-placeholder.jpg'
       }
     },
@@ -51,11 +51,11 @@ const state = {
       }
     }
   ],
-  legend: [
+  glossary: [
     {
       title: 'Supercomputer',
       subtitle: '',
-      definition: 'A computer built to handle intense computational demands and enormous datasets.'
+      definition: ' a computer built to perform at a very high operational rate and handle intense computational demands and enormous datasets.'
     },
     {
       title: 'Project',
@@ -70,27 +70,27 @@ const state = {
     {
       title: 'Core Hours',
       subtitle: '',
-      definition: 'The number of cores used in a computational task multiplied by the duration of the task in hours. Core hours measure the “shares” of computer time consumed by different projects and jobs. Cheyenne delivers over 1.2 billion core hours to scientific projects each year. '
+      definition: 'the number of cores used in a computational task multiplied by the duration of the task in hours. Core hours allocate ‘shares’ of computer time to different projects and jobs. Cheyenne allocates over 1.2 billion core hours each year. '
     },
     {
       title: 'Node',
       subtitle: '',
-      definition: 'Each node could be considered its own computer. Cheyenne uses a combination of 4,032 nodes to generate its incredible computing power. Computing jobs may run on one or more nodes.'
+      definition: 'each node could be considered its own computer. Cheyenne uses a combination of 4,032 nodes to generate its incredible computing power.'
     },
     {
       title: 'Processor',
       subtitle: '',
-      definition: "The silicon “chip” that performs a computer's calculations or operations. Each of Cheyenne’s 4,032 nodes has two Intel “Broadwell” processors, and each processor has 18 cores."
+      definition: "performs a computer's calculations or operations. Cheyenne breaks large, complex problems into pieces, each of which are handled by a separate processor. Cheyenne’s 8,064 Intel ‘Broadwell’ processors each hold 18 cores."
     },
     {
       title: 'Core',
       subtitle: '',
-      definition: 'A small, single processing unit that receives instructions and performs calculations. Each core handles a piece of a larger, more complex scientific simulation. Cheyenne has over 145,000 total cores, with 18 cores on each processor.'
+      definition: 'a small, single processing unit capable of running its own processes that receives instructions and performs calculations. One Cheyenne processor consists of 18 cores and has over 145k total cores.'
     },
     {
       title: 'Flops',
       subtitle: '',
-      definition: 'A unit of performance that measures the rate at which a computer makes floating-point (decimal) calculations. Floating-point calculations are critical to scientific simulations because they’re a more precise measurement than the standard (integer) instructions per second. Cheyenne’s performance is measured in PetaFLOPS, or one quadrillion FLOPS'
+      definition: '(Floating Point Operations per Second): a unit of computer performance that requires floating point calculations. Supercomputing performance is measured in PetaFLOPS, or one thousand million million FLOPS.'
     }
   ]
 };

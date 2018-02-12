@@ -8,7 +8,7 @@
     </header>
     <legend class="legend">
       <dl class="legend-list col wrap">
-        <div class="legend-item" v-for="term in vuex.legend" :key="term.title">
+        <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
           <dt class="upper lime">{{ term.title }}</dt>
           <dd>
             {{ term.definition }}
@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      title: 'Legend',
+      title: 'Glossary',
       legendIsOpen: false
     };
   },

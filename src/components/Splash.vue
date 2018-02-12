@@ -3,7 +3,7 @@
     <header class="col text-center dead-center">
       <h1 class="lime upper">Meet Cheyenne:</h1>
       <blockquote class="upper white">
-        &ldquo; {{ quote.text }} &rdquo;
+        &ldquo;{{ quote.text }}&rdquo;
         <p class="source lime">
           - {{ quote.source }}
         </p>
