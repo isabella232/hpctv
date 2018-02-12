@@ -8,28 +8,40 @@
   }
 
   main.supercomputer {
-    border: solid 1px red;
-    height: calc(100vh - 180px);
+    height: calc(100vh - 100px);
+    overflow: hidden;
+    display: flex;
 
+    // IE 11 only
     .cheyenne-container {
-      position: relative;
-      border: solid 1px yellow;
-      max-height: 100%;
-      text-align: center;
-      
       margin: auto;
-      // background-image: url(/static/img/supercomputer.png);
-      // height: 100%;
-      // background-size: contain;
-      // background-repeat: no-repeat;
-      // background-position: center;
+      width: 90%;
+      position: relative;
+      padding-bottom: 50.7%;
+      max-width: 1400px;
+      background: url('/static/img/supercomputer.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 50% 30%;
+      .computer {
+        display: none;
+      }
+    }
 
-      img {
-        // width:100%;
-        border:none;
-        &.computer {
-          // margin: auto;
-          border: solid 1px lime;
+    // better alternative for anthing not IE
+    @supports (object-fit: contain) {
+      .cheyenne-container {
+        margin: auto;
+        width: 90%;
+        padding-bottom: 0;
+        position: relative;
+        text-align: center;
+        max-width: 1400px;
+        background: transparent;
+
+        .computer {
+          display: block;
+          object-fit: contain;
         }
       }
     }

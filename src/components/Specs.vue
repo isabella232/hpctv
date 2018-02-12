@@ -7,7 +7,7 @@
     </header>
     <main class="supercomputer">
       <div class="cheyenne-container">
-        <img src="/static/img/supercomputer.png" class="computer">
+        <img src="/static/img/supercomputer.png" alt="" class="computer">
         <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
       </div>
 
