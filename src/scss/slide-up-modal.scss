@@ -3,7 +3,8 @@
   top: calc(100% - 2.25rem);
   transition: top 250ms ease-in-out;
   background: transparent;
-  z-index: 5;
+  z-index: 10;
+  width:100%;
 
   header {
     background: $color_teal;
@@ -11,6 +12,7 @@
     padding: 0 3em 0 1em;
     position: relative;
     line-height: 2.5em;
+    cursor: pointer;
 
     &:after {
       content: '';
@@ -42,10 +44,38 @@
     opacity: 0;
     min-height: 100vh;
     transition: opacity 250ms;
+    overflow: hidden;
 
     .legend-list {
-      width: 90%;
+      width: 100%;
       margin: auto;
+      height: 90vh;
+      overflow-y: scroll;
+
+      @media screen and (max-width: $mobilePlus) {
+        overflow: visible; 
+        width:98%;
+        flex-wrap: nowrap;
+        overflow-y:scroll;
+      }
+    }
+
+
+    .legend-item { 
+      background: $color_grey;
+      width: 85%;
+      max-width: 640px;
+      padding: 1em;
+      margin: .5em;
+      font-family: $font_poppins;
+
+
+      dt.upper.lime{
+        font-family: $font_poppins_bold;
+        font-size: 1.75rem;
+        
+
+      }
     }
   }
 }

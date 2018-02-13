@@ -1,11 +1,6 @@
 .specs {
   width: 100%;
 
-  .page-header {
-    top: 3%;
-    width: 100%;
-    margin: auto;
-  }
 
   main.supercomputer {
     height: calc(100vh - 100px);
@@ -48,6 +43,10 @@
   }
 
   @media screen and (max-width: $mobilePlus) {
+
+    main.supercomputer{
+      height: calc(100vh - 180px);
+    }
   }
 
   @media screen and (max-width: $mobile) {

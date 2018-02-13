@@ -51,11 +51,11 @@ body {
   }
 
   #app {
-    min-height: 100vh;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
+    min-height: calc(100vh - 2.5%);
+
+    @media screen and (max-width: $mobilePlus) {
+      min-height: calc(100vh - 50px);
+    }
   }
 
   .page-header {
@@ -67,11 +67,22 @@ body {
       color: $color_light_grey;
     }
 
+    @media screen and (max-width: $mobilePlus) {
+      margin-top:50px;
+      h1 {
+        color: $color_lime;
+        font-size: 1.5rem;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
     @media screen and (max-width: $mobileSmall) {
       font-size: 1rem;
     }
   }
-
 }
 
 // Global Components
