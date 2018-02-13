@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera } from '../../../node_modules/three/build/three.min.js';
-const three = {EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera};
+import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster } from '../../../node_modules/three/build/three.min.js';
+const three = { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera };
 const OrbitControls = require('three-orbit-controls')(three);
 import KonamiCode from 'konami-code';
 const konami = new KonamiCode();
@@ -50,8 +50,8 @@ export default {
 
   methods: {
     /**
-      * Responsible for creating the 3D environment, binding canvas events, 
-      */
+     * Responsible for creating the 3D environment, binding canvas events,
+     */
     init() {
       // Environment Setup
       this.scene = new Scene();
@@ -65,7 +65,7 @@ export default {
         console.log('Developer mode enabled.');
         this.developerMode = true;
       });
-      this.canvas.addEventListener('resize', this.onWindowResize);
+      window.addEventListener('resize', this.onWindowResize);
       this.canvas.addEventListener('mousedown', this.onMouseDown);
       this.canvas.addEventListener('mousemove', this.onMouseMove);
       this.canvas.addEventListener('mouseup', this.onMouseUp);
@@ -88,7 +88,10 @@ export default {
       this.scene.add(globalLight);
 
       // Camera Setup
-      this.camera = new PerspectiveCamera(50, this.canvasWidth / this.canvasHeight, 0.1, 1000);
+      this.camera = new PerspectiveCamera(50, this.getCanvasWidth() / this.getCanvasHeight(), 0.1, 1000);
+      // Raycaster is used for determining 2D mouse position on the canvas
+      this.raycaster = new Raycaster();
+      this.mouse = new Vector2();
 
       // Keyboard Mouse Controls
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -104,8 +107,8 @@ export default {
     },
 
     /**
-      * Removes mouse restrictions for full camera control, adds helpers to the scene for visualising directions and normals of the 3D objects.
-      */
+     * Removes mouse restrictions for full camera control, adds helpers to the scene for visualising directions and normals of the 3D objects.
+     */
     enableDeveloperMode() {
       const worldLightHelper = new HemisphereLightHelper(this.lights.globalLight, 2);
       const sphereSize = 1;
@@ -122,10 +125,10 @@ export default {
     },
 
     /**
-      * Generator function to create a simple Cube geometry.
-      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
-      * @returns {BoxGeometry}
-      */
+     * Generator function to create a simple Cube geometry.
+     * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+     * @returns {BoxGeometry}
+     */
     makeCube(color) {
       const geometry = new BoxGeometry(1, 5, 1);
       const material = new MeshLambertMaterial({ color, flatShading: false });
@@ -134,12 +137,12 @@ export default {
     },
 
     /**
-      * Helper function to control a single cube in the array (this.group) of cubes.
-      * @param {Number} x
-      * @param {Number} y
-      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
-      * @param {Number} [offset=0] - Number of cubes by which to offset the other parameters
-      */
+     * Helper function to control a single cube in the array (this.group) of cubes.
+     * @param {Number} x
+     * @param {Number} y
+     * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+     * @param {Number} [offset=0] - Number of cubes by which to offset the other parameters
+     */
     updateCube(x, z, color, offset = 0) {
       const allCubes = this.group.children;
       const id = x + z * 10 + offset;
@@ -147,8 +150,8 @@ export default {
     },
 
     /**
-      * Required function by ThreeJS. Do not call directly.
-      */
+     * Required function by ThreeJS. Do not call directly.
+     */
     animate() {
       requestAnimationFrame(this.animate);
       this.controls.update();
@@ -156,19 +159,21 @@ export default {
     },
 
     /**
-    * Handler for resizing the canvas
-    */
+     * Handler for resizing the canvas
+     */
     onWindowResize() {
-      this.camera.aspect = this.canvasWidth / this.canvasHeight;
+      console.log('window resize');
+
+      this.camera.aspect = this.getCanvasWidth() / this.getCanvasHeight();
       this.camera.updateProjectionMatrix();
 
-      this.renderer.setSize(this.canvasWidth, this.canvasHeight);
+      this.renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
     },
 
     /**
-      * Handler for mouse up event
-      * @param {Event} event - the window event
-      */
+     * Handler for mouse up event
+     * @param {Event} event - the window event
+     */
     onMouseUp(event) {
       console.log('mouseup');
       if (!this.dragging) {
@@ -185,9 +190,9 @@ export default {
     },
 
     /**
-      * Handler for mouse down event
-      * @param {Event} event - the window event
-      */
+     * Handler for mouse down event
+     * @param {Event} event - the window event
+     */
     onMouseDown(event) {
       console.log('mousedown');
       this.mouseMove = false;
@@ -195,18 +200,18 @@ export default {
     },
 
     /**
-      * Handler for mouse move event
-      * @param {Event} event - the window event
-      */
+     * Handler for mouse move event
+     * @param {Event} event - the window event
+     */
     onMouseMove(event) {
       console.log('mousemove');
       this.mouseMove = true;
     },
 
     /**
-      * Used to change the 3D model's data visualization.
-      * @param {Obejct} dataSet - The new Dataset
-      */
+     * Used to change the 3D model's data visualization.
+     * @param {Obejct} dataSet - The new Dataset
+     */
     applyDataSets(dataSet) {
       // const user1 = dataSet[0];
       // const user2 = dataSet[1];
@@ -244,37 +249,47 @@ export default {
     },
 
     /**
-      * Generator function. Creates a new + image on the origin of each new break in the dataSet.
-      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
-      */
+     * Generator function. Creates a new + image on the origin of each new break in the dataSet.
+     * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+     */
     makeCircle(color) {
       const geometry = new RingGeometry(0.55, 0.75, 32);
       const material = new MeshBasicMaterial({ color });
       const disc = new Mesh(geometry, material);
       return disc;
+    },
+
+    /**
+      * get the width of the canvas. This value will be 100% of it's container
+      * @return {number} a number of pixels
+      */
+    getCanvasWidth() {
+      return parseInt(getComputedStyle(this.parentContainer)
+        .getPropertyValue('width')
+        .replace('px', ''));
+    },
+
+   /**
+      * Canvas height is 60% of <main>.
+      */
+    getCanvasHeight() {
+      const main = document.querySelector('main');
+      return parseInt(getComputedStyle(main)
+      .getPropertyValue('height')
+      .replace('px', '')) * 0.6;
     }
   },
 
   computed: {
     makeRenderer() {
       const renderer = new WebGLRenderer({ alpha: true });
-      renderer.setSize(window.innerWidth * 0.5695, 450);
+      renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setClearColor(0x000000, 0);
       return renderer;
     },
 
     colorScheme() {
       return this.$store.state.liveData.colorScheme;
-    },
-
-    canvasWidth() {
-      return getComputedStyle(this.parentContainer)
-        .getPropertyValue('width')
-        .replace('px', '');
-    },
-
-    canvasHeight() {
-      return 450;
     },
 
     parentContainer() {
@@ -312,6 +327,15 @@ export default {
     this.group.translateZ(-6);
 
     // this.applyDataSets(this.dataSet);
+
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    const intersects = this.raycaster.intersectObjects(this.scene.children);
+
+    // TODO: This is not detecting intersections right now.
+    intersects.forEach((element) => {
+      console.log(`intersection on ${element}`)
+      element.object.material.setColor(0xff0000);
+    })
 
     const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
     const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });

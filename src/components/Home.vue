@@ -70,6 +70,14 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('home-page');
+  },
+
+  mounted() {
+    // some browsers do not support autoplay for video. this will trigger the video to play if that's the case.
+    const video = document.querySelector('#bg-video');
+    video.oncanplaythrough = () => {
+      video.play();
+    };
   }
 };
 </script>

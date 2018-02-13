@@ -13,7 +13,7 @@
         <p> &lbrace; modalText &rbrace;</p>
       </div>
 
-      <article class="col">
+      <section class="col data-viz">
         <div class="primary col around">
           <div class="row center core-tabs">
             <div 
@@ -46,11 +46,12 @@
           <div class="canvas">
           </div>
         </div>
-      </article>
+      </section>
 
-      <aside class="projects col around">
+      <aside class="projects col around side-stats">
         <div class="collection">
           <header class="upper">
+            <!-- Machine Log -->
             <h2>Now Running</h2>
           </header>
           <ul>
@@ -60,6 +61,7 @@
 
         <div class="collection">
           <header class="upper">
+            <!-- Machine Total -->
             <h2>Total Run</h2>
           </header>
           <ul>
@@ -95,11 +97,6 @@ export default {
         {
           statName: 'Active Jobs',
           iconPath: '/static/icon/jobs-icon.svg',
-          statNumber: 4
-        },
-        {
-          statName: 'Queued Projects',
-          iconPath: '/static/icon/folder-check-mark-icon.svg',
           statNumber: 4
         }
       ],
@@ -166,21 +163,6 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('live-data-page');
-    /*  axios
-      .get('https://private-08983-hpctv.apiary-mock.com/stats/today')
-      .then(response => {
-        if (response.status === 200) {
-          console.log('%c Server request OK', 'color:lime')
-          const data = response.data;
-          this.rawResponse = response.data;
-          this.nowRunning[0].statNumber = data.projects.active;
-          this.nowRunning[1].statNumber = data.jobs.active;
-          this.nowRunning[2].statNumber = data.jobs.queued;
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      }); */
 
     // Reach out to the API
     axios
