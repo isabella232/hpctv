@@ -5,10 +5,7 @@
     </header>
 
     <main class="row reverse">
-      <div class="three-modal" 
-        v-if="threeModal.show"
-        :style="{top: threeModal.y, left: threeModal.x}"
-      >
+      <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
         <button @click="threeModal.show = false"> close </button>
         <p> &lbrace; modalText &rbrace;</p>
       </div>
@@ -16,24 +13,14 @@
       <section class="col data-viz">
         <div class="primary col around">
           <div class="row center core-tabs">
-            <div 
-             :class="['user-alloc tab', {active: activeTab === 'user allocation'}]"
-             @click="setActiveTab('user allocation')"
-             tabindex="-1"
-            >
+            <div :class="['user-alloc tab', {active: activeTab === 'user allocation'}]" @click="setActiveTab('user allocation')" tabindex="-1">
               <span>User Allocation</span>
             </div>
 
-            <div class="area-of-study tab"
-              :class="{active: activeTab === 'area of study'}"
-              @click="setActiveTab('area of study')"
-              tabindex="-1"
-            >
+            <div class="area-of-study tab" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
               <span>Area of Study</span>
             </div>
           </div>
-
-
 
           <div class="canvas">
             <three @canvasWasTouched="insertModal($event)" />
@@ -44,6 +31,7 @@
             <h2>Calculation Speed + Data Output</h2>
           </header>
           <div class="canvas">
+            <LineChart :cssClasses="'line-graph'" :width="1000" :chartData="chartData"></LineChart>
           </div>
         </div>
       </section>
@@ -79,13 +67,14 @@
 import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
+import LineChart from './graphs/LineChart';
 import axios from 'axios';
 
 export default {
   name: 'live-data',
   /**
-    * All Data inside this property is currently a fallback data point if the API returns a 503 response.
-    */
+   * All Data inside this property is currently a fallback data point if the API returns a 503 response.
+   */
   data() {
     return {
       nowRunning: [
@@ -119,26 +108,48 @@ export default {
         x: 0,
         y: 0
       },
-      rawResponse: null
+      rawResponse: null,
+      chartData: {
+        labels: this.getArrayofSize(5),
+        datasets: [
+          {
+            label: 'I/O',
+            backgroundColor: 'rgba(0,255,255,0.5)',
+            data: [2, 3, 1, 6, 1],
+            pointRadius: 0,
+            borderWidth: 2,
+            type: 'line'
+          }
+        ]
+      }
     };
   },
   components: {
     StatCard,
     DockNav,
-    Three
+    Three,
+    LineChart
   },
 
   computed: {
     activeTab() {
       return this.$store.state.liveData.activeTab;
-    }
+    },
+
+    chartHeight() {
+      return parseInt(
+        getComputedStyle(document.querySelector('.canvas'))
+          .getPropertyValue('height')
+          .replace('px', '')
+      );
+    },
   },
 
   methods: {
     /**
-      * Changes the tab at the top of the 3D model of cheyenne.
-      * @param {String} tab the name of the tab in lower case human readable notation
-      */
+     * Changes the tab at the top of the 3D model of cheyenne.
+     * @param {String} tab the name of the tab in lower case human readable notation
+     */
     setActiveTab(tab) {
       this.$store.state.liveData.activeTab = tab;
       if (tab === 'user allocation') {
@@ -148,15 +159,19 @@ export default {
       }
     },
 
-  /**
-    * Used to inject a modal on top of the 3D display giving data about the element that was clicked.
-    * @param {Object} event automatically passed click event from the window.
-    */
+    /**
+     * Used to inject a modal on top of the 3D display giving data about the element that was clicked.
+     * @param {Object} event automatically passed click event from the window.
+     */
     insertModal(event) {
       this.threeModal.x = `${event.mouseX}%`;
       this.threeModal.y = `${event.mouseY}%`;
       this.threeModal.show = true;
-    }
+    },
+
+    getArrayofSize(num) {
+      return Array.from(new Array(num).keys());
+    },
   },
 
   created() {
@@ -188,7 +203,7 @@ export default {
         console.log(`%c ${error}`, 'color:red');
       });
 
-     // Reach out to the API
+    // Reach out to the API
     axios
       .get('https://private-08983-hpctv.apiary-mock.com/v1/report/log?daysAgo=0')
       .then(response => {
@@ -199,7 +214,6 @@ export default {
           this.rawResponse = data;
           this.nowRunning[0].statNumber = data.projects;
           this.nowRunning[1].statNumber = data.jobs;
-          this.nowRunning[2].statNumber = data.coreHours;
         } else if (response.status === 503) {
           // handle if API is offline
           console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
