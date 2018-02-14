@@ -1,7 +1,6 @@
 .specs {
   width: 100%;
 
-
   main.supercomputer {
     height: calc(100vh - 100px);
     overflow: hidden;
@@ -43,8 +42,7 @@
   }
 
   @media screen and (max-width: $mobilePlus) {
-
-    main.supercomputer{
+    main.supercomputer {
       height: calc(100vh - 170px);
     }
   }

@@ -4,7 +4,7 @@
   transition: top 250ms ease-in-out;
   background: transparent;
   z-index: 10;
-  width:100%;
+  width: 100%;
 
   header {
     background: $color_teal;
@@ -53,28 +53,24 @@
       overflow-y: scroll;
 
       @media screen and (max-width: $mobilePlus) {
-        overflow: visible; 
-        width:98%;
+        overflow: visible;
+        width: 98%;
         flex-wrap: nowrap;
-        overflow-y:scroll;
+        overflow-y: scroll;
       }
     }
 
-
-    .legend-item { 
+    .legend-item {
       background: $color_grey;
       width: 85%;
       max-width: 640px;
       padding: 1em;
-      margin: .5em;
+      margin: 0.5em;
       font-family: $font_poppins;
 
-
-      dt.upper.lime{
+      dt.upper.lime {
         font-family: $font_poppins_bold;
         font-size: 1.75rem;
-        
-
       }
     }
   }
@@ -84,7 +80,7 @@
   top: 0;
   transition: top 250ms ease-in-out;
   background: transparentize($color_black, 0.25);
-  
+
   legend {
     display: block;
     opacity: 1;
