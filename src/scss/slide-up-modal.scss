@@ -1,0 +1,89 @@
+.slide-up-modal {
+  position: fixed;
+  top: calc(100% - 2.25rem);
+  transition: top 250ms ease-in-out;
+  background: transparent;
+  z-index: 10;
+  width: 100%;
+
+  header {
+    background: $color_teal;
+    display: inline-block;
+    padding: 0 3em 0 1em;
+    position: relative;
+    line-height: 2.5em;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      right: -1.5em;
+      width: 0;
+      height: 0;
+      border-bottom: 2.5em solid $color_teal;
+      border-right: 1.563em solid transparent;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      img {
+        margin-right: 10px;
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+  legend {
+    display: block;
+    background: transparentize($color_black, 0.25);
+    opacity: 0;
+    min-height: 100vh;
+    transition: opacity 250ms;
+    overflow: hidden;
+
+    .legend-list {
+      width: 100%;
+      margin: auto;
+      height: 90vh;
+      overflow-y: scroll;
+
+      @media screen and (max-width: $mobilePlus) {
+        overflow: visible;
+        width: 98%;
+        flex-wrap: nowrap;
+        overflow-y: scroll;
+      }
+    }
+
+    .legend-item {
+      background: $color_grey;
+      width: 85%;
+      max-width: 640px;
+      padding: 1em;
+      margin: 0.5em;
+      font-family: $font_poppins;
+
+      dt.upper.lime {
+        font-family: $font_poppins_bold;
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
+
+.slide-up-modal.open {
+  top: 0;
+  transition: top 250ms ease-in-out;
+  background: transparentize($color_black, 0.25);
+
+  legend {
+    display: block;
+    opacity: 1;
+    transition: opacity 250ms;
+  }
+}
