@@ -28,7 +28,7 @@
         </div>
         <div class="graph">
           <header>
-            <h2>Calculation Speed + Data Output</h2>
+            <h2>Jobs Running</h2>
           </header>
           <div class="canvas">
             <LineChart :cssClasses="'line-graph'" :width="1000" :chartData="chartData"></LineChart>
@@ -110,12 +110,12 @@ export default {
       },
       rawResponse: null,
       chartData: {
-        labels: this.getArrayofSize(5),
+        labels: null,
         datasets: [
           {
-            label: 'I/O',
+            label: 'Jobs',
             backgroundColor: 'rgba(0,255,255,0.5)',
-            data: [2, 3, 1, 6, 1],
+            data: null,
             pointRadius: 0,
             borderWidth: 2,
             type: 'line'
@@ -136,13 +136,17 @@ export default {
       return this.$store.state.liveData.activeTab;
     },
 
+    apiConfig() {
+      return this.$store.state.apiConfig;
+    },
+
     chartHeight() {
       return parseInt(
         getComputedStyle(document.querySelector('.canvas'))
           .getPropertyValue('height')
           .replace('px', '')
       );
-    },
+    }
   },
 
   methods: {
@@ -171,7 +175,7 @@ export default {
 
     getArrayofSize(num) {
       return Array.from(new Array(num).keys());
-    },
+    }
   },
 
   created() {
@@ -179,21 +183,19 @@ export default {
     document.body.classList = '';
     document.body.classList.add('live-data-page');
 
-    // Reach out to the API
+    // Get today's statistics from the API.
     axios
-      .get('https://private-08983-hpctv.apiary-mock.com/v1/report/total')
+      .get('report/log?daysAgo=1', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
-          // Successful response
+          // Successful
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
-          this.rawResponse = data;
-          this.totalRun[0].statNumber = data.projects;
-          this.totalRun[1].statNumber = data.jobs;
-          this.totalRun[2].statNumber = data.coreHours;
+          this.nowRunning[0].statNumber = data.projects;
+          this.nowRunning[1].statNumber = data.jobs;
         } else if (response.status === 503) {
           // handle if API is offline
-          console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
+          console.log('%c Cheyenne is offline.', 'color:goldenrod');
         } else {
           // Unexpected response like 404.
           console.log('API returned status code: ' + response.status);
@@ -203,23 +205,74 @@ export default {
         console.log(`%c ${error}`, 'color:red');
       });
 
-    // Reach out to the API
+    // get ALL TIME stats from API
     axios
-      .get('https://private-08983-hpctv.apiary-mock.com/v1/report/log?daysAgo=0')
+      .get('/report/total', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
-          // Successful
+          // Successful response
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
-          this.rawResponse = data;
-          this.nowRunning[0].statNumber = data.projects;
-          this.nowRunning[1].statNumber = data.jobs;
+          this.totalRun[0].statNumber = data.projects;
+          this.totalRun[1].statNumber = data.jobs;
+          this.totalRun[2].statNumber = data.coreHours;
         } else if (response.status === 503) {
           // handle if API is offline
-          console.log('%c Cheyenne is offline. Using fallback data.', 'color:goldenrod');
+          console.log('%c Cheyenne is offline.', 'color:goldenrod');
         } else {
           // Unexpected response like 404.
           console.log('API returned status code: ' + response.status);
+        }
+      })
+      .catch(error => {
+        console.log(`%c ${error}`, 'color:red');
+      });
+
+    // Get the data for the 3D chart
+    // TODO: How to define AOIG string?
+    axios
+      .get('report/aoiglog/aoig/foo?daysAgo=0', this.apiConfig)
+      .then(response => {
+        if (response.status === 200) {
+          const data = response.data;
+          console.log('%c API request: OK', 'color:lime');
+          // this.rawResponse = data;
+        }
+      })
+      .catch(error => {
+        console.log(`%c ${error}`, 'color:red');
+      });
+
+    // Get the pulse data
+    // axios.get('report/activity?daysAgo=60')
+    axios
+      .get('/static/activity.json')
+      .then(response => {
+        if (response.status === 200) {
+          const data = response.data;
+          console.log('%c API request: OK', 'color:lime');
+          this.chartData = {
+            labels: data.entries.map(object => object.date.replace(/20\d\d-/i, '')),
+            datasets: [
+              // Jobs and users are NOT on a scale that both can be viewed. therefore one has to be chosen. Jobs seems to be a more interesting number.
+              {
+                label: 'Jobs',
+                backgroundColor: 'rgba(0,255,255,0.5)',
+                data: data.entries.map(object => object.jobs),
+                pointRadius: 0,
+                borderWidth: 2,
+                type: 'line'
+              },
+              // {
+              //   label: 'Users',
+              //   backgroundColor: 'rgba(0,255,255,0.5)',
+              //   data: data.entries.map(object => object.users),
+              //   pointRadius: 0,
+              //   borderWidth: 2,
+              //   type: 'line'
+              // }
+            ]
+          };
         }
       })
       .catch(error => {

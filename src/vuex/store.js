@@ -10,6 +10,13 @@ export const store = new Vuex.Store({
     liveData: {
       colorScheme: 'cool',
       activeTab: 'user allocation'
+    },
+    apiConfig: {
+      baseURL: 'https://private-08983-hpctv.apiary-mock.com/v1/',
+      auth: {
+        username: '',
+        password: ''
+      }
     }
   },
   mutations: {
