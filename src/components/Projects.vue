@@ -7,8 +7,8 @@
     <main class="col dead-center">
       <div class="wrapper">
 
-        <div class=" row row-1 text-block">
-          <div class="case-container">
+        <div class=" row row-1 ">
+          <div class="case-container text-block">
             <h2>
               {{ vuex.headerTileCopy }}
             </h2>
@@ -74,6 +74,7 @@ export default {
     openModal(i) {
       this.modalIsOpen = true;
       this.modalData = this.vuex.featuredProjects[i];
+      document.querySelector('body').classList.add('freeze');
     }
   },
   created() {

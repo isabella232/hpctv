@@ -3,6 +3,7 @@ const state = {
   featuredProjects: [
     {
       name: 'Wind Forecast Improvement',
+      area: 'AREA NOT LISTED',
       heroImage: '/static/img/featured-projects/wind-forecast.jpg',
       projectLead: {
         name: 'Pedro A. Jimenez Munoz',
@@ -44,6 +45,7 @@ const state = {
     },
     {
       name: 'Oceanic Atmospheric Forecasts',
+      area: 'AREA NOT LISTED',
       heroImage: '/static/img/featured-projects/oceanic-forecasts.jpg',
       projectLead: {
         name: 'Benjamin Cash',
@@ -89,6 +91,7 @@ const state = {
     },
     {
       name: 'Wind Turbine Performance',
+      area: 'Fluid Dynamics and Turbulence',
       heroImage: '/static/img/featured-projects/wind-turbine.jpg',
       projectLead: {
         name: 'Dimitri Mavriplis',
@@ -129,6 +132,7 @@ const state = {
     },
     {
       name: 'Understanding heliospheric Weather',
+      area: 'AREA NOT LISTED',
       heroImage: '/static/img/featured-projects/heliosphere.jpg',
       projectLead: {
         name: 'Michael Shay',
@@ -176,6 +180,7 @@ const state = {
     },
     {
       name: 'Predicting Climate Extremes',
+      area: 'AREA NOT LISTED',
       heroImage: '/static/img/featured-projects/climate-extremes.jpg',
       projectLead: {
         name: 'Stephen Yeager',

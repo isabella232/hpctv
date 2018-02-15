@@ -5,7 +5,7 @@
         <header class="col project-title upper">
           <div class="title">
             <h1>{{data.name}}</h1>
-            <h2>Area of science</h2>
+            <h2>{{data.area}}</h2>
           </div>
           <div class="project-specs col start">
             <ul class="collection">
@@ -37,7 +37,7 @@
 
         <section class="col">
           <div class="media-container">
-            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="8" @pageChange="visibleContentID = $event">
+            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationSize="16" :paginationPadding="4" @pageChange="visibleContentID = $event">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
                 <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
                 <video v-else-if="isVideo(slide.media)" :src="slide.media" controls ></video>
@@ -46,7 +46,7 @@
             </Carousel>
           </div>
 
-          <article class="modal-article societal-impact text-center">
+          <article class="modal-article text-center">
             <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
             <div class="article-content row">
               <div class="main-content" v-html="data.mainContent[visibleContentID].body">
@@ -98,6 +98,7 @@ export default {
       * Sends an event to the parent to clost the modal
       */
     handleExitTap() {
+      document.querySelector('body').classList.remove('freeze');
       this.$emit('modalBorderTapped', false);
     },
     /**

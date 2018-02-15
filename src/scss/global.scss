@@ -85,6 +85,11 @@ body {
   }
 }
 
+body.freeze{
+  height: 100vh;
+  overflow: hidden;
+}
+
 // Global Components
 
 .side-nav {
