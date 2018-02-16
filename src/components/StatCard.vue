@@ -31,23 +31,19 @@ export default {
      * @returns {String} numbers under 49,000 get comma treatment.
      */
     numFormatter(num) {
-      if (typeof num !== 'Number') {
-        return num;
+      if (num < 49000) {
+        // Comma notation.
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       } else {
-        if (num < 49000) {
-          // Comma notation.
-          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        } else {
-          const map = [{ value: 1, symbol: '' }, { value: 1e3, symbol: 'K' }, { value: 1e6, symbol: 'M' }, { value: 1e9, symbol: 'B' }, { value: 1e12, symbol: 'T' }];
-          const parser = /\.0+$|(\.[0-9]*[1-9])0+$/;
-          let i;
-          for (i = map.length - 1; i > 0; i--) {
-            if (num >= map[i].value) {
-              break;
-            }
+        const map = [{ value: 1, symbol: '' }, { value: 1e3, symbol: 'K' }, { value: 1e6, symbol: 'M' }, { value: 1e9, symbol: 'B' }, { value: 1e12, symbol: 'T' }];
+        const parser = /\.0+$|(\.[0-9]*[1-9])0+$/;
+        let i;
+        for (i = map.length - 1; i > 0; i--) {
+          if (num >= map[i].value) {
+            break;
           }
-          return (num / map[i].value).toFixed(1).replace(parser, '$1') + map[i].symbol;
         }
+        return (num / map[i].value).toFixed(1).replace(parser, '$1') + map[i].symbol;
       }
     }
   }

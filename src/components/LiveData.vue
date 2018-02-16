@@ -6,8 +6,8 @@
 
     <main class="row reverse">
       <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
-        <button @click="threeModal.show = false"> close </button>
-        <p> &lbrace; modalText &rbrace;</p>
+        <!-- <button @click="threeModal.show = false"> close </button>
+        <p> &lbrace; modalText &rbrace;</p> -->
       </div>
 
       <section class="col data-viz">
@@ -68,6 +68,7 @@ import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
 import LineChart from './graphs/LineChart';
+import SmallModal from './modals-navs/Small-Modal';
 import axios from 'axios';
 
 export default {
@@ -81,26 +82,26 @@ export default {
         {
           statName: 'Active Projects',
           iconPath: '/static/icon/projects-icon.svg',
-          statNumber: '-'
+          statNumber: 0
         },
         {
           statName: 'Active Jobs',
           iconPath: '/static/icon/jobs-icon.svg',
-          statNumber: '-'
+          statNumber: 0
         }
       ],
       totalRun: [
         {
           statName: 'Projects Completed',
-          statNumber: '-'
+          statNumber: 0
         },
         {
           statName: 'Jobs Completed',
-          statNumber: '-'
+          statNumber: 0
         },
         {
           statName: 'Core Hours Used',
-          statNumber: '-'
+          statNumber: 0
         }
       ],
       threeModal: {
@@ -128,6 +129,7 @@ export default {
     StatCard,
     DockNav,
     Three,
+    SmallModal,
     LineChart
   },
 
@@ -262,7 +264,7 @@ export default {
                 pointRadius: 0,
                 borderWidth: 2,
                 type: 'line'
-              },
+              }
               // {
               //   label: 'Users',
               //   backgroundColor: 'rgba(0,255,255,0.5)',

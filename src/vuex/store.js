@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import home from './home';
 import specs from './specs';
+import liveData from './live-data';
 import projects from './projects';
 Vue.use(Vuex);
 
@@ -32,6 +33,7 @@ export const store = new Vuex.Store({
   modules: {
     home,
     specs,
+    liveData,
     projects
   }
 });

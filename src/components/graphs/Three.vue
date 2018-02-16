@@ -7,6 +7,7 @@
 import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster } from '../../../node_modules/three/build/three.min.js';
 const three = { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera };
 const OrbitControls = require('three-orbit-controls')(three);
+import axios from 'axios';
 import KonamiCode from 'konami-code';
 const konami = new KonamiCode();
 
@@ -29,20 +30,7 @@ export default {
       group: null,
       scene: null,
       renderer: null,
-      dataSet: [
-        {
-          user: 1,
-          allocation: 49
-        },
-        {
-          user: 2,
-          allocation: 26
-        },
-        {
-          user: 3,
-          allocation: 25
-        }
-      ],
+      dataSet: [],
       mouseDown: false,
       mouseMove: false
     };
@@ -260,23 +248,29 @@ export default {
     },
 
     /**
-      * get the width of the canvas. This value will be 100% of it's container
-      * @return {number} a number of pixels
-      */
+     * get the width of the canvas. This value will be 100% of it's container
+     * @return {number} a number of pixels
+     */
     getCanvasWidth() {
-      return parseInt(getComputedStyle(this.parentContainer)
-        .getPropertyValue('width')
-        .replace('px', ''));
+      return parseInt(
+        getComputedStyle(this.parentContainer)
+          .getPropertyValue('width')
+          .replace('px', '')
+      );
     },
 
-   /**
-      * Canvas height is 60% of <main>.
-      */
+    /**
+     * Canvas height is 60% of <main>.
+     */
     getCanvasHeight() {
       const main = document.querySelector('main');
-      return parseInt(getComputedStyle(main)
-      .getPropertyValue('height')
-      .replace('px', '')) * 0.6;
+      return (
+        parseInt(
+          getComputedStyle(main)
+            .getPropertyValue('height')
+            .replace('px', '')
+        ) * 0.6
+      );
     }
   },
 
@@ -298,6 +292,14 @@ export default {
 
     dragging() {
       return this.mouseDown && this.mouseMove;
+    },
+
+    vuex() {
+      return this.$store.state.liveData;
+    },
+
+    apiConfig() {
+      return this.$store.state.apiConfig;
     }
   },
 
@@ -332,10 +334,10 @@ export default {
     const intersects = this.raycaster.intersectObjects(this.scene.children);
 
     // TODO: This is not detecting intersections right now.
-    intersects.forEach((element) => {
-      console.log(`intersection on ${element}`)
+    intersects.forEach(element => {
+      console.log(`intersection on ${element}`);
       element.object.material.setColor(0xff0000);
-    })
+    });
 
     const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
     const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
@@ -348,6 +350,37 @@ export default {
     // Required calls for user interactions.
     this.controls.update();
     this.animate();
+  },
+
+  created() {
+    // Reach out to the API as soon as possible.
+
+    // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
+    // this.vuex.aoigList.forEach(group => {
+    //   axios
+    //     .get(`/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json` /*this.apiConfig*/)
+    //     .then(response => {
+    //       if (response.status === 200) {
+    //         // save in data
+    //         this.dataSet.push({
+    //           group: group.prettyName,
+    //           data: response.data
+    //         });
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // });
+
+    const urls = this.vuex.aoigList.map(group => `/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json`);
+    axios
+      .all(urls)
+      .then(axios.spread(function(...response) {console.log('response:', response)}));
+
+    // apply dataset to the model
+    console.log('fetching complete. applying data to model...');
+    this.applyDataSets(this.dataSet);
   },
 
   watch: {

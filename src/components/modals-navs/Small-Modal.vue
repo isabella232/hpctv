@@ -12,7 +12,7 @@
           <video src="/static/video/data-tx.mp4" loop muted playsinline></video>
         </div>
         <div class="panel right">
-          <p class="subtitle">{{data.modalData.subtitle}}</p>
+          <p class="subtitle lime bold upper">{{data.modalData.subtitle}}</p>
           <p>
             {{data.modalData.body}}
           </p>
