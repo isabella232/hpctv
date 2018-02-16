@@ -159,9 +159,9 @@ export default {
     setActiveTab(tab) {
       this.$store.state.liveData.activeTab = tab;
       if (tab === 'user allocation') {
-        this.$store.commit('colorScheme', 'cool');
+        this.$store.commit('activeTab', 'user allocation');
       } else {
-        this.$store.commit('colorScheme', 'warm');
+        this.$store.commit('activeTab', 'area of study');
       }
     },
 

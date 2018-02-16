@@ -199,37 +199,55 @@ export default {
     /**
      * Used to change the 3D model's data visualization.
      * @param {Obejct} dataSet - The new Dataset
+     * @param {String} tabName - the active tab for which to compute data.
      */
-    applyDataSets(dataSet) {
-      // const user1 = dataSet[0];
-      // const user2 = dataSet[1];
-      // const user3 = dataSet[2];
+    applyDataSets(dataSet, tabName) {
+      
+      let activeData = {};
 
-      // for (let i = 0; i < user1.allocation * 2; i++) {
-      //   this.updateCube(i, 0, 0xff0000, 0);
-      // }
+      if (tabName === 'user allocation') {
+        activeData = this.vuex.userAllocation;
+      } else if (tabName === 'area of study') {
+        activeData = dataSet;
+      } else {
+        throw new Error('you did it wrong');
+      }
 
-      // for (let i = 0; i < user2.allocation * 2; i++) {
-      //   this.updateCube(i, 0, 0x00ff00, 100);
-      // }
+      console.log('passed tabName: ', tabName);
+      console.log('using ', activeData);
 
-      // for (let i = 0; i < user3.allocation * 2; i++) {
-      //   this.updateCube(i, 0, 0x0000ff, user1.allocation * 2 + user2.allocation * 2);
-      // }
+
+          // get totals first
+          let totalCoreHours = 0;
+
+          activeData.forEach(set => {
+            totalCoreHours += set.data.coreHours;
+          });
+
+          // convert each of these to a percentage of the whole set, rounded down to nearest whole number
+          activeData.forEach(set => {
+            set.data.percentages = {
+              coreHours: Math.floor(set.data.coreHours / totalCoreHours * 100)
+            };
+          });
+
+
 
       // keep track of consecutive blocks already colored.
       let offset = 0;
       // dummy array of colors.
-      const colors = [0xff0000, 0x00ff00, 0x0000ff];
-      for (let i = 0; i < dataSet.length; i++) {
+      const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xff0000, 0x00ff00, 0x0000ff];
+      for (let i = 0; i < activeData.length; i++) {
         // each object in data set
-        const user = dataSet[i];
+        const user = activeData[i].group;
         const color = colors[i];
 
         // either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
-        offset += i > 0 ? dataSet[i - 1].allocation * 2 : 0;
+        offset += i > 0 
+        ? activeData[i - 1].data.percentages.coreHours * 2 
+        : 0;
 
-        for (let j = 0; j < user.allocation * 2; j++) {
+        for (let j = 0; j < activeData[i].data.percentages.coreHours * 2; j++) {
           // loop through each cube in range and recolor it.
           this.updateCube(j, 0, color, offset);
         }
@@ -282,8 +300,8 @@ export default {
       return renderer;
     },
 
-    colorScheme() {
-      return this.$store.state.liveData.colorScheme;
+    activeTab() {
+      return this.$store.state.liveData.activeTab;
     },
 
     parentContainer() {
@@ -356,31 +374,27 @@ export default {
     // Reach out to the API as soon as possible.
 
     // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
-    // this.vuex.aoigList.forEach(group => {
-    //   axios
-    //     .get(`/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json` /*this.apiConfig*/)
-    //     .then(response => {
-    //       if (response.status === 200) {
-    //         // save in data
-    //         this.dataSet.push({
-    //           group: group.prettyName,
-    //           data: response.data
-    //         });
-    //       }
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // });
-
     const urls = this.vuex.aoigList.map(group => `/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json`);
     axios
-      .all(urls)
-      .then(axios.spread(function(...response) {console.log('response:', response)}));
+      .all(urls.map(endpoint => axios.get(endpoint)))
+      .then(res => {
+        // all responses are now returned in format [{}, {}] so we have to loop through them and get the data we want.
+        res.forEach(response => {
+          if (response.status === 200) {
+            // first have to get the good part of the string. there might be a better way to do this in production.
+            const url = response.request.responseURL;
+            const prettyName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.json'));
 
-    // apply dataset to the model
-    console.log('fetching complete. applying data to model...');
-    this.applyDataSets(this.dataSet);
+            this.dataSet.push({
+              group: prettyName.replace('-', ' '),
+              data: response.data
+            });
+          }
+        });
+      })
+      .then(() => {
+        this.applyDataSets(this.dataSet, this.vuex.activeTab);
+      });
   },
 
   watch: {
@@ -389,14 +403,17 @@ export default {
         this.enableDeveloperMode();
       }
     },
-    colorScheme(newVal) {
-      // The array of cubes is essentially a pixel grid. With the nested loop below we can control each cube indiviually.
-      for (let x = 0; x < 10; x++) {
-        for (let z = 0; z < 20; z++) {
-          const color = newVal === 'warm' ? `rgb(${175 + z * 5},${120 + x * 3},${2 * z})` : `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
-          this.updateCube(x, z, color);
-        }
-      }
+    activeTab(newVal) {
+      // // The array of cubes is essentially a pixel grid. With the nested loop below we can control each cube indiviually.
+      // for (let x = 0; x < 10; x++) {
+      //   for (let z = 0; z < 20; z++) {
+      //     const color = newVal === 'warm' ? `rgb(${175 + z * 5},${120 + x * 3},${2 * z})` : `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
+      //     this.updateCube(x, z, color);
+      //   }
+      // }
+      console.log('tab changed to', newVal);
+
+      this.applyDataSets(this.dataSet, newVal);
     }
   }
 };

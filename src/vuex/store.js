@@ -8,10 +8,6 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    liveData: {
-      colorScheme: 'cool',
-      activeTab: 'user allocation'
-    },
     apiConfig: {
       baseURL: 'https://private-08983-hpctv.apiary-mock.com/v1/',
       auth: {
@@ -25,8 +21,8 @@ export const store = new Vuex.Store({
       state.home.showSplash = false;
     },
 
-    colorScheme(state, color) {
-      state.liveData.colorScheme = color;
+    activeTab(state, tab) {
+      state.liveData.activeTab = tab;
     }
   },
 

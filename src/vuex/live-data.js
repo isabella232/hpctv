@@ -1,5 +1,4 @@
 const state = {
-  colorScheme: 'cool',
   activeTab: 'user allocation',
   aoigList: [
     {
@@ -26,11 +25,45 @@ const state = {
       prettyName: 'Weather Prediction',
       queryString: 'Weather%20Prediction'
     }
-    // TODO: This is not a valid aoig 
+    // TODO: This is not a valid aoig
     // {
     //   prettyName: 'Climate Sciences',
     //   queryString: 'Climate%20Sciences'
     // }
+  ],
+
+  userAllocation: [
+    {
+      group: 'Climate Simulation Laboratory',
+      data: {
+        coreHours: 100
+      }
+    },
+
+    {
+      group: 'NCAR Scientists',
+      data: {
+        coreHours: 100
+      }
+    },
+    {
+      group: 'University Community',
+      data: {
+        coreHours: 100
+      }
+    },
+    {
+      group: 'Wyoming-NCAR Alliance',
+      data: {
+        coreHours: 100
+      }
+    },
+    {
+      group: 'Accelerated Scientific Discovery',
+      data: {
+        coreHours: 100
+      }
+    }
   ]
 };
 
