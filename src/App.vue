@@ -7,8 +7,16 @@
     <footer class="app-footer" v-if="$route.path == '/'">
       <ul class="sponsors row around">
         <li><img src="/static/img/sponsor-logo-cisl.png" alt="CISL Logo"></li>
-        <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo"></li>
+        <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:65px"></li>
+        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo"></li>
         <li><img src="/static/img/sponsor-logo-nwsc.png" alt="NWSC Logo"></li>
+      </ul>
+    </footer>
+
+    <footer class="sponsor-bugs" v-else>
+      <ul class="sponsors row around">
+        <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:65px"></li>
+        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo"></li>
       </ul>
     </footer>
   </div>
@@ -32,10 +40,10 @@ export default {
 
   watch: {
     /**
-      * Determines based on index in orderedRoutes which direction screen should slide. Transitions are defined in global.scss
-      * @param {Object} to Automatically passed by router. the users current route information
-      * @param {Object} from Automatically passed by router. The users selected destination route information.
-      */
+     * Determines based on index in orderedRoutes which direction screen should slide. Transitions are defined in global.scss
+     * @param {Object} to Automatically passed by router. the users current route information
+     * @param {Object} from Automatically passed by router. The users selected destination route information.
+     */
 
     $route(to, from) {
       if (this.orderedRoutes.indexOf(to.name) > this.orderedRoutes.indexOf(from.name)) {
@@ -46,7 +54,7 @@ export default {
     }
   },
 
-  mounted(){
+  mounted() {
     flexibility(document.querySelector('#app'));
   }
 };
