@@ -207,7 +207,7 @@ export default {
 
       if (tabName === 'user allocation') {
         activeData = this.vuex.userAllocation;
-        colors = ['#19799c', '#1d8995','#76bb4f', '#0992c9', '#00ab80', '#09afff', ];
+        colors = ['#19799c', '#1d8995', '#76bb4f', '#0992c9', '#00ab80', '#09afff'];
       } else if (tabName === 'area of study') {
         activeData = dataSet;
         colors = ['#ffeb99', '#ffd45e', '#fbb144', '#ffe000', '#f7931d', '#f5872c'];
@@ -237,6 +237,8 @@ export default {
         const user = activeData[i].group;
         const color = colors[i];
 
+        // this.makeSprite(offset);
+
         // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
         offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
 
@@ -257,6 +259,19 @@ export default {
       const material = new MeshBasicMaterial({ color });
       const disc = new Mesh(geometry, material);
       return disc;
+    },
+
+    makeSprite(cubeNumber) {
+      //create the object
+      // const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
+      // const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+      // const sprite = new Sprite(spriteMaterial);
+
+      // // place it at cubeNumber's position overhead.
+      // sprite.position.x = this.group.children[cubeNumber].position.x;
+      // sprite.position.y = 4.5;
+      // sprite.position.z = this.group.children[cubeNumber].position.z;
+      // this.scene.add(sprite);
     },
 
     /**
@@ -351,14 +366,6 @@ export default {
       element.object.material.setColor(0xff0000);
     });
 
-    // const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
-    // const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
-    // const sprite = new Sprite(spriteMaterial);
-    // sprite.position.x = this.group.children[50].position.x;
-    // sprite.position.y = 4.5;
-    // sprite.position.z = this.group.children[50].position.z;
-    // this.scene.add(sprite);
-
     // Required calls for user interactions.
     this.controls.update();
     this.animate();
@@ -398,15 +405,7 @@ export default {
       }
     },
     activeTab(newVal) {
-      // // The array of cubes is essentially a pixel grid. With the nested loop below we can control each cube indiviually.
-      // for (let x = 0; x < 10; x++) {
-      //   for (let z = 0; z < 20; z++) {
-      //     const color = newVal === 'warm' ? `rgb(${175 + z * 5},${120 + x * 3},${2 * z})` : `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
-      //     this.updateCube(x, z, color);
-      //   }
-      // }
       console.log('tab changed to', newVal);
-
       this.applyDataSets(this.dataSet, newVal);
     }
   }
