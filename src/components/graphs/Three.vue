@@ -202,53 +202,47 @@ export default {
      * @param {String} tabName - the active tab for which to compute data.
      */
     applyDataSets(dataSet, tabName) {
-      
       let activeData = {};
+      let colors = [];
 
       if (tabName === 'user allocation') {
         activeData = this.vuex.userAllocation;
+        colors = ['#19799c', '#1d8995','#76bb4f', '#0992c9', '#00ab80', '#09afff', ];
       } else if (tabName === 'area of study') {
         activeData = dataSet;
+        colors = ['#ffeb99', '#ffd45e', '#fbb144', '#ffe000', '#f7931d', '#f5872c'];
       } else {
-        throw new Error('you did it wrong');
+        throw new Error('The tab name is not correct');
       }
 
-      console.log('passed tabName: ', tabName);
-      console.log('using ', activeData);
+      // get totals first
+      let totalCoreHours = 0;
 
+      activeData.forEach(set => {
+        totalCoreHours += set.data.coreHours;
+      });
 
-          // get totals first
-          let totalCoreHours = 0;
-
-          activeData.forEach(set => {
-            totalCoreHours += set.data.coreHours;
-          });
-
-          // convert each of these to a percentage of the whole set, rounded down to nearest whole number
-          activeData.forEach(set => {
-            set.data.percentages = {
-              coreHours: Math.floor(set.data.coreHours / totalCoreHours * 100)
-            };
-          });
-
-
+      // convert each of these to a percentage of the whole set, rounded down to nearest whole number
+      activeData.forEach(set => {
+        set.data.percentages = {
+          coreHours: Math.ceil(set.data.coreHours / totalCoreHours * 100)
+        };
+      });
 
       // keep track of consecutive blocks already colored.
       let offset = 0;
-      // dummy array of colors.
-      const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xff0000, 0x00ff00, 0x0000ff];
+
       for (let i = 0; i < activeData.length; i++) {
         // each object in data set
         const user = activeData[i].group;
         const color = colors[i];
 
-        // either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
-        offset += i > 0 
-        ? activeData[i - 1].data.percentages.coreHours * 2 
-        : 0;
+        // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
+        offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
 
+        // loop through the other axis.
         for (let j = 0; j < activeData[i].data.percentages.coreHours * 2; j++) {
-          // loop through each cube in range and recolor it.
+          // recolor each cube in the range.
           this.updateCube(j, 0, color, offset);
         }
       }
@@ -357,13 +351,13 @@ export default {
       element.object.material.setColor(0xff0000);
     });
 
-    const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
-    const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
-    const sprite = new Sprite(spriteMaterial);
-    sprite.position.x = this.group.children[50].position.x;
-    sprite.position.y = 4.5;
-    sprite.position.z = this.group.children[50].position.z;
-    this.scene.add(sprite);
+    // const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
+    // const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+    // const sprite = new Sprite(spriteMaterial);
+    // sprite.position.x = this.group.children[50].position.x;
+    // sprite.position.y = 4.5;
+    // sprite.position.z = this.group.children[50].position.z;
+    // this.scene.add(sprite);
 
     // Required calls for user interactions.
     this.controls.update();
