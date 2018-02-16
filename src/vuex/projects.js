@@ -28,7 +28,7 @@ const state = {
           <p>The turbulent mixing parameterizations in weather models that predict the wind’s behavior are often one-dimensional, limiting important details needed to more accurately predict wind patterns. With Cheyenne’s help, researchers can run models that account for both vertical and horizontal turbulent mixing to better show how winds behave in complex terrain like Oregon.</p>
 
           <p>Through this project, researchers aim to improve short-term wind forecasting models and atmospheric understanding for better wind-energy efficiency and operations in complex terrain, such as coastlines, mountains, and canyons.</p>`,
-          media: '/static/img/modal-placeholder.jpg'
+          media: '/static/video/featured-project-media/project-turbine-summ.mp4'
         },
         {
           title: 'Reliable Energy, Long-Term Savings',
@@ -42,7 +42,7 @@ const state = {
             <p><strong>Data can improve that?</strong> Yes! Our data creates better techniques to more accurately predict wind patterns. More accurate predictions mean better load balancing.</p> 
 
             <p><strong>What does that mean for me?</strong> Efficient load balancing and strategic wind farm placement means long-term reliable wind energy and cost savings for businesses and individuals.</p>`,
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/featured-project-media/project-turbine-soci.mp4'
         }
       ]
     },
@@ -69,7 +69,7 @@ const state = {
           title: 'Sea, Land, and Air: How Earth’s Systems Interact',
           body: 'Project Metis—named after Metis, a mythological spirit of the sea and the goddess of wisdom, prudence, and deep thought—uses Cheyenne to simulate our atmosphere and oceans in finer detail than ever before. Modelers will better understand the combined impact of waves, sea-ice, and atmospheric changes to better predict seasonal climate, from daily to annual time scales. As a result, researchers can more accurately decide where to focus their efforts as they develop models in the near future. ',
 
-          media: '/static/img/modal-placeholder.jpg'
+          media: '/static/video/featured-project-media/project-ocean-summ.mp4'
         },
         {
           title: 'Improving Climate Prediction Accuracy',
@@ -89,7 +89,7 @@ const state = {
             </ul>
           </p>`,
 
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/featured-project-media/project-ocean-soci.mp4'
         }
       ]
     },
@@ -115,7 +115,7 @@ const state = {
         {
           title: 'Summary',
           body: 'Predicting wind farm performance is a complex, but important challenge. To improve predictions, we need better flow structure resolution and reliable modeling of turbulent eddies in the entire length-scale range. This project uses a multi-scale modeling methodology that models the entire range of spatial and temporal scales to more accurately predict wind turbine performance. Additionally, this project uses software framework with the large-eddy simulation approach to predict turbulent flow fields. Planners can use this data to better indicate the most efficient locations for electricity-generating wind farms.',
-          media: '/static/img/modal-placeholder.jpg'
+          media: '/static/video/featured-project-media/project-turbine-summ.mp4'
         },
         {
           title: 'Benefit to Humans',
@@ -132,7 +132,7 @@ const state = {
             *(n.d.). Retrieved November 28, 2017, from http://www.thirdplanetwind.com/energy/history.aspx<br>
             **Wind Energy Facts at a Glance. Retrieved from https://www.awea.org/wind-energy-facts-at-a-glance</p>
           `,
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/featured-project-media/project-turbine-soci.mp4'
         }
       ]
     },
@@ -163,7 +163,7 @@ const state = {
 
             <p>This study uses a new model to examine both aspects of the violent physical processes near the surface of the sun. This work will advance our understanding of solar physics and the processes that drive space weather in the earth’s magnetic field and outer edges of our atmosphere.
           </p>`,
-          media: '/static/img/modal-placeholder.jpg'
+          media: '/static/video/featured-project-media/project-helio-summ.mp4'
         },
         {
           title: 'Benefit to Humans',
@@ -181,7 +181,7 @@ const state = {
               </p>
 
             `,
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/featured-project-media/project-helio-soci.mp4'
         }
       ]
     },
@@ -207,7 +207,7 @@ const state = {
         {
           title: 'Summary',
           body: 'This research will improve our ability to predict extreme events, such as floods and droughts, in specific regions on Earth, like the Rocky Mountains. While difficult to achieve, it will support the development of NCAR’s best climate model, make stronger links between ocean temperatures and severe weather, and improve the statistics researchers use to predict extreme events.',
-          media: '/static/img/modal-placeholder.jpg'
+          media: '/static/video/featured-project-media/project-climate-summ.mp4'
         },
         {
           title: 'Benefit to Humans',
@@ -225,7 +225,7 @@ const state = {
               *N. (2012, October 09). Supercomputer! NCAR-Wyoming Supercomputing Center. Retrieved November 28, 2017, from https://www.youtube.com/watch?v=NVogS2T-Wi8
              </p>
             `,
-          media: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          media: '/static/video/featured-project-media/project-climate-soci.mp4'
         }
       ]
     }

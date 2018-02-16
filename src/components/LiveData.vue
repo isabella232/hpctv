@@ -81,26 +81,26 @@ export default {
         {
           statName: 'Active Projects',
           iconPath: '/static/icon/projects-icon.svg',
-          statNumber: 4
+          statNumber: '-'
         },
         {
           statName: 'Active Jobs',
           iconPath: '/static/icon/jobs-icon.svg',
-          statNumber: 4
+          statNumber: '-'
         }
       ],
       totalRun: [
         {
           statName: 'Projects Completed',
-          statNumber: 4
+          statNumber: '-'
         },
         {
           statName: 'Jobs Completed',
-          statNumber: 4
+          statNumber: '-'
         },
         {
           statName: 'Core Hours Used',
-          statNumber: 4
+          statNumber: '-'
         }
       ],
       threeModal: {
