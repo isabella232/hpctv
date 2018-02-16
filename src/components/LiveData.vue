@@ -36,7 +36,7 @@
         </div>
       </section>
 
-      <aside class="projects col around side-stats">
+      <aside class="projects col side-stats">
         <div class="collection">
           <header class="upper">
             <!-- Machine Log -->

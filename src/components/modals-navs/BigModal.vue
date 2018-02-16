@@ -4,7 +4,7 @@
       <div class="body row" @click.stop="doNothing()">
         <header class="col project-title upper">
           <div class="title">
-            <h1>{{data.name}}</h1>
+            <h1>{{data.longProjectName}}</h1>
             <h2>{{data.area}}</h2>
           </div>
           <div class="project-specs col start">

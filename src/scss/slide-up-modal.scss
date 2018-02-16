@@ -81,6 +81,11 @@
   transition: top 250ms ease-in-out;
   background: transparentize($color_black, 0.25);
 
+  header img {
+    transform: rotate(45deg);
+    filter: brightness(5);
+  }
+
   legend {
     display: block;
     opacity: 1;
