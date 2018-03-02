@@ -52,17 +52,23 @@
       flex: 2;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       padding: 2.5%;
 
-      h1 {
-        line-height: 1.125em;
-        font-size: 1.25em;
-        font-family: $font_poppins_bold;
-      }
-      h2 {
-        color: $color_dark_grey;
-        font-size: 100%;
+      .cell {
+        display: table;
+        height: 100%;
+        h1 {
+          display: table-cell;
+          vertical-align: middle;
+          line-height: 1.125em;
+          font-size: 1.25em;
+          font-family: $font_poppins_bold;
+        }
+        h2 {
+          display: table-footer-group;
+          color: $color_dark_grey;
+          font-size: 100%;
+        }
       }
     }
     .project-specs {
@@ -80,7 +86,6 @@
         p {
           text-transform: initial;
           margin: 10px 0 0 0;
-          overflow-y: scroll;
         }
         span {
           display: inline-block;
@@ -102,7 +107,6 @@
     img,
     video {
       max-width: 100%;
-
     }
   }
   .VueCarousel-slide {
@@ -170,7 +174,6 @@
   }
 
   @media screen and (max-width: 600px) {
-
     overflow: scroll;
     .body {
       flex-direction: column;
