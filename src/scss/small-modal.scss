@@ -1,28 +1,9 @@
 .small-modal {
-  background: transparent;
-  margin: 20px;
   position: absolute;
-  display: inline-block;
-  top: 0;
-  left: 0;
-  .inverted {
-    position: absolute;
-    transform: translateX(-400px);
-    button {
-      right: -16px;
-      left: initial;
-    }
-    header {
-      transform-origin: 100% 0%;
-    }
-  }
-  .modal-body {
-    width: 0;
-    box-shadow: none;
-    transition: width 150ms 750ms;
-  }
+  height: 250px;
+  width: 500px;
 
-  button {
+  a.button {
     background: transparent;
     outline: none;
     position: absolute;
@@ -36,139 +17,100 @@
     border-radius: 50%;
     padding: 0;
     z-index: 0;
-
-    @media screen and (max-width: 767px) {
-      width: 7vw;
-      height: 7vw;
-    }
-    &.closed {
-      background: transparent;
-      transition: 150ms 750ms ease-in;
-    }
-    &.open {
-      background: $color_teal;
-      transform: rotate(45deg);
-      transition: 0.15s ease-in;
-      z-index: 3;
-      img {
-        filter: brightness(4);
-      }
-    }
-    img {
-      max-width: 100%;
-    }
+    -webkit-appearance: none;
+    transition: 250ms 750ms;
+    cursor: pointer;
   }
-  header {
-    background: $color_teal;
-    z-index: 0;
-    color: $color_dark_grey;
-    width: 99%;
-    margin: 0 0 0 0.5%;
-    padding: 0.5em 0;
-    font-weight: 700;
-    font-family: $font_poppins_bold;
-    transition: 250ms 500ms ease-in-out;
+
+  // base styles
+  .modal-body {
     transform: scaleX(0);
     transform-origin: 0% 0%;
-    span {
-      opacity: 0;
-      margin-left: 1em;
-    }
-  }
-  .panel-container {
-    color: white;
-    .panel {
-      // @include greydient(0);
-      background: $color_dark_grey;
-      box-sizing: border-box;
-      height: 0;
-      width: 200px;
-      margin: 1% 0.5%;
-      overflow-y: hidden;
-      transition: height 250ms 250ms;
-      .left {
-        height: 125px;
-        transform: scaleY(0);
-        transition: height 250ms;
-      }
-      .right {
-        transition: heaight 250ms 250ms;
-      }
+    transition: transform 250ms 500ms;
 
-      img {
-        height: 0;
-        width: 100%;
-        transition: height 250ms 250ms;
-      }
-      p {
+    .panel-container {
+      display: flex;
+      transform: scaleY(0);
+      transition: transform 250ms 250ms;
+      transform-origin: 50% 0%;
+      .panel {
+        width: 50%;
+        background-color: $color_dark_grey;
         margin: 5px;
-      }
-    }
-  }
-
-  &.open {
-    .modal-body {
-      box-shadow: 0 0 40px $color_trans_black;
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      transition: box-shadow 250ms 500ms;
-      @media screen and (max-width: 500px) {
-        display: none;
+        overflow-y: scroll;
+        &.left {
+        }
+        &.right {
+          transform: scaleY(0);
+          transform-origin: 50% 0%;
+          transition: transform 250ms;
+        }
       }
     }
 
     header {
-      transform: scaleX(1);
-      transition: 250ms ease-in-out;
-      transform-origin: 0% 0%;
-      span {
-        opacity: 1;
-        transition: 100ms 250ms;
-      }
-    }
-    .panel.left {
-      height: 125px;
-      transition: 250ms 250ms;
-      img,
-      video {
-        max-height: 100%;
-        transition: height 250ms 250ms;
-      }
-    }
-    .panel.right {
-      height: 125px;
-      overflow-y: scroll;
-      transition: 200ms 400ms;
+      background-color: $color_teal;
+      height: 2em;
+      padding-left: 2.5em;
     }
 
-    .inverted {
-      header {
-        transform-origin: 100% 0;
-        transition: transform 250ms;
-      }
-
-      .modal-body {
-        box-shadow: 0 0 40px $color_trans_black;
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        transition: box-shadow 250ms 500ms;
-      }
-
-      .panel.left {
-        height: 125px;
-        transition: 250ms 250ms;
-        img {
-          height: 100%;
-          transition: height 250ms 250ms;
-        }
-      }
-
-      .panel.right {
-        height: 125px;
-        transition: 200ms 400ms;
-      }
+    a.button {
+      background: transparent;
+      outline: none;
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      padding: 0;
+      z-index: 0;
+      -webkit-appearance: none;
+      transition: 250ms 750ms;
     }
   }
+
+  // only open
+  &.open {
+    a.button {
+      z-index: 4;
+      transform: rotate(45deg);
+      transition: 250ms;
+    }
+    .modal-body {
+      transform: scaleX(1);
+      transition: transform 250ms 250ms;
+      .panel-container {
+        transform: scaleY(1);
+        transition: transform 250ms 500ms;
+        .panel {
+          &.right {
+            transform: scaleY(1);
+            transition: 250ms 750ms;
+          }
+        }
+      }
+    }
+
+    // open and inverted
+    .modal-body.inverted {
+      transform: scaleX(1);
+      transition: transform 250ms 250ms;
+    }
+  }
+
+  // inverted base styles
+  .modal-body.inverted {
+    position: relative;
+    right: 500px;
+    transform-origin: 100% 0%;
+    transform: scaleX(0);
+    transition: transform 250ms 500ms;
+  }
+}
+video {
+  max-width: 100%;
 }

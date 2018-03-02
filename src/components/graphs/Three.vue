@@ -134,7 +134,13 @@ export default {
     updateCube(x, z, color, offset = 0) {
       const allCubes = this.group.children;
       const id = x + z * 10 + offset;
-      allCubes[id].material.color.set(color);
+
+      // condition to account for any rounding errors
+      if (id <= 199) {
+        allCubes[id].material.color.set(color);
+      } else {
+        console.log(id);
+      }
     },
 
     /**
@@ -222,10 +228,11 @@ export default {
         totalCoreHours += set.data.coreHours;
       });
 
-      // convert each of these to a percentage of the whole set, rounded down to nearest whole number
+      // convert each of these to a percentage of the whole set, rounded to nearest .5.
       activeData.forEach(set => {
         set.data.percentages = {
-          coreHours: Math.ceil(set.data.coreHours / totalCoreHours * 100)
+          // to decimal -> to percentage -> to .5
+          coreHours: Math.round(set.data.coreHours / totalCoreHours * 100 * 2) / 2
         };
       });
 
@@ -266,7 +273,6 @@ export default {
       // const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
       // const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
       // const sprite = new Sprite(spriteMaterial);
-
       // // place it at cubeNumber's position overhead.
       // sprite.position.x = this.group.children[cubeNumber].position.x;
       // sprite.position.y = 4.5;
@@ -358,13 +364,13 @@ export default {
     // this.applyDataSets(this.dataSet);
 
     this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObjects(this.scene.children);
+    // const intersects = this.raycaster.intersectObjects(this.scene.children);
 
-    // TODO: This is not detecting intersections right now.
-    intersects.forEach(element => {
-      console.log(`intersection on ${element}`);
-      element.object.material.setColor(0xff0000);
-    });
+    // // TODO: This is not detecting intersections right now.
+    // intersects.forEach(element => {
+    //   console.log(`intersection on ${element}`);
+    //   element.object.material.setColor(0xff0000);
+    // });
 
     // Required calls for user interactions.
     this.controls.update();

@@ -1,8 +1,8 @@
 <template>
   <div class="small-modal" :id="getID" :class="{open: visible}">
-    <button :class="(visible) ? 'open' : 'closed'" @click="toggle()">
+    <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()">
       <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
-    </button>
+    </a>
     <div class="modal-body" :class="{inverted: opensInverted}" >
       <header class="row upper">
         <span>{{data.modalData.title}}</span>
