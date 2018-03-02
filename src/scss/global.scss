@@ -85,9 +85,39 @@ body {
   }
 }
 
-body.freeze{
+body.freeze {
   height: 100vh;
   overflow: hidden;
+}
+
+body.specs-page,
+body.live-data-page,
+body.projects-page {
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 533px;
+    height: 250px;
+  }
+
+  &:before {
+    background-image: url('/static/img/arrows-top-right.png');
+    background-position: top;
+    top: 0;
+    right: 0;
+  }
+
+  &:after {
+    background-image: url('/static/img/arrows-bottom-left.png');
+    background-position: bottom;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 // Global Components
@@ -134,10 +164,10 @@ body.freeze{
   }
 }
 
-footer.sponsor-bugs{
+footer.sponsor-bugs {
   display: flex;
   flex-direction: column;
- justify-content: flex-end;
+  justify-content: flex-end;
   align-items: center;
   position: absolute;
   bottom: 0;
@@ -148,7 +178,7 @@ footer.sponsor-bugs{
     width: 100%;
   }
 
-  li img{
+  li img {
     max-height: 30px;
   }
 }
