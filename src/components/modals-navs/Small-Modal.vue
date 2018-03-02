@@ -9,7 +9,7 @@
       </header>
       <div class="row start panel-container">
         <div class="panel left">
-          <video src="/static/video/data-tx.mp4" loop muted playsinline></video>
+          <video src="/static/video/specs-videos/data-tx.mp4" loop muted playsinline></video>
         </div>
         <div class="panel right">
           <p class="subtitle lime bold upper">{{data.modalData.subtitle}}</p>
@@ -76,4 +76,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/small-modal.scss" lang="scss"></style>
+<style src="../../scss/small-modal.scss" lang="scss" scoped></style>
