@@ -24,44 +24,56 @@ const state = {
     {
       prettyName: 'Weather Prediction',
       queryString: 'Weather%20Prediction'
+    },
+    {
+      prettyName: 'Environmental Biology',
+      queryString: 'Environmental%20Biology'
+    },
+
+    {
+      prettyName: 'Computational Science',
+      queryString: 'Computational%20Science'
+    },
+    {
+      prettyName: 'Social and Economic Impacts',
+      queryString: 'Social%20and%20Economic%20Impacts'
+    },
+    {
+      prettyName: 'Weather Prediction',
+      queryString: 'Weather%20Prediction'
     }
-    // TODO: This is not a valid aoig
-    // {
-    //   prettyName: 'Climate Sciences',
-    //   queryString: 'Climate%20Sciences'
-    // }
   ],
 
   userAllocation: [
     {
       group: 'Climate Simulation Laboratory',
       data: {
-        coreHours: 100
+        coreHours: 27
       }
     },
 
     {
       group: 'NCAR Scientists',
       data: {
-        coreHours: 100
+        coreHours: 29
       }
     },
     {
       group: 'University Community',
       data: {
-        coreHours: 100
+        coreHours: 29
       }
     },
     {
       group: 'Wyoming-NCAR Alliance',
       data: {
-        coreHours: 100
+        coreHours: 13
       }
     },
     {
       group: 'Accelerated Scientific Discovery',
       data: {
-        coreHours: 100
+        coreHours: 0
       }
     }
   ]

@@ -260,8 +260,9 @@ export default {
         // each object in data set
         const user = activeData[i].group;
         const color = colors[i];
+        console.log(user, i);
 
-        this.makeSprite(offset);
+        // this.makeSprite(offset);
 
         // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
         offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
@@ -396,16 +397,17 @@ export default {
     // Reach out to the API as soon as possible.
 
     // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
-    const urls = this.vuex.aoigList.map(group => `/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json`);
+    // const urls = this.vuex.aoigList.map(group => `/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json`);
+    const urls = this.vuex.aoigList.map(group => `report/aoiglog/aoig/${group.queryString}?daysAgo=30`);
     axios
-      .all(urls.map(endpoint => axios.get(endpoint)))
+      .all(urls.map(endpoint => axios.get(endpoint, this.apiConfig)))
       .then(res => {
         // all responses are now returned in format [{}, {}] so we have to loop through them and get the data we want.
         res.forEach(response => {
           if (response.status === 200) {
             // first have to get the good part of the string. there might be a better way to do this in production.
             const url = response.request.responseURL;
-            const prettyName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.json'));
+            const prettyName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('?')).replace(/\%20/g, ' ');
 
             this.dataSet.push({
               group: prettyName.replace('-', ' '),
