@@ -230,25 +230,10 @@ export default {
         console.log(`%c ${error}`, 'color:red');
       });
 
-    // Get the data for the 3D chart
-    // TODO: How to define AOIG string?
-    axios
-      .get('report/aoiglog/aoig/foo?daysAgo=0', this.apiConfig)
-      .then(response => {
-        if (response.status === 200) {
-          const data = response.data;
-          console.log('%c API request: OK', 'color:lime');
-          // this.rawResponse = data;
-        }
-      })
-      .catch(error => {
-        console.log(`%c ${error}`, 'color:red');
-      });
+
 
     // Get the pulse data
-    // axios.get('report/activity?daysAgo=60')
-    axios
-      .get('/static/activity.json')
+    axios.get('report/activity?daysAgo=60', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           const data = response.data;
