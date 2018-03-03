@@ -6,8 +6,8 @@
 
     <main class="row reverse">
       <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
-        <!-- <button @click="threeModal.show = false"> close </button>
-        <p> &lbrace; modalText &rbrace;</p> -->
+        <button @click="threeModal.show = false"> close </button>
+        <p> &lbrace; modalText &rbrace;</p>
       </div>
 
       <section class="col data-viz">

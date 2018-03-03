@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster } from '../../../node_modules/three/build/three.min.js';
-const three = { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera };
+import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster, LinearFilter, AxesHelper } from '../../../node_modules/three/build/three.min.js';
+const three = { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, PerspectiveCamera };
 const OrbitControls = require('three-orbit-controls')(three);
 import axios from 'axios';
 import KonamiCode from 'konami-code';
@@ -28,9 +28,11 @@ export default {
         primaryLight: null
       },
       group: null,
+      sprites: null,
       scene: null,
       renderer: null,
       dataSet: [],
+      mouse: null,
       mouseDown: false,
       mouseMove: false
     };
@@ -48,6 +50,7 @@ export default {
       this.canvas = document.querySelector('.threejs');
       this.canvas.appendChild(this.renderer.domElement);
       this.group = new Group();
+      this.sprites = new Group();
       console.log('For 3D debugging, please input Konami Code at any time.');
       konami.listen(() => {
         console.log('Developer mode enabled.');
@@ -102,9 +105,11 @@ export default {
       const sphereSize = 1;
       const mainLightHelper = new DirectionalLightHelper(this.lights.primaryLight, sphereSize);
       const boxHelper = new BoxHelper(this.group);
+      const axisHelper = new AxesHelper(this.group);
       this.scene.add(worldLightHelper);
       this.scene.add(mainLightHelper);
       this.scene.add(boxHelper);
+      this.scene.add(axisHelper);
       this.controls.enableZoom = true;
       this.controls.enablePan = true;
       this.controls.minPolarAngle = 0;
@@ -169,14 +174,26 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseUp(event) {
-      console.log('mouseup');
+      // console.log('mouseup');
       if (!this.dragging) {
         if (event.path[0].tagName === 'CANVAS') {
           const mouseX = event.clientX / window.innerWidth * 100;
           const mouseY = event.clientY / window.innerHeight * 100;
-          console.log('mouseX ', mouseX);
-          console.log('mouseY', mouseY);
-          console.log('inside canvas');
+          // console.log('mouseX ', mouseX);
+          // console.log('mouseY', mouseY);
+          // console.log('inside canvas');
+          this.mouse.x = event.clientX / this.renderer.domElement.width;
+          this.mouse.y = event.clientY / this.renderer.domElement.height;
+
+          this.raycaster.setFromCamera(this.mouse, this.camera);
+
+          let intersects = this.raycaster.intersectObjects(this.group.children);
+
+          if (intersects.length > 0) {
+            console.log('found intersection');
+            intersects[0].object.material.color.setHex(0xf5f5f5);
+          }
+
           this.$emit('canvasWasTouched', { mouseX, mouseY });
         }
       }
@@ -188,7 +205,7 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseDown(event) {
-      console.log('mousedown');
+      // console.log('mousedown');
       this.mouseMove = false;
       this.mouseDown = true;
     },
@@ -198,7 +215,7 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseMove(event) {
-      console.log('mousemove');
+      // console.log('mousemove');
       this.mouseMove = true;
     },
 
@@ -244,7 +261,7 @@ export default {
         const user = activeData[i].group;
         const color = colors[i];
 
-        // this.makeSprite(offset);
+        this.makeSprite(offset);
 
         // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
         offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
@@ -270,14 +287,22 @@ export default {
 
     makeSprite(cubeNumber) {
       //create the object
-      // const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
-      // const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
-      // const sprite = new Sprite(spriteMaterial);
-      // // place it at cubeNumber's position overhead.
-      // sprite.position.x = this.group.children[cubeNumber].position.x;
-      // sprite.position.y = 4.5;
-      // sprite.position.z = this.group.children[cubeNumber].position.z;
-      // this.scene.add(sprite);
+      const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
+      // next line avoids explicit image texture to be size in base 2 sizes.
+      spriteMap.minFilter = LinearFilter;
+      const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+      const sprite = new Sprite(spriteMaterial);
+      // place it at cubeNumber's position overhead.
+
+      sprite.position.x = this.group.children[cubeNumber].position.x;
+      sprite.position.y = 4.5;
+      sprite.position.z = this.group.children[cubeNumber].position.z;
+
+      sprite.translateX(15);
+      sprite.translateY(1.5);
+      sprite.translateZ(-6);
+
+      this.scene.add(sprite);
     },
 
     /**
@@ -360,17 +385,7 @@ export default {
     this.group.translateX(15);
     this.group.translateY(1.5);
     this.group.translateZ(-6);
-
-    // this.applyDataSets(this.dataSet);
-
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    // const intersects = this.raycaster.intersectObjects(this.scene.children);
-
-    // // TODO: This is not detecting intersections right now.
-    // intersects.forEach(element => {
-    //   console.log(`intersection on ${element}`);
-    //   element.object.material.setColor(0xff0000);
-    // });
+    this.camera.lookAt(this.group.children[100].position);
 
     // Required calls for user interactions.
     this.controls.update();

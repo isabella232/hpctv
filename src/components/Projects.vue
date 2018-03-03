@@ -38,31 +38,57 @@
       </div>
     </main>
     <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false" />
+    <SlideUpModal title="Project Log">
+      <div class="container">
+        <div class="intro">
+          <p class="lime upper">What Cheyenne is Working on</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis qui et repudiandae magnam quibusdam quo dolorum nemo autem hic, quaerat fugiat dolore, ex dolorem blanditiis dicta laborum mollitia expedita minus?</p>
+        </div>
+        <TableComponent :data="tableData" sort-by="title" sort-order="desc">
+          <TableColumn show="title" label="Name"></TableColumn>
+          <TableColumn show="organization" label="Organization"></TableColumn>
+          <TableColumn show="areaofInterestGroup" label="Area of Study"></TableColumn>
+          <TableColumn show="jobs" label="Jobs"></TableColumn>
+          <TableColumn show="coreHours" label="Core Hours"></TableColumn>
+        </TableComponent>
+      </div>
+    </SlideUpModal>
     <dock-nav />
+
   </div>
 </template>
 
 <script>
+import SlideUpModal from './modals-navs/SlideUpModal';
 import BigModal from './modals-navs/BigModal';
 import DockNav from './modals-navs/DockNav';
+import { TableComponent, TableColumn } from 'vue-table-component';
+import axios from 'axios';
 
 export default {
   name: 'projects',
   components: {
     BigModal,
-    DockNav
+    DockNav,
+    SlideUpModal,
+    TableComponent,
+    TableColumn
   },
 
   data() {
     return {
       modalIsOpen: false,
-      modalData: ''
+      modalData: '',
+      tableData: []
     };
   },
 
   computed: {
     vuex() {
       return this.$store.state.projects;
+    },
+    apiConfig() {
+      return this.$store.state.apiConfig;
     }
   },
 
@@ -75,12 +101,22 @@ export default {
       this.modalIsOpen = true;
       this.modalData = this.vuex.featuredProjects[i];
       document.querySelector('body').classList.add('freeze');
+    },
+
+    async getTableData() {
+      response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
+      return response.data.entries;
     }
   },
   created() {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('projects-page');
+    axios.get('report/projectlog?daysAgo=30', this.apiConfig).then(response => {
+      if (response.status === 200){
+        this.tableData = response.data.entries;
+      }
+    }).catch(err => {return error})
   }
 };
 </script>

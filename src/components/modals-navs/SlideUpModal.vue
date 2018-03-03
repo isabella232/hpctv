@@ -6,32 +6,20 @@
         <span class="upper">{{title}}</span>
       </h3>
     </header>
-    <legend class="legend">
-      <dl class="legend-list col wrap">
-        <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
-          <dt class="upper lime">{{ term.title }}</dt>
-          <dd>
-            {{ term.definition }}
-          </dd>
-        </div>
-      </dl>
-    </legend>
+    <slot>
+    </slot>
   </section>
 </template>
 
 <script>
 export default {
+
+  props: ['title'],
+
   data() {
     return {
-      title: 'Glossary',
       legendIsOpen: false
     };
-  },
-
-  computed: {
-    vuex() {
-      return this.$store.state.specs;
-    }
   }
 };
 </script>

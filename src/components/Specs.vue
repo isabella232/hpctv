@@ -24,7 +24,18 @@
         </li>
       </ul> -->
     </main>
-    <slide-up-modal />
+    <slide-up-modal title="Glossary">
+      <legend class="legend">
+        <dl class="legend-list col wrap">
+          <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
+            <dt class="upper lime">{{ term.title }}</dt>
+            <dd>
+              {{ term.definition }}
+            </dd>
+          </div>
+        </dl>
+      </legend>
+    </slide-up-modal>
     <dock-nav />
 
   </div>

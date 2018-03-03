@@ -93,3 +93,45 @@
     transition: opacity 250ms;
   }
 }
+
+.slide-up-modal.open {
+  position: fixed;
+  background-color: $color_trans_black;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .container {
+    box-sizing: border-box;
+    background-color: $color_grey;
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    height: 90vh;
+    padding: 2em;
+  }
+  .intro {
+    .lime {
+      font-size: 250%;
+      font-family: $font_poppins_bold;
+    }
+  }
+
+  .table-component {
+    background-color: whitesmoke;
+    color: $color_black;
+  }
+
+  .table-component__table-wrapper {
+    color: $color_grey;
+  }
+
+  table{
+    background-color: lightblue;
+  }
+
+  thead {
+    background-color: $color_light_grey;
+  }
+}
