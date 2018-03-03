@@ -24,6 +24,6 @@ export default {
 };
 </script>
 
-<style lang="scss"  src="../../scss/slide-up-modal.scss" scoped>
+<style lang="scss"  src="../../scss/slide-up-modal.scss" >
 
 </style>
