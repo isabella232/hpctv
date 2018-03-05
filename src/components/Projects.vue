@@ -42,7 +42,7 @@
       <div class="container">
         <div class="intro">
           <p class="lime upper">What Cheyenne is Working on</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis qui et repudiandae magnam quibusdam quo dolorum nemo autem hic, quaerat fugiat dolore, ex dolorem blanditiis dicta laborum mollitia expedita minus?</p>
+          <p>Explore the complete list of projects currently running on the supercomputer.</p>
         </div>
         <TableComponent :data="tableData" sort-by="title" sort-order="desc">
           <TableColumn show="title" label="Name"></TableColumn>
