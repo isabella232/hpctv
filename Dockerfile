@@ -15,10 +15,6 @@ RUN npm run build
 
 FROM nginx:1.13.7-alpine AS nginx
 
-LABEL repo=cisl-repo \
-      name=hpctv-gui \
-      version=1.0
-
 COPY --from=node /usr/local/src/hpctv/dist /usr/share/nginx/html/
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
 
