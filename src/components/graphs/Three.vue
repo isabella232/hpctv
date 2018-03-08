@@ -225,6 +225,10 @@ export default {
      * @param {String} tabName - the active tab for which to compute data.
      */
     applyDataSets(dataSet, tabName) {
+      this.scene.remove(this.sprites);
+      this.sprites = null;
+      this.sprites = new Group();
+
       let activeData = {};
       let colors = [];
 
@@ -262,7 +266,7 @@ export default {
         const color = colors[i];
         console.log(user, i);
 
-        // this.makeSprite(offset);
+        this.makeSprite(offset);
 
         // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
         offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
@@ -273,6 +277,8 @@ export default {
           this.updateCube(j, 0, color, offset);
         }
       }
+
+      this.scene.add(this.sprites);
     },
 
     /**
@@ -296,14 +302,14 @@ export default {
       // place it at cubeNumber's position overhead.
 
       sprite.position.x = this.group.children[cubeNumber].position.x;
-      sprite.position.y = 4.5;
+      sprite.position.y = 4;
       sprite.position.z = this.group.children[cubeNumber].position.z;
 
       sprite.translateX(15);
       sprite.translateY(1.5);
       sprite.translateZ(-6);
-
-      this.scene.add(sprite);
+      
+      this.sprites.add(sprite);
     },
 
     /**
@@ -369,7 +375,8 @@ export default {
     // create a 3 dimensional array of polygons.
     for (let x = 0; x < 20; x++) {
       for (let z = 0; z < 10; z++) {
-        const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
+        // const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
+        const color = 'rgb(200,200,200)';
         const cube = this.makeCube(color);
 
         this.group.add(cube);
