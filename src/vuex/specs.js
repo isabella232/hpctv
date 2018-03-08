@@ -12,7 +12,7 @@ const state = {
     },
     {
       x: 22,
-      y: 68,
+      y: 58,
       modalData: {
         title: 'Data Transfer Rate',
         subtitle: '200 GBps (Gigabytes per second)',
@@ -42,7 +42,7 @@ const state = {
     },
     {
       x: 50,
-      y: 68,
+      y: 48,
       modalData: {
         title: 'Performance',
         subtitle: '5.4 Petaflops',
