@@ -3,7 +3,7 @@
     <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()" v-show="(showButton)">
       <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
-    <div class="modal-body" :class="{inverted: opensInverted}" >
+    <div class="modal-body" :class="{inverted: opensInverted}">
       <header class="row upper">
         <span>{{data.modalData.title}}</span>
       </header>
@@ -77,10 +77,8 @@ export default {
 
   watch: {
     visible(newVal) {
-      if (this.data.media) {
-        this.video = document.querySelector(`#${this.getID} video`);
-        newVal ? this.video.play() : this.video.pause();
-      }
+      this.video = document.querySelector(`#${this.getID} video`);
+      newVal ? this.video.play() : this.video.pause();
     }
   }
 };
