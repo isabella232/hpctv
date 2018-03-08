@@ -4,6 +4,8 @@
   width: 500px;
   top: 0;
   left: 0;
+  z-index: -1;
+  transition: z-index 0ms 1000ms;
 
   a.button {
     background: transparent;
@@ -98,6 +100,8 @@
 
   // only open
   &.open {
+    z-index: 4;
+    transition: z-index 0ms;
     a.button {
       background-color: $color_teal;
       z-index: 5;
