@@ -1,7 +1,9 @@
-.small-modal {
+.three-modal {
   position: absolute;
   height: 250px;
   width: 500px;
+  top: 0;
+  left: 0;
 
   a.button {
     background: transparent;
@@ -17,6 +19,7 @@
     border-radius: 50%;
     padding: 0;
     z-index: 0;
+    transform: scale(0);
     -webkit-appearance: none;
     transition: 250ms 750ms;
     cursor: pointer;
@@ -98,7 +101,7 @@
     a.button {
       background-color: $color_teal;
       z-index: 5;
-      transform: rotate(45deg);
+      transform: rotate(45deg) scale(1);
       transition: 250ms;
 
       img {

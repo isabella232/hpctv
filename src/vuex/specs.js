@@ -7,7 +7,7 @@ const state = {
         title: 'Heat Output',
         subtitle: '4.0944 Million BTU/Hr',
         body: 'We recycle Cheyenne’s waste heat to warm our offices and melt snow along the building’s sidewalks during winter.',
-        media: '/static/img/modal-placeholder.jpg'
+        media: '/static/video/specs-videos/spec_heat.mp4'
       }
     },
     {
@@ -17,7 +17,7 @@ const state = {
         title: 'Data Transfer Rate',
         subtitle: '200 GBps (Gigabytes per second)',
         body: 'Cheyenne writes data 20,000x faster than a typical USB flash drive can handle and about 3x faster than the previous supercomputer, Yellowstone.',
-        media: '/static/img/modal-placeholder.jpg'
+        media: '/static/video/specs-videos/spec_transferrate.mp4'
       }
     },
     {
@@ -27,7 +27,7 @@ const state = {
         title: 'Processing Cores',
         subtitle: '145,152 total processing cores',
         body: 'Each core processes an individual dataset while simultaneously communicating  with other cores to make more complex calculations.',
-        media: '/static/img/modal-placeholder.jpg'
+        media: '/static/video/specs-videos/spec_processing.mp4'
       }
     },
     {
@@ -37,7 +37,7 @@ const state = {
         title: 'Total Memory',
         subtitle: '313 TB',
         body: 'That’s a LOT of SDRAM. For comparison, you’d need about 78,250 HP Chromebooks for the same amount of total memory.',
-        media: '/static/img/modal-placeholder.jpg'
+        media: '/static/video/specs-videos/spec_memory.mp4'
       }
     },
     {
@@ -47,7 +47,7 @@ const state = {
         title: 'Performance',
         subtitle: '5.4 Petaflops',
         body: 'Cheyenne’s computing speed is so fast, you would need 21,600 iPhone 7’s just to keep up.',
-        media: '/static/img/modal-placeholder.jpg'
+        media: '/static/video/specs-videos/spec_performance.mp4'
       }
     }
   ],

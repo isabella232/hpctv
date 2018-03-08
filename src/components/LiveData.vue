@@ -1,14 +1,11 @@
 <template>
   <div class="live-data">
+    <ThreeModal :data="threeModal" :showButton="true"/>
     <header class="row dead-center text-center upper page-header">
       <h1>Real-Time Data.* Real Implications</h1>
     </header>
 
     <main class="row reverse">
-      <div class="three-modal" v-if="threeModal.show" :style="{top: threeModal.y, left: threeModal.x}">
-        <button @click="threeModal.show = false"> close </button>
-        <p> &lbrace; modalText &rbrace;</p>
-      </div>
 
       <section class="col data-viz">
         <div class="primary col around">
@@ -68,7 +65,7 @@ import StatCard from './StatCard';
 import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
 import LineChart from './graphs/LineChart';
-import SmallModal from './modals-navs/Small-Modal';
+import ThreeModal from './modals-navs/ThreeModal';
 import axios from 'axios';
 
 export default {
@@ -105,10 +102,14 @@ export default {
         }
       ],
       threeModal: {
-        show: false,
         x: 0,
-        y: 0
-      },
+        y: 0,
+        modalData: {
+          title: '',
+          subtitle: '',
+          body: '',
+        }
+      }, 
       rawResponse: null,
       chartData: {
         labels: null,
@@ -129,7 +130,7 @@ export default {
     StatCard,
     DockNav,
     Three,
-    SmallModal,
+    ThreeModal,
     LineChart
   },
 
@@ -170,13 +171,33 @@ export default {
      * @param {Object} event automatically passed click event from the window.
      */
     insertModal(event) {
-      this.threeModal.x = `${event.mouseX}%`;
-      this.threeModal.y = `${event.mouseY}%`;
+      // position info
+      // this.threeModal.x = `${event.mouseX}%`;
+      //data massaging to conform to small Modal type
+      this.threeModal = {
+        x: event.mouseX,
+        y: event.mouseY,
+        modalData: {
+          title: event.data.group,
+          subtitle: event.data.data.coreHours,
+          body: event.data.body,
+        }
+      };
+
       this.threeModal.show = true;
     },
 
     getArrayofSize(num) {
       return Array.from(new Array(num).keys());
+    },
+    /**
+     * Called by the child components to make sure only one modal is on at a time.
+     */
+    allOff() {
+      const modals = Object.values(this.$children);
+      modals.forEach(element => {
+        element.$data.visible = false;
+      });
     }
   },
 
@@ -230,10 +251,9 @@ export default {
         console.log(`%c ${error}`, 'color:red');
       });
 
-
-
     // Get the pulse data
-    axios.get('report/activity?daysAgo=60', this.apiConfig)
+    axios
+      .get('report/activity?daysAgo=60', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           const data = response.data;

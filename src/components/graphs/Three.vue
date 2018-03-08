@@ -144,7 +144,7 @@ export default {
       if (id <= 199) {
         allCubes[id].material.color.set(color);
       } else {
-        console.log(id);
+        // console.log(id);
       }
     },
 
@@ -174,27 +174,47 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseUp(event) {
-      // console.log('mouseup');
+      console.log('mouseup');
       if (!this.dragging) {
         if (event.path[0].tagName === 'CANVAS') {
+          // coordinates in the window
           const mouseX = event.clientX / window.innerWidth * 100;
           const mouseY = event.clientY / window.innerHeight * 100;
-          // console.log('mouseX ', mouseX);
-          // console.log('mouseY', mouseY);
-          // console.log('inside canvas');
-          this.mouse.x = event.clientX / this.renderer.domElement.width;
-          this.mouse.y = event.clientY / this.renderer.domElement.height;
+
+          // coordinates in the canvas. This is between -1 and 1.
+          this.mouse.x = (event.clientX - this.renderer.domElement.offsetLeft) / this.renderer.domElement.clientWidth * 2 - 1;
+          this.mouse.y = -((event.clientY - this.renderer.domElement.offsetTop) / this.renderer.domElement.clientHeight) * 2 + 1;
 
           this.raycaster.setFromCamera(this.mouse, this.camera);
 
-          let intersects = this.raycaster.intersectObjects(this.group.children);
+          let spriteIntersects = this.raycaster.intersectObjects(this.sprites.children);
 
-          if (intersects.length > 0) {
-            console.log('found intersection');
-            intersects[0].object.material.color.setHex(0xf5f5f5);
+          if (spriteIntersects.length > 0) {
+            console.log('found sprite intersection');
+            // pass the window coordinates and the associated data-set in an event.
+            let selectedSprite = spriteIntersects[0].object.name;
+            // Where are we pulling data from?
+            let popupData;
+            switch (this.activeTab) {
+              case 'user allocation':
+                popupData = this.vuex.userAllocation.filter(object => {
+                  return object.group == selectedSprite;
+                });
+                break;
+
+              case 'area of study':
+                popupData = this.dataSet.filter(object => {
+                  return object.group == selectedSprite;
+                });
+                break;
+
+              default:
+                console.error('cannot find suitable data src for modal in onMouseUp event');
+                break;
+            }
+
+            this.$emit('canvasWasTouched', { mouseX, mouseY, data: popupData[0] });
           }
-
-          this.$emit('canvasWasTouched', { mouseX, mouseY });
         }
       }
       this.mouseDown = false;
@@ -264,13 +284,13 @@ export default {
         // each object in data set
         const user = activeData[i].group;
         const color = colors[i];
-        console.log(user, i);
+        // The Sprite (+) will go in the center of the group.
+        const halfway = Math.floor(activeData[i].data.percentages.coreHours / 2);
+        // console.log(user, i);
 
-        this.makeSprite(offset);
-
-        // create a block either at the beginning or somewhere in the middle. each block is .5% so allocation number is doubled.
+        // create a block either at the beginning of the array or somewhere in the middle. each block is .5% so allocation number is doubled.
+        this.makeSprite(offset + halfway, user);
         offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
-
         // loop through the other axis.
         for (let j = 0; j < activeData[i].data.percentages.coreHours * 2; j++) {
           // recolor each cube in the range.
@@ -292,7 +312,7 @@ export default {
       return disc;
     },
 
-    makeSprite(cubeNumber) {
+    makeSprite(cubeNumber, groupName) {
       //create the object
       const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
       // next line avoids explicit image texture to be size in base 2 sizes.
@@ -300,7 +320,7 @@ export default {
       const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
       const sprite = new Sprite(spriteMaterial);
       // place it at cubeNumber's position overhead.
-
+      sprite.name = groupName;
       sprite.position.x = this.group.children[cubeNumber].position.x;
       sprite.position.y = 4;
       sprite.position.z = this.group.children[cubeNumber].position.z;
@@ -308,7 +328,7 @@ export default {
       sprite.translateX(15);
       sprite.translateY(1.5);
       sprite.translateZ(-6);
-      
+
       this.sprites.add(sprite);
     },
 
@@ -372,11 +392,11 @@ export default {
     this.init();
     // this.enableDeveloperMode();
 
-    // create a 3 dimensional array of polygons.
+    // create a 2 dimensional array of polygons.
     for (let x = 0; x < 20; x++) {
       for (let z = 0; z < 10; z++) {
-        // const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
-        const color = 'rgb(200,200,200)';
+        // default colors for before data loads.
+        const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
         const cube = this.makeCube(color);
 
         this.group.add(cube);
@@ -435,7 +455,6 @@ export default {
       }
     },
     activeTab(newVal) {
-      console.log('tab changed to', newVal);
       this.applyDataSets(this.dataSet, newVal);
     }
   }

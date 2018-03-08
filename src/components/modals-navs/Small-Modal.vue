@@ -1,6 +1,6 @@
 <template>
   <div class="small-modal" :id="getID" :class="{open: visible}">
-    <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()">
+    <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()" v-show="(showButton)">
       <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}" >
@@ -8,8 +8,9 @@
         <span>{{data.modalData.title}}</span>
       </header>
       <div class="row start panel-container">
-        <div class="panel left">
-          <video src="/static/video/specs-videos/data-tx.mp4" loop muted playsinline></video>
+
+        <div class="panel left" v-if="data.modalData.media">
+          <video :src="data.modalData.media" loop muted playsinline></video>
         </div>
         <div class="panel right">
           <p class="subtitle lime bold upper">{{data.modalData.subtitle}}</p>
@@ -25,7 +26,14 @@
 <script>
 export default {
   name: 'small-modal',
-  props: ['data'],
+  props: {
+    data: Object,
+    showButton: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
 
   data() {
     return {
@@ -69,8 +77,10 @@ export default {
 
   watch: {
     visible(newVal) {
-      this.video = document.querySelector(`#${this.getID} video`);
-      newVal ? this.video.play() : this.video.pause();
+      if (this.data.media) {
+        this.video = document.querySelector(`#${this.getID} video`);
+        newVal ? this.video.play() : this.video.pause();
+      }
     }
   }
 };

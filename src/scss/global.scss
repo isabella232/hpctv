@@ -98,7 +98,7 @@ body.projects-page {
     display: block;
     content: '';
     position: absolute;
-    z-index: 0;
+    z-index: -1;
     background-size: contain;
     background-repeat: no-repeat;
     width: 533px;
