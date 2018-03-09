@@ -4,7 +4,7 @@
       <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
-      <header class="row upper">
+      <header class="row upper align-center">
         <span>{{data.modalData.title}}</span>
       </header>
       <div class="row start panel-container">

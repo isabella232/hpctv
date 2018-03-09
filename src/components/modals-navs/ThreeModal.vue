@@ -9,7 +9,7 @@
       </header>
       <div class="row start panel-container">
         <div class="panel right">
-          <p class="subtitle lime bold upper">{{data.modalData.subtitle}}</p>
+          <p class="subtitle lime bold upper">{{data.modalData.subtitle}} Core Hours Used</p>
           <p>
             {{data.modalData.body}}
           </p>

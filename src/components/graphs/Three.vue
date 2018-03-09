@@ -174,7 +174,6 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseUp(event) {
-      console.log('mouseup');
       if (!this.dragging) {
         if (event.path[0].tagName === 'CANVAS') {
           // coordinates in the window
@@ -186,7 +185,6 @@ export default {
           this.mouse.y = -((event.clientY - this.renderer.domElement.offsetTop) / this.renderer.domElement.clientHeight) * 2 + 1;
 
           this.raycaster.setFromCamera(this.mouse, this.camera);
-
           let spriteIntersects = this.raycaster.intersectObjects(this.sprites.children);
 
           if (spriteIntersects.length > 0) {
@@ -302,16 +300,10 @@ export default {
     },
 
     /**
-     * Generator function. Creates a new + image on the origin of each new break in the dataSet.
-     * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
+     * Creates a circle with plus icon above cubeNumber's position with title of groupname
+     * @param {Number} cubeNumber the ID number b/w 0-199 of the cube in the array
+     * @param {String} groupName the name that will be assigned to the (+) Icon. This information is used to get the appropriate data from the server.
      */
-    makeCircle(color) {
-      const geometry = new RingGeometry(0.55, 0.75, 32);
-      const material = new MeshBasicMaterial({ color });
-      const disc = new Mesh(geometry, material);
-      return disc;
-    },
-
     makeSprite(cubeNumber, groupName) {
       //create the object
       const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');

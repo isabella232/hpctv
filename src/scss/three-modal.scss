@@ -1,7 +1,7 @@
 .three-modal {
   position: absolute;
-  height: 250px;
-  width: 500px;
+  // height: 250px;
+  width: 300px;
   top: 0;
   left: 0;
   z-index: -1;
@@ -38,7 +38,7 @@
       transform: scaleY(0);
       transition: transform 250ms 250ms;
       transform-origin: 50% 0%;
-      height: 200px;
+      // height: 200px;
       overflow: hidden;
       .panel {
         flex: 1;
@@ -46,8 +46,6 @@
         margin: 5px;
         overflow-y: scroll;
         text-align: left;
-        &.left {
-        }
         &.right {
           padding: 10px;
           overflow-y: scroll;
@@ -67,8 +65,8 @@
 
     header {
       background-color: $color_teal;
-      height: 2em;
       padding-left: 1.75em;
+      padding-right: 1.5em;
       text-align: left;
       font-family: $font_poppins_bold;
       font-size: 1.25em;
@@ -140,7 +138,7 @@
   // inverted base styles
   .modal-body.inverted {
     position: relative;
-    right: 500px;
+    right: 300px;
     transform-origin: 100% 0%;
     transform: scaleX(0);
     transition: transform 250ms 500ms;

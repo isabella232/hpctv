@@ -41,8 +41,6 @@
         margin: 5px;
         overflow-y: scroll;
         text-align: left;
-        &.left {
-        }
         &.right {
           padding: 10px;
           overflow-y: scroll;
@@ -66,7 +64,10 @@
       padding-left: 1.75em;
       text-align: left;
       font-family: $font_poppins_bold;
-      font-size: 1.25em;
+      font-size: 150%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     a.button {
@@ -140,5 +141,6 @@
   }
 }
 video {
-  max-width: 100%;
+  // max-width: 100%;
+  height: 100%;
 }

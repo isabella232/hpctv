@@ -83,6 +83,7 @@
       .project-lead {
         text-align: left;
         font-family: $font_poppins;
+        font-size: 85%;
         p {
           text-transform: initial;
           margin: 10px 0 0 0;
@@ -134,7 +135,7 @@
   }
   .modal-article {
     height: auto;
-    width: 90%;
+    width: 80%;
     overflow-y: scroll;
     margin: auto;
     text-align: left;
@@ -170,7 +171,7 @@
     display: block;
     width: 90%;
     margin: 5px auto;
-    opacity: 0.5;
+    border-top: solid 3px $color_white;
   }
 
   @media screen and (max-width: 600px) {

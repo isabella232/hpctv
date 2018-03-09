@@ -8,7 +8,7 @@ const state = {
       heroImage: '/static/img/featured-projects/wind-forecast.jpg',
       projectLead: {
         name: 'Pedro A. Jimenez Munoz',
-        organizationName: 'Research Applications Lab Weather Systems and Assessment Program (RAL WSAP)',
+        organizationName: 'Research Applications Lab Weather Systems & Assessment Program',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/pedro-jimenez.jpg',
         shortBio: 'Project Scientist'
@@ -56,14 +56,13 @@ const state = {
         organizationName: 'George Mason University',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/benjamin-cash.jpg',
-        shortBio: `Dr. Benjamin Cash is a Research Associate Professor in the Center for Ocean-Land-Atmosphere Studies (COLA). His research focuses on the prediction and predictability of the physical climate system, with an emphasis on the influence of climate on human health. His research makes extensive use of observed climate data as well as data from climate models, and he has led multiple ground-breaking climate modeling studies using some of the most powerful supercomputers available to civilian researchers. He earned his Bachelor degree in Earth and Planetary Science from Harvard University (1994) and his Ph.D. in Meteorology from The Pennsylvania State University (2000). He has chaired an NSF working group and authored an NSF white paper on climate and infectious disease. He has received funding from multiple federal agencies, including NOAA, NSF, NASA, and ONR, and his work has been published in Journal of Climate, Climate Dynamics, PLoS One, and Nature Climate Change. `
+        shortBio: ` Dr. Benjamin Cash is a Research Associate Professor in the Center for Ocean-Land-Atmosphere Studies (COLA). His research focuses on the prediction and predictability of the physical climate system, with an emphasis on the influence of climate on human health.`
       },
       statData: [
         {
           statName: 'Core Hours',
           statNumber: 58000000,
           iconPath: '/static/icon/core-hours-icon.svg'
-
         }
       ],
       mainContent: [
@@ -106,7 +105,6 @@ const state = {
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/dmitri-mavriplis.jpg',
         shortBio: `Dimitri Mavriplis is the Max Castagne Professor of Mechanical Engineering at the University of Wyoming. His research focuses on high performance computing for computational fluid dynamics problems with applications in aerospace engineering and wind energy. Dr. Mavriplis is a computational scientist working at the interface of computer science, applied mathematics and fluid dynamics.`
-
       },
       statData: [
         {
