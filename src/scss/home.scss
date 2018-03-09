@@ -153,6 +153,7 @@ body.home-page {
       margin-top: 50%;
       box-shadow: 0 0 10px 5px $color_trans_black;
       cursor: pointer;
+      text-shadow: none;
 
       &:hover {
         background: darken($color_lime, 10%);

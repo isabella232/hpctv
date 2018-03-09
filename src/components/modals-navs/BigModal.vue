@@ -14,7 +14,7 @@
               <div v-for="(stat,i) in data.statData" :key="stat.statName">
                 <stat-card :cardData="data.statData[i]">
                 </stat-card>
-                <hr style="display: block;width: 90%; margin: 5px auto;">
+                <hr>
               </div>
             </ul>
             <div class="project-lead">

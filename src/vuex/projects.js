@@ -4,14 +4,14 @@ const state = {
     {
       name: 'Wind Forecast Improvement',
       longProjectName: 'Wind Forecast Improvement Project 2',
-      area: 'AREA NOT LISTED',
+      area: '',
       heroImage: '/static/img/featured-projects/wind-forecast.jpg',
       projectLead: {
         name: 'Pedro A. Jimenez Munoz',
         organizationName: 'Research Applications Lab Weather Systems & Assessment Program',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/pedro-jimenez.jpg',
-        shortBio: 'Project Scientist'
+        shortBio: ''
       },
       statData: [
         {
@@ -49,7 +49,7 @@ const state = {
     {
       name: 'Oceanic Atmospheric Forecasts',
       longProjectName: 'Project Metis: Seasonal Forecasts with Enhanced Ocean and Atmosphere Resolution',
-      area: 'AREA NOT LISTED',
+      area: '',
       heroImage: '/static/img/featured-projects/oceanic-forecasts.jpg',
       projectLead: {
         name: 'Benjamin Cash',
@@ -141,7 +141,7 @@ const state = {
     {
       name: 'Understanding heliospheric Weather',
       longProjectName: 'Turbulence and Magnetic Reconnection in the Heliosphere',
-      area: 'AREA NOT LISTED',
+      area: '',
       heroImage: '/static/img/featured-projects/heliosphere.jpg',
       projectLead: {
         name: 'Michael Shay',
@@ -191,7 +191,7 @@ const state = {
     {
       name: 'Predicting Climate Extremes',
       longProjectName: 'Predicting Near-Term Changes in the Likelihood of Climate Extremes: Initialized Decadal Climate Prediction Using Large Ensembles',
-      area: 'AREA NOT LISTED',
+      area: '',
       heroImage: '/static/img/featured-projects/climate-extremes.jpg',
       projectLead: {
         name: 'Stephen Yeager',

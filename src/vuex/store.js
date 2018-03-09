@@ -8,34 +8,40 @@ Vue.use(Vuex);
 
 let host;
 
-switch (window.location.host) {
-  case 'localhost:8080':
-  case /\.vera$/:
-    console.log('this is local environment');
-    host = 'https://private-08983-hpctv.apiary-mock.com/v1/';
-    break;
+// switch (window.location.host) {
+//   case 'localhost:8080':
+//   case /\.vera$/:
+//     console.log('this is local environment');
+//     host = 'https://private-08983-hpctv.apiary-mock.com/v1/';
+//     break;
 
-  case /\.vermilion\.com$/:
-    console.log('this is a staging environment');
-    host = 'https://private-08983-hpctv.apiary-mock.com/v1/';
+//   case /\.vermilion\.com$/:
+//     console.log('this is a staging environment');
+//     host = 'https://private-08983-hpctv.apiary-mock.com/v1/';
 
-    break;
-  case /ucar\.edu$/:
-    console.log('this is a production environment');
-    host = 'https://hpctv-test.ucar.edu/v1/';
-    break;
+//     break;
+//   case /ucar\.edu$/:
+//     console.log('this is a production environment');
+//     host = 'https://hpctv-test.ucar.edu/v1/';
+//     break;
 
-  default:
-    console.error("could not determine the environment in store.js");
-    break;
+//   default:
+//     console.error('could not determine the environment in store.js');
+//     break;
+// }
+
+if (/ucar\.edu$/.test(window.location.host)) {
+  host = 'https://hpctv-test.ucar.edu/v1/';
+} else {
+  host = 'https://private-08983-hpctv.apiary-mock.com/v1/';
+  // host = 'https://hpctv-test.ucar.edu/v1/';
 }
 
-
-
 export const store = new Vuex.Store({
-  state: { 
+  state: {
     apiConfig: {
       baseURL: host,
+      headers: { 'Access-Control-Allow-Origin': 'all'},
       auth: {
         username: 'hpctv',
         password: 'super'

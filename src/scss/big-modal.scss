@@ -87,6 +87,8 @@
         p {
           text-transform: initial;
           margin: 10px 0 0 0;
+          font-size: 95%;
+          line-height: 1.5em;
         }
         span {
           display: inline-block;
@@ -169,8 +171,8 @@
 
   .project-specs hr {
     display: block;
-    width: 90%;
-    margin: 5px auto;
+    width: 100%;
+    margin: 15px auto;
     border-top: solid 3px $color_white;
   }
 
