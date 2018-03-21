@@ -16,7 +16,7 @@
       </li>
       <li>
         <router-link to="live-data" >
-          <img src="/static/icon/real-time-data-icon.svg" alt="">
+          <img src="/static/icon/live-data-icon-2.svg" alt="">
           <span class="lime upper">Live Data</span>
         </router-link>
       </li>

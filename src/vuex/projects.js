@@ -11,7 +11,7 @@ const state = {
         organizationName: 'Research Applications Lab Weather Systems & Assessment Program',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/pedro-jimenez.jpg',
-        shortBio: ''
+        shortBio: 'Dr. Jimenez Munoz has more than 15 years of experience with mesoscale models like the Weather Research and Forecasting (WRF) model. His experience with mesoscale models goes beyond a user perspective having developed parameterizations to improve the model performance. His background with the WRF model includes developments to improve the simulation of wind over complex terrain. In this direction he is working to improve the representation of turbulent mixing to account for both vertical and horizontal mixing by the planetary boundary layer parameterization. This development will expand the currently one dimensional treatment of the turbulent mixing (mixing occurs in the vertical) to three dimensions. The three-dimensional planetary boundary layer parameterization should improve the wind simulations over heterogeneous regions such as complex terrain regions. Simulations performed at Cheyenne are contributing towards these goals.'
       },
       statData: [
         {
@@ -47,7 +47,7 @@ const state = {
       ]
     },
     {
-      name: 'Oceanic Atmospheric Forecasts',
+      name: 'Oceanic, Atmospheric Forecasts',
       longProjectName: 'Project Metis: Seasonal Forecasts with Enhanced Ocean and Atmosphere Resolution',
       area: '',
       heroImage: '/static/img/featured-projects/oceanic-forecasts.jpg',

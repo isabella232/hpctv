@@ -32,6 +32,7 @@ export default {
       scene: null,
       renderer: null,
       dataSet: [],
+      userGroups: [],
       mouse: null,
       mouseDown: false,
       mouseMove: false
@@ -194,7 +195,7 @@ export default {
             // Where are we pulling data from?
             let popupData;
             switch (this.activeTab) {
-              case 'user allocation':
+              case 'facility allocation':
                 popupData = this.vuex.userAllocation.filter(object => {
                   return object.group == selectedSprite;
                 });
@@ -250,8 +251,9 @@ export default {
       let activeData = {};
       let colors = [];
 
-      if (tabName === 'user allocation') {
-        activeData = this.vuex.userAllocation;
+      if (tabName === 'facility allocation') {
+        // TODO: Get New Data Source.
+        // activeData = this.vuex.userAllocation;
         colors = ['#19799c', '#1d8995', '#76bb4f', '#0992c9', '#00ab80', '#09afff'];
       } else if (tabName === 'area of study') {
         activeData = dataSet;
@@ -388,7 +390,7 @@ export default {
     for (let x = 0; x < 20; x++) {
       for (let z = 0; z < 10; z++) {
         // default colors for before data loads.
-        const color = `rgb(${2 * z},${175 + z * 5},${120 + x * 3})`;
+        const color = `rgb(${0 * z},${121 + z * 5},${124 + x * 3})`;
         const cube = this.makeCube(color);
 
         this.group.add(cube);
@@ -410,6 +412,7 @@ export default {
     // Required calls for user interactions.
     this.controls.update();
     this.animate();
+    this.onWindowResize();
   },
 
   created() {
@@ -438,6 +441,11 @@ export default {
       .then(() => {
         this.applyDataSets(this.dataSet, this.vuex.activeTab);
       });
+  
+  
+  axios.get('report/projectlog?daysAgo=1', this.apiConfig).then(response => {
+      this.userGroups = response.data.entries;
+    }).catch(error => error)
   },
 
   watch: {

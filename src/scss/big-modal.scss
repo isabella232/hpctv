@@ -104,6 +104,10 @@
     background: whitesmoke;
     color: black;
     margin: 5px;
+
+    &.relative{
+      position: relative;
+    }
   }
   .media-container {
     text-align: center;
@@ -165,6 +169,28 @@
         strong {
           font-family: $font_poppins_bold;
         }
+      }
+    }
+  }
+
+  .slide-navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 75%;
+    left: 0;
+
+    span {
+      background-color: $color_teal;
+      display: block;
+
+    }
+
+    img {
+      width: 30px;
+      &.reverse {
+        transform: rotate(180deg);
       }
     }
   }

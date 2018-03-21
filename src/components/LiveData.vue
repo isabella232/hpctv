@@ -10,8 +10,8 @@
       <section class="col data-viz">
         <div class="primary col around">
           <div class="row center core-tabs">
-            <div :class="['user-alloc tab', {active: activeTab === 'user allocation'}]" @click="setActiveTab('user allocation')" tabindex="-1">
-              <span>User Allocation</span>
+            <div :class="['user-alloc tab', {active: activeTab === 'facility allocation'}]" @click="setActiveTab('facility allocation')" tabindex="-1">
+              <span>Facility Allocation</span>
             </div>
 
             <div class="area-of-study tab" :class="{active: activeTab === 'area of study'}" @click="setActiveTab('area of study')" tabindex="-1">
@@ -159,8 +159,8 @@ export default {
      */
     setActiveTab(tab) {
       this.$store.state.liveData.activeTab = tab;
-      if (tab === 'user allocation') {
-        this.$store.commit('activeTab', 'user allocation');
+      if (tab === 'facility allocation') {
+        this.$store.commit('activeTab', 'facility allocation');
       } else {
         this.$store.commit('activeTab', 'area of study');
       }
@@ -264,7 +264,7 @@ export default {
               // Jobs and users are NOT on a scale that both can be viewed. therefore one has to be chosen. Jobs seems to be a more interesting number.
               {
                 label: 'Jobs',
-                backgroundColor: 'rgba(0,255,255,0.5)',
+                backgroundColor: 'rgba(0, 121, 124, 0.5)',
                 data: data.entries.map(object => object.jobs),
                 pointRadius: 0,
                 borderWidth: 2,

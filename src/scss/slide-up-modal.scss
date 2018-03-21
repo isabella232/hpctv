@@ -3,7 +3,7 @@
   top: calc(100% - 2.25rem);
   transition: top 250ms ease-in-out;
   background: transparent;
-  z-index: 10;
+  z-index: 1;
   width: 100%;
 
   header {
@@ -81,6 +81,7 @@
   top: 0;
   transition: top 250ms ease-in-out;
   background: transparentize($color_black, 0.25);
+  z-index: 10;
 
   header img {
     transform: rotate(45deg);

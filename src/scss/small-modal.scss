@@ -36,6 +36,7 @@
       height: 200px;
       overflow: hidden;
       .panel {
+        box-shadow: 0 0 20px $color_trans_black;
         flex: 1;
         background-color: $color_dark_grey;
         margin: 5px;
@@ -44,6 +45,7 @@
         &.right {
           padding: 10px;
           overflow-y: scroll;
+          margin-right: 0;
 
           .subtitle {
             font-size: 150%;
@@ -54,6 +56,10 @@
           transform: scaleY(0);
           transform-origin: 50% 0%;
           transition: transform 250ms;
+        }
+
+        &.left {
+          margin-left: 0;
         }
       }
     }

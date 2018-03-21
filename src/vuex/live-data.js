@@ -1,5 +1,5 @@
 const state = {
-  activeTab: 'user allocation',
+  activeTab: 'facility allocation',
   aoigList: [
     {
       prettyName: 'Atmospheric Chemistry',
