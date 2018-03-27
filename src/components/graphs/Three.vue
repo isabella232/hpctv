@@ -132,21 +132,12 @@ export default {
 
     /**
      * Helper function to control a single cube in the array (this.group) of cubes.
-     * @param {Number} x
-     * @param {Number} y
+     * @param {Number} id the index of the target cube in the array from 0-199.
      * @param {String || Number} color string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color
-     * @param {Number} [offset=0] - Number of cubes by which to offset the other parameters
      */
-    updateCube(x, z, color, offset = 0) {
+    updateCube(id, color) {
       const allCubes = this.group.children;
-      const id = x + z * 10 + offset;
-
-      // condition to account for any rounding errors
-      if (id <= 199) {
-        allCubes[id].material.color.set(color);
-      } else {
-        // console.log(id);
-      }
+      allCubes[id].material.color.set(color);
     },
 
     /**
@@ -252,50 +243,56 @@ export default {
       let colors = [];
 
       if (tabName === 'facility allocation') {
-        // TODO: Get New Data Source.
-        // activeData = this.vuex.userAllocation;
+        activeData = this.userGroups;
         colors = ['#19799c', '#1d8995', '#76bb4f', '#0992c9', '#00ab80', '#09afff'];
       } else if (tabName === 'area of study') {
         activeData = dataSet;
-        colors = ['#ffeb99', '#ffd45e', '#fbb144', '#ffe000', '#f7931d', '#f5872c'];
+        colors = ['#ffd45e', '#fbb144', '#ffe000', '#f7931d', '#ffeb99', '#f5872c'];
       } else {
         throw new Error('The tab name is not correct');
       }
 
-      // get totals first
       let totalCoreHours = 0;
-
-      activeData.forEach(set => {
-        totalCoreHours += set.data.coreHours;
+      // get total Core hours for all groups.
+      activeData.forEach(group => {
+        totalCoreHours += group.data.coreHours;
       });
 
-      // convert each of these to a percentage of the whole set, rounded to nearest .5.
-      activeData.forEach(set => {
-        set.data.percentages = {
-          // to decimal -> to percentage -> to .5
-          coreHours: Math.round(set.data.coreHours / totalCoreHours * 100 * 2) / 2
-        };
-      });
-
-      // keep track of consecutive blocks already colored.
       let offset = 0;
-
+      // loop through each group in samle data. keeping track of index is important here.
       for (let i = 0; i < activeData.length; i++) {
-        // each object in data set
-        const user = activeData[i].group;
-        const color = colors[i];
-        // The Sprite (+) will go in the center of the group.
-        const halfway = Math.floor(activeData[i].data.percentages.coreHours / 2);
-        // console.log(user, i);
+        const group = activeData[i];
+        const userName = activeData[i].group;
+        const color = colors[i % colors.length];
 
-        // create a block either at the beginning of the array or somewhere in the middle. each block is .5% so allocation number is doubled.
-        this.makeSprite(offset + halfway, user);
-        offset += i > 0 ? activeData[i - 1].data.percentages.coreHours * 2 : 0;
-        // loop through the other axis.
-        for (let j = 0; j < activeData[i].data.percentages.coreHours * 2; j++) {
-          // recolor each cube in the range.
-          this.updateCube(j, 0, color, offset);
+        // convert the number of Core Hours to a percentage of the whole.
+        group.data.percentage = Math.round(group.data.coreHours / totalCoreHours * 100);
+
+        // now that we have percentages, figure out how many blocks they will take up by doubling their number so that total is out of 200.
+        group.data.blocks = { count: group.data.percentage * 2 };
+        // then figure out the range of IDs for each block.
+        group.data.blocks.start = offset;
+        group.data.blocks.end = offset + group.data.blocks.count - 1;
+
+        // find the visual halfway point.
+        const mathematical = offset + group.data.blocks.count / 2;
+        let visual;
+        if (group.data.blocks.count > 10) {
+          visual = Math.round(mathematical / 5) * 5;
+          // we don't wany multiples of 10, only 5 (to stay in the center of the graph).
+          visual = visual % 10 === 0 ? visual - 5 : visual;
+        } else {
+          visual = mathematical;
         }
+
+        // now set the color for each block in the range.
+        for (let i = group.data.blocks.start; i <= group.data.blocks.end; i++) {
+          if (i == visual) {
+            this.makeSprite(i, userName);
+          }
+          this.updateCube(i, color);
+        }
+        offset = group.data.blocks.end + 1;
       }
 
       this.scene.add(this.sprites);
@@ -390,11 +387,13 @@ export default {
     for (let x = 0; x < 20; x++) {
       for (let z = 0; z < 10; z++) {
         // default colors for before data loads.
-        const color = `rgb(${0 * z},${121 + z * 5},${124 + x * 3})`;
+        // const color = `rgb(${0 * z},${121 + z * 5},${124 + x * 3})`;
+        const color = 0x888888;
         const cube = this.makeCube(color);
 
         this.group.add(cube);
-        this.updateCube(z, x, color);
+        const cubeID = x + z * 10;
+
         // Spacing between cubes adjusted here.
         cube.position.x = -x * 1.25;
         cube.position.z = z * 1.25;
@@ -441,11 +440,24 @@ export default {
       .then(() => {
         this.applyDataSets(this.dataSet, this.vuex.activeTab);
       });
-  
-  
-  axios.get('report/projectlog?daysAgo=1', this.apiConfig).then(response => {
-      this.userGroups = response.data.entries;
-    }).catch(error => error)
+
+    // get the facility breakdown.
+    axios
+      .get('report/projectlog?daysAgo=1', this.apiConfig)
+      .then(response => {
+        this.userGroups = [];
+        // Make sure that this data is in the same format as the AOIG data.
+        response.data.entries.forEach(entry => {
+          this.userGroups.push({
+            data: {
+              coreHours: entry.coreHours,
+              jobs: entry.jobs
+            },
+            group: entry.facility
+          });
+        });
+      })
+      .catch(error => error);
   },
 
   watch: {
