@@ -27,6 +27,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 The root of the application is `/src/App.vue` All other components can be found in `src/components/`.
 
+In order to connect to the Cheyenne API, you must create a file in `/static/env/host.js` and set this variable:  `var hpctvhost = 'https://yourhost.edu/v1/'`. This file is not commited to version control. For dev and staging environments, use the following host: `var hpctvhost = 'https://private-08983-hpctv.apiary-mock.com/v1/'`
+
  ### Vue Router
  The router is responsible for the navigation and url / browser history component of this application. 
  All of the routes are defined in `/src/router/index.js`.
