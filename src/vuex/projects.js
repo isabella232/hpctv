@@ -11,7 +11,7 @@ const state = {
         organizationName: 'Research Applications Lab Weather Systems & Assessment Program',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/pedro-jimenez.jpg',
-        shortBio: 'Dr. Jimenez Munoz has more than 15 years of experience with mesoscale models like the Weather Research and Forecasting (WRF) model. His experience with mesoscale models goes beyond a user perspective having developed parameterizations to improve the model performance. His background with the WRF model includes developments to improve the simulation of wind over complex terrain. In this direction he is working to improve the representation of turbulent mixing to account for both vertical and horizontal mixing by the planetary boundary layer parameterization. This development will expand the currently one dimensional treatment of the turbulent mixing (mixing occurs in the vertical) to three dimensions. The three-dimensional planetary boundary layer parameterization should improve the wind simulations over heterogeneous regions such as complex terrain regions. Simulations performed at Cheyenne are contributing towards these goals.'
+        shortBio: 'Jimenez Munoz, Ph.D. has more than 15 years of experience with mesoscale models like the Weather Research and Forecasting (WRF) model. His experience with mesoscale models goes beyond a user perspective having developed parameterizations to improve the model performance.'
       },
       statData: [
         {
@@ -56,7 +56,7 @@ const state = {
         organizationName: 'George Mason University',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/benjamin-cash.jpg',
-        shortBio: ` Dr. Benjamin Cash is a Research Associate Professor in the Center for Ocean-Land-Atmosphere Studies (COLA). His research focuses on the prediction and predictability of the physical climate system, with an emphasis on the influence of climate on human health.`
+        shortBio: `Benjamin Cash, Ph.D. is a research associate professor in the Center for Ocean-Land-Atmosphere Studies (COLA). His research focuses on the prediction and predictability of the physical climate system, with an emphasis on the influence of climate on human health.`
       },
       statData: [
         {
@@ -104,7 +104,7 @@ const state = {
         organizationName: 'University of Wyoming',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/dmitri-mavriplis.jpg',
-        shortBio: `Dimitri Mavriplis is the Max Castagne Professor of Mechanical Engineering at the University of Wyoming. His research focuses on high performance computing for computational fluid dynamics problems with applications in aerospace engineering and wind energy. Dr. Mavriplis is a computational scientist working at the interface of computer science, applied mathematics and fluid dynamics.`
+        shortBio: `Dimitri Mavriplis, Ph.D. is the Max Castagne professor of Mechanical Engineering at the University of Wyoming. His research focuses on high performance computing for computational fluid dynamics problems with applications in aerospace engineering and wind energy. Mavriplis is a computational scientist working at the interface of computer science, applied mathematics and fluid dynamics.`
       },
       statData: [
         {
@@ -195,10 +195,10 @@ const state = {
       heroImage: '/static/img/featured-projects/climate-extremes.jpg',
       projectLead: {
         name: 'Stephen Yeager',
-        organizationName: 'CGD',
+        organizationName: 'Climate & Global Dynamics',
         twitter: null,
         thumbnail: '/static/img/featured-projects/scientist-photos/stephen-yeager.jpg',
-        shortBio: `Dr. Stephen Yeager is in the Oceanography section of the Climate and Global Dynamics Laboratory at NCAR. His research focuses on advancing our understanding of the mechanisms, climate impacts, and predictability associated with large-scale changes in the ocean.`
+        shortBio: `Stephen Yeager, Ph.D. is in the Oceanography section of the Climate and Global Dynamics Laboratory at NCAR. His research focuses on advancing our understanding of the mechanisms, climate impacts, and predictability associated with large-scale changes in the ocean.`
       },
       statData: [
         {

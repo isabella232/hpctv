@@ -39,6 +39,13 @@
         box-shadow: 0 0 20px $color_trans_black;
         flex: 1;
         background-color: $color_dark_grey;
+            background: #434343;
+    background: -moz-linear-gradient(left, #434343 0%, #636363 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #434343), color-stop(100%, #636363));
+    background: -webkit-linear-gradient(left, #434343 0%, #636363 100%);
+    background: -o-linear-gradient(left, #434343 0%, #636363 100%);
+    background: -ms-linear-gradient(left, #434343 0%, #636363 100%);
+    background: linear-gradient(to right, #434343 0%, #636363 100%);
         margin: 5px;
         overflow-y: scroll;
         text-align: left;

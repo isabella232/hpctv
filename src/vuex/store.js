@@ -24,6 +24,10 @@ export const store = new Vuex.Store({
 
     activeTab(state, tab) {
       state.liveData.activeTab = tab;
+    },
+
+    renderAllSprites(state, value) {
+      state.liveData.renderAllSprites = value;
     }
   },
 

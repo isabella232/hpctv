@@ -38,7 +38,7 @@
             <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationColor="'#d3d3d3'" :paginationSize="16" :paginationPadding="4" @pageChange="visibleContentID = $event">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
                 <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
-                <video v-else-if="isVideo(slide.media)" :src="slide.media" controls muted playsinline loop></video>
+                <video v-else-if="isVideo(slide.media)" :src="slide.media" controls muted playsinline loop controlsList="nodownload"></video>
                 <div v-else>{{slide.media}}</div>
               </AppSlide>
             </Carousel>
@@ -53,13 +53,13 @@
           </article>
 
           <div class="slide-navigation">
-            <span @click="handleExternalNav('n')">
+            <button class="prev" @click="handleExternalNav(visibleContentID - 1)" :disabled="visibleContentID === 0">
               <img src="/static/icon/nav-arrow.svg" alt="">
-            </span>
+            </button>
 
-            <span @click="handleExternalNav('p')">
+            <button class="next" @click="handleExternalNav(visibleContentID + 1)" :disabled="visibleContentID === 1">
               <img class="reverse" src="/static/icon/nav-arrow.svg" alt="">
-            </span>
+            </button>
           </div>
         </section>
 
@@ -116,10 +116,13 @@ export default {
     },
 
     /**
-     * Hooks into Vue-Carousel's navigation methods to override the crappy default navigation UI.
-     * @param {String} direction either 'n' or 'p' (next, prev) do determine which way to go.
+     * Hooks into Vue-Carousel's navigation
+     * @param {Number} direction goes to position in carousel with index of "direction"
      */
-    handleExternalNav(direction) {},
+    handleExternalNav(direction) {
+      // TODO: This is not firing events through the whole component. Find out what internal function to call.
+      this.$children.find(component => component.$el.className == 'VueCarousel').$emit('pageChange', direction);
+    },
 
     /**
      * returns if argument has common image file extension

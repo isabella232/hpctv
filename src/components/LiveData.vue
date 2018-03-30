@@ -1,8 +1,8 @@
 <template>
   <div class="live-data">
-    <ThreeModal :data="threeModal" :showButton="true"/>
+    <ThreeModal :data="threeModal" :showButton="true" @threeModalDidClose="renderAllSprites()"/>
     <header class="row dead-center text-center upper page-header">
-      <h1>Real-Time Data.* Real Implications</h1>
+      <h1>Real-Time Data. Real Implications</h1>
     </header>
 
     <main class="row reverse">
@@ -20,12 +20,12 @@
           </div>
 
           <div class="canvas">
-            <three @canvasWasTouched="insertModal($event)" />
+            <three @canvasWasTouched="insertModal($event)" :allSprites="true"/>
           </div>
         </div>
         <div class="graph">
           <header>
-            <h2>Jobs Running</h2>
+            <h2>Jobs Running*</h2>
           </header>
           <div class="canvas">
             <LineChart :cssClasses="'line-graph'" :width="1000" :chartData="chartData"></LineChart>
@@ -37,7 +37,7 @@
         <div class="collection">
           <header class="upper">
             <!-- Machine Log -->
-            <h2>Now Running</h2>
+            <h2>Now Running*</h2>
           </header>
           <ul>
             <StatCard v-for="stat in nowRunning" :key="stat.statName" :cardData="stat" />
@@ -47,16 +47,29 @@
         <div class="collection">
           <header class="upper">
             <!-- Machine Total -->
-            <h2>Total Run</h2>
+            <h2>Total Run*</h2>
           </header>
           <ul>
             <StatCard v-for="stat in totalRun" :key="stat.statName" :card-data="stat" />
+            <StatCard :card-data="{statNumber:'', statName: '*Updated every 24 hours'}" />
           </ul>
         </div>
       </aside>
     </main>
+    <slide-up-modal title="Glossary">
+      <legend class="legend">
+        <dl class="legend-list col wrap">
+          <div class="legend-item" v-for="term in $store.state.specs.glossary" :key="term.title">
+            <dt class="upper lime">{{ term.title }}</dt>
+            <dd>
+              {{ term.definition }}
+            </dd>
+          </div>
+        </dl>
+      </legend>
+    </slide-up-modal>
     <DockNav />
-    <small class="grey">&nbsp;*Updated every 24 hours</small>
+    
   </div>
 </template>
 
@@ -66,6 +79,7 @@ import DockNav from './modals-navs/DockNav';
 import Three from './graphs/Three';
 import LineChart from './graphs/LineChart';
 import ThreeModal from './modals-navs/ThreeModal';
+import SlideUpModal from './modals-navs/SlideUpModal';
 import axios from 'axios';
 
 export default {
@@ -107,16 +121,16 @@ export default {
         modalData: {
           title: '',
           subtitle: '',
-          body: '',
+          body: ''
         }
-      }, 
+      },
       rawResponse: null,
       chartData: {
         labels: null,
         datasets: [
           {
             label: 'Jobs',
-            backgroundColor: 'rgba(0,255,255,0.5)',
+            backgroundColor: 'rgba(25, 121, 156, 0.5)',
             data: null,
             pointRadius: 0,
             borderWidth: 2,
@@ -131,7 +145,8 @@ export default {
     DockNav,
     Three,
     ThreeModal,
-    LineChart
+    LineChart,
+    SlideUpModal
   },
 
   computed: {
@@ -180,7 +195,7 @@ export default {
         modalData: {
           title: event.data.group,
           subtitle: event.data.data.coreHours,
-          body: event.data.body,
+          body: event.data.body
         }
       };
 
@@ -198,6 +213,11 @@ export default {
       modals.forEach(element => {
         element.$data.visible = false;
       });
+    },
+
+    renderAllSprites(){
+      console.log('message received');
+      // TODO: Finish the relay.
     }
   },
 

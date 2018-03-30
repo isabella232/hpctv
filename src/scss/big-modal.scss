@@ -105,7 +105,7 @@
     color: black;
     margin: 5px;
 
-    &.relative{
+    &.relative {
       position: relative;
     }
   }
@@ -114,6 +114,28 @@
     img,
     video {
       max-width: 100%;
+    }
+
+    .VueCarousel-dot-container {
+      height: 34px;
+      .VueCarousel-dot {
+        margin-top: 6px;
+      }
+      .VueCarousel-dot--active {
+        height: 100% !important;
+        width: 34px !important;
+        margin-top: 0 !important;
+        padding: 0 6px !important;
+        .VueCarousel-dot-inner {
+          width: 100% !important;
+          height: 100% !important;
+          background-color: transparent !important;
+          background-image: url('/static/icon/circular-arrow.png') !important;
+          background-repeat: no-repeat !important;
+          background-size: contain !important;
+          background-position: 50% !important;
+        }
+      }
     }
   }
   .VueCarousel-slide {
@@ -145,6 +167,8 @@
     overflow-y: scroll;
     margin: auto;
     text-align: left;
+    position: relative;
+    z-index: 1;
     h3 {
       font-family: $font_poppins_bold;
       text-align: center;
@@ -178,17 +202,33 @@
     justify-content: space-between;
     width: 100%;
     position: absolute;
-    top: 75%;
+    top: 70%;
     left: 0;
+    overflow: hidden;
 
-    span {
+    button {
       background-color: $color_teal;
       display: block;
-
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      position: relative;
+      outline: none;
+      -webkit-appearance: none;
+      &.prev {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        left: -5px;
+      }
+      &.next {
+        border-top-right-radius: 0;
+        border-bottom-right-radius:0;
+        right: -5px;
+      }
     }
 
     img {
-      width: 30px;
+      width: 15px;
       &.reverse {
         transform: rotate(180deg);
       }

@@ -27,14 +27,14 @@ body.home-page {
     max-width: 960px;
     text-align: center;
     padding: 2em;
-    background: $color_trans_black;
+    background: rgba(0,0,0,0.5);
 
     nav {
       width: 67%;
       margin: -50px auto 30px;
 
       li {
-        background: $color_teal;
+        @include gradient_blue_radial();
         width: 100px;
         height: 100px;
         color: $color_lime;

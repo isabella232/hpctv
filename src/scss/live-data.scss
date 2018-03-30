@@ -76,6 +76,7 @@
       height: 30%;
       header {
         background: $color_teal;
+        // @include gradient_teal_linear();
         color: $color_dark_grey;
         font-family: $font_poppins_bold;
         margin-bottom: 4px;
@@ -96,6 +97,7 @@
     max-width: 420px;
     header {
       background: $color_teal;
+      // @include gradient_teal_linear();
       color: $color_dark_grey;
       font-family: $font_poppins_bold;
       margin-bottom: 10px;
@@ -107,9 +109,10 @@
   }
   small {
     position: absolute;
-    bottom: 10px;
+    bottom: 50px;
     left: 10px;
-    color: $color_dark_grey;
+    color: $color_light_grey;
+    z-index: -1;
   }
   @media screen and (max-width: $tablet) {
     main {

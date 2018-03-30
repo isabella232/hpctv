@@ -61,6 +61,13 @@ export default {
           this.toggle();
         // }
       }
+    },
+
+    visible(newVal){
+      // if visible is false, re-render all the sprites.
+      if (!newVal) {
+        this.$store.commit('renderAllSprites', true);
+      }
     }
   }
 };

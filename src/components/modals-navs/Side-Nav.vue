@@ -9,8 +9,8 @@
       </button>
 
     <button class="next"
-      :class="{'invisible': isLastPage}"
-      :disabled="isLastPage"
+      :class="{'invisible': isLastPage || isFirstPage}"
+      :disabled="isLastPage "
       @click="nextPage()"
     >
       <img src="/static/icon/nav-arrow.svg" alt="next">

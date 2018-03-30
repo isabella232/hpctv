@@ -1,5 +1,6 @@
 const state = {
   activeTab: 'facility allocation',
+  renderAllSprites: true,
   aoigList: [
     {
       prettyName: 'Atmospheric Chemistry',
@@ -83,5 +84,6 @@ const state = {
     }
   ]
 };
+
 
 export default { state };

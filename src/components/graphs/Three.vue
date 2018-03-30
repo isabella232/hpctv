@@ -180,14 +180,16 @@ export default {
           let spriteIntersects = this.raycaster.intersectObjects(this.sprites.children);
 
           if (spriteIntersects.length > 0) {
-            console.log('found sprite intersection');
             // pass the window coordinates and the associated data-set in an event.
             let selectedSprite = spriteIntersects[0].object.name;
+            // hide the canvas sprite so that the HTML can take over.
+            spriteIntersects[0].object.material.opacity = 0;
+            this.$store.commit('renderAllSprites', false);
             // Where are we pulling data from?
             let popupData;
             switch (this.activeTab) {
               case 'facility allocation':
-                popupData = this.vuex.userAllocation.filter(object => {
+                popupData = this.userGroups.filter(object => {
                   return object.group == selectedSprite;
                 });
                 break;
@@ -308,7 +310,7 @@ export default {
       const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
       // next line avoids explicit image texture to be size in base 2 sizes.
       spriteMap.minFilter = LinearFilter;
-      const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600 });
+      const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600, transparent: true });
       const sprite = new Sprite(spriteMaterial);
       // place it at cubeNumber's position overhead.
       sprite.name = groupName;
@@ -339,20 +341,15 @@ export default {
      * Canvas height is 60% of <main>.
      */
     getCanvasHeight() {
-      const main = document.querySelector('main');
-      return (
-        parseInt(
-          getComputedStyle(main)
-            .getPropertyValue('height')
-            .replace('px', '')
-        ) * 0.6
-      );
+      // getting height from DOM selector is causing a strange issue with canvas height on certain render paths. Instead of getting the value of <main> (which is calculated anway in css), we'll do the calculation here and return the appopriate value.
+      return (window.innerHeight - 170) * 0.6; // in live-data.scss -- calc(100vh - 170px);
     }
   },
 
   computed: {
     makeRenderer() {
       const renderer = new WebGLRenderer({ alpha: true });
+      console.log(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setClearColor(0x000000, 0);
       return renderer;
@@ -376,6 +373,10 @@ export default {
 
     apiConfig() {
       return this.$store.state.apiConfig;
+    },
+
+    showingAllSprites() {
+      return this.vuex.renderAllSprites;
     }
   },
 
@@ -411,7 +412,6 @@ export default {
     // Required calls for user interactions.
     this.controls.update();
     this.animate();
-    this.onWindowResize();
   },
 
   created() {
@@ -456,6 +456,7 @@ export default {
             group: entry.facility
           });
         });
+        this.applyDataSets(this.userGroups, this.activeTab)
       })
       .catch(error => error);
   },
@@ -468,6 +469,17 @@ export default {
     },
     activeTab(newVal) {
       this.applyDataSets(this.dataSet, newVal);
+    },
+
+    showingAllSprites(newVal) {
+      console.log('should now be showing all sprites');
+      if (newVal) {
+        this.sprites.children.forEach(sprite => {
+          // allow the animation to finish before repopulating the sprites
+          setTimeout(() => {
+            sprite.material.opacity = 1;}, 1000)
+        });
+      }
     }
   }
 };
