@@ -4,7 +4,9 @@
       <img :src="cardData.iconPath">
     </div>
     <div class="info col start">
-      <span class="number lime">{{ numFormatter(cardData.statNumber) }}</span>
+      <div class="number lime">{{ numFormatter(cardData.statNumber) }}
+        <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup"></div>
+      </div>
       <span class="label upper">{{ cardData.statName }}</span>
     </div>
   </li>

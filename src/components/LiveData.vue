@@ -51,8 +51,8 @@
           </header>
           <ul>
             <StatCard v-for="stat in totalRun" :key="stat.statName" :card-data="stat" />
-            <StatCard :card-data="{statNumber:'', statName: '*Updated every 24 hours'}" />
           </ul>
+          <small>*Updated Every 24 Hours</small>
         </div>
       </aside>
     </main>
@@ -80,6 +80,7 @@ import Three from './graphs/Three';
 import LineChart from './graphs/LineChart';
 import ThreeModal from './modals-navs/ThreeModal';
 import SlideUpModal from './modals-navs/SlideUpModal';
+import moment from 'moment';
 import axios from 'axios';
 
 export default {
@@ -102,6 +103,10 @@ export default {
         }
       ],
       totalRun: [
+        {
+          statName: 'Days Online',
+          statNumber: 0
+        },
         {
           statName: 'Projects Completed',
           statNumber: 0
@@ -164,6 +169,15 @@ export default {
           .getPropertyValue('height')
           .replace('px', '')
       );
+    },
+
+    daysOnline(){
+      const day0 = moment('2017-01-12');
+      return Math.abs(day0.diff(moment.now(), 'days'));
+    },
+
+    linktoProjectPage(){
+      return `<a href="projects#log"><img src="/static/icon/circular-arrow.svg" width="28"></a>`
     }
   },
 
@@ -235,6 +249,7 @@ export default {
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
           this.nowRunning[0].statNumber = data.projects;
+          this.nowRunning[0].additionalMarkup = this.linktoProjectPage;
           this.nowRunning[1].statNumber = data.jobs;
         } else if (response.status === 503) {
           // handle if API is offline
@@ -256,9 +271,10 @@ export default {
           // Successful response
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
-          this.totalRun[0].statNumber = data.projects;
-          this.totalRun[1].statNumber = data.jobs;
-          this.totalRun[2].statNumber = data.coreHours;
+          this.totalRun[0].statNumber = this.daysOnline,
+          this.totalRun[1].statNumber = data.projects;
+          this.totalRun[2].statNumber = data.jobs;
+          this.totalRun[3].statNumber = data.coreHours;
         } else if (response.status === 503) {
           // handle if API is offline
           console.log('%c Cheyenne is offline.', 'color:goldenrod');

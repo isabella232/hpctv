@@ -27,6 +27,16 @@ $color_white: #eeeeee;
   background: -ms-radial-gradient(center, ellipse cover, #454648 0%, #323133 100%);
   background: radial-gradient(ellipse at center, #454648 0%, #323133 100%);
 }
+@mixin gradient_grey_linear() {
+  background: $color_grey;
+  background: #434343;
+  background: -moz-linear-gradient(left, #434343 0%, #636363 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #434343), color-stop(100%, #636363));
+  background: -webkit-linear-gradient(left, #434343 0%, #636363 100%);
+  background: -o-linear-gradient(left, #434343 0%, #636363 100%);
+  background: -ms-linear-gradient(left, #434343 0%, #636363 100%);
+  background: linear-gradient(to right, #434343 0%, #636363 100%);
+}
 
 @mixin gradient_blue_radial() {
   background: rgba(25, 121, 156, 1);

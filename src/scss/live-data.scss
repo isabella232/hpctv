@@ -108,10 +108,9 @@
   }
   }
   small {
-    position: absolute;
-    bottom: 50px;
-    left: 10px;
     color: $color_light_grey;
+    display: block;
+    text-align: right;
     z-index: -1;
   }
   @media screen and (max-width: $tablet) {

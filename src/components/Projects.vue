@@ -113,11 +113,26 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('projects-page');
-    axios.get('report/projectlog?daysAgo=30', this.apiConfig).then(response => {
-      if (response.status === 200){
-        this.tableData = response.data.entries;
-      }
-    }).catch(err => {return error})
+    axios
+      .get('report/projectlog?daysAgo=30', this.apiConfig)
+      .then(response => {
+        if (response.status === 200) {
+          this.tableData = response.data.entries;
+        }
+      })
+      .catch(err => {
+        return error;
+      });
+  },
+
+  mounted() {
+    // Check to see if the log should be open on start via # in url.
+    if (this.$route.hash === '#log') {
+      const projectlog = this.$children.find(component => {
+        return component.title == 'Project Log';
+      });
+      projectlog.legendIsOpen = true;
+    }
   }
 };
 </script>
