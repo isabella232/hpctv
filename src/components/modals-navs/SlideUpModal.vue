@@ -25,7 +25,7 @@ export default {
     legendIsOpen(newVal) {
       // It's possible that this component may be initialized via a hash route. If so, then when we close it, we want to remove the hash.
       if (!newVal) {
-        this.$router.replace('projects');
+        this.$router.replace(this.$route.path);
       }
     }
   }

@@ -46,11 +46,11 @@
         </div>
         <TableComponent :data="tableData" sort-by="title" sort-order="desc">
           <TableColumn show="title" label="Name"></TableColumn>
-          <TableColumn show="organization" label="Organization"></TableColumn>
           <TableColumn show="facility" label="Facility"></TableColumn>
-          <TableColumn show="areaOfInterestGroup" label="Area of Study"></TableColumn>
           <TableColumn show="jobs" label="Jobs"></TableColumn>
           <TableColumn show="coreHours" label="Core Hours"></TableColumn>
+          <TableColumn show="areaOfInterestGroup" label="Area of Study"></TableColumn>
+          <TableColumn show="organization" label="Organization"></TableColumn>
         </TableComponent>
       </div>
     </SlideUpModal>
