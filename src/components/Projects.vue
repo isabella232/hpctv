@@ -44,7 +44,7 @@
           <p class="lime upper">What Cheyenne is Working on</p>
           <p>Explore the complete list of projects currently running on the supercomputer.</p>
         </div>
-        <TableComponent :data="tableData" sort-by="title" sort-order="desc">
+        <TableComponent :data="tableData" sort-by="coreHours" sort-order="desc">
           <TableColumn show="title" label="Name"></TableColumn>
           <TableColumn show="jobs" label="Jobs"></TableColumn>
           <TableColumn show="coreHours" label="Core Hours" data-type="numeric"></TableColumn>

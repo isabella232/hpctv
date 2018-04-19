@@ -104,7 +104,7 @@ export default {
       ],
       totalRun: [
         {
-          statName: 'Days Online',
+          statName: 'Days in Operation',
           statNumber: 0
         },
         {

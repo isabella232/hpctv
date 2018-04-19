@@ -35,10 +35,10 @@
 
         <section class="col relative">
           <div class="media-container">
-            <Carousel :perPage="1" :paginationActiveColor="'#bfd600'" :paginationColor="'#d3d3d3'" :paginationSize="16" :paginationPadding="4" @pageChange="visibleContentID = $event">
+            <Carousel :perPage="1" @pageChange="visibleContentID = $event" :paginationEnabled="false">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
                 <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
-                <video v-else-if="isVideo(slide.media)" :src="slide.media" controls muted playsinline loop controlsList="nodownload"></video>
+                <video v-else-if="isVideo(slide.media)" :src="slide.media" controls muted playsinline loop autoplay controlsList="nodownload"></video>
                 <div v-else>{{slide.media}}</div>
               </AppSlide>
             </Carousel>

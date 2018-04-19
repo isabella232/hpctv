@@ -9,7 +9,7 @@
       </button>
 
     <button class="next"
-      :class="{'invisible': isLastPage || isFirstPage}"
+      :class="{'invisible': isLastPage}"
       :disabled="isLastPage "
       @click="nextPage()"
     >

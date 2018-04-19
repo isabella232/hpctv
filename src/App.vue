@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <side-nav />
+    <side-nav v-if="startClicked"/>
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
@@ -36,6 +36,13 @@ export default {
       orderedRoutes: ['/', 'specs', 'live-data', 'projects'],
       transitionName: 'forward-full-page-slide'
     };
+  },
+
+  computed: {
+    startClicked(){
+      return !this.$store.state.home.showSplash;
+    }
+
   },
 
   watch: {
