@@ -5,7 +5,7 @@
       <router-view></router-view>
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
-      <ul class="sponsors row around">
+      <ul class="sponsors row around wrap">
         <li><img src="/static/img/sponsor-logo-cisl.png" alt="CISL Logo"></li>
         <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:55px"></li>
         <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo"></li>
