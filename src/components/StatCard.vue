@@ -4,7 +4,7 @@
       <img :src="cardData.iconPath">
     </div>
     <div class="info col start">
-      <div class="number lime">{{ numFormatter(cardData.statNumber) }}
+      <div class="number lime">{{ cardData.statNumber | numFormatter}}
         <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup"></div>
       </div>
       <span class="label upper">{{ cardData.statName }}</span>
@@ -26,7 +26,7 @@ export default {
     }
   },
 
-  methods: {
+  filters: {
     /**
      * Used to adjust the notation of larger numbers. e.g. (100,000 => 100k).
      * @param {Number} num the number to transform.

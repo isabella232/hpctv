@@ -418,7 +418,6 @@ export default {
     // Reach out to the API as soon as possible.
 
     // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
-    // const urls = this.vuex.aoigList.map(group => `/static/${group.queryString.replace(/\%20/g, '-').toLowerCase()}.json`);
     const urls = this.vuex.aoigList.map(group => `report/aoiglog/aoig/${group.queryString}?daysAgo=30`);
     axios
       .all(urls.map(endpoint => axios.get(endpoint, this.apiConfig)))

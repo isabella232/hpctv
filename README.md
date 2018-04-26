@@ -41,6 +41,9 @@ Vuex is used as a conveniece to consolidate all of the static  / semi-static dat
 
 Additionally, any information within a Vue component on the page that comes from Vuex is proxied via `vuex.<propertyName>`. This makes finding information from vuex easier to isolate when searching source code.
 
+### Axios
+Axios is a promised based HTTP library and is used for all external resource calls in this application. It has a global configuration object that can be modified in `/src/vuex/store.js` as the `apiConfig` object. Generally this should not be modified.
+
 ## Table of Contents
 
 1. [Global Components](#global-components)
@@ -53,15 +56,15 @@ Additionally, any information within a Vue component on the page that comes from
 
 1. [Specs](#specs)
     - [Small Modal](#specs-small-modal)
-    - [Slide up Modal (Glossary)](#specs-glossary)
+    - [Glossary (Slide Up Modal)](#specs-glossary)
 
 1. [Live Data](#live-data)
-    - Now Running / Total Run (Stat Cards)
-    - 3D Graph (Three)
-    - Line Graph (Live Chart)
-    - Glosary (Slide Up Modal)
+    - [Now Running / Total Run (Stat Cards)](#now-running)
+    - [3D Graph (Three)](#three)
+    - [Line Graph (Line Chart)](#line-chart)
+    - [Glosary (Slide Up Modal)](#live-data-glossary)
 
-1. Projects
+1. [Projects](#projects)
     - Project Log (Slide Up Modal)
         - Table (TableComponent)
     - Individual Project View
@@ -125,17 +128,242 @@ Toggles the visibility of the sender modal. Emits an event to the parent to turn
 #### Props
 `title` { String } - The name that appears on the tab.
 
-### Slot
+#### Slot
 `HTML` - any content that you want to appear INSIDE the slide up modal goes in a slot like this:
 
     <slide-up-modal :title="Title on the Tab">
       <!-- your content here -->
     </slide-up-modal>
 
-### Watchers
+#### Watchers
 `legendIsOpen({any})`
   
   This watcher is specifically to make sure that if the slide up modal is initialized directly via a hash route, that when the modal is closed, it removes the hash from the URL.
 
+#### Content
+
+All editable content for the glossary can be found in `/src/vuex/specs.js` in the `glossary` Object.
+
+    {
+      title: String,
+      subtitle: String (optional),
+      definition: String || template literal
+    }
+
 
 ## <a name="#live-data">Live Data</a>
+The Live Data page is the page that handles nearly all of the API calls. Some of these calls live in the `created()` hook of this component and are passed as props to their respective components.
+### <a name="#now-running">Now Running / Total Run (Stat Card)</a>
+Each of the Stat cards displays data from the API which is passed as a prop.
+#### Props
+`cardData` : {Object}
+
+       cardData: {
+          statName: String - the display name of the card,
+          iconPath: String (optional) - path to an icon displayed on left,
+          statNumber: Number || String - the data point associated with statName
+         }
+
+#### Filters
+`numFormatter(num: {Number}) -> String`
+
+Used to adjust the notation of larger numbers. e.g. (100,000 => 100k).
+All numbers from the API should be passed through this function. Returns string formatted with commas for numbers less than 49000. For numbers over 49000, returns a string with a suffix denoting the order of magnitude (i,e. K for thousand, M for million, B for billion, T for trillion).
+
+### <a name="three">3D Graph (Three)</a>
+This is by far the most complex component in the app. It uses a library called [Three.js](https://threejs.org/docs/index.html) to render the data vizualization. all the data for the graph comes directly from the API and should not be entered manually. 
+
+To enable developer mode, type the Konami code at any point on the Live-data page. 
+
+`↑ ↑ ↓ ↓ ← → ← → b a`
+
+If entered correctly, you will see a yellow box around the scene. This disables the lock on the orbit controls as well as displays bounding boxes and object normals for the objects in the scene including lights. Refreshing the page will disable this mode.
+
+Due to the nature of working with Three JS there is a lot of boiler plate code in this component. The lifecycle of the app kicks off in the `created()` hook where the app reaches out to the API to get data as quickly as possible.
+
+#### Methods
+
+` init()`
+
+Responsible for creating the 3D environment, binding canvas events,
+
+
+` enableDeveloperMode()`
+
+Removes mouse restrictions for full camera control, adds helpers to the scene for visualising directions and normals of the 3D objects.
+
+
+` makeCube(color) ⇒ BoxGeometry`
+
+Generator function to create a simple Cube geometry.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | String \| Number | string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color |
+
+` updateCube(id, color)`
+
+Helper function to control a single cube in the array (this.group) of cubes.
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | Number | the index of the target cube in the array from 0-199. |
+| color | String \| Number | string representation of a color in rgb/hex format or websafe color strings. Hexidecimal representation of color |
+
+` animate()`
+
+Required function by ThreeJS. Do not call directly.
+
+
+` onWindowResize()`
+
+Handler for resizing the canvas
+
+
+` onMouseUp(event)`
+
+Handler for mouse up event
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | Event | the window event |
+
+` onMouseDown(event)`
+
+Handler for mouse down event
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | Event | the window event |
+
+` onMouseMove(event)`
+
+Handler for mouse move event
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | Event | the window event |
+
+` applyDataSets(dataSet, tabName)`
+
+Used to change the 3D model's data visualization. Also emits an event to pass data to the modal in the parent component.
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dataSet | Array\<Object> | The new Dataset |
+| tabName | String | the active tab for which to compute data. |
+
+        dataset:[
+            {
+                data: {
+                    coreHours: Number
+                    jobs: Number
+                    projects: Number
+                },
+                group: String - the name of the organization or facility.
+            },
+            {...}, {...}
+        ]
+
+` makeSprite(cubeNumber, groupName)`
+
+Creates a circle with plus icon above cubeNumber's position with title of groupname
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cubeNumber | Number | the ID number b/w 0-199 of the cube in the array |
+| groupName | String | the name that will be assigned to the (+) Icon. This information is used to get the appropriate data from the server. |
+
+` getCanvasWidth() ⇒ number`
+
+get the width of the canvas. This value will be 100% of it's container
+
+
+**Returns**: number - a number of pixels
+
+` getCanvasHeight()`
+
+Canvas height is 60% of `<main>`
+
+
+
+### <a name="line-chart">Line Chart</a>
+_This component is an open source project that has been modified and extendedbased on [Vue-ChartJS](http://vue-chartjs.org/#/home)_
+
+The line chart is reponsible for displaying data from the API as well. This data does not work in staging or dev environments for some reason. All data is passed as a prop. See official documentation for detailed desctipyions. The modifcations to this component are strictly for responsive Data as well as non-default settings.
+
+
+### <a name="#live-data-glossary">Glossary (Slide up Modal)</a>
+This component is identical to [this one](#specs-glossary).
+
+
+## <a name="#projects">Projects</a>
+This page is the most likely to contain updatable content in the future. All of the editable regions will be defined below. All editable content can be found in `/src/vuex/projects.js`.
+
+### Project Modal (Big Modal)
+This is the modal window to display the project information.
+#### Props
+`data` : {Object} - comes directly from Vuex in this format:
+
+    {
+      name: String - short name for the icon on main page,
+      longProjectName: String - long name for the modal header,
+      area: String (optional) - Area of Study,
+      heroImage: String - path to image used for main page. must be square aspect ratio,
+      projectLead: {
+        name:  String,
+        organizationName:  String,
+        twitter: String,
+        thumbnail:  String - path to headshot,
+        shortBio:  String | template literal
+      },
+      statData: [
+          // See Stat Card for more info
+        {
+          statName: String ,
+          statNumber: String ,
+          iconPath: String 
+        }
+      ],
+      mainContent: [
+          // Each of these object will become it's own slide.
+        {
+          title: String,
+          body: String or template literal for HTML,
+          media: String - path to media (any img format or mp4 video)
+        },
+        {...}, {...}
+      ]
+    }
+
+#### Methods
+`handleExitTap()`
+
+Sends an event to the parent to close the modal
+
+`isImage(filepath : String) -> Bool`
+
+Returns if argument has common image file extension
+
+`isVideo(filepath: String) -> Bool`
+
+returns if argument has common video file extension
+
+
+
+### ProjectLog (Table Component / Slide Up Modal)
+This is the same slide up modal used in other areas of the app, but this time, it has another component in its slot. The data for this comes from the API and should not be edited directly.
+
+The table is an open source program from [Vue Table Component](https://github.com/spatie/vue-table-component). Please see the readme on this github page for more information.
