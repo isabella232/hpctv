@@ -232,6 +232,17 @@ export default {
     renderAllSprites(){
       console.log('message received');
       // TODO: Finish the relay.
+    },
+
+    beginAutoplay(){
+      const page = this;
+      const router = this.$router;
+      console.log('beginning autoplay');
+      this.automate([
+        {delay:3000, trigger(){page.setActiveTab('area of study')}},
+        {delay:3000, trigger(){page.setActiveTab('facility allocation')}},
+        {delay:3000, trigger(){router.push('projects')}}
+      ])
     }
   },
 

@@ -12,7 +12,7 @@
         <div class="panel left" v-if="data.modalData.media">
           <video :src="data.modalData.media" loop muted playsinline></video>
         </div>
-        <div class="panel right">
+        <div class="panel right" ref="smallModalText">
           <p class="subtitle lime bold upper">{{data.modalData.subtitle}}</p>
           <p>
             {{data.modalData.body}}

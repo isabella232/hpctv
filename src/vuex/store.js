@@ -42,6 +42,13 @@ export const store = new Vuex.Store({
       if (payload === '++') {
         state.autoplay.clicks++;
       }
+
+      // dev mode
+      if (payload === -1) {
+        state.autoplay.enabled = true;
+        state.autoplay.clicks = 0;
+
+      }
       if (payload === 0) {
         state.autoplay.clicks = 0;
       }

@@ -68,9 +68,10 @@ export default {
 
   methods: {
     beginAutoplay(){
+      const v = this;
       this.automate([
-        {delay: 5000, trigger(){ console.log('hello')}},
-        {delay: 4000, trigger(){ console.log('hello again')}}
+        {delay: 2000, trigger(){ v.$refs.splash.handleStartClick();}},
+        {delay: 2000, trigger(){ v.$refs.toSpecs.$el.click() }}
       ]);
     }
   },

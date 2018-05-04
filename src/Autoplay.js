@@ -54,5 +54,11 @@ export default {
         document.getElementsByTagName('body')[0].classList.remove('autoplay');
       }
     }
+  },
+
+  mounted(){
+    if (this.autoPlayEnabled) {
+      this.beginAutoplay();
+    }
   }
 }
