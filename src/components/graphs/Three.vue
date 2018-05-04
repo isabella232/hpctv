@@ -12,7 +12,6 @@ import KonamiCode from 'konami-code';
 const konami = new KonamiCode();
 
 export default {
-  name: 'three',
   data() {
     return {
       camera: null,
@@ -154,7 +153,7 @@ export default {
      * Handler for resizing the canvas
      */
     onWindowResize() {
-      // console.log('window resize');
+      console.log('window resize');
 
       this.camera.aspect = this.getCanvasWidth() / this.getCanvasHeight();
       this.camera.updateProjectionMatrix();
@@ -167,9 +166,8 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseUp(event) {
-      console.log('mouseup firing');
-
       if (!this.dragging) {
+        if (event.path[0].tagName === 'CANVAS') {
           // coordinates in the window
           const mouseX = event.clientX / window.innerWidth * 100;
           const mouseY = event.clientY / window.innerHeight * 100;
@@ -208,6 +206,7 @@ export default {
             }
 
             this.$emit('canvasWasTouched', { mouseX, mouseY, data: popupData[0] });
+          }
         }
       }
       this.mouseDown = false;
@@ -219,7 +218,6 @@ export default {
      */
     onMouseDown(event) {
       // console.log('mousedown');
-      this.getSpritePos();
       this.mouseMove = false;
       this.mouseDown = true;
     },
@@ -345,53 +343,13 @@ export default {
     getCanvasHeight() {
       // getting height from DOM selector is causing a strange issue with canvas height on certain render paths. Instead of getting the value of <main> (which is calculated anway in css), we'll do the calculation here and return the appopriate value.
       return (window.innerHeight - 170) * 0.6; // in live-data.scss -- calc(100vh - 170px);
-    },
-
-    getXYSpritePostion(object) {
-      let pos = new Vector3();
-      
-      pos = pos.setFromMatrixPosition(object.matrixWorld);
-      pos.project(this.camera);
-
-      let widthHalf = this.getCanvasWidth() / 2;
-      let heightHalf = this.getCanvasHeight() / 2;
-
-      pos.x = pos.x * widthHalf + widthHalf;
-      pos.y = -(pos.y * heightHalf) + heightHalf;
-
-
-      const screenPos = {
-        x : pos.x + this.canvas.offsetLeft,
-        y : pos.y + this.canvas.offsetTop
-      }
-      return screenPos;
-
-    },
-
-    getSpritePos() {
-      const v = this;
-      this.sprites.children.forEach(sprite => {
-        const pos = v.getXYSpritePostion(sprite);
-        console.log(pos);
-      });
-
-      const coords = this.getXYSpritePostion(this.sprites.children[0]);
-      let options = {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-        screenX: coords.x,
-        screenY: coords.y
-      };
-
-      console.log(options);
-      this.canvas.dispatchEvent(new MouseEvent('mouseup', options))
     }
   },
 
   computed: {
     makeRenderer() {
       const renderer = new WebGLRenderer({ alpha: true });
+      console.log(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setClearColor(0x000000, 0);
       return renderer;
@@ -425,9 +383,6 @@ export default {
   mounted() {
     this.init();
     // this.enableDeveloperMode();
-    window.addEventListener('keyup', (e) => {
-      e.keyCode === 13 ? this.getSpritePos() : console.log('wrong key');
-    })
 
     // create a 2 dimensional array of polygons.
     for (let x = 0; x < 20; x++) {
@@ -500,7 +455,7 @@ export default {
             group: entry.facility
           });
         });
-        this.applyDataSets(this.userGroups, this.activeTab);
+        this.applyDataSets(this.userGroups, this.activeTab)
       })
       .catch(error => error);
   },
@@ -516,12 +471,12 @@ export default {
     },
 
     showingAllSprites(newVal) {
+      console.log('should now be showing all sprites');
       if (newVal) {
         this.sprites.children.forEach(sprite => {
           // allow the animation to finish before repopulating the sprites
           setTimeout(() => {
-            sprite.material.opacity = 1;
-          }, 1000);
+            sprite.material.opacity = 1;}, 1000)
         });
       }
     }
