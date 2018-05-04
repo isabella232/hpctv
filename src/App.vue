@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <side-nav v-if="startClicked"/>
+    <side-nav v-if="startClicked" />
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
@@ -8,7 +8,7 @@
       <ul class="sponsors row around wrap">
         <li><img src="/static/img/sponsor-logo-cisl.png" alt="CISL Logo"></li>
         <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:55px"></li>
-        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo"></li>
+        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo" id="autoplayTrigger" @click="handleAutoplayGesture()"></li>
         <li><img src="/static/img/sponsor-logo-nwsc.png" alt="NWSC Logo"></li>
       </ul>
     </footer>
@@ -16,7 +16,7 @@
     <footer class="sponsor-bugs" v-else>
       <ul class="sponsors row around">
         <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:65px"></li>
-        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo"></li>
+        <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo" id="autoplayTrigger" @click="handleAutoplayGesture()"></li>
       </ul>
     </footer>
   </div>
@@ -25,9 +25,8 @@
 <script>
 import SideNav from './components/modals-navs/Side-Nav';
 import flexibility from '../static/flexibility';
-
 export default {
-  name: 'app',
+  name: 'HPCTV',
   components: {
     SideNav
   },
@@ -39,10 +38,9 @@ export default {
   },
 
   computed: {
-    startClicked(){
+    startClicked() {
       return !this.$store.state.home.showSplash;
-    }
-
+    },
   },
 
   watch: {
@@ -58,11 +56,11 @@ export default {
       } else {
         this.transitionName = 'backward-full-page-slide';
       }
-    }
-  },
+    },
 
-  mounted() {
-    flexibility(document.querySelector('#app'));
+    mounted() {
+      flexibility(document.querySelector('#app'));
+    }
   }
 };
 </script>

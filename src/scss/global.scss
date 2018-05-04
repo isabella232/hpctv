@@ -2,7 +2,6 @@
 @import 'vars';
 @import 'colors';
 @import 'typography';
-
 @mixin pageHeader() {
   font-family: $font_poppins_bold;
   color: $color_grey;
@@ -15,33 +14,26 @@ body {
   background: -webkit-linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
   background: linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e0e0e', endColorstr='#0e0e0e', GradientType=1);
-
   font-family: $font_poppins;
   color: $color_white;
-
   p {
     font-size: 16px;
     line-height: 1.2em;
   }
-
   a {
     border: none;
     text-decoration: none;
   }
-
   ul {
     list-style: none;
   }
-
   img {
     max-width: 100%;
   }
-
   button {
     user-select: none;
     cursor: pointer;
   }
-
   .invisible {
     z-index: -10;
     opacity: 0;
@@ -49,15 +41,12 @@ body {
     height: 0;
     cursor: initial;
   }
-
   #app {
     min-height: calc(100vh - 2.5%);
-
     @media screen and (max-width: $mobilePlus) {
       min-height: calc(100vh - 50px);
     }
   }
-
   .page-header {
     margin-top: 2.5%;
     text-align: center;
@@ -66,19 +55,16 @@ body {
     h1 {
       color: $color_light_grey;
     }
-
     @media screen and (max-width: $mobilePlus) {
       margin-top: 50px;
       h1 {
         color: $color_lime;
         font-size: 1.5rem;
       }
-
       span {
         display: none;
       }
     }
-
     @media screen and (max-width: $mobileSmall) {
       font-size: 1rem;
     }
@@ -88,6 +74,28 @@ body {
 body.freeze {
   height: 100vh;
   overflow: hidden;
+}
+
+body.autoplay {
+  cursor: none; // this is so you can tell approximately where you are when you have no cursor to disable the feature.
+  footer img:hover {
+    background-color: transparentize($color_lime, 0.5);
+  }
+
+  // screen flash for visual feedback that the autoplay is working.
+  &::before {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    animation: screenFlash 1000ms forwards;
+  }
 }
 
 body.specs-page,
@@ -104,14 +112,12 @@ body.projects-page {
     width: 533px;
     height: 250px;
   }
-
   &:before {
     background-image: url('/static/img/arrows-top-right.png');
     background-position: top;
     top: 0;
     right: 0;
   }
-
   &:after {
     background-image: url('/static/img/arrows-bottom-left.png');
     background-position: bottom;
@@ -121,7 +127,6 @@ body.projects-page {
 }
 
 // Global Components
-
 .side-nav {
   @media screen and (max-width: $mobilePlus) {
     display: none;
@@ -137,11 +142,9 @@ body.projects-page {
     outline: none;
     border-radius: 50%;
     box-shadow: 0 0 10px 5px $color_trans_black;
-
     &:hover {
       background: darken($color_lime, 10%);
     }
-
     &:active {
       box-shadow: 0 0 10px 0 $color_trans_black;
     }
@@ -149,7 +152,6 @@ body.projects-page {
       max-height: 30%;
       transform: translateX(25%);
     }
-
     &.prev {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -177,8 +179,30 @@ footer.sponsor-bugs {
   ul {
     width: 100%;
   }
-
   li img {
     max-height: 30px;
+    &#autoplayTrigger {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+@keyframes screenFlash {
+  0% {
+    display: block;
+    background: $color_teal;
+    opacity: 1;
+    visibility: visible
+  }
+
+  99%{
+    display: block;
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
   }
 }

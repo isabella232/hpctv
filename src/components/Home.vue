@@ -6,7 +6,7 @@
       </video>
     </div>
     <transition name="splash-fade-out">
-      <Splash v-if="showSplash"/>
+      <Splash v-if="showSplash" ref="splash" />
     </transition>
     <transition name="home-fade-in">
       <main class=" home-screen col dead-center" v-if="!showSplash">
@@ -15,7 +15,7 @@
 
             <ul class="row around middle text-center">
               <li>
-                <router-link to="specs" class="col middle around">
+                <router-link to="specs" class="col middle around" ref="toSpecs">
                   <img src="/static/icon/performance-icon.svg" width="100" alt="">
                   <span class="lime upper">Specs</span>
                 </router-link>
@@ -63,6 +63,15 @@ export default {
 
     vuex() {
       return this.$store.state.home;
+    }
+  },
+
+  methods: {
+    beginAutoplay(){
+      this.automate([
+        {delay: 5000, trigger(){ console.log('hello')}},
+        {delay: 4000, trigger(){ console.log('hello again')}}
+      ]);
     }
   },
 
