@@ -80,26 +80,26 @@ export default {
 
       this.automate([
         {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}}, 
-        {delay: 2000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
-        {delay: 2000,trigger() {page.glossary.legendIsOpen = false;}},
+        {delay: 15000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
+        {delay: 7000,trigger() {page.glossary.legendIsOpen = false;}},
 
         {delay: 2000, trigger(){page.heatOutput[0].toggle()}},
-        {delay: 2000, trigger(){page.heatOutput[0].toggle()}},
+        {delay: 6000, trigger(){page.heatOutput[0].toggle()}},
 
         {delay: 2000, trigger(){page.dataTransferRate[0].toggle()}},
-        {delay: 2000, trigger(){page.dataTransferRate[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
-        {delay: 2000, trigger(){page.dataTransferRate[0].toggle()}},
+        {delay: 2500, trigger(){page.dataTransferRate[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
+        {delay: 6000, trigger(){page.dataTransferRate[0].toggle()}},
 
         {delay: 2000, trigger(){page.performance[0].toggle()}},
-        {delay: 2000, trigger(){page.performance[0].toggle()}},
+        {delay: 6000, trigger(){page.performance[0].toggle()}},
 
 
         {delay: 2000, trigger(){page.processingCores[0].toggle()}},
-        {delay: 2000, trigger(){page.processingCores[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
-        {delay: 2000, trigger(){page.processingCores[0].toggle()}},
+        {delay: 2500, trigger(){page.processingCores[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
+        {delay: 6000, trigger(){page.processingCores[0].toggle()}},
 
         {delay: 2000, trigger(){page.totalMemory[0].toggle()}},
-        {delay: 2000, trigger(){page.totalMemory[0].toggle()}},
+        {delay: 6000, trigger(){page.totalMemory[0].toggle()}},
 
         {delay:3000, trigger(){router.push('live-data')}}
       ]);

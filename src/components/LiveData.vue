@@ -239,9 +239,9 @@ export default {
       const router = this.$router;
       console.log('beginning autoplay');
       this.automate([
-        {delay:3000, trigger(){page.setActiveTab('area of study')}},
-        {delay:3000, trigger(){page.setActiveTab('facility allocation')}},
-        {delay:3000, trigger(){router.push('projects')}}
+        {delay: 15000, trigger(){page.setActiveTab('area of study')}},
+        {delay: 7000, trigger(){page.setActiveTab('facility allocation')}},
+        {delay: 5000, trigger(){router.push('projects')}}
       ])
     }
   },

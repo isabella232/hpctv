@@ -70,8 +70,8 @@ export default {
     beginAutoplay(){
       const v = this;
       this.automate([
-        {delay: 2000, trigger(){ v.$refs.splash.handleStartClick();}},
-        {delay: 2000, trigger(){ v.$refs.toSpecs.$el.click() }}
+        {delay: 5000, trigger(){ v.$refs.splash.handleStartClick();}},
+        {delay: 25000, trigger(){ v.$refs.toSpecs.$el.click() }}
       ]);
     }
   },
