@@ -120,8 +120,7 @@ export default {
      * @param {Number} direction goes to position in carousel with index of "direction"
      */
     handleExternalNav(direction) {
-      // TODO: This is not firing events through the whole component. Find out what internal function to call.
-      this.$children.find(component => component.$el.className == 'VueCarousel').$emit('pageChange', direction);
+      this.$children.find(component => component.$el.className == 'VueCarousel').goToPage(direction);
     },
 
     /**
