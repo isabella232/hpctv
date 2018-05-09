@@ -153,11 +153,8 @@ export default {
      * Handler for resizing the canvas
      */
     onWindowResize() {
-      console.log('window resize');
-
       this.camera.aspect = this.getCanvasWidth() / this.getCanvasHeight();
       this.camera.updateProjectionMatrix();
-
       this.renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
     },
 
@@ -168,6 +165,8 @@ export default {
     onMouseUp(event) {
       if (!this.dragging) {
         if (event.path[0].tagName === 'CANVAS') {
+          // make sure all the modals are closed. 
+            this.$parent.allOff();
           // coordinates in the window
           const mouseX = event.clientX / window.innerWidth * 100;
           const mouseY = event.clientY / window.innerHeight * 100;
@@ -217,7 +216,6 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseDown(event) {
-      // console.log('mousedown');
       this.mouseMove = false;
       this.mouseDown = true;
     },
@@ -227,7 +225,6 @@ export default {
      * @param {Event} event - the window event
      */
     onMouseMove(event) {
-      // console.log('mousemove');
       this.mouseMove = true;
     },
 
@@ -349,7 +346,6 @@ export default {
   computed: {
     makeRenderer() {
       const renderer = new WebGLRenderer({ alpha: true });
-      console.log(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
       renderer.setClearColor(0x000000, 0);
       return renderer;
@@ -466,12 +462,12 @@ export default {
         this.enableDeveloperMode();
       }
     },
+    
     activeTab(newVal) {
       this.applyDataSets(this.dataSet, newVal);
     },
 
     showingAllSprites(newVal) {
-      console.log('should now be showing all sprites');
       if (newVal) {
         this.sprites.children.forEach(sprite => {
           // allow the animation to finish before repopulating the sprites

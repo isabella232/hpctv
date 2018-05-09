@@ -200,8 +200,6 @@ export default {
      * @param {Object} event automatically passed click event from the window.
      */
     insertModal(event) {
-      // position info
-      // this.threeModal.x = `${event.mouseX}%`;
       //data massaging to conform to small Modal type
       this.threeModal = {
         x: event.mouseX,
@@ -216,9 +214,6 @@ export default {
       this.threeModal.show = true;
     },
 
-    getArrayofSize(num) {
-      return Array.from(new Array(num).keys());
-    },
     /**
      * Called by the child components to make sure only one modal is on at a time.
      */
@@ -229,10 +224,6 @@ export default {
       });
     },
 
-    renderAllSprites(){
-      console.log('message received');
-      // TODO: Finish the relay.
-    },
 
     beginAutoplay(){
       const page = this;
