@@ -8,7 +8,7 @@
     <main class="supercomputer">
       <div class="cheyenne-container">
         <img src="/static/img/supercomputer.png" alt="" class="computer">
-        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" />
+        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
       </div>
 
       <!-- <ul>
@@ -24,9 +24,9 @@
         </li>
       </ul> -->
     </main>
-    <slide-up-modal title="Glossary">
+    <slide-up-modal title="Glossary" ref="glossary">
       <legend class="legend">
-        <dl class="legend-list col wrap">
+        <dl class="legend-list col wrap" ref="glossaryInternals">
           <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
             <dd>
@@ -36,7 +36,7 @@
         </dl>
       </legend>
     </slide-up-modal>
-    <dock-nav />
+    <dock-nav  ref="nav"/>
 
   </div>
 </template>
@@ -71,12 +71,53 @@ export default {
       modals.forEach(element => {
         element.$data.visible = false;
       });
+    },
+
+    beginAutoplay() {
+      console.log('beginning autoplay');
+      const router = this.$router;
+      const page = this.$refs;
+
+      this.automate([
+        {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}}, 
+        {delay: 15000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
+        {delay: 7000,trigger() {page.glossary.legendIsOpen = false;}},
+
+        {delay: 2000, trigger(){page.heatOutput[0].toggle()}},
+        {delay: 6000, trigger(){page.heatOutput[0].toggle()}},
+
+        {delay: 2000, trigger(){page.dataTransferRate[0].toggle()}},
+        {delay: 2500, trigger(){page.dataTransferRate[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
+        {delay: 6000, trigger(){page.dataTransferRate[0].toggle()}},
+
+        {delay: 2000, trigger(){page.performance[0].toggle()}},
+        {delay: 6000, trigger(){page.performance[0].toggle()}},
+
+
+        {delay: 2000, trigger(){page.processingCores[0].toggle()}},
+        {delay: 2500, trigger(){page.processingCores[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
+        {delay: 6000, trigger(){page.processingCores[0].toggle()}},
+
+        {delay: 2000, trigger(){page.totalMemory[0].toggle()}},
+        {delay: 6000, trigger(){page.totalMemory[0].toggle()}},
+
+        {delay:3000, trigger(){router.push('live-data')}}
+      ]);
     }
   },
 
   computed: {
     vuex() {
       return this.$store.state.specs;
+    }
+  },
+
+  filters: {
+    getRefName(title) {
+      // human to camelcase.
+      return title.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+        return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+      }).replace(/\s+/g, '');
     }
   },
 

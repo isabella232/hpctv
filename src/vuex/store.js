@@ -10,11 +10,18 @@ export const store = new Vuex.Store({
   state: {
     apiConfig: {
       baseURL: hpctvhost,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
       auth: {
         username: 'hpctv',
         password: 'super'
       }
+    },
+    autoplay: {
+      enabled: false,
+      clicks: 0,
+      timers: []
     }
   },
   mutations: {
@@ -28,7 +35,43 @@ export const store = new Vuex.Store({
 
     renderAllSprites(state, value) {
       state.liveData.renderAllSprites = value;
+    },
+
+    // Begin Autoplay Mutations
+    changeClicks(state, payload) {
+      if (payload === '++') {
+        state.autoplay.clicks++;
+      }
+
+      // dev mode
+      if (payload === -1) {
+        state.autoplay.enabled = true;
+        state.autoplay.clicks = 0;
+
+      }
+      if (payload === 0) {
+        state.autoplay.clicks = 0;
+      }
+      if (state.autoplay.clicks >= 5) {
+        state.autoplay.enabled = !state.autoplay.enabled;
+        console.log(`autoplay.enabled is now ${state.autoplay.enabled}`);
+        state.autoplay.clicks = 0;
+      }
+    },
+
+    pushTimer(state, timer) {
+      state.autoplay.timers.push(timer);
+    },
+    clearTimers(state) {
+      for (const timer of state.autoplay.timers) {
+        clearTimeout(timer);
+      }
+      state.autoplay.timers = [];
     }
+  },
+
+  getters: {
+    autoplayClicks: state => state.autoplay.clicks
   },
 
   modules: {

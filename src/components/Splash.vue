@@ -10,7 +10,7 @@
       </blockquote>
     </header>
     <div class="row center">
-      <div class="start-button upper col dead-center" @click="handleStartClick()">
+      <div class="start-button upper col dead-center" @click="handleStartClick()" ref="startButton">
         <span>Start</span>
       </div>
     </div>

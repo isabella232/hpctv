@@ -37,8 +37,8 @@
         </div>
       </div>
     </main>
-    <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false" />
-    <SlideUpModal title="Project Log">
+    <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false" ref="bigModal"/>
+    <SlideUpModal title="Project Log" ref="projectLog">
       <div class="container">
         <div class="intro">
           <p class="lime upper">What Cheyenne is Working on</p>
@@ -107,6 +107,42 @@ export default {
     async getTableData() {
       response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
       return response.data.entries;
+    },
+
+    beginAutoplay(){
+      const page = this;
+      const router = this.$router;
+
+      this.automate([
+        {delay: 3000, trigger(){ page.$refs.projectLog.legendIsOpen = true}},
+        {delay: 15000, trigger(){ page.$refs.projectLog.legendIsOpen = false}},
+        {delay: 3000, trigger(){ page.openModal(0)}},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+
+        {delay: 3000, trigger(){ page.openModal(1)}},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+
+        {delay: 3000, trigger(){ page.openModal(2)}},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+
+        {delay: 3000, trigger(){ page.openModal(3)}},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+
+        {delay: 3000, trigger(){ page.openModal(4)}},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+
+        {delay: 0, trigger(){ 
+          page.$store.state.home.showSplash = true;
+          page.$store.commit('clearTimers');
+          }
+        },
+        {delay: 2000, trigger(){router.push('/')}}
+      ])
     }
   },
   created() {
