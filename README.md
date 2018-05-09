@@ -44,6 +44,39 @@ Additionally, any information within a Vue component on the page that comes from
 ### Axios
 Axios is a promised based HTTP library and is used for all external resource calls in this application. It has a global configuration object that can be modified in `/src/vuex/store.js` as the `apiConfig` object. Generally this should not be modified.
 
+
+### Autoplay Functionality
+ For non interactive displays (I.E. Televisions) the app comes with autoplay functionality built into every component. Autoplay is activated by clicking or tapping on the NCAR/UCAR logo 5 times. The screen will briefly flash blue when autoplay is activated. To disable this feature, you repeat the same action. Upon disabling the feature, it's a good idea to refresh your browser window, as some of the scripting may have modified the behavior of some components.
+
+#### Using Autoplay
+Whether or not autoplay is enabled is stored inside Vuex. All components will listen for a change on this property, and when triggered it will begin a sequence of actions defined in a method called `beginAutoplay()`;
+
+to script these actions you write a function inside beginAutoplay() called `automate()`. This function accepts an array of objects `Array<Object>` in the following format:
+
+        {delay: Number, trigger: callback Function}
+
+`delay` is the number of milliseconds it takes FROM WHEN THE PREVIOUS ACTION FINISHES before `trigger()` is fired. 
+
+Example Usage:
+
+    beginAutoplay(){
+        this.automate([
+            {
+                delay: 1000,
+                trigger(){
+                    console.log('I will run after 1 second.');
+                }
+            },
+
+            {
+                delay: 2000,
+                trigger(){
+                    console.log('I will run after 3 seconds.');
+                }
+            },
+        ])
+    }
+
 ## Table of Contents
 
 1. [Global Components](#global-components)
