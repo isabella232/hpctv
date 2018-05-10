@@ -43,7 +43,7 @@
 
 <script>
 import SmallModal from './modals-navs/Small-Modal';
-import Accordion from './modals-navs/Accordion';
+// import Accordion from './modals-navs/Accordion';
 import DockNav from './modals-navs/DockNav';
 import SlideUpModal from './modals-navs/SlideUpModal';
 
@@ -51,7 +51,7 @@ export default {
   name: 'specs',
   components: {
     SmallModal,
-    Accordion,
+    // Accordion,
     DockNav,
     SlideUpModal
   },

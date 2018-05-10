@@ -31,3 +31,5 @@ staging:
     - develop
   script:
     - $SYNC_COMMAND $STAGING_PATH
+    - mkdir $STAGING_PATH/static/env
+    - echo "const hpctvhost = 'https://private-08983-hpctv.apiary-mock.com/v1/';" >> $STAGING_PATH/static/env/host.js
