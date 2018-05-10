@@ -1,5 +1,5 @@
 variables:
-  SYNC_COMMAND: rsync -avz --delete --chmod=D755,F644 --exclude=/.htpasswd --exclude=/dist/static/env ./dist/
+  SYNC_COMMAND: rsync -avz --delete --chmod=D755,F644 --exclude=/.htpasswd --exclude=/dist/static/env/ ./dist/
   STAGING_PATH: vera@staging3.vermilion.com:~/www/hpc-tv/html/
 
 stages:
@@ -31,5 +31,5 @@ staging:
     - develop
   script:
     - $SYNC_COMMAND $STAGING_PATH
-    - mkdir $STAGING_PATH/static/env
+    - mkdir $STAGING_PATHstatic/env
     - echo "const hpctvhost = 'https://private-08983-hpctv.apiary-mock.com/v1/';" >> $STAGING_PATH/static/env/host.js
