@@ -79,11 +79,11 @@ export default {
       const page = this.$refs;
 
       this.automate([
-        {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}}, 
-        {delay: 15000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
-        {delay: 7000,trigger() {page.glossary.legendIsOpen = false;}},
+        // {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}}, 
+        // {delay: 15000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
+        // {delay: 7000,trigger() {page.glossary.legendIsOpen = false;}},
 
-        {delay: 2000, trigger(){page.heatOutput[0].toggle()}},
+        {delay: 4000, trigger(){page.heatOutput[0].toggle()}},
         {delay: 6000, trigger(){page.heatOutput[0].toggle()}},
 
         {delay: 2000, trigger(){page.dataTransferRate[0].toggle()}},

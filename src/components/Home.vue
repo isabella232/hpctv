@@ -71,7 +71,7 @@ export default {
       const v = this;
       this.automate([
         {delay: 5000, trigger(){ v.$refs.splash.handleStartClick();}},
-        {delay: 25000, trigger(){ v.$refs.toSpecs.$el.click() }}
+        {delay: 30000, trigger(){ v.$refs.toSpecs.$el.click() }}
       ]);
     }
   },
