@@ -165,8 +165,8 @@ export default {
     onMouseUp(event) {
       if (!this.dragging) {
         if (event.path[0].tagName === 'CANVAS') {
-          // make sure all the modals are closed. 
-            this.$parent.allOff();
+          // make sure all the modals are closed.
+          this.$parent.allOff();
           // coordinates in the window
           const mouseX = event.clientX / window.innerWidth * 100;
           const mouseY = event.clientY / window.innerHeight * 100;
@@ -230,7 +230,7 @@ export default {
 
     /**
      * Used to change the 3D model's data visualization.
-     * @param {Obejct} dataSet - The new Dataset
+     * @param {Object} dataSet - The new Dataset
      * @param {String} tabName - the active tab for which to compute data.
      */
     applyDataSets(dataSet, tabName) {
@@ -441,17 +441,38 @@ export default {
       .get('report/projectlog?daysAgo=1', this.apiConfig)
       .then(response => {
         this.userGroups = [];
+        let tempGroups = {};
+
+        // now we need to sort the data properly by facility.
+
         // Make sure that this data is in the same format as the AOIG data.
-        response.data.entries.forEach(entry => {
-          this.userGroups.push({
-            data: {
-              coreHours: entry.coreHours,
-              jobs: entry.jobs
-            },
-            group: entry.facility
-          });
+        response.data.entries.forEach(project => {
+          if (tempGroups[project.facility] == undefined) {
+            tempGroups[project.facility] = {
+              group: project.facility,
+              data: {
+                coreHours: 0,
+                jobs: 0
+              }
+            };
+          } else {
+            return;
+          }
         });
-        this.applyDataSets(this.userGroups, this.activeTab)
+        // add up the cumulative core hours
+        response.data.entries.forEach(project => {
+          if (tempGroups.hasOwnProperty(project.facility)) {
+            tempGroups[project.facility].data.coreHours += parseInt(project.coreHours);
+          }
+        });
+        // convert to array
+        for (const facility in tempGroups) {
+          if (tempGroups.hasOwnProperty(facility)) {
+            this.userGroups.push(tempGroups[facility]);
+            
+          }
+        }
+        this.applyDataSets(this.userGroups, this.activeTab);
       })
       .catch(error => error);
   },
@@ -462,7 +483,7 @@ export default {
         this.enableDeveloperMode();
       }
     },
-    
+
     activeTab(newVal) {
       this.applyDataSets(this.dataSet, newVal);
     },
@@ -472,7 +493,8 @@ export default {
         this.sprites.children.forEach(sprite => {
           // allow the animation to finish before repopulating the sprites
           setTimeout(() => {
-            sprite.material.opacity = 1;}, 1000)
+            sprite.material.opacity = 1;
+          }, 1000);
         });
       }
     }
