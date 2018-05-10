@@ -5,7 +5,7 @@
     </div>
     <div class="info col start">
       <div class="number lime">{{ cardData.statNumber | numFormatter}}
-        <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup"></div>
+        <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup" @click.prevent.stop="extraEL()"></div>
       </div>
       <span class="label upper">{{ cardData.statName }}</span>
     </div>
@@ -22,6 +22,14 @@ export default {
       default: '',
       validator(data) {
         return typeof data === 'object';
+      }
+    },
+
+    extraEL:{
+      type: Function,
+      required: false,
+      default: function(){
+        this.$emit('StatCardWasClicked');
       }
     }
   },

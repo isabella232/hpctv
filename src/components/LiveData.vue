@@ -1,6 +1,6 @@
 <template>
   <div class="live-data">
-    <ThreeModal :data="threeModal" :showButton="true" @threeModalDidClose="renderAllSprites()"/>
+    <ThreeModal :data="threeModal" :showButton="true" @threeModalDidClose="renderAllSprites()" />
     <header class="row dead-center text-center upper page-header">
       <h1>Real-Time Data. Real Implications</h1>
     </header>
@@ -20,7 +20,7 @@
           </div>
 
           <div class="canvas">
-            <three @canvasWasTouched="insertModal($event)" :allSprites="true"/>
+            <three @canvasWasTouched="insertModal($event)" :allSprites="true" />
           </div>
         </div>
         <div class="graph">
@@ -40,7 +40,7 @@
             <h2>Now Running*</h2>
           </header>
           <ul>
-            <StatCard v-for="stat in nowRunning" :key="stat.statName" :cardData="stat" />
+            <StatCard v-for="stat in nowRunning" :key="stat.statName" :cardData="stat" @StatCardWasClicked="openProjectLog()" />
           </ul>
         </div>
 
@@ -68,8 +68,25 @@
         </dl>
       </legend>
     </slide-up-modal>
+
+    <SlideUpModal id="projectLog" title="Project Log" ref="projectLog">
+      <div class="container">
+        <div class="intro">
+          <p class="lime upper">What Cheyenne is Working on</p>
+          <p>Explore the complete list of projects currently running on the supercomputer.</p>
+        </div>
+        <TableComponent :data="tableData" sort-by="coreHours" sort-order="desc">
+          <TableColumn show="title" label="Name"></TableColumn>
+          <TableColumn show="jobs" label="Jobs" data-type="numeric"></TableColumn>
+          <TableColumn show="coreHours" label="Core Hours" data-type="numeric"></TableColumn>
+          <TableColumn show="facility" label="Facility"></TableColumn>
+          <TableColumn show="areaOfInterestGroup" label="Area of Study"></TableColumn>
+          <TableColumn show="organization" label="Organization"></TableColumn>
+        </TableComponent>
+      </div>
+    </SlideUpModal>
     <DockNav />
-    
+
   </div>
 </template>
 
@@ -82,6 +99,7 @@ import ThreeModal from './modals-navs/ThreeModal';
 import SlideUpModal from './modals-navs/SlideUpModal';
 import moment from 'moment';
 import axios from 'axios';
+import { TableComponent, TableColumn } from 'vue-table-component';
 
 export default {
   name: 'live-data',
@@ -142,7 +160,8 @@ export default {
             type: 'line'
           }
         ]
-      }
+      },
+      tableData: []
     };
   },
   components: {
@@ -151,7 +170,9 @@ export default {
     Three,
     ThreeModal,
     LineChart,
-    SlideUpModal
+    SlideUpModal,
+    TableComponent,
+    TableColumn
   },
 
   computed: {
@@ -171,13 +192,13 @@ export default {
       );
     },
 
-    daysOnline(){
+    daysOnline() {
       const day0 = moment('2017-01-12');
       return Math.abs(day0.diff(moment.now(), 'days'));
     },
 
-    linktoProjectPage(){
-      return `<a href="projects#log"><img src="/static/icon/circular-arrow.svg" width="28"></a>`
+    linktoProjectPage() {
+      return `<a href=""><img src="/static/icon/info-icon.svg" width="28"></a>`;
     }
   },
 
@@ -214,6 +235,17 @@ export default {
       this.threeModal.show = true;
     },
 
+    openProjectLog() {
+      console.log('Im going to open the projectlog now');
+      this.getTableData();
+      this.$refs.projectLog.legendIsOpen = true;
+    },
+
+    async getTableData() {
+      const response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
+      this.tableData = response.data.entries;
+    },
+
     /**
      * Called by the child components to make sure only one modal is on at a time.
      */
@@ -224,16 +256,30 @@ export default {
       });
     },
 
-
-    beginAutoplay(){
+    beginAutoplay() {
       const page = this;
       const router = this.$router;
       console.log('beginning autoplay');
       this.automate([
-        {delay: 15000, trigger(){page.setActiveTab('area of study')}},
-        {delay: 7000, trigger(){page.setActiveTab('facility allocation')}},
-        {delay: 5000, trigger(){router.push('projects')}}
-      ])
+        {
+          delay: 15000,
+          trigger() {
+            page.setActiveTab('area of study');
+          }
+        },
+        {
+          delay: 7000,
+          trigger() {
+            page.setActiveTab('facility allocation');
+          }
+        },
+        {
+          delay: 5000,
+          trigger() {
+            router.push('projects');
+          }
+        }
+      ]);
     }
   },
 
@@ -273,8 +319,7 @@ export default {
           // Successful response
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
-          this.totalRun[0].statNumber = this.daysOnline,
-          this.totalRun[1].statNumber = data.projects;
+          (this.totalRun[0].statNumber = this.daysOnline), (this.totalRun[1].statNumber = data.projects);
           this.totalRun[2].statNumber = data.jobs;
           this.totalRun[3].statNumber = data.coreHours;
         } else if (response.status === 503) {

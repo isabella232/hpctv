@@ -113,6 +113,14 @@
     text-align: right;
     z-index: -1;
   }
+
+  #projectLog{
+    top: 100%;
+
+    &.open{
+      top: 0;
+    }
+  }
   @media screen and (max-width: $tablet) {
     main {
       height: auto;
