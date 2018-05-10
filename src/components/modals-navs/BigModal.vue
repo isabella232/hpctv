@@ -44,7 +44,7 @@
             </Carousel>
           </div>
 
-          <article class="modal-article text-center">
+          <article class="modal-article text-center" ref="article">
             <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
             <div class="article-content row">
               <div class="main-content" v-html="data.mainContent[visibleContentID].body">

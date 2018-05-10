@@ -288,6 +288,7 @@ export default {
         for (let i = group.data.blocks.start; i <= group.data.blocks.end; i++) {
           if (i == visual) {
             this.makeSprite(i, userName);
+            
           }
           this.updateCube(i, color);
         }
@@ -320,6 +321,7 @@ export default {
       sprite.translateZ(-6);
 
       this.sprites.add(sprite);
+      return sprite;
     },
 
     /**
@@ -340,7 +342,28 @@ export default {
     getCanvasHeight() {
       // getting height from DOM selector is causing a strange issue with canvas height on certain render paths. Instead of getting the value of <main> (which is calculated anway in css), we'll do the calculation here and return the appopriate value.
       return (window.innerHeight - 170) * 0.6; // in live-data.scss -- calc(100vh - 170px);
+    },
+
+    getXYSpritePostion(object) {
+      let pos = new Vector3();
+      
+      pos = pos.setFromMatrixPosition(object.matrixWorld);
+      pos.project(this.camera);
+
+      let widthHalf = this.getCanvasWidth() / 2;
+      let heightHalf = this.getCanvasHeight() / 2;
+
+      pos.x = pos.x * widthHalf + widthHalf;
+      pos.y = -(pos.y * heightHalf) + heightHalf;
+
+
+      const screenPos = {
+        x : ((pos.x + this.canvas.offsetLeft) / window.innerWidth) * 100,
+        y : ((pos.y + this.canvas.offsetTop) / window.innerHeight) * 100
     }
+     return screenPos;
+
+    },
   },
 
   computed: {

@@ -20,7 +20,7 @@
           </div>
 
           <div class="canvas">
-            <three @canvasWasTouched="insertModal($event)" :allSprites="true" />
+            <three @canvasWasTouched="insertModal($event)" :allSprites="true" ref="three" />
           </div>
         </div>
         <div class="graph">
@@ -256,21 +256,63 @@ export default {
       });
     },
 
+    generateAutoplayArray(page, data) {
+      let sequences = [];
+      let dataPoints;
+      const three = this.$refs.three;
+      if (data === 'userGroups') {
+        dataPoints = three.userGroups;
+      } else if (data === 'dataSet') {
+        dataPoints = three.dataSet;
+      }
+      for (const stat of dataPoints) {console.log(stat);
+        const sprite = three.sprites.children.find(obj => obj.name == stat.group);
+        const screenPos = three.getXYSpritePostion(sprite);
+        sequences.push({
+          delay: 2000,
+          trigger() {
+            sprite.visible = false;
+            page.insertModal({
+              mouseX: screenPos.x,
+              mouseY: screenPos.y,
+              data: stat
+            });
+          }
+        });
+        sequences.push({
+          delay: 2500,
+          trigger() {
+            page.allOff();
+          }
+        });
+        sequences.push({
+          delay: 1000,
+          trigger() {
+            sprite.visible = true;
+          }
+        });
+      }
+      return sequences;
+    },
+
     beginAutoplay() {
       const page = this;
       const router = this.$router;
       console.log('beginning autoplay');
       this.automate([
         {
-          delay: 15000,
+          delay: 2000,
           trigger() {
-            page.setActiveTab('area of study');
+            return;
           }
         },
+
+        ...this.generateAutoplayArray(page, 'userGroups'),
+
         {
-          delay: 7000,
+          delay: 3000,
           trigger() {
-            page.setActiveTab('facility allocation');
+            page.setActiveTab('area of study');
           }
         },
         {
