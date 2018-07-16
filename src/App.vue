@@ -24,7 +24,7 @@
     
 <script>
 import SideNav from './components/modals-navs/Side-Nav';
-import flexibility from '../static/flexibility';
+// import flexibility from '../static/flexibility';
 export default {
   name: 'HPCTV',
   components: {

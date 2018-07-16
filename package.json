@@ -12,6 +12,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@littlstar/three-canvas-renderer": "^1.0.0",
     "axios": "^0.17.1",
     "chart.js": "^2.7.1",
     "konami-code": "^0.2.1",
@@ -97,7 +98,6 @@
     "npm": ">= 3.0.0"
   },
   "browserslist": [
-    "> 1%",
-    "not ie <= 9"
+    "ie 9"
   ]
 }

@@ -85,9 +85,9 @@ export default {
   mounted() {
     // some browsers do not support autoplay for video. this will trigger the video to play if that's the case.
     const video = document.querySelector('#bg-video');
-    video.oncanplaythrough = () => {
-      video.play();
-    };
+    // video.oncanplaythrough = () => {
+    //   video.play();
+    // };
   }
 };
 </script>
