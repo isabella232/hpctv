@@ -15,7 +15,12 @@ RUN npm run build
 
 FROM nginx:1.13.7-alpine AS nginx
 
+RUN apk --update add dumb-init
+
 COPY --from=node /usr/local/src/hpctv/dist /usr/share/nginx/html/
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
 
 VOLUME /run/secrets
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["nginx", "-g", "daemon off;"]
