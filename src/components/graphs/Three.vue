@@ -521,6 +521,12 @@ export default {
         });
       }
     }
+  },
+
+  beforeDestroy(){
+    for (const mesh of this.group.children) {
+      mesh.geometry.dispose();
+    }
   }
 };
 </script>

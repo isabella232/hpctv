@@ -114,37 +114,40 @@ export default {
       const router = this.$router;
 
       this.automate([
-        {delay: 3000, trigger(){ page.$refs.projectLog.legendIsOpen = true}},
-        {delay: 15000, trigger(){ page.$refs.projectLog.legendIsOpen = false}},
-        {delay: 3000, trigger(){ page.openModal(0)}},
-        {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
-        {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:300, behavior: 'smooth'}) }},
-        {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+        // {delay: 3000, trigger(){ page.$refs.projectLog.legendIsOpen = true}},
+        // {delay: 15000, trigger(){ page.$refs.projectLog.legendIsOpen = false}},
+        // {delay: 3000, trigger(){ page.openModal(0)}},
+        // {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        // {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:300, behavior: 'smooth'}) }},
+        // {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
 
-        {delay: 3000, trigger(){ page.openModal(1)}},
-        {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
-        {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:400, behavior: 'smooth'}) }},
-        {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+        // {delay: 3000, trigger(){ page.openModal(1)}},
+        // {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        // {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:400, behavior: 'smooth'}) }},
+        // {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
 
-        {delay: 3000, trigger(){ page.openModal(2)}},
-        {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
-        {delay: 60000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+        // {delay: 3000, trigger(){ page.openModal(2)}},
+        // {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        // {delay: 60000, trigger(){ page.$refs.bigModal.handleExitTap() }},
 
-        {delay: 3000, trigger(){ page.openModal(3)}},
-        {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
-        {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+        // {delay: 3000, trigger(){ page.openModal(3)}},
+        // {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        // {delay: 90000, trigger(){ page.$refs.bigModal.handleExitTap() }},
 
-        {delay: 3000, trigger(){ page.openModal(4)}},
-        {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
-        {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:400, behavior: 'smooth'}) }},
-        {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
+        // {delay: 3000, trigger(){ page.openModal(4)}},
+        // {delay: 30000, trigger(){ page.$refs.bigModal.handleExternalNav(1) }},
+        // {delay: 20000, trigger(){ page.$refs.bigModal.$refs.article.scroll({top:400, behavior: 'smooth'}) }},
+        // {delay: 40000, trigger(){ page.$refs.bigModal.handleExitTap() }},
 
         {delay: 0, trigger(){ 
           page.$store.state.home.showSplash = true;
           page.$store.commit('clearTimers');
           }
         },
-        {delay: 2000, trigger(){router.push('/')}}
+        {delay: 2000, trigger(){
+          window.localStorage.setItem('autoPlay', true);
+          window.location = '/';
+          }},
       ])
     }
   },

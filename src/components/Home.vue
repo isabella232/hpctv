@@ -68,6 +68,7 @@ export default {
 
   methods: {
     beginAutoplay(){
+      console.log('home begin autoplay');
       const v = this;
       this.automate([
         {delay: 5000, trigger(){ v.$refs.splash.handleStartClick();}},
@@ -88,6 +89,11 @@ export default {
     // video.oncanplaythrough = () => {
     //   video.play();
     // };
+
+    if (window.localStorage.getItem('autoPlay') == 'true') {
+      console.log('autoplay cookie found');
+      this.$store.commit('changeClicks', -1);
+    }
   }
 };
 </script>

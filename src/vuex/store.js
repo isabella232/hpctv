@@ -47,7 +47,6 @@ export const store = new Vuex.Store({
       if (payload === -1) {
         state.autoplay.enabled = true;
         state.autoplay.clicks = 0;
-
       }
       if (payload === 0) {
         state.autoplay.clicks = 0;
@@ -56,17 +55,24 @@ export const store = new Vuex.Store({
         state.autoplay.enabled = !state.autoplay.enabled;
         console.log(`autoplay.enabled is now ${state.autoplay.enabled}`);
         state.autoplay.clicks = 0;
+        window.localStorage.setItem('autoPlay', false);
       }
     },
 
     pushTimer(state, timer) {
       state.autoplay.timers.push(timer);
     },
+
     clearTimers(state) {
       for (const timer of state.autoplay.timers) {
         clearTimeout(timer);
       }
       state.autoplay.timers = [];
+    },
+
+    overrideAutoplayStatus(state, payload){ 
+      state.autoplay.enabled = payload;
+      state.autoplay.clicks = 0;
     }
   },
 
