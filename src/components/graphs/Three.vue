@@ -164,7 +164,7 @@ export default {
      */
     onMouseUp(event) {
       if (!this.dragging) {
-        if (event.path[0].tagName === 'CANVAS') {
+        if (event.target.nodeName === 'CANVAS') {
           // make sure all the modals are closed.
           this.$parent.allOff();
           // coordinates in the window
@@ -305,7 +305,7 @@ export default {
      */
     makeSprite(cubeNumber, groupName) {
       //create the object
-      const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.svg');
+      const spriteMap = new TextureLoader().load('/static/icon/plus-x-icon.png');
       // next line avoids explicit image texture to be size in base 2 sizes.
       spriteMap.minFilter = LinearFilter;
       const spriteMaterial = new SpriteMaterial({ map: spriteMap, color: 0xbfd600, transparent: true });
