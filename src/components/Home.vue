@@ -1,5 +1,5 @@
 <template>
-  <div class="col dead-center">
+  <div class="home-wrapper col dead-center">
     <div class="video-container">
       <video autoplay muted loop playsinline id="bg-video">
         <source src="/static/video/homepage.mp4" type="video/mp4" />

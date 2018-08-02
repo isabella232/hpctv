@@ -5,7 +5,7 @@
       <router-view></router-view>
     </transition>
     <footer class="app-footer" v-if="$route.path == '/'">
-      <ul class="sponsors row around wrap">
+      <ul class="sponsors">
         <li><img src="/static/img/sponsor-logo-cisl.png" alt="CISL Logo"></li>
         <li><img src="/static/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:55px"></li>
         <li><img src="/static/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo" id="autoplayTrigger" @click="handleAutoplayGesture()"></li>
