@@ -5,11 +5,9 @@
         <source src="/static/video/homepage.mp4" type="video/mp4" />
       </video>
     </div>
-    <transition name="splash-fade-out">
+    <transition name="fade" mode="out-in">
       <Splash v-if="showSplash" ref="splash" />
-    </transition>
-    <transition name="home-fade-in">
-      <main class=" home-screen col dead-center" v-if="!showSplash">
+      <main class=" home-screen col dead-center" v-else>
         <div class="intro-container">
           <nav>
 
