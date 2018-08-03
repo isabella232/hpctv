@@ -1,6 +1,6 @@
 <template>
   <nav :class="{'dock-nav': true, open: navIsOpen}">
-    <button class="mobile-menu" @click="navIsOpen = !navIsOpen">&#9776;</button>
+    <button class="mobile-menu" @click="toggleNav()">&#9776;</button>
     <ul class="row">
       <li>
         <router-link to="/" exact>
@@ -43,6 +43,13 @@ export default {
       return this.$router.paths;
     }
   }
+,
+methods: {
+  toggleNav(){
+    this.navIsOpen = !this.navIsOpen;
+    document.querySelector('body').classList.toggle('freeze');
+  }
+}
 };
 </script>
 

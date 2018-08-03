@@ -1,14 +1,14 @@
 .dock-nav {
-  // border: solid 1px orange;
-  display: inline-block;
-  position: fixed;
-  bottom: 0;
-  left: calc(50% - 160px);
-  z-index: 3;
-
-
-
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
   ul {
+    margin-top: 1em;
+    text-align: center;
+    position: relative;
+    right: -100px;
+    transition: right .3s ease;
     li {
       width: 70px;
       height: 60px;
@@ -18,8 +18,6 @@
       flex-direction: column;
       justify-content: flex-end;
       cursor: pointer;
-      // box-shadow: 0 0 5px $color_teal;
-
       a {
         height: 100%;
         display: flex;
@@ -27,12 +25,10 @@
         justify-content: flex-end;
         align-items: center;
         @include radial_grey_gradient();
-
         &.router-link-active {
           @include gradient_blue_radial();
         }
       }
-
       span {
         width: 100%;
         margin-top: 5px;
@@ -43,42 +39,20 @@
       }
     }
   }
-
-  .mobile-menu {
-    display: none;
-  }
-
-  @media screen and (max-width: $mobilePlus) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 40px;
-
-    .mobile-menu {
-      display: block;
-      font-size: 30px;
-      color: $color_grey;
-      position: absolute;
-      right: 10px;
-      // top: 30px;
-      background: transparent;
-      cursor: pointer;
-      outline: none;
-      border: none;
-    }
-
+  &.open {
+    height: 100%;
+    background: black;
     ul {
-      display: none;
+      padding: .5em;
+      right: 0;
+      transition: right .3s ease;
     }
-
-    &.open {
-      background: $color_trans_black;
-      height: 100vh;
-
-      ul {
-        display: block;
-        margin-top: 50px;
-      }
-    }
+  }
+  .mobile-menu {
+    display: block;
+    color: $color_white;
+    font-size: 150%;
+    position: relative;
+    margin: .25em auto;
   }
 }

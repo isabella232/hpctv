@@ -8,13 +8,13 @@
     <main class="supercomputer">
       <div class="cheyenne-container">
         <img src="/static/img/supercomputer.png" alt="" class="computer">
-        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
+        <small-modal v-if="!isMobile" v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
       </div>
 
-      <!-- <ul>
-        <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
-          <Accordion>
-            <span slot="header">{{point.modalData.title}}</span>
+      <ul>
+        <li v-for="point,i in vuex.pointsOfInterest" :key="point.modalData.title">
+          <Accordion :instance="i">
+            <span slot="header" class="lime bold upper">{{point.modalData.title}}</span>
             <p slot="content">
               <span class="subtitle">{{ point.modalData.subtitle }}</span>
               <br>
@@ -22,9 +22,9 @@
             </p>
           </Accordion>
         </li>
-      </ul> -->
+      </ul>
     </main>
-    <slide-up-modal title="Glossary" ref="glossary">
+    <slide-up-modal title="Glossary" ref="glossary" v-if="false">
       <legend class="legend">
         <dl class="legend-list col wrap" ref="glossaryInternals">
           <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
@@ -43,7 +43,7 @@
 
 <script>
 import SmallModal from './modals-navs/Small-Modal';
-// import Accordion from './modals-navs/Accordion';
+import Accordion from './modals-navs/Accordion';
 import DockNav from './modals-navs/DockNav';
 import SlideUpModal from './modals-navs/SlideUpModal';
 
@@ -51,14 +51,15 @@ export default {
   name: 'specs',
   components: {
     SmallModal,
-    // Accordion,
+    Accordion,
     DockNav,
     SlideUpModal
   },
 
   data() {
     return {
-      legendIsOpen: false
+      legendIsOpen: false,
+      windowWidth: window.innerWidth
     };
   },
 
@@ -109,6 +110,9 @@ export default {
   computed: {
     vuex() {
       return this.$store.state.specs;
+    },
+    isMobile() {
+      return this.windowWidth < 768;
     }
   },
 
@@ -125,6 +129,14 @@ export default {
     // remove any classes from the body and then add the page-specific class.
     document.body.classList = '';
     document.body.classList.add('specs-page');
+  },
+
+  mounted() {
+        this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth
+      });
+    })
   }
 };
 </script>
