@@ -11,7 +11,7 @@
         <small-modal v-if="!isMobile" v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
       </div>
 
-      <ul>
+      <ul v-if="isMobile">
         <li v-for="point,i in vuex.pointsOfInterest" :key="point.modalData.title">
           <Accordion :instance="i">
             <span slot="header" class="lime bold upper">{{point.modalData.title}}</span>
@@ -24,7 +24,7 @@
         </li>
       </ul>
     </main>
-    <slide-up-modal title="Glossary" ref="glossary" v-if="false">
+    <slide-up-modal title="Glossary" ref="glossary">
       <legend class="legend">
         <dl class="legend-list col wrap" ref="glossaryInternals">
           <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
@@ -36,7 +36,7 @@
         </dl>
       </legend>
     </slide-up-modal>
-    <dock-nav  ref="nav"/>
+    <dock-nav ref="nav" />
 
   </div>
 </template>
@@ -80,29 +80,93 @@ export default {
       const page = this.$refs;
 
       this.automate([
-        // {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}}, 
+        // {delay: 2000, trigger() {page.glossary.legendIsOpen = true;}},
         // {delay: 15000,trigger() {page.glossaryInternals.scrollTo({ left: 1000, behavior: 'smooth' });}},
         // {delay: 7000,trigger() {page.glossary.legendIsOpen = false;}},
 
-        {delay: 4000, trigger(){page.heatOutput[0].toggle()}},
-        {delay: 6000, trigger(){page.heatOutput[0].toggle()}},
+        {
+          delay: 4000,
+          trigger() {
+            page.heatOutput[0].toggle();
+          }
+        },
+        {
+          delay: 6000,
+          trigger() {
+            page.heatOutput[0].toggle();
+          }
+        },
 
-        {delay: 2000, trigger(){page.dataTransferRate[0].toggle()}},
-        {delay: 2500, trigger(){page.dataTransferRate[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
-        {delay: 6000, trigger(){page.dataTransferRate[0].toggle()}},
+        {
+          delay: 2000,
+          trigger() {
+            page.dataTransferRate[0].toggle();
+          }
+        },
+        {
+          delay: 2500,
+          trigger() {
+            page.dataTransferRate[0].$refs.smallModalText.scrollTo({ top: 200, behavior: 'smooth' });
+          }
+        },
+        {
+          delay: 6000,
+          trigger() {
+            page.dataTransferRate[0].toggle();
+          }
+        },
 
-        {delay: 2000, trigger(){page.performance[0].toggle()}},
-        {delay: 6000, trigger(){page.performance[0].toggle()}},
+        {
+          delay: 2000,
+          trigger() {
+            page.performance[0].toggle();
+          }
+        },
+        {
+          delay: 6000,
+          trigger() {
+            page.performance[0].toggle();
+          }
+        },
 
+        {
+          delay: 2000,
+          trigger() {
+            page.processingCores[0].toggle();
+          }
+        },
+        {
+          delay: 2500,
+          trigger() {
+            page.processingCores[0].$refs.smallModalText.scrollTo({ top: 200, behavior: 'smooth' });
+          }
+        },
+        {
+          delay: 6000,
+          trigger() {
+            page.processingCores[0].toggle();
+          }
+        },
 
-        {delay: 2000, trigger(){page.processingCores[0].toggle()}},
-        {delay: 2500, trigger(){page.processingCores[0].$refs.smallModalText.scrollTo({top: 200, behavior: 'smooth'})}},
-        {delay: 6000, trigger(){page.processingCores[0].toggle()}},
+        {
+          delay: 2000,
+          trigger() {
+            page.totalMemory[0].toggle();
+          }
+        },
+        {
+          delay: 6000,
+          trigger() {
+            page.totalMemory[0].toggle();
+          }
+        },
 
-        {delay: 2000, trigger(){page.totalMemory[0].toggle()}},
-        {delay: 6000, trigger(){page.totalMemory[0].toggle()}},
-
-        {delay:3000, trigger(){router.push('live-data')}}
+        {
+          delay: 3000,
+          trigger() {
+            router.push('live-data');
+          }
+        }
       ]);
     }
   },
@@ -119,9 +183,11 @@ export default {
   filters: {
     getRefName(title) {
       // human to camelcase.
-      return title.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
-        return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-      }).replace(/\s+/g, '');
+      return title
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+          return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+        })
+        .replace(/\s+/g, '');
     }
   },
 
@@ -132,11 +198,11 @@ export default {
   },
 
   mounted() {
-        this.$nextTick(() => {
+    this.$nextTick(() => {
       window.addEventListener('resize', () => {
-        this.windowWidth = window.innerWidth
+        this.windowWidth = window.innerWidth;
       });
-    })
+    });
   }
 };
 </script>

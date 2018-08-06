@@ -1,6 +1,6 @@
 <template>
   <section class="slide-up-modal" :class="{open: legendIsOpen}">
-    <header @click="legendIsOpen = !legendIsOpen">
+    <header @click="toggleState()">
       <h3>
         <img src="/static/icon/plus-x-icon.svg" width="24">
         <span class="upper">{{title}}</span>
@@ -28,10 +28,16 @@ export default {
         this.$router.replace(this.$route.path);
       }
     }
+  },
+
+  methods: {
+    toggleState() {
+      this.legendIsOpen = !this.legendIsOpen;
+      document.querySelector('body').classList.toggle('freeze');
+    }
   }
 };
 </script>
 
 <style lang="scss"  src="../../scss/slide-up-modal.scss" >
-
 </style>

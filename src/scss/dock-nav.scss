@@ -1,4 +1,5 @@
 .dock-nav {
+  /* #region: Mobile */
   position: absolute;
   top: 0;
   right: 0;
@@ -55,4 +56,5 @@
     position: relative;
     margin: .25em auto;
   }
+  /* #endregion: Mobile */
 }
