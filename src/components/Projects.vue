@@ -102,6 +102,7 @@ export default {
       this.modalIsOpen = true;
       this.modalData = this.vuex.featuredProjects[i];
       document.querySelector('body').classList.add('freeze');
+      document.querySelector('html').classList.add('freeze');
     },
 
     async getTableData() {
