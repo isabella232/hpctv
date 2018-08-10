@@ -36,6 +36,7 @@ body.home-page {
       }
       .start-button {
         @include button();
+        color: #fff;
         width: 100px;
         height: 100px;
         display: table;
