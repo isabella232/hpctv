@@ -5,6 +5,7 @@
   right: 0;
   overflow: hidden;
   z-index: 2;
+  pointer-events: none;
 
   @media screen and (min-width: $tablet) {
     top: auto;
@@ -20,6 +21,7 @@
     text-align: center;
     position: relative;
     right: -100px;
+    pointer-events: all;
     transition: right .3s ease;
 
     @media screen and (min-width: $tablet) {
