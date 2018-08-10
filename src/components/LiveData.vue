@@ -238,6 +238,8 @@ export default {
     openProjectLog() {
       console.log('Im going to open the projectlog now');
       this.getTableData();
+      document.querySelector('body').classList.toggle('freeze');
+      document.querySelector('html').classList.toggle('freeze');
       this.$refs.projectLog.legendIsOpen = true;
     },
 

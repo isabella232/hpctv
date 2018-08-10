@@ -34,6 +34,7 @@ export default {
     toggleState() {
       this.legendIsOpen = !this.legendIsOpen;
       document.querySelector('body').classList.toggle('freeze');
+      document.querySelector('html').classList.toggle('freeze');
     }
   }
 };

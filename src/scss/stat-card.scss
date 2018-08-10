@@ -23,6 +23,8 @@
     font-family: $font_poppins_bold;
     padding: 10px;
     width: 100%;
+    display: flex;
+    flex-flow: column;
 
     .number {
       font-size: 5.5vh;

@@ -47,6 +47,7 @@ export default {
 methods: {
   toggleNav(){
     this.navIsOpen = !this.navIsOpen;
+    document.querySelector('html').classList.toggle('freeze');
     document.querySelector('body').classList.toggle('freeze');
   }
 }

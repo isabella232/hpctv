@@ -3,8 +3,14 @@
 @import 'colors';
 @import 'typography';
 @mixin pageHeader() {
+  color: $color_lime;
   font-family: $font_poppins_bold;
-  color: $color_grey;
+  padding-top: 120px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 0;
+    color: $color_grey;
+  }
 }
 
 // Opinionated resets
@@ -15,6 +21,12 @@ body {
   background: linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
   font-family: $font_poppins;
   color: $color_white;
+  position: relative;
+
+  &.projects-page {
+    padding-bottom: 2.25em;
+  }
+
   p {
     font-size: 16px;
     line-height: 1.2em;
@@ -51,14 +63,30 @@ body {
     height: 100%;
   }
   .page-header {
-    h1 {}
+    h1 {
+      color: $color_lime;
+      font-family: $font_poppins_bold;
+      text-align: center;
+      padding-top: 100px;
+
+      @media screen and (min-width: $tablet) {
+        color: $color_grey;
+        margin-top: 0;
+        padding-top: 50px;
+      }
+    }
+    @media screen and (min-width: $tablet) {
+      font-size: 1.2em;
+    }
   }
 }
 
-body.freeze {
+body.freeze,
+html.freeze {
   position: fixed;
   height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 body.autoplay {
@@ -134,15 +162,15 @@ body.projects-page {
       }
       img {
         max-height: 30%;
-        transform: translateX(25%);
+        transform: translateX(10%);
       }
       &.prev {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        left: -50px;
+        left: -35px;
       }
       &.next {
-        right: -50px;
+        right: -35px;
         transform: rotate(180deg);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
