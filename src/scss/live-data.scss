@@ -39,6 +39,7 @@ body.live-data-page {
             margin: auto;
             text-align: center;
             display: flex;
+
             .tab {
               cursor: pointer;
               outline: none;
@@ -81,7 +82,6 @@ body.live-data-page {
             canvas {
               width: 95%;
               margin: auto;
-              height: 200px;
             }
           }
         }
@@ -91,8 +91,11 @@ body.live-data-page {
 
           @media screen and (min-width: $tablet) {
             display: block;
-            height: calc(100vh * .3);
+            max-width: 100%;
+            max-height: calc(100vh * .4);
           }
+
+          .canvas {}
         }
       }
     }
@@ -132,5 +135,10 @@ body.live-data-page {
   }
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $tablet) {}
+
+@media screen and (width: 1920px) and (height: 1080px) {
+  .live-data {
+height: 95vh;
+  }
 }

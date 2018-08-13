@@ -154,7 +154,7 @@ export default {
      * Handler for resizing the canvas
      */
     onWindowResize() {
-      this.isMobile = window.innerWidth > 768;
+      this.isMobile = window.innerWidth < 768;
       this.camera.aspect = this.getCanvasWidth() / this.getCanvasHeight();
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(this.getCanvasWidth(), this.getCanvasHeight());
@@ -343,7 +343,7 @@ export default {
      */
     getCanvasHeight() {
       // getting height from DOM selector is causing a strange issue with canvas height on certain render paths. Instead of getting the value of <main> (which is calculated anway in css), we'll do the calculation here and return the appopriate value.
-      return this.isMobile ?  225 : (window.innerHeight - 170) * 0.6; // in live-data.scss -- calc(100vh - 170px);
+      return this.isMobile ?  225 : (window.innerHeight - 100) * 0.5; // in live-data.scss -- calc(100vh - 170px);
     },
 
     getXYSpritePostion(object) {
@@ -398,7 +398,7 @@ export default {
 
     showingAllSprites() {
       return this.vuex.renderAllSprites;
-    }
+    },
   },
 
   mounted() {

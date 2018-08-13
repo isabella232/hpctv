@@ -28,7 +28,7 @@
             <h2>Jobs Running*</h2>
           </header>
           <div class="canvas">
-            <LineChart :cssClasses="'line-graph'" :width="1000" :chartData="chartData"></LineChart>
+            <LineChart :cssClasses="'line-graph'" :width="1000" :height="250" :chartData="chartData" />
           </div>
         </div>
       </section>
