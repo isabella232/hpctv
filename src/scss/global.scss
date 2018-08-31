@@ -141,14 +141,14 @@ body.projects-page {
 // Global Components
 .side-nav {
   display: none;
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 100px) {
     display: block;
     button {
       background: $color_lime;
       position: fixed;
-      height: 100px;
-      width: 100px;
-      top: calc(50% - 50px);
+      height: 40px;
+      width: 40px;
+      top: calc(20% - 50px);
       z-index: 10;
       border: none;
       outline: none;
@@ -167,6 +167,32 @@ body.projects-page {
       &.prev {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        left: -15px;
+      }
+      &.next {
+        right: -15px;
+        transform: rotate(180deg);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      img.return {
+        position: absolute;
+        top: 13px;
+        left: 10px;
+        transform: rotate(-140deg);
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    button {
+      top: calc(50% - 50px);
+      height: 100px;
+      width: 100px;
+
+      &.prev {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
         left: -35px;
       }
       &.next {
@@ -174,6 +200,12 @@ body.projects-page {
         transform: rotate(180deg);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+      }
+      img.return {
+        position: absolute;
+        top: 33px;
+        left: 17px;
+        transform: rotate(-140deg);
       }
     }
   }

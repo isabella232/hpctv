@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <side-nav v-if="startClicked" />
+    <side-nav v-if="startClicked || $route.path !=='/'" />
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>

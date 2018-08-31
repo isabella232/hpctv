@@ -9,11 +9,10 @@
       </button>
 
     <button class="next"
-      :class="{'invisible': isLastPage}"
-      :disabled="isLastPage "
       @click="nextPage()"
     >
-      <img src="/static/icon/nav-arrow.svg" alt="next">
+      <img class="return" :class="{'invisible': !isLastPage}" src="/static/icon/go-back-arrow.svg" alt="next">
+      <img :class="{'invisible': isLastPage}" src="/static/icon/nav-arrow.svg" alt="next">
     </button>
   </div>
 </template>
@@ -44,9 +43,13 @@ export default {
 
   methods: {
     nextPage() {
-      this.$parent.slideDirection = 1;
-      let currentPage = this.getCurrentPageIndex;
-      this.$router.push(this.pages[(currentPage += 1)]);
+      if (this.isLastPage) {
+        window.location.href = window.location.origin;
+      } else {
+        this.$parent.slideDirection = 1;
+        let currentPage = this.getCurrentPageIndex;
+        this.$router.push(this.pages[(currentPage += 1)]);
+      }
     },
 
     prevPage() {

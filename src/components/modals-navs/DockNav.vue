@@ -3,10 +3,10 @@
     <button class="mobile-menu" @click="toggleNav()">&#9776;</button>
     <ul class="row">
       <li>
-        <router-link to="/" exact>
+        <a @click="handleAboutClick()">
           <img src="/static/icon/about-icon.svg" alt="">
           <span class="lime upper">About</span>
-        </router-link>
+        </a>
       </li>
       <li>
         <router-link to="specs">
@@ -49,6 +49,9 @@ methods: {
     this.navIsOpen = !this.navIsOpen;
     document.querySelector('html').classList.toggle('freeze');
     document.querySelector('body').classList.toggle('freeze');
+  },
+  handleAboutClick() {
+      window.location.href = window.location.origin;
   }
 }
 };
