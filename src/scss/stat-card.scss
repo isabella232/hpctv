@@ -17,6 +17,11 @@
     img {
       max-width: 100%;
     }
+
+    @media all and (-ms-high-contrast:none) {
+      position: relative;
+      left: 45px;
+    }
   }
 
   .info {
@@ -52,6 +57,11 @@
 
     .label {
       line-height: 1em;
+    }
+
+    @media all and (-ms-high-contrast:none) {
+      position: relative;
+      left: -70px;
     }
   }
 }

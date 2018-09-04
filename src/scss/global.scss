@@ -22,6 +22,7 @@ body {
   font-family: $font_poppins;
   color: $color_white;
   position: relative;
+  -ms-overflow-style: none;
 
   &.projects-page {
     padding-bottom: 2.25em;
@@ -206,6 +207,9 @@ body.projects-page {
         top: 33px;
         left: 17px;
         transform: rotate(-140deg);
+        @supports (-ms-ime-align: auto) {
+          left: 45px;
+        }
       }
     }
   }

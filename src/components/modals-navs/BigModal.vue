@@ -105,6 +105,7 @@ export default {
      * Sends an event to the parent to clost the modal
      */
     handleExitTap() {
+      document.querySelector('html').classList.remove('freeze');
       document.querySelector('body').classList.remove('freeze');
       this.$emit('modalBorderTapped', false);
     },

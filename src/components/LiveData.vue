@@ -329,7 +329,7 @@ export default {
 
   created() {
     // remove any classes from the body and then add the page-specific class.
-    document.body.classList = '';
+    document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
     document.body.classList.add('live-data-page');
 
     // Get today's statistics from the API.
