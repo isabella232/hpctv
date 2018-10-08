@@ -73,17 +73,22 @@ export default {
       }
     }
   },
-
+  
   watch: {
     data: {
       deep: true,
       handler(newVal) {
+        const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         const el = document.querySelector('#three-modal');
-        // if (newVal.x !== 0) {
+
+        if (viewportWidth > 768) {
           el.style.left = this.data.x + '%';
           el.style.top = this.data.y + '%';
-          this.toggle();
-        // }
+        } else {
+          el.style.left = '15%';
+          el.style.top = '25%';
+        }
+        this.toggle();
       }
     },
 
