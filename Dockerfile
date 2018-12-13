@@ -1,4 +1,4 @@
-FROM node:9.2.0 AS node
+FROM node:11.2 AS node
 
 COPY src /usr/local/src/hpctv/src/
 COPY static /usr/local/src/hpctv/static/
@@ -13,7 +13,7 @@ WORKDIR /usr/local/src/hpctv
 RUN npm install
 RUN npm run build
 
-FROM nginx:1.13.7-alpine AS nginx
+FROM nginx:1.15-alpine AS nginx
 
 RUN apk --update add dumb-init
 
