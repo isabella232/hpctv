@@ -9,7 +9,7 @@
       </header>
       <div class="row start panel-container">
         <div class="panel right">
-          <p class="subtitle lime bold upper">{{data.modalData.subtitle | numFormatter}} Core Hours Used Today</p>
+          <p class="subtitle lime bold upper">{{data.modalData.subtitle | numFormatter}} Core Hours Used In The Last 30 Days</p>
           <p>
             {{data.modalData.body}}
           </p>

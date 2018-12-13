@@ -84,6 +84,7 @@ body {
 
 body.freeze,
 html.freeze {
+  background: linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
   position: fixed;
   height: 100vh;
   overflow: hidden;
