@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+
+  hpctv-gateway:
+    build:
+      context: ../hpctv-gateway
+    image: hpctv-gateway:latest
+    volumes:
+      - ../hpctv-common/tmp:/tmp
+      - ../hpctv-common/log:/var/log/hpctv-gateway
+      - ../hpctv-common/secrets:/run/secrets
+
+  hpctv-gui:
+    build:
+      context: ../hpctv
+    image: hpctv-gui:latest
+    volumes:
+      - ../hpctv/static/env/host.js:/usr/share/nginx/html/static/env/host.js
+      - ../hpctv-common/secrets:/run/secrets
+
+  hpctv-cache:
+    build:
+      context: ../hpctv-cache
+    image: hpctv-cache:latest
+    volumes:
+       - ../hpctv-common/secrets:/run/secrets
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    name: hpctv
