@@ -20,11 +20,8 @@ Vue.use(VueAnalytics, {
   debug: {
     enabled: false,
     sendHitTask: true
-  },
-  autoTracking: {
-    screenview: true
   }
-})
+});
 
 new Vue({
   el: '#app',
