@@ -38,6 +38,8 @@ cd hpctv-host/
 The scripts deploy-test.sh and deploy-prod.sh execute Ansible against the hpctv-host repository
 using Docker. The image used is homegrown and available DockerHub: ncar/ansible-run-playbook.
 
+The vault password is in Keepass under Ansible Vault > hpctv-host.
+
 > Sometimes the Docker daemon isn't running on ansiblemaster. You'll see the error message below. Nick
 will restart it for you:
     * docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?. See 'docker run --help'.
