@@ -1,11 +1,11 @@
-The HPCTV release process to test and production is described below.
+# Deploy to test/prod environments
 
 Four Git repositories are involved:
 
-https://github.com/NCAR/hpctv         (Javascript frontend)
-https://github.com/NCAR/hpctv-gateway (Spring boot application interfacing with SAM)
-https://github.com/NCAR/hpctv-cache   (Nginx proxy/cache)
-https://github.com/NCAR/hpctv-host    (Ansible configuration)
+* https://github.com/NCAR/hpctv         (Javascript frontend)
+* https://github.com/NCAR/hpctv-gateway (Spring boot application interfacing with SAM)
+* https://github.com/NCAR/hpctv-cache   (Nginx proxy/cache)
+* https://github.com/NCAR/hpctv-host    (Ansible configuration)
 
 Repositories hpctv, hpctv-gateway, hpctv-cache are configured with a circle-ci job that builds
 a docker image and ships it to an AWS ECR repository. This job is triggered when a release is
@@ -27,22 +27,17 @@ the repository hpctv-host with the new version of hpctv. Then:
 
 Example:
 
-~/job/ncar/work >ssh jcunning@ansiblemaster.nwsc.ucar.edu
-TokenResponse:
-Last login: Thu Nov  7 16:47:22 2019 from cisl-dora.scd.ucar.edu
-[jcunning@ansiblemaster ~]$ sudo -u _annie bash
-TokenResponse:
-[_annie@ansiblemaster jcunning]$ cd
-[_annie@ansiblemaster ~]$ cd hpctv-host/
-[_annie@ansiblemaster hpctv-host]$ ./deploy-test.sh
-
-Notes:
+```bash
+ssh [username]@ansiblemaster.nwsc.ucar.edu
+sudo -u _annie bash
+cd
+cd hpctv-host/
+./deploy-test.sh
+```
 
 The scripts deploy-test.sh and deploy-prod.sh execute Ansible against the hpctv-host repository
 using Docker. The image used is homegrown and available DockerHub: ncar/ansible-run-playbook.
 
-Sometimes the Docker daemon isn't running on ansiblemaster. You'll see the error message below. Nick
+> Sometimes the Docker daemon isn't running on ansiblemaster. You'll see the error message below. Nick
 will restart it for you:
-
-   docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
-   See 'docker run --help'.
+    * docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?. See 'docker run --help'.
