@@ -66,7 +66,6 @@ export default {
 
   methods: {
     beginAutoplay(){
-      console.log('home begin autoplay');
       const v = this;
       this.automate([
         {delay: 5000, trigger(){ v.$refs.splash.handleStartClick();}},
@@ -84,9 +83,6 @@ export default {
   mounted() {
     // some browsers do not support autoplay for video. this will trigger the video to play if that's the case.
     const video = document.querySelector('#bg-video');
-    // video.oncanplaythrough = () => {
-    //   video.play();
-    // };
 
     if (window.localStorage.getItem('autoPlay') == 'true') {
       console.log('autoplay cookie found');

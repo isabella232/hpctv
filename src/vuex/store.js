@@ -53,7 +53,6 @@ export const store = new Vuex.Store({
       }
       if (state.autoplay.clicks >= 5) {
         state.autoplay.enabled = !state.autoplay.enabled;
-        console.log(`autoplay.enabled is now ${state.autoplay.enabled}`);
         state.autoplay.clicks = 0;
         window.localStorage.setItem('autoPlay', false);
       }

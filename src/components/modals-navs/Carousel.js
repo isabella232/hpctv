@@ -15,11 +15,5 @@ export default {
         this.$emit('pageChange', this.currentPage);
       }
     }
-  },
-
-  events: {
-    mediaType(payload) {
-      console.log('from parent ', payload);
-    }
   }
 }

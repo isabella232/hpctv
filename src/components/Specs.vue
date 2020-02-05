@@ -75,7 +75,6 @@ export default {
     },
 
     beginAutoplay() {
-      console.log('beginning autoplay');
       const router = this.$router;
       const page = this.$refs;
 
