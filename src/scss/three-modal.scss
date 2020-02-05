@@ -1,0 +1,151 @@
+.three-modal {
+  position: absolute;
+  // height: 250px;
+  width: 300px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: z-index 0ms 1000ms;
+
+  a.button {
+    background: transparent;
+    outline: none;
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 0;
+    transform: scale(0);
+    -webkit-appearance: none;
+    transition: 250ms 750ms;
+    cursor: pointer;
+  }
+
+  // base styles
+  .modal-body {
+    transform: scaleX(0);
+    transform-origin: 0% 0%;
+    transition: transform 250ms 500ms;
+
+    .panel-container {
+      display: flex;
+      transform: scaleY(0);
+      transition: transform 250ms 250ms;
+      transform-origin: 50% 0%;
+      // height: 200px;
+      overflow: hidden;
+      .panel {
+        flex: 1;
+        background-color: $color_dark_grey;
+        margin: 5px;
+        overflow-y: scroll;
+        text-align: left;
+        &.right {
+          padding: 10px;
+          overflow-y: scroll;
+
+          .subtitle {
+            font-size: 150%;
+            text-align: left;
+            margin-bottom: 5px;
+          }
+
+          transform: scaleY(0);
+          transform-origin: 50% 0%;
+          transition: transform 250ms;
+        }
+      }
+    }
+
+    header {
+      background-color: $color_teal;
+      padding-left: 1.75em;
+      padding-right: 1.5em;
+      text-align: left;
+      font-family: $font_poppins_bold;
+      font-size: 1.25em;
+    }
+
+    a.button {
+      background: transparent;
+      outline: none;
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      padding: 0;
+      z-index: 0;
+      -webkit-appearance: none;
+      transition: 250ms 750ms;
+
+      img {
+        filter: saturate(1) brightness(1);
+        transition: 250ms;
+      }
+    }
+  }
+
+  // only open
+  &.open {
+    z-index: 4;
+    transition: z-index 0ms;
+    a.button {
+      background-color: $color_teal;
+      z-index: 5;
+      transform: rotate(45deg) scale(1);
+      transition: 250ms;
+
+      img {
+        filter: saturate(0) brightness(2);
+        transition: 250ms;
+      }
+    }
+    .modal-body {
+      position: relative;
+      transform: scaleX(1);
+      transition: transform 250ms 250ms;
+      z-index: 4;
+      .panel-container {
+        transform: scaleY(1);
+        transition: transform 250ms 500ms;
+        .panel {
+          &.right {
+            transform: scaleY(1);
+            transition: 250ms 750ms;
+          }
+        }
+      }
+    }
+
+    // open and inverted
+    .modal-body.inverted {
+      transform: scaleX(1);
+      transition: transform 250ms 250ms;
+    }
+  }
+
+  // inverted base styles
+  .modal-body.inverted {
+    @media screen and (min-width: 768px) {
+      position: relative;
+      right: 300px;
+      transform-origin: 100% 0%;
+      transform: scaleX(0);
+      transition: transform 250ms 500ms;
+    }
+  }
+}
+video {
+  max-width: 100%;
+}

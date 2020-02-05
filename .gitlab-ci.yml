@@ -1,0 +1,33 @@
+variables:
+  SYNC_COMMAND: rsync -avz --delete --chmod=D755,F644 --exclude=/.htpasswd --exclude=/dist/static/env/ ./dist/
+  STAGING_PATH: vera@staging3.vermilion.com:~/www/hpc-tv/html/
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - node_modules/
+
+  artifacts:
+    name: dist
+    paths:
+      - dist
+
+  script:
+    - npm install
+    - npm run build
+
+staging:
+  stage: deploy
+  environment: staging
+  dependencies:
+    - build
+  only:
+    - develop
+  script:
+    - $SYNC_COMMAND $STAGING_PATH

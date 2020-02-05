@@ -1,0 +1,69 @@
+body.specs-page {
+  width: 100%;
+  height: auto;
+  #app {
+    width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+  }
+
+  .page-header{
+    margin: 1em;
+    h1{
+      color: $color-grey;
+      font-family: $font-poppins-bold;
+      line-height: 1.2;
+    }
+    span.hint{
+      display: none;
+    }
+  }
+
+  main.supercomputer{    
+    padding: 1em .5em;
+  }
+
+  .sponsor-bugs {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+  
+  
+  @media screen and (min-width: 768px) {
+      main.supercomputer {
+        padding: 0;
+        display: flex; // IE 11 only
+        .cheyenne-container {
+          margin: auto;
+          width: 80%;
+          position: relative;
+          padding-bottom: 50.7%;
+          max-width: 1400px;
+          background: url('/static/img/supercomputer.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: 50% 30%;
+          .computer {
+            display: none;
+          }
+        } // better alternative for anthing not IE
+        @supports (object-fit: contain) {
+          .cheyenne-container {
+            margin: auto;
+            width: 80%;
+            padding-bottom: 0;
+            position: relative;
+            text-align: center;
+            max-width: 1400px;
+            background: transparent;
+            .computer {
+              display: block;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+  }
+}
