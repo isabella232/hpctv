@@ -106,7 +106,7 @@ export default {
     },
 
     async getTableData() {
-      response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
+      response = await axios.get('report_projectlog_days_ago_30.json', this.apiConfig);
       return response.data.entries;
     },
 
@@ -157,7 +157,7 @@ export default {
     document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
     document.body.classList.add('projects-page');
     axios
-      .get('report/projectlog?daysAgo=30', this.apiConfig)
+      .get('report_projectlog_days_ago_30.json', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           this.tableData = response.data.entries;

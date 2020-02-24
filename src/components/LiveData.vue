@@ -244,7 +244,7 @@ export default {
     },
 
     async getTableData() {
-      const response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
+      const response = await axios.get('report_projectlog_days_ago_30.json', this.apiConfig);
       this.tableData = response.data.entries;
     },
 
@@ -338,7 +338,7 @@ export default {
 
     // Get today's statistics from the API.
     axios
-      .get('report/log?daysAgo=1', this.apiConfig)
+      .get('report_log_days_ago_1.json', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           // Successful
@@ -361,7 +361,7 @@ export default {
 
     // get ALL TIME stats from API
     axios
-      .get('/report/total', this.apiConfig)
+      .get('report_total.json', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           // Successful response
@@ -384,7 +384,7 @@ export default {
 
     // Get the pulse data
     axios
-      .get('report/activity?daysAgo=60', this.apiConfig)
+      .get('report_activity_days_ago_60.json', this.apiConfig)
       .then(response => {
         if (response.status === 200) {
           const data = response.data;

@@ -10,12 +10,17 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
+const shell = require('shelljs')
 
 const spinner = ora('building for production...')
 spinner.start()
 
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
+
+  shell.rm('-rf', 'dist/data');
+  shell.cp('-R', 'data/', 'dist/data');
+
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err

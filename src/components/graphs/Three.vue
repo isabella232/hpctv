@@ -268,12 +268,12 @@ export default {
 
         // convert the number of Core Hours to a percentage of the whole.
         group.data.percentage = Math.round(group.data.coreHours / totalCoreHours * 100);
-
         // now that we have percentages, figure out how many blocks they will take up by doubling their number so that total is out of 200.
         group.data.blocks = { count: group.data.percentage * 2 };
         // then figure out the range of IDs for each block.
         group.data.blocks.start = offset;
         group.data.blocks.end = offset + group.data.blocks.count - 1;
+        if(group.data.blocks.end > 199) group.data.blocks.end = 199;
 
         // find the visual halfway point.
         const mathematical = offset + group.data.blocks.count / 2;
@@ -439,7 +439,7 @@ export default {
     // Reach out to the API as soon as possible.
 
     // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
-    const urls = this.vuex.aoigList.map(group => `report/aoiglog/aoig/${group.queryString}?daysAgo=30`);
+    const urls = this.vuex.aoigList.map(group => `report_aoiglog_aoig_${group.prettyName.toLowerCase().replace(/ /g, '_')}_days_ago_30.json`);
     axios
       .all(urls.map(endpoint => axios.get(endpoint, this.apiConfig)))
       .then(res => {
@@ -448,7 +448,10 @@ export default {
           if (response.status === 200) {
             // first have to get the good part of the string. there might be a better way to do this in production.
             const url = response.request.responseURL;
-            const prettyName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('?')).replace(/\%20/g, ' ');
+            const prettyName = url.substring(url.lastIndexOf('aoig_') + 5, url.lastIndexOf('_days')).replace(/_/g, ' ').replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+                function($1){
+                    return $1.toUpperCase();
+                });
 
             this.dataSet.push({
               group: prettyName.replace('-', ' '),
@@ -463,7 +466,7 @@ export default {
 
     // get the facility breakdown.
     axios
-      .get('report/projectlog?daysAgo=1', this.apiConfig)
+      .get('report_projectlog_days_ago_1.json', this.apiConfig)
       .then(response => {
         this.userGroups = [];
         let tempGroups = {};
