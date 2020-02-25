@@ -14,8 +14,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 sync ./dist s3://hpctv.ucar.edu --delete
-#      - aws cloudfront create-invalidation --distribution-id  EUHBNVWX0WXS0 --paths "/*"
+      - aws s3 sync ./dist s3://hpctv-test.ucar.edu --delete
 artifacts:
   files:
     - '**/*'
