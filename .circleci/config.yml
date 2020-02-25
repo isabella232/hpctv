@@ -14,7 +14,7 @@ jobs:
             git config --global user.email "${GITHUB_USER_EMAIL}"
             git config --global user.name "${GITHUB_USER_NAME}"
             git remote set-url origin https://${GITHUB_USER_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/${CIRCLE_PROJECT_REPONAME}.git
-            git add ./data && git commit -m "Update SAM data" ./data && git push origin ${CIRCLE_BRANCH}
+            git add ./data && git commit -m "Update SAM data from CircleCI" ./data && git push origin ${CIRCLE_BRANCH}
 
 workflows:
 
