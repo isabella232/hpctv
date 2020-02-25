@@ -5,8 +5,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: bash ./.circleci/get-sam-data.sh
-      - run: git add ./data && git commit -m "Update SAM data" ./data && git push origin ${CIRCLE_BRANCH}
+      - run:
+          name: Get SAM API Data
+          command: bash ./.circleci/get-sam-data.sh
+      - run:
+          name: Commit Data
+          command: |
+            git config --global user.email "${GITHUB_USER_EMAIL}"
+            git config --global user.name "${GITHUB_USER_NAME}"
+            git add ./data && git commit -m "Update SAM data" ./data && git push origin ${CIRCLE_BRANCH}
 
 workflows:
 
