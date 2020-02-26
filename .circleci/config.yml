@@ -7,11 +7,16 @@ jobs:
       - checkout
       - run:
           name: Get SAM API Data
-          command: bash ./.circleci/get-sam-data.sh
+          command: |
+            bash ./.circleci/get-sam-data.sh
+            for file in ./data/*.json;
+            do
+              [[ ! -s $file ]] && echo "$file is empty" && exit 1;
+            done
       - run:
           name: Commit Data
           command: |
-            [[ -z $(git diff ./data) ]] && exit 0
+            [[ -z $(git diff ./data) ]] && echo "no changes to commit" && exit 0
             git config --global user.email "${GITHUB_USER_EMAIL}"
             git config --global user.name "${GITHUB_USER_NAME}"
             git remote set-url origin https://${GITHUB_USER_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/${CIRCLE_PROJECT_REPONAME}.git
@@ -29,3 +34,13 @@ workflows:
             branches:
               only:
                 - static-data
+  nightly:
+    triggers:
+      - schedule:
+          cron: "30 10 * * *"
+          filters:
+            branches:
+              only:
+                - static-data
+    jobs:
+      - build
