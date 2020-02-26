@@ -7,12 +7,7 @@ jobs:
       - checkout
       - run:
           name: Get SAM API Data
-          command: |
-            bash ./.circleci/get-sam-data.sh
-            for file in ./data/*.json;
-            do
-              [[ ! -s $file ]] && echo "$file is empty" && exit 1;
-            done
+          command: bash ./.circleci/get-sam-data.sh
       - run:
           name: Commit Data
           command: |

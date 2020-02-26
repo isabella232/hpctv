@@ -27,4 +27,5 @@ do
     echo "fetching ${ENDPOINTS[$key]}"
     curl --user ${HPCTV_SAM_API_USER}:${HPCTV_SAM_API_PASSWORD} https://sam.ucar.edu${ENDPOINTS[$key]} -o ${PROJECT_DIR}/data/${key}.json
     [[ ! -s ${PROJECT_DIR}/data/${key}.json ]] && echo "${PROJECT_DIR}/data/${key}.json is empty" && exit 1;
+    sleep 1
 done
