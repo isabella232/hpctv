@@ -1,0 +1,12 @@
+version: 0.2
+env:
+  git-credential-helper: yes
+phases:
+  post_build:
+    commands:
+      - aws s3 sync s3://hpctv-test.ucar.edu s3://hpctv.ucar.edu --delete
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
+  base-directory: dist
