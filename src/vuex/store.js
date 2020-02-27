@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     apiConfig: {
-      baseURL: hpctvhost,
+      baseURL: '/v1/',
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
