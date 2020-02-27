@@ -16,7 +16,7 @@ phases:
       - echo '<!-- $CODEBUILD_RESOLVED_SOURCE_VERSION -->' >> index.html
   post_build:
     commands:
-      - aws s3 sync ./dist s3://hpctv-test.ucar.edu --delete
+      - aws s3 sync . s3://hpctv-test.ucar.edu --delete
 artifacts:
   files:
     - '**/*'
