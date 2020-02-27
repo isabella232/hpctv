@@ -13,7 +13,7 @@ phases:
       - echo "Run build..."
       - npm run build
       - cd dist/
-      - echo '<!-- $CODEBUILD_RESOLVED_SOURCE_VERSION -->' >> index.html
+      - echo '<!-- ' $CODEBUILD_RESOLVED_SOURCE_VERSION ' -->' >> index.html
   post_build:
     commands:
       - aws s3 sync . s3://hpctv-test.ucar.edu --delete
