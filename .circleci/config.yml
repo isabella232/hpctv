@@ -38,4 +38,5 @@ workflows:
               only:
                 - static-data
     jobs:
-      - build
+      - build:
+          context: hpctv
