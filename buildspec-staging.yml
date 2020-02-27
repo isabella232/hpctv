@@ -12,6 +12,7 @@ phases:
     commands:
       - echo "Run build..."
       - npm run build
+      - cd dist/
       - echo '<!-- $CODEBUILD_RESOLVED_SOURCE_VERSION -->' >> index.html
   post_build:
     commands:
