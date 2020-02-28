@@ -21,14 +21,6 @@ workflows:
 
   version: 2
 
-  get-sam-data:
-    jobs:
-      - build:
-          context: hpctv
-          filters:
-            branches:
-              only:
-                - static-data
   nightly:
     triggers:
       - schedule:
@@ -36,7 +28,7 @@ workflows:
           filters:
             branches:
               only:
-                - static-data
+                - master
     jobs:
       - build:
           context: hpctv
