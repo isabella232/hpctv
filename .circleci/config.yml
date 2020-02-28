@@ -1,80 +1,34 @@
-defaults: &defaults
-  docker:
-    - image: circleci/openjdk:8-jdk
-
 version: 2
 jobs:
   build:
-    <<: *defaults
-
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-
-      - setup_remote_docker
-
       - run:
-          name: "Build image"
+          name: Get SAM API Data
+          command: bash ./.circleci/get-sam-data.sh
+      - run:
+          name: Commit Data
           command: |
-            echo $AWS_REGION
-            echo $AWS_ECR_HOST
-            docker build -t $CIRCLE_PROJECT_REPONAME:latest .
-
-      - run:
-          name: "Create workspace"
-          command: |
-            mkdir -p workspace/image
-            docker save -o workspace/image/$CIRCLE_PROJECT_REPONAME-image.tar $CIRCLE_PROJECT_REPONAME:latest
-
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - image
-
-  push:
-    <<: *defaults
-    
-    steps:
-
-      - attach_workspace:
-          at: workspace
-
-      - setup_remote_docker
-
-      - run:
-          name: "Install AWS"
-          command: |
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-            unzip awscli-bundle.zip
-            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-
-      - run:
-          name: "Log in to AWS ECR"
-          command: eval $(aws ecr get-login --no-include-email --region $AWS_REGION || echo false)
-
-      - run:
-          name: "Reload and push docker image"
-          command: |
-            docker load < workspace/image/$CIRCLE_PROJECT_REPONAME-image.tar
-            docker tag $CIRCLE_PROJECT_REPONAME:latest $AWS_ECR_HOST/$CIRCLE_PROJECT_REPONAME:latest
-            docker tag $CIRCLE_PROJECT_REPONAME:latest $AWS_ECR_HOST/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
-            docker push $AWS_ECR_HOST/$CIRCLE_PROJECT_REPONAME:latest
-            docker push $AWS_ECR_HOST/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            [[ -z $(git diff ./data) ]] && echo "no changes to commit" && exit 0
+            git config --global user.email "${GITHUB_USER_EMAIL}"
+            git config --global user.name "${GITHUB_USER_NAME}"
+            git remote set-url origin https://${GITHUB_USER_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/${CIRCLE_PROJECT_REPONAME}.git
+            git add ./data && git commit -m "Update SAM data from CircleCI" ./data && git push origin ${CIRCLE_BRANCH}
 
 workflows:
+
   version: 2
-  build-push:
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "30 10 * * *"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - build:
           context: hpctv
-          filters:
-            tags:
-              only: /.*/
-      - push:
-          context: hpctv
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
-            branches:
-              ignore: /.*/

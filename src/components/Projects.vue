@@ -87,9 +87,6 @@ export default {
   computed: {
     vuex() {
       return this.$store.state.projects;
-    },
-    apiConfig() {
-      return this.$store.state.apiConfig;
     }
   },
 
@@ -106,7 +103,7 @@ export default {
     },
 
     async getTableData() {
-      response = await axios.get('report/projectlog?daysAgo=30', this.apiConfig);
+      response = await axios.get('/data/report_projectlog_days_ago_30.json');
       return response.data.entries;
     },
 
@@ -157,7 +154,7 @@ export default {
     document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
     document.body.classList.add('projects-page');
     axios
-      .get('report/projectlog?daysAgo=30', this.apiConfig)
+      .get('/data/report_projectlog_days_ago_30.json')
       .then(response => {
         if (response.status === 200) {
           this.tableData = response.data.entries;
