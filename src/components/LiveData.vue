@@ -180,10 +180,6 @@ export default {
       return this.$store.state.liveData.activeTab;
     },
 
-    apiConfig() {
-      return this.$store.state.apiConfig;
-    },
-
     chartHeight() {
       return parseInt(
         getComputedStyle(document.querySelector('.canvas'))
@@ -244,7 +240,7 @@ export default {
     },
 
     async getTableData() {
-      const response = await axios.get('report_projectlog_days_ago_30.json', this.apiConfig);
+      const response = await axios.get('/data/report_projectlog_days_ago_30.json');
       this.tableData = response.data.entries;
     },
 
@@ -338,7 +334,7 @@ export default {
 
     // Get today's statistics from the API.
     axios
-      .get('report_log_days_ago_1.json', this.apiConfig)
+      .get('/data/report_log_days_ago_1.json')
       .then(response => {
         if (response.status === 200) {
           // Successful
@@ -361,7 +357,7 @@ export default {
 
     // get ALL TIME stats from API
     axios
-      .get('report_total.json', this.apiConfig)
+      .get('/data/report_total.json')
       .then(response => {
         if (response.status === 200) {
           // Successful response
@@ -384,7 +380,7 @@ export default {
 
     // Get the pulse data
     axios
-      .get('report_activity_days_ago_60.json', this.apiConfig)
+      .get('/data/report_activity_days_ago_60.json')
       .then(response => {
         if (response.status === 200) {
           const data = response.data;

@@ -8,16 +8,6 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    apiConfig: {
-      baseURL: hpctvhost,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      auth: {
-        username: 'hpctv',
-        password: 'super'
-      }
-    },
     autoplay: {
       enabled: false,
       clicks: 0,

@@ -20,53 +20,6 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 ```
 
-## Build and run with Docker
-
-The docker-compose.yml file in this repo will build images and run containers for hpctv-gui (this repo), [hpctv-gateway](https://github.com/NCAR/hpctv-gateway), and [hpctv-cache](https://github.com/NCAR/hpctv-cache) (an nginx proxy for hpctv-gateway and hpctv-gui). There is another repo, [hpctv-host](https://github.com/NCAR/hpctv-host) that is only used for building and running the app on the internal SWEG infrastructure, and is not needed for local development.
-
-### Docker Setup
-
-Clone all three hpctv-* repositories to a common directory, and create a fourth directory at the same path with children directories for "log", "secrets", and "tmp":
-```text
-/some/path
-          /hpctv
-          /hpctv-cache
-          /hpctv-common
-                       /log
-                       /secrets
-                       /tmp
-          /hpctv-gateway
-```
-
-Copy or symlink `hpctv-gateway/hpctv-gateway.properties` file to `hpctv-common/secrets/hpctv-gateway.properties` and edit with correct values. The SAM password is in the SWES KeePass database.
-
-Edit the `hpctv-cache/cache-nginx.conf` file and comment out the SSL directives, and listen on port 80:
-
-```text
-#    listen               443 ssl;
-    listen 80;
-    server_name          hpctv.ucar.edu;
-#    ssl_certificate      /run/secrets/hpctv.ucar.edu.bundle.pem;
-#    ssl_certificate_key  /run/secrets/hpctv.ucar.edu.key;
-    keepalive_timeout    60;
-#    ssl_session_cache    shared:SSL:10m;
-#    ssl_session_timeout  10m;
-``` 
-
-Create a `static/env/host.js` file in this repo with the following:
-```javascript
-let hpctvhost = 'http://localhost:8080/v1/';
-```
-
-Finally, run `docker-compose` as normal:
-
-```bash
-docker-compose build
-docker-compose up
-```
-
-Good luck!
- 
 ## Application Overview
 This application uses Vue, Vue Router and Vuex.
 ### Vue

@@ -392,10 +392,6 @@ export default {
       return this.$store.state.liveData;
     },
 
-    apiConfig() {
-      return this.$store.state.apiConfig;
-    },
-
     showingAllSprites() {
       return this.vuex.renderAllSprites;
     },
@@ -441,7 +437,7 @@ export default {
     // get all the AOIG's and loop through them, sending a get request for each group. this may take a while
     const urls = this.vuex.aoigList.map(group => `report_aoiglog_aoig_${group.prettyName.toLowerCase().replace(/ /g, '_')}_days_ago_30.json`);
     axios
-      .all(urls.map(endpoint => axios.get(endpoint, this.apiConfig)))
+      .all(urls.map(endpoint => axios.get('/data/' + endpoint)))
       .then(res => {
         // all responses are now returned in format [{}, {}] so we have to loop through them and get the data we want.
         res.forEach(response => {
@@ -466,7 +462,7 @@ export default {
 
     // get the facility breakdown.
     axios
-      .get('report_projectlog_days_ago_1.json', this.apiConfig)
+      .get('/data/report_projectlog_days_ago_1.json')
       .then(response => {
         this.userGroups = [];
         let tempGroups = {};
