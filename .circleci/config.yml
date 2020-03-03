@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/base:stable
+      - image: ncar/aws-cli:latest
     steps:
       - checkout
       - run:
@@ -14,15 +14,9 @@ jobs:
               echo "Found only $JSON_FILES json files"; exit 1;
             fi
       - run:
-          name: Install AWS
-          command: |
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-            unzip awscli-bundle.zip
-            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-            eval $(aws ecr get-login --no-include-email --region $AWS_REGION || echo false)
-      - run:
           name: Sync Data
           command: |
+            eval $(aws ecr get-login --no-include-email --region $AWS_REGION || echo false)
             aws s3 sync ./data s3://hpctv-test.ucar.edu/data --include "*.json"
             aws s3 sync ./data s3://hpctv.ucar.edu/data --include "*.json"
 
