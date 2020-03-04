@@ -6,6 +6,16 @@ HPC-TV is a VueJs app that is served from AWS S3. Data from SAM is pushed to the
 
 ## Develop and Build
 
+First, pull in data from SAM:
+
+```bash
+bash ./get-sam-data.sh
+```
+
+This will populate the ./data directory with 13 JSON files containing HPC data from the SAM API.
+
+Next, build the app:
+
 ``` bash
 # install dependencies
 npm install
@@ -39,7 +49,7 @@ To promote the build to production, manually approve the pipeline to copy the co
 
 ## HPC Data
 
-A CircleCI job runs nightly to fetch updated Cheyenne accounting data from SAM. Updated data is written to JSON files in the /data directory and committed back to this repo, which then triggers the AWS Codepipeline build.
+A CircleCI job runs nightly to fetch updated Cheyenne accounting data from SAM. Updated data is synced to the staging and production S3 buckets.
 
 ## Application Overview
 This application uses Vue, Vue Router and Vuex.
