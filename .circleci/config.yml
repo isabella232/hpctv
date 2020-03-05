@@ -22,9 +22,9 @@ jobs:
       - run:
           name: Sync Data
           command: |
-            aws s3 sync ./data s3://hpctv-test.ucar.edu/data --include "*.json"
-            aws s3 sync ./data s3://hpctv.ucar.edu/data --include "*.json"
-
+            aws s3 sync ./data s3://hpctv-test.ucar.edu/data --exclude "*" --include "*.json"
+            aws cloudfront create-invalidation --distribution-id  ETXGA1QRYM8XJ --paths "/data"
+            aws s3 sync ./data s3://hpctv.ucar.edu/data --exclude "*" --include "*.json"
 
 workflows:
 
