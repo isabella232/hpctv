@@ -17,6 +17,7 @@ phases:
   post_build:
     commands:
       - aws s3 sync . s3://hpctv-test.ucar.edu --delete --exclude "data/*"
+      - aws cloudfront create-invalidation --distribution-id  ETXGA1QRYM8XJ --paths "/*"
 artifacts:
   files:
     - '**/*'
