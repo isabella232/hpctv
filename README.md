@@ -6,7 +6,7 @@ HPC-TV is a VueJs app that is served from AWS S3. Data from SAM is pushed to the
 
 ## Develop and Build
 
-First, pull in data from SAM:
+First, pull in data from SAM. To do this locally you must set the SAM API username and password, then run:
 
 ```bash
 bash ./get-sam-data.sh

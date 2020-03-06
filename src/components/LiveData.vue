@@ -386,7 +386,10 @@ export default {
           const data = response.data;
           console.log('%c API request: OK', 'color:lime');
           this.chartData = {
-            labels: data.entries.map(object => object.date.replace(/20\d\d-/i, '')),
+            labels: data.entries.map(object => {
+                let d = new Date(object.date);
+                return d.toISOString().slice(5, 10);
+            }),
             datasets: [
               // Jobs and users are NOT on a scale that both can be viewed. therefore one has to be chosen. Jobs seems to be a more interesting number.
               {
