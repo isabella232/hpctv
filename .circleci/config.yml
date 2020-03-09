@@ -25,6 +25,7 @@ jobs:
             aws s3 sync ./data s3://hpctv-test.ucar.edu/data --exclude "*" --include "*.json"
             aws cloudfront create-invalidation --distribution-id  ETXGA1QRYM8XJ --paths "/data"
             aws s3 sync ./data s3://hpctv.ucar.edu/data --exclude "*" --include "*.json"
+            aws cloudfront create-invalidation --distribution-id  E1J6SOAK9QJXTK --paths "/data"
 
 workflows:
 
