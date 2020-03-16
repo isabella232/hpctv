@@ -2,7 +2,7 @@
 
 [Cheyenne Supercomputer Project](https://hpctv.ucar.edu)
 
-HPC-TV is a VueJs app that is served from AWS S3. Data from SAM is pushed to the app nightly via a CircleCI job.
+HPC-TV is a VueJS app that is served from AWS S3. Data from SAM is pushed to the app nightly via a CircleCI job.
 
 ## Develop and Build
 
