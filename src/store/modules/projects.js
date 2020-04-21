@@ -5,19 +5,19 @@ const state = {
       name: 'Wind Forecast Improvement',
       longProjectName: 'Wind Forecast Improvement Project 2',
       area: '',
-      heroImage: '/static/img/featured-projects/wind-forecast.jpg',
+      heroImage: require('@/assets/img/featured-projects/wind-forecast.jpg'),
       projectLead: {
         name: 'Pedro A. Jimenez Munoz',
         organizationName: 'Research Applications Lab Weather Systems & Assessment Program',
         twitter: null,
-        thumbnail: '/static/img/featured-projects/scientist-photos/pedro-jimenez.jpg',
+        thumbnail: require('@/assets/img/featured-projects/scientist-photos/pedro-jimenez.jpg'),
         shortBio: 'Jimenez Munoz, Ph.D. has more than 15 years of experience with mesoscale models like the Weather Research and Forecasting (WRF) model. His experience with mesoscale models goes beyond a user perspective having developed parameterizations to improve the model performance.'
       },
       statData: [
         {
           statName: 'Core Hours',
           statNumber: 10000000,
-          iconPath: '/static/icon/core-hours-icon.svg'
+          iconPath: require('@/assets/icon/core-hours-icon.svg')
         }
       ],
       mainContent: [
@@ -28,7 +28,7 @@ const state = {
           <p>The turbulent mixing parameterizations in weather models that predict the wind’s behavior are often one-dimensional, limiting important details needed to more accurately predict wind patterns. With Cheyenne’s help, researchers can run models that account for both vertical and horizontal turbulent mixing to better show how winds behave in complex terrain like Oregon.</p>
 
           <p>Through this project, researchers aim to improve short-term wind forecasting models and atmospheric understanding for better wind-energy efficiency and operations in complex terrain, such as coastlines, mountains, and canyons.</p>`,
-          media: '/static/video/featured-project-media/project-turbine-summ.mp4'
+          media: require('@/assets/video/featured-project-media/project-turbine-summ.mp4')
         },
         {
           title: 'Reliable Energy, Long-Term Savings',
@@ -42,7 +42,7 @@ const state = {
             <p><strong>Data can improve that?</strong> Yes! Our data creates better techniques to more accurately predict wind patterns. More accurate predictions mean better load balancing.</p> 
 
             <p><strong>What does that mean for me?</strong> Efficient load balancing and strategic wind farm placement means long-term reliable wind energy and cost savings for businesses and individuals.</p>`,
-          media: '/static/video/featured-project-media/project-turbine-soci.mp4'
+          media: require('@/assets/video/featured-project-media/project-turbine-soci.mp4')
         }
       ]
     },
@@ -50,19 +50,19 @@ const state = {
       name: 'Oceanic, Atmospheric Forecasts',
       longProjectName: 'Project Metis: Seasonal Forecasts with Enhanced Ocean and Atmosphere Resolution',
       area: '',
-      heroImage: '/static/img/featured-projects/oceanic-forecasts.jpg',
+      heroImage: require('@/assets/img/featured-projects/oceanic-forecasts.jpg'),
       projectLead: {
         name: 'Benjamin Cash',
         organizationName: 'George Mason University',
         twitter: null,
-        thumbnail: '/static/img/featured-projects/scientist-photos/benjamin-cash.jpg',
+        thumbnail: require('@/assets/img/featured-projects/scientist-photos/benjamin-cash.jpg'),
         shortBio: `Benjamin Cash, Ph.D. is a research associate professor in the Center for Ocean-Land-Atmosphere Studies (COLA). His research focuses on the prediction and predictability of the physical climate system, with an emphasis on the influence of climate on human health.`
       },
       statData: [
         {
           statName: 'Core Hours',
           statNumber: 58000000,
-          iconPath: '/static/icon/core-hours-icon.svg'
+          iconPath: require('@/assets/icon/core-hours-icon.svg')
         }
       ],
       mainContent: [
@@ -70,7 +70,7 @@ const state = {
           title: 'Sea, Land, and Air: How Earth’s Systems Interact',
           body: 'Project Metis—named after Metis, a mythological spirit of the sea and the goddess of wisdom, prudence, and deep thought—uses Cheyenne to simulate our atmosphere and oceans in finer detail than ever before. Modelers will better understand the combined impact of waves, sea-ice, and atmospheric changes to better predict seasonal climate, from daily to annual time scales. As a result, researchers can more accurately decide where to focus their efforts as they develop models in the near future. ',
 
-          media: '/static/video/featured-project-media/project-ocean-summ.mp4'
+          media: require('@/assets/video/featured-project-media/project-ocean-summ.mp4')
         },
         {
           title: 'Improving Climate Prediction Accuracy',
@@ -90,7 +90,7 @@ const state = {
             </ul>
           </p>`,
 
-          media: '/static/video/featured-project-media/project-ocean-soci.mp4'
+          media: require('@/assets/video/featured-project-media/project-ocean-soci.mp4')
         }
       ]
     },
@@ -98,26 +98,26 @@ const state = {
       name: 'Wind Turbine Performance',
       longProjectName: 'Computational Study of Wind Turbine Performance and Loading Response to Turbulent Atmospheric Inflow Conditions ',
       area: 'Fluid Dynamics and Turbulence',
-      heroImage: '/static/img/featured-projects/wind-turbine.jpg',
+      heroImage: require('@/assets/img/featured-projects/wind-turbine.jpg'),
       projectLead: {
         name: 'Dimitri Mavriplis',
         organizationName: 'University of Wyoming',
         twitter: null,
-        thumbnail: '/static/img/featured-projects/scientist-photos/dmitri-mavriplis.jpg',
+        thumbnail: require('@/assets/img/featured-projects/scientist-photos/dmitri-mavriplis.jpg'),
         shortBio: `Dimitri Mavriplis, Ph.D. is the Max Castagne professor of Mechanical Engineering at the University of Wyoming. His research focuses on high performance computing for computational fluid dynamics problems with applications in aerospace engineering and wind energy. Mavriplis is a computational scientist working at the interface of computer science, applied mathematics and fluid dynamics.`
       },
       statData: [
         {
           statName: 'Core Hours',
           statNumber: 15000000,
-          iconPath: '/static/icon/core-hours-icon.svg'
+          iconPath: require('@/assets/icon/core-hours-icon.svg')
         }
       ],
       mainContent: [
         {
           title: 'Summary',
           body: 'Predicting wind farm performance is a complex, but important challenge. To improve predictions, we need better flow structure resolution and reliable modeling of turbulent eddies in the entire length-scale range. This project uses a multi-scale modeling methodology that models the entire range of spatial and temporal scales to more accurately predict wind turbine performance. Additionally, this project uses software framework with the large-eddy simulation approach to predict turbulent flow fields. Planners can use this data to better indicate the most efficient locations for electricity-generating wind farms.',
-          media: '/static/video/featured-project-media/project-turbine-summ.mp4'
+          media: require('@/assets/video/featured-project-media/project-turbine-summ.mp4')
         },
         {
           title: 'Benefit to Humans',
@@ -134,7 +134,7 @@ const state = {
             *(n.d.). Retrieved November 28, 2017, from http://www.thirdplanetwind.com/energy/history.aspx<br>
             **Wind Energy Facts at a Glance. Retrieved from https://www.awea.org/wind-energy-facts-at-a-glance</p>
           `,
-          media: '/static/video/featured-project-media/project-turbine-soci.mp4'
+          media: require('@/assets/video/featured-project-media/project-turbine-soci.mp4')
         }
       ]
     },
@@ -197,7 +197,7 @@ const state = {
         name: 'Stephen Yeager',
         organizationName: 'Climate & Global Dynamics',
         twitter: null,
-        thumbnail: '/static/img/featured-projects/scientist-photos/stephen-yeager.jpg',
+        thumbnail: require('@/assets/img/featured-projects/scientist-photos/stephen-yeager.jpg'),
         shortBio: `Stephen Yeager, Ph.D. is in the Oceanography section of the Climate and Global Dynamics Laboratory at NCAR. His research focuses on advancing our understanding of the mechanisms, climate impacts, and predictability associated with large-scale changes in the ocean.`
       },
       statData: [
@@ -211,7 +211,7 @@ const state = {
         {
           title: 'Summary',
           body: 'This research will improve our ability to predict extreme events, such as floods and droughts, in specific regions on Earth, like the Rocky Mountains. While difficult to achieve, it will support the development of NCAR’s best climate model, make stronger links between ocean temperatures and severe weather, and improve the statistics researchers use to predict extreme events.',
-          media: '/static/video/featured-project-media/project-climate-summ.mp4'
+          media: require('@/assets/video/featured-project-media/project-climate-summ.mp4')
         },
         {
           title: 'Benefit to Humans',

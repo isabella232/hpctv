@@ -13,9 +13,9 @@
               {{ vuex.headerTileCopy }}
             </h2>
           </div>
-          <div class="case-container" v-if="i < 2">
-            <div v-for="(project, i) in vuex.featuredProjects" :key="project.name">
-              <figure @click="openModal(i)">
+          <div v-for="(project, index) in vuex.featuredProjects" :key="project.name">
+            <div class="case-container" v-if="index < 2">
+              <figure @click="openModal(index)">
                 <img :src="project.heroImage" alt="">
                 <div class="figure-overlay col dead-center">
                   <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
@@ -26,15 +26,17 @@
           </div>
         </div>
 
-        <div class="row row-2" v-if="i >= 2">
-          <div class="case-container" v-for="(project, i) in vuex.featuredProjects" :key="project.name">
-            <figure @click="openModal(i)">
-              <img :src="project.heroImage" alt="">
-              <div class="figure-overlay col dead-center">
-                <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
-                <figcaption class="upper">{{ project.name }}</figcaption>
-              </div>
-            </figure>
+        <div class="row row-2">
+          <div v-for="(project, index) in vuex.featuredProjects" :key="project.name">
+            <div class="case-container" v-if="index >= 2">
+              <figure @click="openModal(index)">
+                <img :src="project.heroImage" alt="">
+                <div class="figure-overlay col dead-center">
+                  <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
+                  <figcaption class="upper">{{ project.name }}</figcaption>
+                </div>
+              </figure>
+            </div>
           </div>
         </div>
       </div>
@@ -97,9 +99,9 @@ export default {
      * Opens a full screen modal and passes the data based on it's position in the array.
      * @param { Number } i the position in the array. Passed automatically by Vue Template.
      */
-    openModal(i) {
+    openModal(index) {
       this.modalIsOpen = true;
-      this.modalData = this.vuex.featuredProjects[i];
+      this.modalData = this.vuex.featuredProjects[index];
       document.querySelector('body').classList.add('freeze');
       document.querySelector('html').classList.add('freeze');
     },
