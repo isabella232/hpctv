@@ -19,7 +19,7 @@ export default {
     cardData: {
       type: Object,
       required: true,
-      default: '',
+      // default: '',
       validator(data) {
         return typeof data === 'object';
       }
@@ -60,4 +60,4 @@ export default {
 };
 </script>
 
-<style src="../scss/stat-card.scss" lang="scss" scoped></style>
+<style src="../assets/scss/stat-card.scss" lang="scss" scoped></style>

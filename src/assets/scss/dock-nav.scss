@@ -1,0 +1,98 @@
+@import 'global';
+
+.dock-nav {
+  /* #region: Mobile */
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+
+  @media screen and (min-width: $tablet) {
+    top: auto;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    justify-content:  center;
+    align-items: center;
+  }
+
+  ul {
+    margin-top: 1em;
+    text-align: center;
+    position: relative;
+    right: -100px;
+    pointer-events: all;
+    transition: right .3s ease;
+
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      right: -40px;
+    }
+    @media screen and (min-width: calc(#{$tv} / 2)) {
+      right: 0;
+    }
+
+    li {
+      width: 70px;
+      height: 60px;
+      margin: 5px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      a {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        @include radial_grey_gradient();
+        &.router-link-active {
+          @include gradient_blue_radial();
+        }
+
+        @media all and (-ms-high-contrast:none) {
+          display: block;
+
+          img {
+            display: block;
+            margin: 5px auto;
+          }
+        }
+      }
+      span {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
+      img {
+        width: 40%;
+      }
+    }
+  }
+  &.open {
+    height: 100%;
+    background: black;
+    ul {
+      padding: .5em;
+      right: 0;
+      transition: right .3s ease;
+    }
+  }
+  .mobile-menu {
+    display: block;
+    color: $color_white;
+    font-size: 150%;
+    pointer-events: all;
+    position: relative;
+    margin: .25em auto;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+  /* #endregion: Mobile */
+}

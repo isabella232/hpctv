@@ -1,41 +1,54 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../components/Home'
-import Specs from '../components/Specs'
-import LiveData from '../components/LiveData'
-import Projects from '../components/Projects'
-import NotFound from '../components/NotFound'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  mode: 'history',
-  routes: [
+const routes = [
     {
-      path: '',
-      name: '/',
-      component: Home
+        path: '',
+        name: '/',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
     },
     {
-      path: '/specs',
-      name: 'specs',
-      component: Specs
+        path: '/specs',
+        name: 'specs',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/Specs.vue')
     },
     {
-      path: '/live-data',
-      name: 'live-data',
-      component: LiveData
+        path: '/live-data',
+        name: 'live-data',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/LiveData.vue')
     },
     {
-      path: '/projects',
-      name: 'projects',
-      component: Projects
+        path: '/projects',
+        name: 'projects',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/Projects.vue')
     },
     {
-      path: '*',
-      name: 'not-found',
-      component: NotFound
+        path: '*',
+        name: 'not-found',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
     }
+]
 
-  ]
+const router = new VueRouter({
+    mode: "history",
+    routes
 })
+
+export default router

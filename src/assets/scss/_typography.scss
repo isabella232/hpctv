@@ -1,0 +1,15 @@
+@import 'colors';
+
+$font_poppins: 'Poppins', sans-serif;
+
+.lime {
+  color: $color_lime;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}

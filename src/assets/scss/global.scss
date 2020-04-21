@@ -1,0 +1,273 @@
+@import 'reset';
+@import 'vars';
+@import 'colors';
+@import 'typography';
+
+@mixin pageHeader() {
+  color: $color_lime;
+  font-weight: 700;
+  padding-top: 120px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 0;
+    color: $color_grey;
+  }
+}
+
+// Opinionated resets
+body {
+  background: #0e0e0e;
+  background: -moz-linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
+  background: -webkit-linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
+  background: linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
+  font-family: $font_poppins;
+  color: $color_white;
+  position: relative;
+  -ms-overflow-style: none;
+
+  &.projects-page {
+    padding-bottom: 2.25em;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.2em;
+  }
+  a {
+    border: none;
+    text-decoration: none;
+    &.button img {
+      max-width: 32px;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+  img {
+    max-width: 100%;
+  }
+  button {
+    user-select: none;
+    cursor: pointer;
+
+    &:active{
+      outline: none;
+    }
+  }
+  .invisible {
+    z-index: -10;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    cursor: initial;
+  }
+  #app {
+    height: 100%;
+  }
+  .page-header {
+    h1 {
+      color: $color_lime;
+      font-weight: 700;
+      text-align: center;
+      padding-top: 100px;
+
+      @media screen and (min-width: $tablet) {
+        color: $color_grey;
+        margin-top: 0;
+        padding-top: 50px;
+      }
+    }
+    @media screen and (min-width: $tablet) {
+      font-size: 1.2em;
+    }
+  }
+}
+
+body.freeze,
+html.freeze {
+  background: linear-gradient(45deg, #0e0e0e 0%, #3c3c3c 50%, #0e0e0e 100%);
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+body.autoplay {
+  cursor: none; // this is so you can tell approximately where you are when you have no cursor to disable the feature.
+  footer img:hover {
+    background-color: transparentize($color_lime, 0.5);
+  } // screen flash for visual feedback that the autoplay is working.
+  &::before {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    animation: screenFlash 250ms forwards;
+  }
+}
+
+body.specs-page,
+body.live-data-page,
+body.projects-page {
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 533px;
+    height: 250px;
+    max-width: 80vw;
+  }
+  &:before {
+    background-image: url('~@/assets/img/arrows-top-right.png');
+    background-position: top;
+    top: 0;
+    right: 0;
+  }
+  &:after {
+    background-image: url('~@/assets/img/arrows-bottom-left.png');
+    background-position: bottom;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+// Global Components
+.side-nav {
+  display: none;
+  @media screen and (min-width: 100px) {
+    display: block;
+    button {
+      background: $color_lime;
+      position: fixed;
+      height: 40px;
+      width: 40px;
+      top: calc(20% - 50px);
+      z-index: 10;
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 5px $color_trans_black;
+      &:hover {
+        background: darken($color_lime, 10%);
+      }
+      &:active {
+        box-shadow: 0 0 10px 0 $color_trans_black;
+      }
+      img {
+        max-height: 30%;
+        transform: translateX(10%);
+      }
+      &.prev {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        left: -15px;
+      }
+      &.next {
+        right: -15px;
+        transform: rotate(180deg);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      img.return {
+        position: absolute;
+        top: 13px;
+        left: 10px;
+        transform: rotate(-140deg);
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    button {
+      top: calc(50% - 50px);
+      height: 100px;
+      width: 100px;
+
+      &.prev {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        left: -35px;
+      }
+      &.next {
+        right: -35px;
+        transform: rotate(180deg);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      img.return {
+        position: absolute;
+        top: 33px;
+        left: 17px;
+        transform: rotate(-140deg);
+        @supports (-ms-ime-align: auto) {
+          left: 45px;
+        }
+      }
+    }
+  }
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+footer.sponsor-bugs {
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    padding: 0 .5em;
+
+  }
+  li {
+    margin: 0 1em;
+    width: 40px;
+    img {
+      max-width: 100%;
+      height: auto !important;
+      &#autoplayTrigger {
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+@keyframes screenFlash {
+  0% {
+    display: block;
+    background: $color_teal;
+    opacity: 1;
+    visibility: visible
+  }
+  99% {
+    display: block;
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+  }
+}
+
+
+@media screen and (width: 1920px) and (height: 1080px) {
+  html,body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+}

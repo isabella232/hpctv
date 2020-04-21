@@ -4,12 +4,11 @@
 </template>
 
 <script>
-import { Scene, Color, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, MeshBasicMaterial, Mesh, RingGeometry, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster, LinearFilter, AxesHelper } from '../../../node_modules/three/build/three.min.js';
+import { Scene, Group, DirectionalLight, DirectionalLightHelper, HemisphereLight, HemisphereLightHelper, PerspectiveCamera, BoxHelper, BoxGeometry, MeshLambertMaterial, Mesh, WebGLRenderer, TextureLoader, SpriteMaterial, Sprite, EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, Raycaster, LinearFilter, AxesHelper } from '../../../node_modules/three/build/three.min.js';
+import axios from 'axios';
+
 const three = { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, OrthographicCamera, PerspectiveCamera };
 const OrbitControls = require('three-orbit-controls')(three);
-import axios from 'axios';
-import KonamiCode from 'konami-code';
-const konami = new KonamiCode();
 
 export default {
   data() {
@@ -53,11 +52,7 @@ export default {
       this.canvas.appendChild(this.renderer.domElement);
       this.group = new Group();
       this.sprites = new Group();
-      console.log('For 3D debugging, please input Konami Code at any time.');
-      konami.listen(() => {
-        console.log('Developer mode enabled.');
-        this.developerMode = true;
-      });
+
       window.addEventListener('resize', this.onWindowResize);
       this.canvas.addEventListener('mousedown', this.onMouseDown);
       this.canvas.addEventListener('mousemove', this.onMouseMove);
@@ -217,7 +212,7 @@ export default {
      * Handler for mouse down event
      * @param {Event} event - the window event
      */
-    onMouseDown(event) {
+    onMouseDown() {
       this.mouseMove = false;
       this.mouseDown = true;
     },
@@ -226,7 +221,7 @@ export default {
      * Handler for mouse move event
      * @param {Event} event - the window event
      */
-    onMouseMove(event) {
+    onMouseMove() {
       this.mouseMove = true;
     },
 
@@ -410,7 +405,6 @@ export default {
         const cube = this.makeCube(color);
 
         this.group.add(cube);
-        const cubeID = x + z * 10;
 
         // Spacing between cubes adjusted here.
         cube.position.x = -x * 1.25;
@@ -485,12 +479,14 @@ export default {
         });
         // add up the cumulative core hours
         response.data.entries.forEach(project => {
+          // eslint-disable-next-line no-prototype-builtins
           if (tempGroups.hasOwnProperty(project.facility)) {
             tempGroups[project.facility].data.coreHours += parseInt(project.coreHours);
           }
         });
         // convert to array
         for (const facility in tempGroups) {
+          // eslint-disable-next-line no-prototype-builtins
           if (tempGroups.hasOwnProperty(facility)) {
             this.userGroups.push(tempGroups[facility]);
             

@@ -1,7 +1,7 @@
 <template>
   <div class="small-modal" :id="getID" :class="{open: visible}">
     <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()" v-show="(showButton)">
-      <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
+      <img src="../../assets/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
       <header class="row upper align-center">
@@ -84,4 +84,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/small-modal.scss" lang="scss" scoped></style>
+<style src="../../assets/scss/small-modal.scss" lang="scss" scoped></style>

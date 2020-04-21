@@ -54,16 +54,16 @@
 
           <div class="slide-navigation">
             <button class="prev" @click="handleExternalNav(visibleContentID - 1)" :disabled="visibleContentID === 0">
-              <img src="/static/icon/nav-arrow.svg" alt="">
+              <img src="../../assets/icon/nav-arrow.svg" alt="">
             </button>
 
             <button class="next" @click="handleExternalNav(visibleContentID + 1)" :disabled="visibleContentID === 1">
-              <img class="reverse" src="/static/icon/nav-arrow.svg" alt="">
+              <img class="reverse" src="../../assets/icon/nav-arrow.svg" alt="">
             </button>
           </div>
         </section>
 
-        <button class="exit" @click="handleExitTap()"><img src="/static/icon/plus-x-icon.svg" alt="exit"></button>
+        <button class="exit" @click="handleExitTap()"><img src="../../assets/icon/plus-x-icon.svg" alt="exit"></button>
       </div>
     </div>
   </div>
@@ -81,6 +81,7 @@ export default {
       required: true,
       validator(data) {
         if (typeof data === 'object') {
+          // eslint-disable-next-line no-prototype-builtins
           return data.hasOwnProperty('name');
         } else {
           return false;
@@ -151,4 +152,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/big-modal.scss" lang="scss"></style>
+<style src="../../assets/scss/big-modal.scss" lang="scss"></style>

@@ -1,7 +1,7 @@
 <template>
   <div class="three-modal" :class="{open: visible}" id="three-modal">
     <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()">
-      <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
+      <img src="../../assets/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
       <header class="row upper">
@@ -77,7 +77,7 @@ export default {
   watch: {
     data: {
       deep: true,
-      handler(newVal) {
+      handler() {
         const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         const el = document.querySelector('#three-modal');
 
@@ -102,4 +102,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/three-modal.scss" lang="scss" scoped></style>
+<style src="../../assets/scss/three-modal.scss" lang="scss" scoped></style>

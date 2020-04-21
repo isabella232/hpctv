@@ -1,0 +1,147 @@
+@import 'global';
+
+body.live-data-page {
+  .live-data {
+    .page-header {
+      color: $color_light_grey;
+      font-weight: 700;
+      line-height: 1.2;
+
+      @media screen and (min-width: $tablet) {
+        width: 90%;
+      }
+
+      h1 {
+        @media screen and (min-width: $tablet) {
+          padding-top: 25px;
+        }
+      }
+    }
+
+    main {
+      @media screen and (min-width: $tablet) {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+      }
+
+      .data-viz {
+        @media screen and (min-width: $tablet) {
+          width: 60%;
+        }
+
+        .primary {
+          @media screen and (min-width: $tablet) {
+            height: calc(100vh * .5);
+          }
+
+          .core-tabs {
+            background: grey;
+            display: flex;
+            width: 90%;
+            margin: auto;
+            text-align: center;
+            display: flex;
+
+            .tab {
+              cursor: pointer;
+              outline: none;
+              flex: 1;
+              padding: .5em .5em;
+              color: $color_dark_grey;
+              position: relative;
+
+              &.user-alloc {
+                z-index: 2;
+
+                &:after {
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  width: 0;
+                  height: 0;
+                  border-style: solid 1em;
+                  border-top: 2.5em solid grey;
+                  border-right: 1.563em solid transparent;
+                  top: 0;
+                  left: 100%;
+                }
+
+                &.active {
+                  &:after {
+                    border-top: 2.5em solid $color_teal;
+                  }
+                }
+              }
+
+              &.active {
+                background: $color_teal;
+                color: white;
+              }
+            }
+          }
+
+          .canvas {
+            canvas {
+              width: 95%;
+              margin: auto;
+            }
+          }
+        }
+
+        .graph {
+          display: none;
+
+          @media screen and (min-width: $tablet) {
+            display: block;
+            max-width: 100%;
+            max-height: calc(100vh * .4);
+          }
+
+          .canvas {}
+        }
+      }
+    }
+
+    .side-stats {
+      padding: 1em;
+
+      header {
+        background: $color-teal;
+        padding-left: 1em;
+      }
+
+      .collection {
+        margin-bottom: 2em;
+
+        &:last-of-type {
+          margin-bottom: 0;
+
+          small {
+            position: absoulte;
+          }
+        }
+      }
+
+      @media screen and (min-width: $tablet) {
+        width: 40%;
+        padding-left: 90px;
+      }
+    }
+
+    .slide-up-modal {
+      z-index: 500;
+    }
+
+    #projectLog {
+      z-index: 2;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {}
+
+@media screen and (width: 1920px) and (height: 1080px) {
+  .live-data {
+height: 95vh;
+  }
+}

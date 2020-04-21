@@ -45,4 +45,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/line-graph.scss" lang="scss" scoped />;
+<style src="../../assets/scss/line-graph.scss" lang="scss" scoped />;

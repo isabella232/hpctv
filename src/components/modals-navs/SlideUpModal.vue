@@ -2,7 +2,7 @@
   <section class="slide-up-modal" :class="{open: legendIsOpen}">
     <header @click="toggleState()">
       <h3>
-        <img src="/static/icon/plus-x-icon.svg" width="24">
+        <img src="../../assets/icon/plus-x-icon.svg" width="24">
         <span class="upper">{{title}}</span>
       </h3>
     </header>
@@ -40,5 +40,5 @@ export default {
 };
 </script>
 
-<style lang="scss"  src="../../scss/slide-up-modal.scss" >
+<style lang="scss"  src="../../assets/scss/slide-up-modal.scss" >
 </style>

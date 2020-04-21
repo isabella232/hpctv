@@ -4,25 +4,25 @@
     <ul class="row">
       <li>
         <a @click="handleAboutClick()">
-          <img src="/static/icon/about-icon.svg" alt="">
+          <img src="../../assets/icon/about-icon.svg" alt="">
           <span class="lime upper">About</span>
         </a>
       </li>
       <li>
         <router-link to="specs">
-          <img src="/static/icon/performance-icon.svg" alt="">
+          <img src="../../assets/icon/performance-icon.svg" alt="">
           <span class="lime upper">Specs</span>
         </router-link>
       </li>
       <li>
         <router-link to="live-data" >
-          <img src="/static/icon/live-data-icon-2.svg" alt="">
+          <img src="../../assets/icon/live-data-icon-2.svg" alt="">
           <span class="lime upper">Live Data</span>
         </router-link>
       </li>
       <li>
         <router-link to="projects">
-          <img src="/static/icon/projects-icon.svg" alt="">
+          <img src="../../assets/icon/projects-icon.svg" alt="">
           <span class="lime upper">Projects</span>
         </router-link>
       </li>
@@ -57,6 +57,6 @@ methods: {
 };
 </script>
 
-<style src="../../scss/dock-nav.scss" lang="scss" scoped>
+<style src="../../assets/scss/dock-nav.scss" lang="scss" scoped>
 
 </style>
