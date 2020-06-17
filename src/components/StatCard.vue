@@ -5,7 +5,9 @@
     </div>
     <div class="info col start">
       <div class="number lime">{{ cardData.statNumber | numFormatter}}
-        <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup" @click.prevent.stop="extraEL()"></div>
+        <div class="extra" v-if="cardData.infoIcon" @click.prevent.stop="extraEL()">
+          <a href=""><img :src="require('@/assets/icon/info-icon.svg')" width="28" alt=""></a>
+        </div>
       </div>
       <span class="label upper">{{ cardData.statName }}</span>
     </div>

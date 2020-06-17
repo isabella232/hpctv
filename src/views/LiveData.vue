@@ -58,7 +58,7 @@
     </main>
     <slide-up-modal title="Glossary">
       <legend class="legend">
-        <dl class="legend-list col wrap">
+        <dl class="legend legend-list col wrap">
           <div class="legend-item" v-for="term in $store.state.specs.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
             <dd>
@@ -192,10 +192,6 @@ export default {
       const day0 = moment('2017-01-12');
       return Math.abs(day0.diff(moment.now(), 'days'));
     },
-
-    linktoProjectPage() {
-      return `<a href=""><img src="../assets/icon/info-icon.svg" width="28"></a>`;
-    }
   },
 
   methods: {
@@ -341,7 +337,7 @@ export default {
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
           this.nowRunning[0].statNumber = data.projects;
-          this.nowRunning[0].additionalMarkup = this.linktoProjectPage;
+          this.nowRunning[0].infoIcon = true;
           this.nowRunning[1].statNumber = data.jobs;
         } else if (response.status === 503) {
           // handle if API is offline
