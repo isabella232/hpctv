@@ -1,4 +1,4 @@
-# hpctv-update
+# hpctv
 
 ## Project setup
 ```
