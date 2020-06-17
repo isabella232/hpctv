@@ -10,7 +10,6 @@
       <main class=" home-screen col dead-center" v-else>
         <div class="intro-container">
           <nav>
-
             <ul class="row around middle text-center">
               <li>
                 <router-link to="specs" class="col middle around" ref="toSpecs">
@@ -57,7 +56,8 @@ export default {
 
   computed: {
     showSplash() {
-      return this.$store.state.showSplash;
+      console.log(this.$store.state);
+      return this.$store.state.home.showSplash;
     },
 
     vuex() {

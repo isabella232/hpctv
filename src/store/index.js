@@ -5,7 +5,7 @@ import liveData from './modules/live-data'
 import projects from './modules/projects'
 import specs from './modules/specs'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -17,7 +17,7 @@ export default new Vuex.Store({
   },
   mutations: {
     startButtonClicked(state) {
-      state.home.showSplash = true;
+      state.home.showSplash = false;
     },
 
     activeTab(state, tab) {
