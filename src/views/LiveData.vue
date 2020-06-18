@@ -68,6 +68,22 @@
         </dl>
       </div>
     </SlideUpModal>
+    <SlideUpModal id="projectLog" title="Project Log" ref="projectLog">
+      <div class="container">
+        <div class="intro">
+          <p class="lime upper">What Cheyenne is Working on</p>
+          <p>Explore the complete list of projects currently running on the supercomputer.</p>
+        </div>
+        <TableComponent :data="tableData" sort-by="coreHours" sort-order="desc">
+          <TableColumn show="title" label="Name"></TableColumn>
+          <TableColumn show="jobs" label="Jobs" data-type="numeric"></TableColumn>
+          <TableColumn show="coreHours" label="Core Hours" data-type="numeric"></TableColumn>
+          <TableColumn show="facility" label="Facility"></TableColumn>
+          <TableColumn show="areaOfInterestGroup" label="Area of Study"></TableColumn>
+          <TableColumn show="organization" label="Organization"></TableColumn>
+        </TableComponent>
+      </div>
+    </SlideUpModal>
     <DockNav ref="nav" />
 
   </div>
@@ -82,7 +98,7 @@ import ThreeModal from '../components/modals-navs/ThreeModal';
 import SlideUpModal from '../components/modals-navs/SlideUpModal';
 import moment from 'moment';
 import axios from 'axios';
-// import { TableComponent, TableColumn } from 'vue-table-component';
+import { TableComponent, TableColumn } from 'vue-table-component';
 
 export default {
   name: 'live-data',
@@ -154,8 +170,8 @@ export default {
     ThreeModal,
     LineChart,
     SlideUpModal,
-    // TableComponent,
-    // TableColumn
+    TableComponent,
+    TableColumn
   },
 
   computed: {
