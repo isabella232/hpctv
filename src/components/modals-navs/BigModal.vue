@@ -1,7 +1,7 @@
 <template>
   <div class="big-modal">
-    <div class="overlay row dead-center" @click="handleExitTap()">
-      <div class="body row" @click.stop>
+    <div class="overlay dead-center" @click="handleExitTap()">
+      <div class="body" @click.stop>
         <header class="project-title upper">
           <div class="title">
             <div class="cell">
@@ -15,7 +15,7 @@
             </ul>
             <hr>
             <div class="project-lead">
-              <div class="row top">
+              <div class="top">
                 <img v-if="data.projectLead.thumbnail" :src="data.projectLead.thumbnail" alt="photo of Lead Scientist">
                 <div class="lead-info">
                   <span class="lime">{{ data.projectLead.name}}</span>
@@ -34,7 +34,7 @@
           <div class="media-container">
             <Carousel :perPage="1" @pageChange="visibleContentID = $event" :paginationEnabled="false">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
-                <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image">
+                <img v-if="isImage(slide.media)" :src="slide.media" class="hero-image" alt="banner image">
                 <video v-else-if="isVideo(slide.media)" :src="slide.media" controls muted playsinline loop autoplay controlsList="nodownload"></video>
                 <div v-else>{{slide.media}}</div>
               </AppSlide>
@@ -43,7 +43,7 @@
 
           <article class="modal-article text-center" ref="article">
             <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
-            <div class="article-content row">
+            <div class="article-content">
               <div class="main-content" v-html="data.mainContent[visibleContentID].body">
               </div>
             </div>
@@ -113,7 +113,7 @@ export default {
      * @param {Number} direction goes to position in carousel with index of "direction"
      */
     handleExternalNav(direction) {
-      this.$children.find(component => component.$el.className == 'VueCarousel').goToPage(direction);
+      this.$children.find(component => component.$el.className === 'VueCarousel').goToPage(direction);
     },
 
     /**
@@ -121,11 +121,7 @@ export default {
      * @param {String} filepath the filename to parse
      */
     isImage(filepath) {
-      if (filepath.includes('jpg') || filepath.includes('jpeg') || filepath.includes('png')) {
-        return true;
-      } else {
-        return false;
-      }
+      return filepath.includes('jpg') || filepath.includes('jpeg') || filepath.includes('png');
     },
 
     /**
@@ -133,11 +129,7 @@ export default {
      * @param {String} filepath the filename to parse
      */
     isVideo(filepath) {
-      if (filepath.includes('mp4') || filepath.includes('webm') || filepath.includes('mov')) {
-        return true;
-      } else {
-        return false;
-      }
+      return filepath.includes('mp4') || filepath.includes('webm') || filepath.includes('mov');
     }
   }
 };

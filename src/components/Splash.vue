@@ -9,7 +9,7 @@
         </p>
       </blockquote>
     </header>
-    <div class="row center">
+    <div class="center">
       <div class="start-button upper dead-center" @click="handleStartClick()" ref="startButton">
         <span>Start</span>
       </div>

@@ -1,15 +1,15 @@
 <template>
   <div class="live-data">
     <ThreeModal :data="threeModal" :showButton="true" @threeModalDidClose="renderAllSprites()" />
-    <header class="row dead-center text-center upper page-header">
+    <header class="dead-center text-center upper page-header">
       <h1>Real-Time Data. Real Implications</h1>
     </header>
 
-    <main class="row reverse">
+    <main class="reverse">
 
       <section class="col data-viz">
         <div class="primary col around">
-          <div class="row center core-tabs">
+          <div class="center core-tabs">
             <div :class="['user-alloc tab', {active: activeTab === 'facility allocation'}]" @click="setActiveTab('facility allocation')" tabindex="-1">
               <span>Facility Allocation</span>
             </div>
@@ -259,7 +259,7 @@ export default {
         dataPoints = three.dataSet;
       }
       for (const stat of dataPoints) {console.log(stat);
-        const sprite = three.sprites.children.find(obj => obj.name == stat.group);
+        const sprite = three.sprites.children.find(obj => obj.name === stat.group);
         const screenPos = three.getXYSpritePostion(sprite);
         sequences.push({
           delay: 2000,
@@ -296,7 +296,7 @@ export default {
         {
           delay: 2000,
           trigger() {
-            return;
+            return false;
           }
         },
 
@@ -358,7 +358,8 @@ export default {
           // Successful response
           console.log('%c API request: OK', 'color:lime');
           const data = response.data;
-          (this.totalRun[0].statNumber = this.daysOnline), (this.totalRun[1].statNumber = data.projects);
+          this.totalRun[0].statNumber = this.daysOnline;
+          this.totalRun[1].statNumber = data.projects;
           this.totalRun[2].statNumber = data.jobs;
           this.totalRun[3].statNumber = data.coreHours;
         } else if (response.status === 503) {

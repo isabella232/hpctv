@@ -4,10 +4,10 @@
       <img src="../../assets/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
-      <header class="row upper align-center">
+      <header class="upper align-center">
         <span>{{data.modalData.title}}</span>
       </header>
-      <div class="row start panel-container">
+      <div class="start panel-container">
 
         <div class="panel left" v-if="data.modalData.media">
           <video :src="data.modalData.media" loop muted playsinline></video>
@@ -60,11 +60,7 @@ export default {
     },
 
     opensInverted() {
-      if (this.data.x >= 50) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.data.x >= 50;
     }
   },
 

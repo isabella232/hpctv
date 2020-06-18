@@ -1,12 +1,12 @@
 <template>
-  <li class="stat-card row middle">
+  <li class="stat-card middle">
     <div v-if="cardData.iconPath" class="icon">
-      <img :src="cardData.iconPath">
+      <img :src="cardData.iconPath" :alt="cardData.statName">
     </div>
     <div class="info start">
       <div class="number lime">{{ cardData.statNumber | numFormatter}}
         <div class="extra" v-if="cardData.infoIcon" @click.prevent.stop="extraEL()">
-          <a href=""><img :src="require('@/assets/icon/info-icon.svg')" width="28" alt=""></a>
+          <a href=""><img :src="require('@/assets/icon/info-icon.svg')" width="28" alt="expand"></a>
         </div>
       </div>
       <span class="label upper">{{ cardData.statName }}</span>

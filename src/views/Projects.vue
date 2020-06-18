@@ -1,6 +1,6 @@
 <template >
   <div class="projects">
-    <header class="row dead-center text-center upper page-header">
+    <header class="dead-center text-center upper page-header">
       <h1>Cheyenne's Featured Projects</h1>
     </header>
 
@@ -14,7 +14,7 @@
         <figure @click="openModal(index)">
           <img :src="project.heroImage" alt="">
           <div class="figure-overlay">
-            <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
+            <img class="plus-icon" src="../assets/icon/plus-x-icon.svg" alt="expand">
             <figcaption class="upper">{{ project.name }}</figcaption>
           </div>
         </figure>
@@ -78,9 +78,9 @@ export default {
      * Opens a full screen modal and passes the data based on it's position in the array.
      * @param { Number } i the position in the array. Passed automatically by Vue Template.
      */
-    openModal(index) {
+    openModal(i) {
       this.modalIsOpen = true;
-      this.modalData = this.vuex.featuredProjects[index];
+      this.modalData = this.vuex.featuredProjects[i];
       document.querySelector('body').classList.add('freeze');
       document.querySelector('html').classList.add('freeze');
     },

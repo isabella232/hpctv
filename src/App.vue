@@ -14,7 +14,7 @@
     </footer>
 
     <footer class="sponsor-bugs" v-else>
-      <ul class="sponsors row around">
+      <ul class="sponsors around">
         <li><img src="./assets/img/sponsor-logo-nsf.png" alt="NSF Logo" style="height:65px"></li>
         <li><img src="./assets/img/sponsor-logo-ncar-ucar.png" alt="UCAR / NCAR Logo" id="autoplayTrigger" @click="handleAutoplayGesture()"></li>
       </ul>

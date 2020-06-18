@@ -4,10 +4,10 @@
       <img src="../../assets/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
-      <header class="row upper">
+      <header class="upper">
         <span>{{data.modalData.title}}</span>
       </header>
-      <div class="row start panel-container">
+      <div class="start panel-container">
         <div class="panel right">
           <p class="subtitle lime bold upper">{{data.modalData.subtitle | numFormatter}} Core Hours Used In The Last 30 Days</p>
           <p>
@@ -42,11 +42,7 @@ export default {
   },
   computed: {
     opensInverted() {
-      if (this.data.x >= 50) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.data.x >= 50;
     }
   },
 

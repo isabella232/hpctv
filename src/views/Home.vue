@@ -10,7 +10,7 @@
       <main class=" home-screen col dead-center" v-else>
         <div class="intro-container">
           <nav>
-            <ul class="row around middle text-center">
+            <ul class="around middle text-center">
               <li>
                 <router-link to="specs" class="col middle around" ref="toSpecs">
                   <img src="../assets/icon/performance-icon.svg" width="100" alt="">
