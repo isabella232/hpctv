@@ -3,7 +3,7 @@
     <div v-if="cardData.iconPath" class="icon">
       <img :src="cardData.iconPath">
     </div>
-    <div class="info col start">
+    <div class="info start">
       <div class="number lime">{{ cardData.statNumber | numFormatter}}
         <div class="extra" v-if="cardData.infoIcon" @click.prevent.stop="extraEL()">
           <a href=""><img :src="require('@/assets/icon/info-icon.svg')" width="28" alt=""></a>

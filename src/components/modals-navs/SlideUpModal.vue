@@ -40,5 +40,4 @@ export default {
 };
 </script>
 
-<style lang="scss"  src="../../assets/scss/slide-up-modal.scss" >
-</style>
+<style lang="scss"  src="../../assets/scss/slide-up-modal.scss"></style>

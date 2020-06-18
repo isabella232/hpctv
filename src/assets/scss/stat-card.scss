@@ -1,7 +1,7 @@
-@import 'global';
+@import 'vars';
+@import 'mixins';
 
 .stat-card {
-  @include gradient_grey_linear();
   margin: 10px 0;
   display: flex;
 
@@ -12,15 +12,17 @@
     padding: 10px;
     display: flex;
     align-items: center;
-    @media screen and (min-width: 600px) {
+
+    @media screen and (min-width: $tablet) {
       height: 5.5vh;
       width: 5.5vh;
     }
+
     img {
       max-width: 100%;
     }
 
-    @media all and (-ms-high-contrast:none) {
+    @media all and (-ms-high-contrast: none) {
       position: relative;
       left: 45px;
     }
@@ -50,7 +52,7 @@
 
         // I've never seen this kind of selector before but it solves the problem with styling this content. Seems to be a Vue specific quirk: https://github.com/vuejs/vue-loader/issues/749
 
-         /deep/ a {
+        /deep/ a {
           display: flex;
           flex-direction: column;
         }
@@ -59,21 +61,12 @@
 
     .label {
       line-height: 1em;
+      text-align: left;
     }
 
-    @media all and (-ms-high-contrast:none) {
+    @media all and (-ms-high-contrast: none) {
       position: relative;
       left: -70px;
-    }
-  }
-}
-
-.projects-page {
-  .stat-card {
-    background: transparent;
-
-    .label{
-      text-align: left;
     }
   }
 }

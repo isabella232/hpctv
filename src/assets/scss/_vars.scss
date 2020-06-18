@@ -1,3 +1,18 @@
+$font_poppins: 'Poppins', sans-serif;
+
+// Colors
+$theme_base: #007fa3;
+$theme_dark: #1a658f;
+$theme_light: #00c1d5;
+
+$color_lime: #a8c700;
+$color_black: #222222;
+$color_trans_black: transparentize($color_black, 0.5);
+$color_dark_grey: #414042;
+$color_grey: #636363;
+$color_light_grey: #808080;
+$color_white: #eeeeee;
+
 // Breakpoints
 $mobileSmall: 320px;
 $mobile: 375px;

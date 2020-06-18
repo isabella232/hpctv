@@ -50,13 +50,14 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../assets/scss/global';
+    @import '../../assets/scss/vars';
+    @import '../../assets/scss/mixins';
 
     .accordion {
         padding: 0 0.5em;
 
         .accordion-header {
-            @include gradient_grey-linear;
+            @include linear-gradient(left, $color_dark_grey, $color_grey);
             border-bottom: solid 5px $color_dark_grey;
             color: #444;
             cursor: pointer;

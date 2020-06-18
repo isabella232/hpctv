@@ -56,9 +56,9 @@
         </div>
       </aside>
     </main>
-    <slide-up-modal title="Glossary">
-      <legend class="legend">
-        <dl class="legend legend-list col wrap">
+    <SlideUpModal title="Glossary">
+      <div class="legend">
+        <dl class="legend-list wrap">
           <div class="legend-item" v-for="term in $store.state.specs.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
             <dd>
@@ -66,26 +66,9 @@
             </dd>
           </div>
         </dl>
-      </legend>
-    </slide-up-modal>
-
-    <SlideUpModal id="projectLog" title="Project Log" ref="projectLog">
-      <div class="container">
-        <div class="intro">
-          <p class="lime upper">What Cheyenne is Working on</p>
-          <p>Explore the complete list of projects currently running on the supercomputer.</p>
-        </div>
-        <TableComponent :data="tableData" sort-by="coreHours" sort-order="desc">
-          <TableColumn show="title" label="Name"></TableColumn>
-          <TableColumn show="jobs" label="Jobs" data-type="numeric"></TableColumn>
-          <TableColumn show="coreHours" label="Core Hours" data-type="numeric"></TableColumn>
-          <TableColumn show="facility" label="Facility"></TableColumn>
-          <TableColumn show="areaOfInterestGroup" label="Area of Study"></TableColumn>
-          <TableColumn show="organization" label="Organization"></TableColumn>
-        </TableComponent>
       </div>
     </SlideUpModal>
-    <DockNav />
+    <DockNav ref="nav" />
 
   </div>
 </template>
@@ -99,7 +82,7 @@ import ThreeModal from '../components/modals-navs/ThreeModal';
 import SlideUpModal from '../components/modals-navs/SlideUpModal';
 import moment from 'moment';
 import axios from 'axios';
-import { TableComponent, TableColumn } from 'vue-table-component';
+// import { TableComponent, TableColumn } from 'vue-table-component';
 
 export default {
   name: 'live-data',
@@ -171,8 +154,8 @@ export default {
     ThreeModal,
     LineChart,
     SlideUpModal,
-    TableComponent,
-    TableColumn
+    // TableComponent,
+    // TableColumn
   },
 
   computed: {
@@ -325,7 +308,7 @@ export default {
 
   created() {
     // remove any classes from the body and then add the page-specific class.
-    document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
+    document.body.classList.remove('home-page', 'projects-page', 'specs-page', 'live-data-page');
     document.body.classList.add('live-data-page');
 
     // Get today's statistics from the API.

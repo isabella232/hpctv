@@ -6,11 +6,6 @@
         <span><img class="lime-filter" width="18px" src="../assets/icon/plus-x-icon.svg" alt="+ in circle"></span> for details</span>
     </header>
     <main class="supercomputer">
-      <div v-if="!isMobile" class="cheyenne-container">
-        <img src="../assets/img/supercomputer.png" alt="" class="computer">
-        <small-modal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
-      </div>
-
       <ul v-if="isMobile">
         <li v-for="point in vuex.pointsOfInterest" :key="point.modalData.title">
           <Accordion>
@@ -23,9 +18,13 @@
           </Accordion>
         </li>
       </ul>
+      <div v-else class="cheyenne-container">
+        <img src="../assets/img/supercomputer.png" alt="" class="computer">
+        <SmallModal v-for="point in vuex.pointsOfInterest" :key="point.modalData.title" :data="point" :ref="point.modalData.title | getRefName" />
+      </div>
     </main>
-    <slide-up-modal title="Glossary" ref="glossary">
-      <legend class="legend">
+    <SlideUpModal title="Glossary" ref="glossary">
+      <div class="legend">
         <dl class="legend-list col wrap" ref="glossaryInternals">
           <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
@@ -34,9 +33,9 @@
             </dd>
           </div>
         </dl>
-      </legend>
-    </slide-up-modal>
-    <dock-nav ref="nav" />
+      </div>
+    </SlideUpModal>
+    <DockNav ref="nav" />
 
   </div>
 </template>
@@ -184,7 +183,7 @@ export default {
       // human to camelcase.
       return title
         .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-          return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+          return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
         })
         .replace(/\s+/g, '');
     }
@@ -192,7 +191,7 @@ export default {
 
   created() {
     // remove any classes from the body and then add the page-specific class.
-    document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
+    document.body.classList.remove('home-page', 'projects-page', 'specs-page', 'live-data-page');
     document.body.classList.add('specs-page');
   },
 

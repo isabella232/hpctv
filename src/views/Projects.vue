@@ -4,41 +4,20 @@
       <h1>Cheyenne's Featured Projects</h1>
     </header>
 
-    <main class="col dead-center">
-      <div class="wrapper">
-
-        <div class=" row row-1 ">
-          <div class="case-container text-block">
-            <h2>
-              {{ vuex.headerTileCopy }}
-            </h2>
+    <main class="grid">
+      <div class="case-container text-block">
+        <h2>
+          {{ vuex.headerTileCopy }}
+        </h2>
+      </div>
+      <div class="case-container" v-for="(project, index) in vuex.featuredProjects" :key="project.name">
+        <figure @click="openModal(index)">
+          <img :src="project.heroImage" alt="">
+          <div class="figure-overlay">
+            <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
+            <figcaption class="upper">{{ project.name }}</figcaption>
           </div>
-          <div v-for="(project, index) in vuex.featuredProjects" :key="project.name">
-            <div class="case-container" v-if="index < 2">
-              <figure @click="openModal(index)">
-                <img :src="project.heroImage" alt="">
-                <div class="figure-overlay col dead-center">
-                  <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
-                  <figcaption class="upper">{{ project.name }}</figcaption>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row-2">
-          <div v-for="(project, index) in vuex.featuredProjects" :key="project.name">
-            <div class="case-container" v-if="index >= 2">
-              <figure @click="openModal(index)">
-                <img :src="project.heroImage" alt="">
-                <div class="figure-overlay col dead-center">
-                  <img class="plus-icon" src="../assets/icon/plus-x-icon.svg">
-                  <figcaption class="upper">{{ project.name }}</figcaption>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
+        </figure>
       </div>
     </main>
     <big-modal v-if="modalIsOpen" :data="modalData" @modalBorderTapped="modalIsOpen = false" ref="bigModal"/>
@@ -58,7 +37,7 @@
         </TableComponent>
       </div>
     </SlideUpModal>
-    <dock-nav />
+    <DockNav ref="nav" />
 
   </div>
 </template>
@@ -155,7 +134,7 @@ export default {
   },
   created() {
     // remove any classes from the body and then add the page-specific class.
-    document.body.classList.remove('home-page', 'project-page', 'specs-page', 'live-data-page');
+    document.body.classList.remove('home-page', 'projects-page', 'specs-page', 'live-data-page');
     document.body.classList.add('projects-page');
     axios
       .get('/data/report_projectlog_days_ago_30.json')

@@ -1,8 +1,7 @@
-@import 'global';
+@import 'vars';
 
 .three-modal {
   position: absolute;
-  // height: 250px;
   width: 300px;
   top: 0;
   left: 0;
@@ -32,22 +31,24 @@
   // base styles
   .modal-body {
     transform: scaleX(0);
-    transform-origin: 0% 0%;
+    transform-origin: 0 0;
     transition: transform 250ms 500ms;
 
     .panel-container {
       display: flex;
       transform: scaleY(0);
       transition: transform 250ms 250ms;
-      transform-origin: 50% 0%;
+      transform-origin: 50% 0;
       // height: 200px;
       overflow: hidden;
+
       .panel {
         flex: 1;
         background-color: $color_dark_grey;
         margin: 5px;
         overflow-y: scroll;
         text-align: left;
+
         &.right {
           padding: 10px;
           overflow-y: scroll;
@@ -59,14 +60,14 @@
           }
 
           transform: scaleY(0);
-          transform-origin: 50% 0%;
+          transform-origin: 50% 0;
           transition: transform 250ms;
         }
       }
     }
 
     header {
-      background-color: $color_teal;
+      background-color: $theme_base;
       padding-left: 1.75em;
       padding-right: 1.5em;
       text-align: left;
@@ -102,8 +103,9 @@
   &.open {
     z-index: 4;
     transition: z-index 0ms;
+
     a.button {
-      background-color: $color_teal;
+      background-color: $theme_base;
       z-index: 5;
       transform: rotate(45deg) scale(1);
       transition: 250ms;
@@ -113,14 +115,17 @@
         transition: 250ms;
       }
     }
+
     .modal-body {
       position: relative;
       transform: scaleX(1);
       transition: transform 250ms 250ms;
       z-index: 4;
+
       .panel-container {
         transform: scaleY(1);
         transition: transform 250ms 500ms;
+
         .panel {
           &.right {
             transform: scaleY(1);
@@ -142,12 +147,13 @@
     @media screen and (min-width: 768px) {
       position: relative;
       right: 300px;
-      transform-origin: 100% 0%;
+      transform-origin: 100% 0;
       transform: scaleX(0);
       transition: transform 250ms 500ms;
     }
   }
 }
+
 video {
   max-width: 100%;
 }

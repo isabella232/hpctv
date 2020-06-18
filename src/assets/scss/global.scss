@@ -1,6 +1,6 @@
 @import 'reset';
 @import 'vars';
-@import 'colors';
+@import 'mixins';
 @import 'typography';
 
 @mixin pageHeader() {
@@ -25,35 +25,37 @@ body {
   position: relative;
   -ms-overflow-style: none;
 
-  &.projects-page {
-    padding-bottom: 2.25em;
-  }
-
   p {
     font-size: 16px;
     line-height: 1.2em;
   }
+
   a {
     border: none;
     text-decoration: none;
+
     &.button img {
       max-width: 32px;
     }
   }
+
   ul {
     list-style: none;
   }
+
   img {
     max-width: 100%;
   }
+
   button {
     user-select: none;
     cursor: pointer;
 
-    &:active{
+    &:active {
       outline: none;
     }
   }
+
   .invisible {
     z-index: -10;
     opacity: 0;
@@ -61,22 +63,24 @@ body {
     height: 0;
     cursor: initial;
   }
+
   #app {
     height: 100%;
   }
+
   .page-header {
     h1 {
       color: $color_lime;
       font-weight: 700;
+      line-height: 1.2;
+      padding-top: 50px;
       text-align: center;
-      padding-top: 100px;
 
       @media screen and (min-width: $tablet) {
-        color: $color_grey;
-        margin-top: 0;
-        padding-top: 50px;
+        padding-top: 25px;
       }
     }
+
     @media screen and (min-width: $tablet) {
       font-size: 1.2em;
     }
@@ -96,7 +100,9 @@ body.autoplay {
   cursor: none; // this is so you can tell approximately where you are when you have no cursor to disable the feature.
   footer img:hover {
     background-color: transparentize($color_lime, 0.5);
-  } // screen flash for visual feedback that the autoplay is working.
+  }
+
+  // screen flash for visual feedback that the autoplay is working.
   &::before {
     display: block;
     content: '';
@@ -104,7 +110,6 @@ body.autoplay {
     top: 0;
     left: 0;
     right: 0;
-    height: 0;
     background-color: white;
     width: 100vw;
     height: 100vh;
@@ -127,12 +132,14 @@ body.projects-page {
     height: 250px;
     max-width: 80vw;
   }
+
   &:before {
     background-image: url('~@/assets/img/arrows-top-right.png');
     background-position: top;
     top: 0;
     right: 0;
   }
+
   &:after {
     background-image: url('~@/assets/img/arrows-bottom-left.png');
     background-position: bottom;
@@ -157,27 +164,33 @@ body.projects-page {
       outline: none;
       border-radius: 50%;
       box-shadow: 0 0 10px 5px $color_trans_black;
+
       &:hover {
         background: darken($color_lime, 10%);
       }
+
       &:active {
         box-shadow: 0 0 10px 0 $color_trans_black;
       }
+
       img {
         max-height: 30%;
         transform: translateX(10%);
       }
+
       &.prev {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         left: -15px;
       }
+
       &.next {
         right: -15px;
         transform: rotate(180deg);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+
       img.return {
         position: absolute;
         top: 13px;
@@ -198,12 +211,14 @@ body.projects-page {
         border-bottom-left-radius: 0;
         left: -35px;
       }
+
       &.next {
         right: -35px;
         transform: rotate(180deg);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+
       img.return {
         position: absolute;
         top: 33px;
@@ -227,16 +242,19 @@ footer.sponsor-bugs {
   ul {
     display: flex;
     justify-content: flex-end;
-    align-items: center; 
+    align-items: center;
     padding: 0 .5em;
 
   }
+
   li {
     margin: 0 1em;
     width: 40px;
+
     img {
       max-width: 100%;
       height: auto !important;
+
       &#autoplayTrigger {
         position: relative;
         z-index: 2;
@@ -248,7 +266,7 @@ footer.sponsor-bugs {
 @keyframes screenFlash {
   0% {
     display: block;
-    background: $color_teal;
+    background: $theme_base;
     opacity: 1;
     visibility: visible
   }
@@ -263,9 +281,12 @@ footer.sponsor-bugs {
   }
 }
 
+.lime {
+  color: $color_lime;
+}
 
 @media screen and (width: 1920px) and (height: 1080px) {
-  html,body {
+  html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;

@@ -1,4 +1,5 @@
-@import 'global';
+@import 'vars';
+@import 'mixins';
 
 .small-modal {
   position: absolute;
@@ -27,30 +28,25 @@
   // base styles
   .modal-body {
     transform: scaleX(0);
-    transform-origin: 0% 0%;
+    transform-origin: 0 0;
     transition: transform 250ms 500ms;
 
     .panel-container {
       display: flex;
       transform: scaleY(0);
       transition: transform 250ms 250ms;
-      transform-origin: 50% 0%;
+      transform-origin: 50% 0;
       height: 240px;
       overflow: hidden;
+
       .panel {
+        @include linear-gradient(right, $color_grey, $color_dark_grey);
         box-shadow: 0 0 20px $color_trans_black;
         flex: 1;
-        background-color: $color_dark_grey;
-            background: #434343;
-    background: -moz-linear-gradient(left, #434343 0%, #636363 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, #434343), color-stop(100%, #636363));
-    background: -webkit-linear-gradient(left, #434343 0%, #636363 100%);
-    background: -o-linear-gradient(left, #434343 0%, #636363 100%);
-    background: -ms-linear-gradient(left, #434343 0%, #636363 100%);
-    background: linear-gradient(to right, #434343 0%, #636363 100%);
         margin: 5px;
         overflow-y: scroll;
         text-align: left;
+
         &.right {
           padding: 10px;
           overflow-y: scroll;
@@ -63,7 +59,7 @@
           }
 
           transform: scaleY(0);
-          transform-origin: 50% 0%;
+          transform-origin: 50% 0;
           transition: transform 250ms;
         }
 
@@ -75,7 +71,7 @@
     }
 
     header {
-      background-color: $color_teal;
+      background-color: $theme_base;
       height: 2em;
       padding-left: 1.75em;
       text-align: left;
@@ -113,7 +109,7 @@
   // only open
   &.open {
     a.button {
-      background-color: $color_teal;
+      background-color: $theme_base;
       z-index: 5;
       transform: rotate(45deg);
       transition: 250ms;
@@ -123,14 +119,17 @@
         transition: 250ms;
       }
     }
+
     .modal-body {
       position: relative;
       transform: scaleX(1);
       transition: transform 250ms 250ms;
       z-index: 4;
+
       .panel-container {
         transform: scaleY(1);
         transition: transform 250ms 500ms;
+
         .panel {
           &.right {
             transform: scaleY(1);
@@ -151,11 +150,12 @@
   .modal-body.inverted {
     position: relative;
     right: 500px;
-    transform-origin: 100% 0%;
+    transform-origin: 100% 0;
     transform: scaleX(0);
     transition: transform 250ms 500ms;
   }
 }
+
 video {
   // max-width: 100%;
   height: 102%;

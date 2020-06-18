@@ -1,28 +1,27 @@
-@import 'global';
+@import 'vars';
 
 body.specs-page {
   width: 100%;
   height: auto;
+
   #app {
     width: 100%;
     overflow-x: hidden;
     height: 100vh;
   }
 
-  .page-header{
-    margin: 1em;
-    h1{
-      color: $color-grey;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-    span.hint{
+  .page-header {
+    margin: 0 1em 1em;
+
+    span.hint {
       display: none;
     }
   }
 
-  main.supercomputer{    
-    padding: 1em .5em;
+  main {
+    &.supercomputer {
+      padding: 1em .5em;
+    }
   }
 
   .sponsor-bugs {
@@ -30,13 +29,14 @@ body.specs-page {
     bottom: 0;
     right: 0;
   }
-  
-  
-  
-  @media screen and (min-width: 768px) {
-      main.supercomputer {
+
+
+  @media screen and (min-width: $tablet) {
+    main {
+      &.supercomputer {
         padding: 0;
         display: flex; // IE 11 only
+
         .cheyenne-container {
           margin: auto;
           width: 80%;
@@ -47,10 +47,13 @@ body.specs-page {
           background-repeat: no-repeat;
           background-size: contain;
           background-position: 50% 30%;
+
           .computer {
             display: none;
           }
-        } // better alternative for anthing not IE
+        }
+
+        // better alternative for anthing not IE
         @supports (object-fit: contain) {
           .cheyenne-container {
             margin: auto;
@@ -60,6 +63,7 @@ body.specs-page {
             text-align: center;
             max-width: 1400px;
             background: transparent;
+
             .computer {
               display: block;
               object-fit: contain;
@@ -67,5 +71,6 @@ body.specs-page {
           }
         }
       }
+    }
   }
 }

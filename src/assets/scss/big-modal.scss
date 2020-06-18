@@ -1,4 +1,4 @@
-@import 'global';
+@import 'vars';
 
 .big-modal {
   position: absolute;
@@ -8,10 +8,12 @@
   left: 0;
   right: 0;
   z-index: 11;
+
   .overlay {
     position: relative;
     z-index: 12;
   }
+
   .body {
     background: transparent;
     width: 90%;
@@ -42,11 +44,13 @@
       box-shadow: none;
       filter: grayscale(1) brightness(1.5);
       transform: rotate(45deg);
+
       img {
         width: 100%;
       }
     }
   }
+
   .project-title {
     flex: 3;
     color: white;
@@ -62,8 +66,9 @@
     & > div {
       margin: 5px;
     }
+
     .title {
-      background: $color_teal;
+      background: $theme_base;
       flex: 1.5;
       display: flex;
       flex-direction: column;
@@ -72,6 +77,7 @@
       .cell {
         display: table;
         height: 100%;
+
         h1 {
           display: table-cell;
           vertical-align: middle;
@@ -79,6 +85,7 @@
           font-size: 1.25em;
           font-weight: 700;
         }
+
         h2 {
           display: table-footer-group;
           color: $color_dark_grey;
@@ -86,15 +93,18 @@
         }
       }
     }
+
     .project-specs {
       flex: 4;
       background: $color_grey;
       color: white;
       padding: 1em;
       overflow: scroll;
+
       .collection {
         margin-top: 0;
       }
+
       .project-lead {
         text-align: left;
         font-family: $font_poppins;
@@ -113,10 +123,12 @@
           font-size: 95%;
           line-height: 1.5em;
         }
+
         span {
           display: inline-block;
         }
       }
+
       .lead-info {
         margin-left: 10px;
       }
@@ -126,6 +138,7 @@
       }
     }
   }
+
   section {
     flex: 8;
     background: whitesmoke;
@@ -144,6 +157,7 @@
 
   .media-container {
     text-align: center;
+
     img,
     video {
       max-width: 100%;
@@ -152,14 +166,17 @@
 
     .VueCarousel-dot-container {
       height: 34px;
+
       .VueCarousel-dot {
         margin-top: 6px;
       }
+
       .VueCarousel-dot--active {
         height: 100% !important;
         width: 34px !important;
         margin-top: 0 !important;
         padding: 0 6px !important;
+
         .VueCarousel-dot-inner {
           width: 100% !important;
           height: 100% !important;
@@ -172,10 +189,12 @@
       }
     }
   }
+
   .VueCarousel-slide {
     max-height: 400px;
     overflow: hidden;
   }
+
   .media-navigation {
     width: 33%;
     margin: 0 auto; // border: solid 1px red;
@@ -186,14 +205,17 @@
       padding: 0;
       align-items: baseline;
     }
+
     .inactive {
       color: dimgrey;
     }
+
     .active {
       color: $color_lime;
       border: solid 3px $color_lime; // border-radius: 50%;
     }
   }
+
   .modal-article {
     height: auto;
     width: 80%;
@@ -209,7 +231,7 @@
       text-align: center;
       display: inline-block;
       width: 100%;
-      color: $color_teal;
+      color: $theme_base;
       margin: 0;
     }
 
@@ -218,7 +240,7 @@
       margin-bottom: 2em;
 
       a {
-        color: $color_teal;
+        color: $theme_base;
       }
 
       p {
@@ -242,7 +264,7 @@
     overflow: hidden;
 
     button {
-      background-color: $color_teal;
+      background-color: $theme_base;
       display: block;
       height: 50px;
       width: 50px;
@@ -250,20 +272,23 @@
       position: relative;
       outline: none;
       -webkit-appearance: none;
+
       &.prev {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         left: -5px;
       }
+
       &.next {
         border-top-right-radius: 0;
-        border-bottom-right-radius:0;
+        border-bottom-right-radius: 0;
         right: -5px;
       }
     }
 
     img {
       width: 15px;
+
       &.reverse {
         transform: rotate(180deg);
       }

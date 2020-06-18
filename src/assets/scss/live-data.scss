@@ -1,12 +1,8 @@
-@import 'global';
+@import 'vars';
 
 body.live-data-page {
   .live-data {
     .page-header {
-      color: $color_light_grey;
-      font-weight: 700;
-      line-height: 1.2;
-
       @media screen and (min-width: $tablet) {
         width: 90%;
       }
@@ -37,16 +33,15 @@ body.live-data-page {
           .core-tabs {
             background: grey;
             display: flex;
-            width: 90%;
             margin: auto;
             text-align: center;
-            display: flex;
+            width: 90%;
 
             .tab {
               cursor: pointer;
               outline: none;
               flex: 1;
-              padding: .5em .5em;
+              padding: .5em;
               color: $color_dark_grey;
               position: relative;
 
@@ -59,7 +54,6 @@ body.live-data-page {
                   position: absolute;
                   width: 0;
                   height: 0;
-                  border-style: solid 1em;
                   border-top: 2.5em solid grey;
                   border-right: 1.563em solid transparent;
                   top: 0;
@@ -68,13 +62,13 @@ body.live-data-page {
 
                 &.active {
                   &:after {
-                    border-top: 2.5em solid $color_teal;
+                    border-top: 2.5em solid $theme_base;
                   }
                 }
               }
 
               &.active {
-                background: $color_teal;
+                background: $theme_base;
                 color: white;
               }
             }
@@ -97,7 +91,8 @@ body.live-data-page {
             max-height: calc(100vh * .4);
           }
 
-          .canvas {}
+          .canvas {
+          }
         }
       }
     }
@@ -106,7 +101,7 @@ body.live-data-page {
       padding: 1em;
 
       header {
-        background: $color-teal;
+        background: $theme_base;
         padding-left: 1em;
       }
 
@@ -115,10 +110,6 @@ body.live-data-page {
 
         &:last-of-type {
           margin-bottom: 0;
-
-          small {
-            position: absoulte;
-          }
         }
       }
 
@@ -138,10 +129,11 @@ body.live-data-page {
   }
 }
 
-@media screen and (min-width: $tablet) {}
+@media screen and (min-width: $tablet) {
+}
 
 @media screen and (width: 1920px) and (height: 1080px) {
   .live-data {
-height: 95vh;
+    height: 95vh;
   }
 }

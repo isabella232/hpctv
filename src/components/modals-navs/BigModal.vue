@@ -1,26 +1,23 @@
 <template>
   <div class="big-modal">
     <div class="overlay row dead-center" @click="handleExitTap()">
-      <div class="body row" @click.stop="doNothing()">
-        <header class="col project-title upper">
+      <div class="body row" @click.stop>
+        <header class="project-title upper">
           <div class="title">
             <div class="cell">
               <h1>{{data.longProjectName}}</h1>
               <h2>{{data.area}}</h2>
             </div>
           </div>
-          <div class="project-specs col start">
+          <div class="project-specs start">
             <ul class="collection">
-              <div v-for="(stat,i) in data.statData" :key="stat.statName">
-                <stat-card :cardData="data.statData[i]">
-                </stat-card>
-                <hr>
-              </div>
+              <StatCard v-for="(stat,i) in data.statData" :key="stat.statName" :cardData="data.statData[i]" />
             </ul>
+            <hr>
             <div class="project-lead">
               <div class="row top">
                 <img v-if="data.projectLead.thumbnail" :src="data.projectLead.thumbnail" alt="photo of Lead Scientist">
-                <div class="col lead-info">
+                <div class="lead-info">
                   <span class="lime">{{ data.projectLead.name}}</span>
                   <span>{{ data.projectLead.organizationName }}</span>
                   <span v-if="data.projectLead.twitter">{{ data.projectLead.twitter }}</span>
@@ -33,7 +30,7 @@
           </div>
         </header>
 
-        <section class="col relative">
+        <section class="relative">
           <div class="media-container">
             <Carousel :perPage="1" @pageChange="visibleContentID = $event" :paginationEnabled="false">
               <AppSlide v-for="slide in data.mainContent" :key="slide.title">
@@ -109,12 +106,6 @@ export default {
       document.querySelector('html').classList.remove('freeze');
       document.querySelector('body').classList.remove('freeze');
       this.$emit('modalBorderTapped', false);
-    },
-    /**
-     * This function exists solely to stop propogation of the click event that dismisses the modal from extending to the body of the modal content. unfortunately void() is not valid in the template
-     */
-    doNothing() {
-      return;
     },
 
     /**
