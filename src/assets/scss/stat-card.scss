@@ -2,6 +2,7 @@
 @import 'mixins';
 
 .stat-card {
+  @include linear-gradient(right, $color_dark_grey, $color_grey);
   margin: 10px 0;
   display: flex;
 
@@ -61,7 +62,6 @@
 
     .label {
       line-height: 1em;
-      text-align: left;
     }
 
     @media all and (-ms-high-contrast: none) {

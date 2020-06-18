@@ -25,7 +25,7 @@
     </main>
     <SlideUpModal title="Glossary" ref="glossary">
       <div class="legend">
-        <dl class="legend-list col wrap" ref="glossaryInternals">
+        <dl class="legend-list wrap" ref="glossaryInternals">
           <div class="legend-item" v-for="term in vuex.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
             <dd>

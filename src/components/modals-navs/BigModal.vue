@@ -1,9 +1,9 @@
 <template>
   <div class="big-modal">
-    <div class="overlay dead-center" @click="handleExitTap()">
+    <div class="overlay" @click="handleExitTap()">
       <div class="body" @click.stop>
         <header class="project-title upper">
-          <div class="title">
+          <div class="title text-center">
             <div class="cell">
               <h1>{{data.longProjectName}}</h1>
               <h2>{{data.area}}</h2>
@@ -41,8 +41,8 @@
             </Carousel>
           </div>
 
-          <article class="modal-article text-center" ref="article">
-            <h3 class="upper">{{ data.mainContent[visibleContentID].title }}</h3>
+          <article class="modal-article" ref="article">
+            <h3 class="upper text-center">{{ data.mainContent[visibleContentID].title }}</h3>
             <div class="article-content">
               <div class="main-content" v-html="data.mainContent[visibleContentID].body">
               </div>

@@ -1,7 +1,7 @@
 <template>
   <nav :class="{'dock-nav': true, open: navIsOpen}">
     <button class="mobile-menu" @click="toggleNav()">&#9776;</button>
-    <ul>
+    <ul class="text-center">
       <li>
         <a @click="handleAboutClick()">
           <img src="../../assets/icon/about-icon.svg" alt="">

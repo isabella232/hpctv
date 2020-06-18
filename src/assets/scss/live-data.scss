@@ -3,10 +3,6 @@
 body.live-data-page {
   .live-data {
     .page-header {
-      @media screen and (min-width: $tablet) {
-        width: 90%;
-      }
-
       h1 {
         @media screen and (min-width: $tablet) {
           padding-top: 25px;
@@ -34,7 +30,6 @@ body.live-data-page {
             background: grey;
             display: flex;
             margin: auto;
-            text-align: center;
             width: 90%;
 
             .tab {

@@ -1,15 +1,15 @@
 <template>
   <div class="live-data">
     <ThreeModal :data="threeModal" :showButton="true" @threeModalDidClose="renderAllSprites()" />
-    <header class="dead-center text-center upper page-header">
+    <header class="page-header text-center upper">
       <h1>Real-Time Data. Real Implications</h1>
     </header>
 
     <main class="reverse">
 
-      <section class="col data-viz">
-        <div class="primary col around">
-          <div class="center core-tabs">
+      <section class="data-viz">
+        <div class="primary around">
+          <div class="core-tabs text-center">
             <div :class="['user-alloc tab', {active: activeTab === 'facility allocation'}]" @click="setActiveTab('facility allocation')" tabindex="-1">
               <span>Facility Allocation</span>
             </div>
@@ -33,7 +33,7 @@
         </div>
       </section>
 
-      <aside class="projects col side-stats">
+      <aside class="projects side-stats">
         <div class="collection">
           <header class="upper">
             <!-- Machine Log -->
@@ -58,7 +58,7 @@
     </main>
     <SlideUpModal title="Glossary">
       <div class="legend">
-        <dl class="legend-list wrap">
+        <dl class="legend-list">
           <div class="legend-item" v-for="term in $store.state.specs.glossary" :key="term.title">
             <dt class="upper lime">{{ term.title }}</dt>
             <dd>

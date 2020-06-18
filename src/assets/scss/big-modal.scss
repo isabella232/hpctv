@@ -54,7 +54,6 @@
   .project-title {
     flex: 3;
     color: white;
-    text-align: center;
 
     @media screen and (min-width: $tablet) {
       width: 30%;
@@ -106,7 +105,6 @@
       }
 
       .project-lead {
-        text-align: left;
         font-family: $font_poppins;
         font-size: 85%;
 
@@ -156,8 +154,6 @@
   }
 
   .media-container {
-    text-align: center;
-
     img,
     video {
       max-width: 100%;
@@ -221,14 +217,12 @@
     width: 80%;
     overflow-y: scroll;
     margin: auto;
-    text-align: left;
     position: relative;
     z-index: 1;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 
     h3 {
       font-weight: 700;
-      text-align: center;
       display: inline-block;
       width: 100%;
       color: $theme_base;

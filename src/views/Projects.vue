@@ -1,22 +1,20 @@
 <template >
   <div class="projects">
-    <header class="dead-center text-center upper page-header">
+    <header class="text-center upper page-header">
       <h1>Cheyenne's Featured Projects</h1>
     </header>
 
     <main class="grid">
       <div class="case-container text-block">
-        <h2>
+        <h2 class="text-center">
           {{ vuex.headerTileCopy }}
         </h2>
       </div>
-      <div class="case-container" v-for="(project, index) in vuex.featuredProjects" :key="project.name">
-        <figure @click="openModal(index)">
-          <img :src="project.heroImage" alt="">
-          <div class="figure-overlay">
-            <img class="plus-icon" src="../assets/icon/plus-x-icon.svg" alt="expand">
-            <figcaption class="upper">{{ project.name }}</figcaption>
-          </div>
+      <div class="case-container" v-for="(project, index) in vuex.featuredProjects" :key="project.name" @click="openModal(index)">
+        <img :src="project.heroImage" alt="">
+        <figure class="figure-overlay">
+          <img class="plus-icon" src="../assets/icon/plus-x-icon.svg" alt="expand">
+          <figcaption class="upper text-center">{{ project.name }}</figcaption>
         </figure>
       </div>
     </main>

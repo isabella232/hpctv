@@ -3,6 +3,10 @@
 
 .projects-page {
   padding-bottom: 2.25em;
+
+  .stat-card {
+    background: none;
+  }
 }
 
 .projects {
@@ -21,60 +25,51 @@
 
     &:not(.text-block) {
       margin: auto;
+      background: $color_grey;
+      display: flex;
+      align-items: center;
 
-      figure {
-        background: $color_grey;
-        display: flex;
-        align-items: center;
+      .figure-overlay {
+        width: 70%;
 
-        .figure-overlay {
-          text-align: left;
-          width: 70%;
+        figcaption {
+          line-height: 1.3;
+          text-shadow: none;
+        }
 
-          figcaption {
-            line-height: 1.3;
-            text-shadow: none;
-          }
-
-          img {
-            display: none;
-          }
+        img {
+          display: none;
         }
       }
     }
 
-    figure {
+    img {
+      width: 30%;
+      filter: brightness(.75);
+    }
+
+    .figure-overlay {
       img {
-        width: 30%;
-        filter: brightness(.75);
+        max-width: 15%;
+        margin: 10px auto;
+        filter: drop-shadow(0 0 10px black);
       }
 
-      .figure-overlay {
-        img {
-          max-width: 15%;
-          margin: 10px auto;
-          filter: drop-shadow(0 0 10px black);
-        }
+      figcaption {
+        font-size: 2.5vh;
+        font-weight: 700;
+        text-shadow: 0 0 20px black;
+        line-height: 1em;
+      }
+
+      @media all and (-ms-high-contrast: none) {
+        display: block;
 
         figcaption {
-          font-size: 2.5vh;
-          font-weight: 700;
-          text-shadow: 0 0 20px black;
-          line-height: 1em;
-          max-width: 90%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        @media all and (-ms-high-contrast: none) {
-          display: block;
-
-          figcaption {
-            bottom: 50px;
-            position: absolute;
-            max-width: 100%;
-            padding: 0 5%;
-          }
+          bottom: 50px;
+          position: absolute;
+          max-width: 100%;
+          padding: 0 5%;
         }
       }
     }
@@ -89,7 +84,6 @@
       font-size: 22px;
       font-weight: 300;
       line-height: 1.4;
-      text-align: center;
     }
   }
 
@@ -97,35 +91,29 @@
     .case-container {
       max-width: 250px;
       max-height: 250px;
+      position: relative;
 
-      figure {
+      > img {
         position: relative;
+        width: auto;
+        filter: brightness(.75);
+      }
 
-        > img {
-          position: relative;
-          width: auto;
-          filter: brightness(.75);
-        }
-
-        .figure-overlay {
-          display: flex;
-          flex-flow: column;
-          justify-content: center;
-          position: absolute;
-          height: 97%;
-          top: 0;
-        }
+      .figure-overlay {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        position: absolute;
+        height: 97%;
+        top: 0;
       }
 
       &:not(.text-block) {
-        figure {
-          .figure-overlay {
-            text-align: center;
-            width: 100%;
+        .figure-overlay {
+          width: 100%;
 
-            img {
-              display: block;
-            }
+          img {
+            display: block;
           }
         }
       }

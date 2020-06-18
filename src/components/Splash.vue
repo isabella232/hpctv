@@ -1,6 +1,6 @@
 <template>
-  <div class="splash dead-center">
-    <header class="text-center dead-center">
+  <div class="splash">
+    <header class="text-center">
       <h1 class="lime upper">Meet Cheyenne:</h1>
       <blockquote class="upper white">
         &ldquo;{{ quote.text }}&rdquo;
@@ -10,7 +10,7 @@
       </blockquote>
     </header>
     <div class="center">
-      <div class="start-button upper dead-center" @click="handleStartClick()" ref="startButton">
+      <div class="start-button upper" @click="handleStartClick()" ref="startButton">
         <span>Start</span>
       </div>
     </div>

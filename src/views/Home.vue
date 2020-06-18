@@ -1,5 +1,5 @@
 <template>
-  <div class="home-wrapper col dead-center">
+  <div class="home-wrapper">
     <div class="video-container">
       <video autoplay muted loop playsinline id="bg-video">
         <source src="../assets/video/homepage.mp4" type="video/mp4" />
@@ -7,26 +7,26 @@
     </div>
     <transition name="fade" mode="out-in">
       <Splash v-if="showSplash" ref="splash" />
-      <main class=" home-screen col dead-center" v-else>
+      <main class="home-screen" v-else>
         <div class="intro-container">
           <nav>
             <ul class="around middle text-center">
               <li>
-                <router-link to="specs" class="col middle around" ref="toSpecs">
+                <router-link to="specs" class="middle around" ref="toSpecs">
                   <img src="../assets/icon/performance-icon.svg" width="100" alt="">
                   <span class="lime upper">Specs</span>
                 </router-link>
               </li>
 
               <li>
-                <router-link to="live-data" class="col middle around">
+                <router-link to="live-data" class="middle around">
                   <img src="../assets/icon/live-data-icon-2.svg" width="100" alt="">
                   <span class="lime upper">Live Data</span>
                 </router-link>
               </li>
 
               <li>
-                <router-link to="projects" class="col middle around">
+                <router-link to="projects" class="middle around">
                   <img src="../assets/icon/projects-icon.svg" width="100" alt="">
                   <span class="lime upper">Projects</span>
                 </router-link>
@@ -34,7 +34,7 @@
             </ul>
           </nav>
           <div class="text-container text-center">
-            <h1 class="col upper">
+            <h1 class="upper">
               <span class="lime" v-html="vuex.introPanel.mainHeader"></span>
             </h1>
             <p>
@@ -56,7 +56,6 @@ export default {
 
   computed: {
     showSplash() {
-      console.log(this.$store.state);
       return this.$store.state.home.showSplash;
     },
 

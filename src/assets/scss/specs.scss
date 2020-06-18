@@ -53,14 +53,13 @@ body.specs-page {
           }
         }
 
-        // better alternative for anthing not IE
+        // better alternative for anything not IE
         @supports (object-fit: contain) {
           .cheyenne-container {
             margin: auto;
             width: 80%;
             padding-bottom: 0;
             position: relative;
-            text-align: center;
             max-width: 1400px;
             background: transparent;
 
