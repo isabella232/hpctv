@@ -20,7 +20,7 @@
           </div>
 
           <div class="canvas">
-            <three @canvasWasTouched="insertModal($event)" :allSprites="true" ref="three" />
+            <Three @canvasWasTouched="insertModal($event)" :allSprites="true" ref="three" />
           </div>
         </div>
         <div class="graph">
