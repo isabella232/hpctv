@@ -82,8 +82,6 @@ export default {
 
   mounted() {
     // some browsers do not support autoplay for video. this will trigger the video to play if that's the case.
-    // const video = document.querySelector('#bg-video');
-
     if (window.localStorage.getItem('autoPlay') === 'true') {
       console.log('autoplay cookie found');
       this.$store.commit('changeClicks', -1);

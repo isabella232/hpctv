@@ -396,14 +396,6 @@ export default {
                 borderWidth: 2,
                 type: 'line'
               }
-              // {
-              //   label: 'Users',
-              //   backgroundColor: 'rgba(0,255,255,0.5)',
-              //   data: data.entries.map(object => object.users),
-              //   pointRadius: 0,
-              //   borderWidth: 2,
-              //   type: 'line'
-              // }
             ]
           };
         }

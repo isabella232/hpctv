@@ -100,7 +100,7 @@ export default {
 
   methods: {
     /**
-     * Sends an event to the parent to clost the modal
+     * Sends an event to the parent to close the modal
      */
     handleExitTap() {
       document.querySelector('html').classList.remove('freeze');

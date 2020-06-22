@@ -90,7 +90,6 @@ export default {
 
     beginAutoplay(){
       const page = this;
-      // const router = this.$router;
 
       this.automate([
         {delay: 3000, trigger(){ page.$refs.projectLog.legendIsOpen = true}},

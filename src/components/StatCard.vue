@@ -21,7 +21,6 @@ export default {
     cardData: {
       type: Object,
       required: true,
-      // default: '',
       validator(data) {
         return typeof data === 'object';
       }

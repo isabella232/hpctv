@@ -42,9 +42,6 @@
 
             this.header = header;
             this.content = content;
-
-            // console.log(header);
-            // console.log(content);
         }
     };
 </script>
