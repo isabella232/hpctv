@@ -2,22 +2,12 @@
 @import 'grid';
 
 .projects-page {
-  padding-bottom: 2.25em;
-
   .stat-card {
     background: none;
   }
 }
 
 .projects {
-  min-height: calc(100vh - 35px);
-
-  & + .sponsor-bugs {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-
   .case-container {
     max-height: 345px;
     max-width: 345px;
@@ -89,8 +79,6 @@
 
   @media screen and (min-width: $tablet) {
     .case-container {
-      max-width: 250px;
-      max-height: 250px;
       position: relative;
 
       > img {

@@ -2,14 +2,6 @@
 
 body.live-data-page {
   .live-data {
-    .page-header {
-      h1 {
-        @media screen and (min-width: $tablet) {
-          padding-top: 25px;
-        }
-      }
-    }
-
     main {
       @media screen and (min-width: $tablet) {
         display: flex;
@@ -90,6 +82,18 @@ body.live-data-page {
           }
         }
       }
+    }
+
+    .page-header {
+      h1 {
+        @media screen and (min-width: $tablet) {
+          padding-top: 25px;
+        }
+      }
+    }
+
+    .reverse {
+      //height: 100vh;
     }
 
     .side-stats {
