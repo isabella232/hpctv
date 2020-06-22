@@ -1,11 +1,13 @@
 <template>
-  <li class="stat-card row middle">
+  <li class="stat-card middle">
     <div v-if="cardData.iconPath" class="icon">
-      <img :src="cardData.iconPath">
+      <img :src="cardData.iconPath" :alt="cardData.statName">
     </div>
-    <div class="info col start">
+    <div class="info start">
       <div class="number lime">{{ cardData.statNumber | numFormatter}}
-        <div class="extra" v-if="cardData.additionalMarkup" v-html="cardData.additionalMarkup" @click.prevent.stop="extraEL()"></div>
+        <div class="extra" v-if="cardData.infoIcon" @click.prevent.stop="extraEL()">
+          <a href=""><img :src="require('@/assets/icon/info-icon.svg')" width="28" alt="expand"></a>
+        </div>
       </div>
       <span class="label upper">{{ cardData.statName }}</span>
     </div>
@@ -19,7 +21,6 @@ export default {
     cardData: {
       type: Object,
       required: true,
-      default: '',
       validator(data) {
         return typeof data === 'object';
       }
@@ -60,4 +61,4 @@ export default {
 };
 </script>
 
-<style src="../scss/stat-card.scss" lang="scss" scoped></style>
+<style src="../assets/scss/stat-card.scss" lang="scss" scoped></style>

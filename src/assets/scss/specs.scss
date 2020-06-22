@@ -1,0 +1,68 @@
+@import 'vars';
+
+body.specs-page {
+  width: 100%;
+  height: auto;
+
+  #app {
+    width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+  }
+
+  .page-header {
+    margin: 0 1em 1em;
+
+    span.hint {
+      display: none;
+    }
+  }
+
+  main {
+    &.supercomputer {
+      padding: 1em .5em;
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    main {
+      &.supercomputer {
+        padding: 0;
+        display: flex; // IE 11 only
+
+        .cheyenne-container {
+          margin: auto;
+          width: 80%;
+          position: relative;
+          padding-bottom: 50.7%;
+          max-width: 1400px;
+          background: url('~@/assets/img/supercomputer.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: 50% 30%;
+
+          .computer {
+            display: none;
+          }
+        }
+
+        // better alternative for anything not IE
+        @supports (object-fit: contain) {
+          .cheyenne-container {
+            margin: auto;
+            width: 80%;
+            padding-bottom: 0;
+            position: relative;
+            max-width: 1400px;
+            background: transparent;
+
+            .computer {
+              display: block;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+    }
+  }
+}

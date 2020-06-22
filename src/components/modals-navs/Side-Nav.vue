@@ -5,14 +5,14 @@
       :disabled="isFirstPage"
       @click="prevPage()"
     >
-        <img src="/static/icon/nav-arrow.svg" alt="previous">
+        <img src="../../assets/icon/nav-arrow.svg" alt="previous">
       </button>
 
     <button class="next"
       @click="nextPage()"
     >
-      <img class="return" :class="{'invisible': !isLastPage}" src="/static/icon/go-back-arrow.svg" alt="next">
-      <img :class="{'invisible': isLastPage}" src="/static/icon/nav-arrow.svg" alt="next">
+      <img class="return" :class="{'invisible': !isLastPage}" src="../../assets/icon/go-back-arrow.svg" alt="next">
+      <img :class="{'invisible': isLastPage}" src="../../assets/icon/nav-arrow.svg" alt="next">
     </button>
   </div>
 </template>

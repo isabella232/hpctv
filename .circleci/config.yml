@@ -1,0 +1,52 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          name: Get SAM API Data
+          command: |
+            bash ./get-sam-data.sh
+            JSON_FILES=$(ls -1q ./data/*.json | wc -l)
+            if [[ "$JSON_FILES" -ne 13 ]]; then
+              echo "Found only $JSON_FILES json files"; exit 1;
+            fi
+      - run:
+          name: Install AWS
+          command: |
+            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+            unzip awscli-bundle.zip
+            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+      - run:
+          name: Sync Data
+          command: |
+            aws s3 sync ./public/data s3://hpctv-test.ucar.edu/data --exclude "*" --include "*.json"
+            aws cloudfront create-invalidation --distribution-id  ETXGA1QRYM8XJ --paths "/data"
+            aws s3 sync ./public/data s3://hpctv.ucar.edu/data --exclude "*" --include "*.json"
+            aws cloudfront create-invalidation --distribution-id  E1J6SOAK9QJXTK --paths "/data"
+workflows:
+
+  version: 2
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "30 10 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build:
+          context: hpctv
+
+  development:
+    jobs:
+      - build:
+          context: hpctv
+          filters:
+            branches:
+              only:
+                - development

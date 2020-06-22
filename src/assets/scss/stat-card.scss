@@ -1,0 +1,72 @@
+@import 'vars';
+@import 'mixins';
+
+.stat-card {
+  @include linear-gradient(right, $color_dark_grey, $color_grey);
+  margin: 10px 0;
+  display: flex;
+
+  .icon {
+    box-sizing: content-box;
+    width: 30px;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    @media screen and (min-width: $tablet) {
+      height: 5.5vh;
+      width: 5.5vh;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    @media all and (-ms-high-contrast: none) {
+      position: relative;
+      left: 45px;
+    }
+  }
+
+  .info {
+    font-weight: 700;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+
+    .number {
+      font-size: 5.5vh;
+      line-height: 1em;
+      display: flex;
+      justify-content: space-between;
+
+      .extra {
+        font-size: 16px;
+        margin: 0 5px;
+        font-family: $font_poppins;
+        color: $color_white;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        // I've never seen this kind of selector before but it solves the problem with styling this content. Seems to be a Vue specific quirk: https://github.com/vuejs/vue-loader/issues/749
+
+        /deep/ a {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .label {
+      line-height: 1em;
+    }
+
+    @media all and (-ms-high-contrast: none) {
+      position: relative;
+      left: -70px;
+    }
+  }
+}

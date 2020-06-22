@@ -25,7 +25,7 @@ ENDPOINTS[report_total]="${API_PREFIX}/total/machine/cheyenne"
 for key in "${!ENDPOINTS[@]}"
 do
     echo "fetching ${ENDPOINTS[$key]}"
-    curl --retry 1 --retry-delay 5 --retry-max-time 10 --user ${HPCTV_SAM_API_USER}:${HPCTV_SAM_API_PASSWORD} https://sam.ucar.edu${ENDPOINTS[$key]} -o ./data/${key}.json
-    [[ ! -s ./data/${key}.json ]] && echo "./data/${key}.json is empty" && exit 1;
+    curl --retry 1 --retry-delay 5 --retry-max-time 10 --user ${HPCTV_SAM_API_USER}:${HPCTV_SAM_API_PASSWORD} https://sam.ucar.edu${ENDPOINTS[$key]} -o ./public/data/${key}.json
+    [[ ! -s ./data/${key}.json ]] && echo "./public/data/${key}.json is empty" && exit 1;
     sleep 1
 done

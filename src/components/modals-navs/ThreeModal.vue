@@ -1,13 +1,13 @@
 <template>
   <div class="three-modal" :class="{open: visible}" id="three-modal">
     <a class="button" :class="(visible) ? 'open' : 'closed'" @click="toggle()">
-      <img src="/static/icon/plus-x-icon.svg" alt="expand / collapse">
+      <img src="../../assets/icon/plus-x-icon.svg" alt="expand / collapse">
     </a>
     <div class="modal-body" :class="{inverted: opensInverted}">
-      <header class="row upper">
+      <header class="upper">
         <span>{{data.modalData.title}}</span>
       </header>
-      <div class="row start panel-container">
+      <div class="start panel-container">
         <div class="panel right">
           <p class="subtitle lime bold upper">{{data.modalData.subtitle | numFormatter}} Core Hours Used In The Last 30 Days</p>
           <p>
@@ -42,11 +42,7 @@ export default {
   },
   computed: {
     opensInverted() {
-      if (this.data.x >= 50) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.data.x >= 50;
     }
   },
 
@@ -77,7 +73,7 @@ export default {
   watch: {
     data: {
       deep: true,
-      handler(newVal) {
+      handler() {
         const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         const el = document.querySelector('#three-modal');
 
@@ -102,4 +98,4 @@ export default {
 };
 </script>
 
-<style src="../../scss/three-modal.scss" lang="scss" scoped></style>
+<style src="../../assets/scss/three-modal.scss" lang="scss" scoped></style>
