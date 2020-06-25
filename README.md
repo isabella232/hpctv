@@ -46,4 +46,4 @@ To promote the build to production, manually approve the pipeline to copy the co
 
 ## HPC Data
 
-A CircleCI job runs nightly to fetch updated Cheyenne accounting data from SAM. Updated data is synced to the staging and production S3 buckets.
+A CircleCI job runs nightly to fetch updated Cheyenne accounting data from SAM. Updated data is synced to the staging and production S3 buckets. 
