@@ -9,7 +9,7 @@ jobs:
           name: Get SAM API Data
           command: |
             bash ./get-sam-data.sh
-            JSON_FILES=$(ls -1q ./data/*.json | wc -l)
+            JSON_FILES=$(ls -1q ./public/data/*.json | wc -l)
             if [[ "$JSON_FILES" -ne 13 ]]; then
               echo "Found only $JSON_FILES json files"; exit 1;
             fi
