@@ -13,7 +13,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "es6-shim": "^0.35.5",
-    "three": "^0.115.0",
+    "three": "^0.126.0",
     "three-orbit-controls": "^82.1.0",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
