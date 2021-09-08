@@ -10,9 +10,16 @@
   "dependencies": {
     "@littlstar/three-canvas-renderer": "^1.0.0",
     "axios": "^0.21.1",
+    "browserslist": "^4.16.6",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
+    "dns-packet": "^1.3.4",
     "es6-shim": "^0.35.5",
+    "hosted-git-info": "^2.8.9",
+    "node-sass": "^4.14.1",
+    "path-parse": "^1.0.7",
+    "postcss": "^7.0.36",
+    "ssri": "^6.0.2",
     "three": "^0.126.0",
     "three-orbit-controls": "^82.1.0",
     "vue": "^2.6.11",
@@ -32,7 +39,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   }
