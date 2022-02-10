@@ -32,7 +32,7 @@
     "babel-eslint": "^10",
     "eslint": "^6",
     "eslint-plugin-vue": "^6",
-    "node-sass": "^4",
+    "node-sass": "^7",
     "sass-loader": "^8",
     "vue-template-compiler": "^2"
   }
